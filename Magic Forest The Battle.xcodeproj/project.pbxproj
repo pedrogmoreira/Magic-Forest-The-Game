@@ -1,0 +1,516 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057591BD55CF200536AD1 /* AppDelegate.swift */; };
+		EB90575C1BD55CF200536AD1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB90575B1BD55CF200536AD1 /* GameScene.sks */; };
+		EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575D1BD55CF200536AD1 /* GameScene.swift */; };
+		EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575F1BD55CF200536AD1 /* GameViewController.swift */; };
+		EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9057611BD55CF200536AD1 /* Main.storyboard */; };
+		EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB9057641BD55CF300536AD1 /* Assets.xcassets */; };
+		EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9057661BD55CF300536AD1 /* LaunchScreen.storyboard */; };
+		EB9057731BD55CF300536AD1 /* Magic_Forest_The_BattleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057721BD55CF300536AD1 /* Magic_Forest_The_BattleTests.swift */; };
+		EB90577E1BD55CF300536AD1 /* Magic_Forest_The_BattleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90577D1BD55CF300536AD1 /* Magic_Forest_The_BattleUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EB90576F1BD55CF300536AD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB90574E1BD55CF200536AD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB9057551BD55CF200536AD1;
+			remoteInfo = "Magic Forest The Battle";
+		};
+		EB90577A1BD55CF300536AD1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EB90574E1BD55CF200536AD1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EB9057551BD55CF200536AD1;
+			remoteInfo = "Magic Forest The Battle";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EB9057561BD55CF200536AD1 /* Magic Forest The Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Forest The Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB9057591BD55CF200536AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EB90575B1BD55CF200536AD1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		EB90575D1BD55CF200536AD1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		EB90575F1BD55CF200536AD1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		EB9057621BD55CF200536AD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EB9057641BD55CF300536AD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EB9057671BD55CF300536AD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EB9057691BD55CF300536AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB90576E1BD55CF300536AD1 /* Magic Forest The BattleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Magic Forest The BattleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB9057721BD55CF300536AD1 /* Magic_Forest_The_BattleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magic_Forest_The_BattleTests.swift; sourceTree = "<group>"; };
+		EB9057741BD55CF300536AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB9057791BD55CF300536AD1 /* Magic Forest The BattleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Magic Forest The BattleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB90577D1BD55CF300536AD1 /* Magic_Forest_The_BattleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magic_Forest_The_BattleUITests.swift; sourceTree = "<group>"; };
+		EB90577F1BD55CF300536AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EB9057531BD55CF200536AD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB90576B1BD55CF300536AD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB9057761BD55CF300536AD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EB90574D1BD55CF200536AD1 = {
+			isa = PBXGroup;
+			children = (
+				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
+				EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */,
+				EB90577C1BD55CF300536AD1 /* Magic Forest The BattleUITests */,
+				EB9057571BD55CF200536AD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EB9057571BD55CF200536AD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EB9057561BD55CF200536AD1 /* Magic Forest The Battle.app */,
+				EB90576E1BD55CF300536AD1 /* Magic Forest The BattleTests.xctest */,
+				EB9057791BD55CF300536AD1 /* Magic Forest The BattleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
+			isa = PBXGroup;
+			children = (
+				EB9057591BD55CF200536AD1 /* AppDelegate.swift */,
+				EB90575B1BD55CF200536AD1 /* GameScene.sks */,
+				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
+				EB90575F1BD55CF200536AD1 /* GameViewController.swift */,
+				EB9057611BD55CF200536AD1 /* Main.storyboard */,
+				EB9057641BD55CF300536AD1 /* Assets.xcassets */,
+				EB9057661BD55CF300536AD1 /* LaunchScreen.storyboard */,
+				EB9057691BD55CF300536AD1 /* Info.plist */,
+			);
+			path = "Magic Forest The Battle";
+			sourceTree = "<group>";
+		};
+		EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */ = {
+			isa = PBXGroup;
+			children = (
+				EB9057721BD55CF300536AD1 /* Magic_Forest_The_BattleTests.swift */,
+				EB9057741BD55CF300536AD1 /* Info.plist */,
+			);
+			path = "Magic Forest The BattleTests";
+			sourceTree = "<group>";
+		};
+		EB90577C1BD55CF300536AD1 /* Magic Forest The BattleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EB90577D1BD55CF300536AD1 /* Magic_Forest_The_BattleUITests.swift */,
+				EB90577F1BD55CF300536AD1 /* Info.plist */,
+			);
+			path = "Magic Forest The BattleUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EB9057551BD55CF200536AD1 /* Magic Forest The Battle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB9057821BD55CF300536AD1 /* Build configuration list for PBXNativeTarget "Magic Forest The Battle" */;
+			buildPhases = (
+				EB9057521BD55CF200536AD1 /* Sources */,
+				EB9057531BD55CF200536AD1 /* Frameworks */,
+				EB9057541BD55CF200536AD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Magic Forest The Battle";
+			productName = "Magic Forest The Battle";
+			productReference = EB9057561BD55CF200536AD1 /* Magic Forest The Battle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EB90576D1BD55CF300536AD1 /* Magic Forest The BattleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB9057851BD55CF300536AD1 /* Build configuration list for PBXNativeTarget "Magic Forest The BattleTests" */;
+			buildPhases = (
+				EB90576A1BD55CF300536AD1 /* Sources */,
+				EB90576B1BD55CF300536AD1 /* Frameworks */,
+				EB90576C1BD55CF300536AD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB9057701BD55CF300536AD1 /* PBXTargetDependency */,
+			);
+			name = "Magic Forest The BattleTests";
+			productName = "Magic Forest The BattleTests";
+			productReference = EB90576E1BD55CF300536AD1 /* Magic Forest The BattleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EB9057781BD55CF300536AD1 /* Magic Forest The BattleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EB9057881BD55CF300536AD1 /* Build configuration list for PBXNativeTarget "Magic Forest The BattleUITests" */;
+			buildPhases = (
+				EB9057751BD55CF300536AD1 /* Sources */,
+				EB9057761BD55CF300536AD1 /* Frameworks */,
+				EB9057771BD55CF300536AD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EB90577B1BD55CF300536AD1 /* PBXTargetDependency */,
+			);
+			name = "Magic Forest The BattleUITests";
+			productName = "Magic Forest The BattleUITests";
+			productReference = EB9057791BD55CF300536AD1 /* Magic Forest The BattleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EB90574E1BD55CF200536AD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Team Magic Forest";
+				TargetAttributes = {
+					EB9057551BD55CF200536AD1 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					EB90576D1BD55CF300536AD1 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = EB9057551BD55CF200536AD1;
+					};
+					EB9057781BD55CF300536AD1 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = EB9057551BD55CF200536AD1;
+					};
+				};
+			};
+			buildConfigurationList = EB9057511BD55CF200536AD1 /* Build configuration list for PBXProject "Magic Forest The Battle" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EB90574D1BD55CF200536AD1;
+			productRefGroup = EB9057571BD55CF200536AD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EB9057551BD55CF200536AD1 /* Magic Forest The Battle */,
+				EB90576D1BD55CF300536AD1 /* Magic Forest The BattleTests */,
+				EB9057781BD55CF300536AD1 /* Magic Forest The BattleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EB9057541BD55CF200536AD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB90575C1BD55CF200536AD1 /* GameScene.sks in Resources */,
+				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
+				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
+				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB90576C1BD55CF300536AD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB9057771BD55CF300536AD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EB9057521BD55CF200536AD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
+				EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */,
+				EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB90576A1BD55CF300536AD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB9057731BD55CF300536AD1 /* Magic_Forest_The_BattleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB9057751BD55CF300536AD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EB90577E1BD55CF300536AD1 /* Magic_Forest_The_BattleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EB9057701BD55CF300536AD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB9057551BD55CF200536AD1 /* Magic Forest The Battle */;
+			targetProxy = EB90576F1BD55CF300536AD1 /* PBXContainerItemProxy */;
+		};
+		EB90577B1BD55CF300536AD1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EB9057551BD55CF200536AD1 /* Magic Forest The Battle */;
+			targetProxy = EB90577A1BD55CF300536AD1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EB9057611BD55CF200536AD1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB9057621BD55CF200536AD1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EB9057661BD55CF300536AD1 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EB9057671BD55CF300536AD1 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EB9057801BD55CF300536AD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EB9057811BD55CF300536AD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EB9057831BD55CF300536AD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Magic Forest The Battle/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-Battle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		EB9057841BD55CF300536AD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "Magic Forest The Battle/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-Battle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		EB9057861BD55CF300536AD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "Magic Forest The BattleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-BattleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Magic Forest The Battle.app/Magic Forest The Battle";
+			};
+			name = Debug;
+		};
+		EB9057871BD55CF300536AD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "Magic Forest The BattleTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-BattleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Magic Forest The Battle.app/Magic Forest The Battle";
+			};
+			name = Release;
+		};
+		EB9057891BD55CF300536AD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = "Magic Forest The BattleUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-BattleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Magic Forest The Battle";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		EB90578A1BD55CF300536AD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "Magic Forest The BattleUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-BattleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "Magic Forest The Battle";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EB9057511BD55CF200536AD1 /* Build configuration list for PBXProject "Magic Forest The Battle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9057801BD55CF300536AD1 /* Debug */,
+				EB9057811BD55CF300536AD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EB9057821BD55CF300536AD1 /* Build configuration list for PBXNativeTarget "Magic Forest The Battle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9057831BD55CF300536AD1 /* Debug */,
+				EB9057841BD55CF300536AD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EB9057851BD55CF300536AD1 /* Build configuration list for PBXNativeTarget "Magic Forest The BattleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9057861BD55CF300536AD1 /* Debug */,
+				EB9057871BD55CF300536AD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		EB9057881BD55CF300536AD1 /* Build configuration list for PBXNativeTarget "Magic Forest The BattleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EB9057891BD55CF300536AD1 /* Debug */,
+				EB90578A1BD55CF300536AD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EB90574E1BD55CF200536AD1 /* Project object */;
+}
