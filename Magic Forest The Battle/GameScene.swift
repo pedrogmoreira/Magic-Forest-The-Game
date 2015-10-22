@@ -23,7 +23,7 @@ class GameScene: SKScene {
 		self.gameLayer = GameLayer(size: size)
 		self.gameLayer?.zPosition = -5
 		
-		self.backgroundLayer = VulcanScenery(size: size)
+		self.backgroundLayer = ForestScenery(size: size)
 		self.backgroundLayer?.zPosition = -10
 		self.backgroundLayer?.position = CGPoint(x: size.width / 2, y: size.height / 2)
 		

@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameLayer: SKNode, BasicLayer {
+class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 	var player: Player?
 	
@@ -26,5 +26,18 @@ class GameLayer: SKNode, BasicLayer {
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	// MARK: MFCSContrllerDelegate Methods
+	func recieveCommand(command: MFCSCommandType) {
+		if command == MFCSCommandType.Attack {
+			print("attack")
+		} else if command == MFCSCommandType.Jump {
+			print("jump")
+		}
+	}
+	
+	func analogUpdate(relativePosition position: CGPoint) {
+		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
 }

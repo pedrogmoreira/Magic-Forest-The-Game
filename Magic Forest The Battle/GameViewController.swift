@@ -11,6 +11,9 @@ import SpriteKit
 
 class GameViewController: UIViewController {
 
+	var controlUnit: MFCSControlUnit?
+	var controllerMode: MFCSControllerMode?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,6 +31,12 @@ class GameViewController: UIViewController {
 		scene.scaleMode = .AspectFill
 		
 		skView.presentScene(scene)
+		
+		controllerMode = MFCSControllerMode.JoystickAndButton
+		
+		controlUnit = MFCSControlUnit(frame: self.view.frame, delegate: scene.gameLayer!, controllerMode: controllerMode!)
+		
+		self.view.addSubview(self.controlUnit!)
     }
 
     override func shouldAutorotate() -> Bool {
