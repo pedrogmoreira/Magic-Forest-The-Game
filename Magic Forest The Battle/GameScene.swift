@@ -35,4 +35,8 @@ class GameScene: SKScene {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	override func update(currentTime: NSTimeInterval) {
+		self.gameLayer?.update(currentTime)
+	}
+	
 }

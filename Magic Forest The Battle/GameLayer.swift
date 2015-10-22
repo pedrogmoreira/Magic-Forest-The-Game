@@ -28,6 +28,12 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	func update(currentTime: CFTimeInterval) {
+		/* Called before each frame is rendered */
+		self.player?.update(currentTime)
+	}
+
+	
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType) {
 		if command == MFCSCommandType.Attack {

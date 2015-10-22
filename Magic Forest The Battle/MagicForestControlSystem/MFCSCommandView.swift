@@ -56,12 +56,10 @@ class MFCSCommandView: UIView {
 	}
 	
 	func attack(){
-		//delegate?.swap()
 		delegate?.recieveCommand(MFCSCommandType.Attack)
 	}
 	
 	func jump(){
-		//delegate?.swap()
 		delegate?.recieveCommand(MFCSCommandType.Jump)
 	}
 	
