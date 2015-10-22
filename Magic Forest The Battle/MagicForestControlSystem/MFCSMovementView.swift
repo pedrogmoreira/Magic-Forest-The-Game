@@ -10,11 +10,18 @@ import UIKit
 
 class MFCSMovementView: UIView {
 	
+	// MARK: Atributes
+	
 	var analog: MFCSAnalog?
 	var firstTouch: Int?
 	
+	// MARK: Init
+	
+	/**
+	Initializes the movement view
+	- parameter frame: The view CGRect
+	*/
 	override init(var frame: CGRect) {
-		
 		//resize frame to half screen
 		frame = CGRectMake(0, 0, frame.width/2, frame.height)
 		
@@ -32,6 +39,11 @@ class MFCSMovementView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// MARK: View Positioning
+	
+	/**
+	Check if the view is in the correct place, based on lefty configuration
+	*/
 	func updateCenter(){
 		if (lefty){
 			self.center.x = frame.width*3/2
@@ -40,6 +52,8 @@ class MFCSMovementView: UIView {
 			self.center.x = frame.width/2
 		}
 	}
+	
+	// MARK: Touch Handle
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		for touch in touches {

@@ -10,10 +10,18 @@ import UIKit
 
 class MFCSCommandView: UIView {
 	
+	// MARK: Atributes
+	
 	var delegate: MFCSControllerDelegate?
 	
+	// MARK: Init
+	
+	/**
+	Initializes the command view
+	- parameter frame: The view CGRect
+	- parameter controllerMode: The type of controller to be used
+	*/
 	init(var frame: CGRect, controllerMode: MFCSControllerMode) {
-		
 		frame = CGRectMake(frame.width/2, 0, frame.width/2, frame.height)
 		super.init(frame: frame)
 		self.userInteractionEnabled = true
@@ -46,6 +54,11 @@ class MFCSCommandView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// MARK: View Positioning
+	
+	/**
+	Check if view is in the correct place, based on lefty configuration
+	*/
 	func updateCenter(){
 		if (lefty == true){
 			self.center.x = frame.width/2
@@ -55,10 +68,18 @@ class MFCSCommandView: UIView {
 		}
 	}
 	
+	// MARK: Command Message Sender
+	
+	/**
+	Sends the attack command to delegate
+	*/
 	func attack(){
 		delegate?.recieveCommand(MFCSCommandType.Attack)
 	}
 	
+	/**
+	Sends the jump commando to delegate
+	*/
 	func jump(){
 		delegate?.recieveCommand(MFCSCommandType.Jump)
 	}

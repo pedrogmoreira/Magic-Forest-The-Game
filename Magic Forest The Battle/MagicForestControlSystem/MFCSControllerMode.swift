@@ -9,7 +9,7 @@
 import Foundation
 
 public enum MFCSControllerMode: UInt32 {
-	
+
 	case JoystickAndButton = 2
 	case JoystickAndSwipe = 4
 	
