@@ -7,8 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */; };
+		EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */; };
+		EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */; };
+		EB1214A81BD95CA700D0552F /* Int+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A41BD95CA700D0552F /* Int+Extensions.swift */; };
+		EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1214AB1BD95CB000D0552F /* JoystickBase.png */; };
+		EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */ = {isa = PBXBuildFile; fileRef = EB1214AC1BD95CB000D0552F /* JoystickKnob.png */; };
+		EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214AD1BD95CB000D0552F /* MFCSAnalog.swift */; };
+		EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214AE1BD95CB000D0552F /* MFCSCommandType.swift */; };
+		EB1214B81BD95CB000D0552F /* MFCSCommandView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214AF1BD95CB000D0552F /* MFCSCommandView.swift */; };
+		EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B01BD95CB000D0552F /* MFCSControllerDelegate.swift */; };
+		EB1214BA1BD95CB000D0552F /* MFCSControllerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */; };
+		EB1214BB1BD95CB000D0552F /* MFCSControlUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */; };
+		EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */; };
 		EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057591BD55CF200536AD1 /* AppDelegate.swift */; };
-		EB90575C1BD55CF200536AD1 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = EB90575B1BD55CF200536AD1 /* GameScene.sks */; };
 		EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575D1BD55CF200536AD1 /* GameScene.swift */; };
 		EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575F1BD55CF200536AD1 /* GameViewController.swift */; };
 		EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9057611BD55CF200536AD1 /* Main.storyboard */; };
@@ -16,6 +28,13 @@
 		EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB9057661BD55CF300536AD1 /* LaunchScreen.storyboard */; };
 		EB9057731BD55CF300536AD1 /* Magic_Forest_The_BattleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057721BD55CF300536AD1 /* Magic_Forest_The_BattleTests.swift */; };
 		EB90577E1BD55CF300536AD1 /* Magic_Forest_The_BattleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90577D1BD55CF300536AD1 /* Magic_Forest_The_BattleUITests.swift */; };
+		EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057961BD5665F00536AD1 /* BasicLayer.swift */; };
+		EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057981BD5685300536AD1 /* BackgroundLayer.swift */; };
+		EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90579B1BD56D3200536AD1 /* ForestScenery.swift */; };
+		EB90579E1BD56F9000536AD1 /* VulcanScenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90579D1BD56F9000536AD1 /* VulcanScenery.swift */; };
+		EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A01BD5709800536AD1 /* GameObject.swift */; };
+		EB9057A31BD5712500536AD1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A21BD5712500536AD1 /* Player.swift */; };
+		EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A41BD573B700536AD1 /* GameLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,9 +55,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
+		EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
+		EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
+		EB1214A41BD95CA700D0552F /* Int+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Extensions.swift"; sourceTree = "<group>"; };
+		EB1214AB1BD95CB000D0552F /* JoystickBase.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JoystickBase.png; sourceTree = "<group>"; };
+		EB1214AC1BD95CB000D0552F /* JoystickKnob.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JoystickKnob.png; sourceTree = "<group>"; };
+		EB1214AD1BD95CB000D0552F /* MFCSAnalog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSAnalog.swift; sourceTree = "<group>"; };
+		EB1214AE1BD95CB000D0552F /* MFCSCommandType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSCommandType.swift; sourceTree = "<group>"; };
+		EB1214AF1BD95CB000D0552F /* MFCSCommandView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSCommandView.swift; sourceTree = "<group>"; };
+		EB1214B01BD95CB000D0552F /* MFCSControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControllerDelegate.swift; sourceTree = "<group>"; };
+		EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControllerMode.swift; sourceTree = "<group>"; };
+		EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControlUnit.swift; sourceTree = "<group>"; };
+		EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSMovementView.swift; sourceTree = "<group>"; };
 		EB9057561BD55CF200536AD1 /* Magic Forest The Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Forest The Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9057591BD55CF200536AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EB90575B1BD55CF200536AD1 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		EB90575D1BD55CF200536AD1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		EB90575F1BD55CF200536AD1 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		EB9057621BD55CF200536AD1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -51,6 +82,13 @@
 		EB9057791BD55CF300536AD1 /* Magic Forest The BattleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Magic Forest The BattleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB90577D1BD55CF300536AD1 /* Magic_Forest_The_BattleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Magic_Forest_The_BattleUITests.swift; sourceTree = "<group>"; };
 		EB90577F1BD55CF300536AD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB9057961BD5665F00536AD1 /* BasicLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicLayer.swift; sourceTree = "<group>"; };
+		EB9057981BD5685300536AD1 /* BackgroundLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundLayer.swift; sourceTree = "<group>"; };
+		EB90579B1BD56D3200536AD1 /* ForestScenery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForestScenery.swift; sourceTree = "<group>"; };
+		EB90579D1BD56F9000536AD1 /* VulcanScenery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VulcanScenery.swift; sourceTree = "<group>"; };
+		EB9057A01BD5709800536AD1 /* GameObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
+		EB9057A21BD5712500536AD1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		EB9057A41BD573B700536AD1 /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +116,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EB1214A01BD95CA700D0552F /* SKTUtils */ = {
+			isa = PBXGroup;
+			children = (
+				EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */,
+				EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */,
+				EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */,
+				EB1214A41BD95CA700D0552F /* Int+Extensions.swift */,
+			);
+			path = SKTUtils;
+			sourceTree = "<group>";
+		};
+		EB1214A91BD95CB000D0552F /* MagicForestControlSystem */ = {
+			isa = PBXGroup;
+			children = (
+				EB1214AA1BD95CB000D0552F /* Assets */,
+				EB1214AD1BD95CB000D0552F /* MFCSAnalog.swift */,
+				EB1214AE1BD95CB000D0552F /* MFCSCommandType.swift */,
+				EB1214AF1BD95CB000D0552F /* MFCSCommandView.swift */,
+				EB1214B01BD95CB000D0552F /* MFCSControllerDelegate.swift */,
+				EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */,
+				EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */,
+				EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */,
+			);
+			path = MagicForestControlSystem;
+			sourceTree = "<group>";
+		};
+		EB1214AA1BD95CB000D0552F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				EB1214AB1BD95CB000D0552F /* JoystickBase.png */,
+				EB1214AC1BD95CB000D0552F /* JoystickKnob.png */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
@@ -101,8 +174,11 @@
 		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
 			isa = PBXGroup;
 			children = (
+				EB1214A01BD95CA700D0552F /* SKTUtils */,
+				EB90579F1BD5705F00536AD1 /* Entity */,
+				EB1214A91BD95CB000D0552F /* MagicForestControlSystem */,
+				EB9057951BD5655E00536AD1 /* Layers */,
 				EB9057591BD55CF200536AD1 /* AppDelegate.swift */,
-				EB90575B1BD55CF200536AD1 /* GameScene.sks */,
 				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
 				EB90575F1BD55CF200536AD1 /* GameViewController.swift */,
 				EB9057611BD55CF200536AD1 /* Main.storyboard */,
@@ -129,6 +205,35 @@
 				EB90577F1BD55CF300536AD1 /* Info.plist */,
 			);
 			path = "Magic Forest The BattleUITests";
+			sourceTree = "<group>";
+		};
+		EB9057951BD5655E00536AD1 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				EB9057961BD5665F00536AD1 /* BasicLayer.swift */,
+				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
+				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
+				EB90579A1BD56CC700536AD1 /* Sceneries */,
+			);
+			name = Layers;
+			sourceTree = "<group>";
+		};
+		EB90579A1BD56CC700536AD1 /* Sceneries */ = {
+			isa = PBXGroup;
+			children = (
+				EB90579B1BD56D3200536AD1 /* ForestScenery.swift */,
+				EB90579D1BD56F9000536AD1 /* VulcanScenery.swift */,
+			);
+			name = Sceneries;
+			sourceTree = "<group>";
+		};
+		EB90579F1BD5705F00536AD1 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				EB9057A01BD5709800536AD1 /* GameObject.swift */,
+				EB9057A21BD5712500536AD1 /* Player.swift */,
+			);
+			name = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,9 +339,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB90575C1BD55CF200536AD1 /* GameScene.sks in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
+				EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */,
+				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
 				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,9 +368,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */,
+				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
+				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
+				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
+				EB90579E1BD56F9000536AD1 /* VulcanScenery.swift in Sources */,
 				EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */,
+				EB1214B81BD95CB000D0552F /* MFCSCommandView.swift in Sources */,
+				EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */,
+				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
+				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
+				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
+				EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */,
+				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,
+				EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */,
+				EB1214A81BD95CA700D0552F /* Int+Extensions.swift in Sources */,
+				EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */,
+				EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */,
 				EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */,
+				EB1214BB1BD95CB000D0552F /* MFCSControlUnit.swift in Sources */,
+				EB1214BA1BD95CB000D0552F /* MFCSControllerMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -493,6 +617,7 @@
 				EB9057841BD55CF300536AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB9057851BD55CF300536AD1 /* Build configuration list for PBXNativeTarget "Magic Forest The BattleTests" */ = {
 			isa = XCConfigurationList;
@@ -501,6 +626,7 @@
 				EB9057871BD55CF300536AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB9057881BD55CF300536AD1 /* Build configuration list for PBXNativeTarget "Magic Forest The BattleUITests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +635,7 @@
 				EB90578A1BD55CF300536AD1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,37 +9,34 @@
 import SpriteKit
 
 class GameScene: SKScene {
-    override func didMoveToView(view: SKView) {
-        /* Setup your scene here */
-        let myLabel = SKLabelNode(fontNamed:"Chalkduster")
-        myLabel.text = "Hello, World!";
-        myLabel.fontSize = 45;
-        myLabel.position = CGPoint(x:CGRectGetMidX(self.frame), y:CGRectGetMidY(self.frame));
-        
-        self.addChild(myLabel)
-    }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-       /* Called when a touch begins */
-        
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            
-            let sprite = SKSpriteNode(imageNamed:"Spaceship")
-            
-            sprite.xScale = 0.5
-            sprite.yScale = 0.5
-            sprite.position = location
-            
-            let action = SKAction.rotateByAngle(CGFloat(M_PI), duration:1)
-            
-            sprite.runAction(SKAction.repeatActionForever(action))
-            
-            self.addChild(sprite)
-        }
-    }
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-    }
+	
+	var backgroundLayer: BackgroundLayer?
+	var gameLayer: GameLayer?
+	
+	/**
+	Initializes the game scene
+	- parameter size: A reference to the device's screen size
+	*/
+	override init(size: CGSize) {
+		super.init(size: size)
+		
+		self.gameLayer = GameLayer(size: size)
+		self.gameLayer?.zPosition = -5
+		
+		self.backgroundLayer = ForestScenery(size: size)
+		self.backgroundLayer?.zPosition = -10
+		self.backgroundLayer?.position = CGPoint(x: size.width / 2, y: size.height / 2)
+		
+		self.addChild(self.gameLayer!)
+		self.addChild(self.backgroundLayer!)
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+	    fatalError("init(coder:) has not been implemented")
+	}
+	
+	override func update(currentTime: NSTimeInterval) {
+		self.gameLayer?.update(currentTime)
+	}
+	
 }
