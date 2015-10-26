@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
 	
 	var backgroundLayer: BackgroundLayer?
 	var gameLayer: GameLayer?
@@ -29,6 +29,9 @@ class GameScene: SKScene {
 		
 		self.addChild(self.gameLayer!)
 		self.addChild(self.backgroundLayer!)
+        
+        self.physicsWorld.contactDelegate = self
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
