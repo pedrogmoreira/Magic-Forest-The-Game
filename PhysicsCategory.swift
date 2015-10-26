@@ -8,6 +8,6 @@
 
 import UIKit
 
-public enum PhysicsCategory: UInt32 {
-    case Player = 2
+enum PhysicsCategory: UInt32 {
+    case Player
 }

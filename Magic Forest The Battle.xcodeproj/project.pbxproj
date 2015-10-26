@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		67F27E061BDE975D00362144 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F27E051BDE975D00362144 /* PhysicsCategory.swift */; };
+		67F27E0B1BDEB32F00362144 /* sonic.png in Resources */ = {isa = PBXBuildFile; fileRef = 67F27E0A1BDEB32F00362144 /* sonic.png */; };
 		EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */; };
 		EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */; };
 		EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		67F27E051BDE975D00362144 /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhysicsCategory.swift; path = ../PhysicsCategory.swift; sourceTree = "<group>"; };
+		67F27E0A1BDEB32F00362144 /* sonic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sonic.png; sourceTree = "<group>"; };
 		EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -122,6 +124,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67F27E071BDE984400362144 /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				67F27E051BDE975D00362144 /* PhysicsCategory.swift */,
+			);
+			name = Physics;
+			sourceTree = "<group>";
+		};
+		67F27E081BDEB30F00362144 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				67F27E091BDEB31B00362144 /* Player Placeholder */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		67F27E091BDEB31B00362144 /* Player Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				67F27E0A1BDEB32F00362144 /* sonic.png */,
+			);
+			name = "Player Placeholder";
+			sourceTree = "<group>";
+		};
 		EB1214A01BD95CA700D0552F /* SKTUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +206,8 @@
 		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
 			isa = PBXGroup;
 			children = (
-				67F27E051BDE975D00362144 /* PhysicsCategory.swift */,
+				67F27E081BDEB30F00362144 /* Resources */,
+				67F27E071BDE984400362144 /* Physics */,
 				EB1214A01BD95CA700D0552F /* SKTUtils */,
 				EB90579F1BD5705F00536AD1 /* Entity */,
 				EB1214A91BD95CB000D0552F /* MagicForestControlSystem */,
@@ -364,6 +391,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67F27E0B1BDEB32F00362144 /* sonic.png in Resources */,
 				EBDBC0C41BDE36A700292C71 /* Ataque.png in Resources */,
 				EBDBC0C51BDE36A700292C71 /* Pulo.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,

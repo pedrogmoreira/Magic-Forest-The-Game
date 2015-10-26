@@ -8,10 +8,10 @@
 
 import SpriteKit
 
-protocol GameObject {
+@objc protocol GameObject {
 	
 	init(position: CGPoint)
-	func generateTexture(name: String) -> SKTexture
 	func generatePhysicsBody() -> SKPhysicsBody
+    optional func setBasicAttributes()
 
 }
