@@ -28,26 +28,26 @@ class MFCSCommandView: UIView {
 		
 		updateCenter()
 		
-//		if controllerMode == MFCSControllerMode.JoystickAndButton {
-//			
-//			let ratio = frame.size.width / frame.size.height
-//			
-//			let imageAttack = UIImage(named: "Ataque.png")
-//			let width = (imageAttack?.size.width)! * ratio * 0.7
-//			let height = (imageAttack?.size.height)! * ratio * 0.7
-//			let buttonAttack = UIButton(frame: CGRect(x: frame.size.width - width - 20, y: frame.size.height - height - 20, width: width, height: height))
-//			buttonAttack.setImage(imageAttack, forState: UIControlState.Normal)
-//			buttonAttack.addTarget(self, action: "attack", forControlEvents: UIControlEvents.TouchUpInside)
-//			self.addSubview(buttonAttack)
-//			
-//		} else if controllerMode == MFCSControllerMode.JoystickAndSwipe {
-//			let tapTest = UITapGestureRecognizer(target: self, action: "attack")
-//			self.addGestureRecognizer(tapTest)
-//			
-//			let swipeUp = UISwipeGestureRecognizer(target: self, action: "jump")
-//			swipeUp.direction = UISwipeGestureRecognizerDirection.Up
-//			self.addGestureRecognizer(swipeUp)
-//		}
+		if controllerMode == MFCSControllerMode.JoystickAndButton {
+			
+			let ratio = frame.size.width / frame.size.height
+			
+			let imageAttack = UIImage(named: "Ataque.png")
+			let width = (imageAttack?.size.width)! * ratio * 0.7
+			let height = (imageAttack?.size.height)! * ratio * 0.7
+			let buttonAttack = UIButton(frame: CGRect(x: frame.size.width - width - 20, y: frame.size.height - height - 20, width: width, height: height))
+			buttonAttack.setImage(imageAttack, forState: UIControlState.Normal)
+			buttonAttack.addTarget(self, action: "attack", forControlEvents: UIControlEvents.TouchUpInside)
+			self.addSubview(buttonAttack)
+			
+		} else if controllerMode == MFCSControllerMode.JoystickAndSwipe {
+			let tapTest = UITapGestureRecognizer(target: self, action: "attack")
+			self.addGestureRecognizer(tapTest)
+			
+			let swipeUp = UISwipeGestureRecognizer(target: self, action: "jump")
+			swipeUp.direction = UISwipeGestureRecognizerDirection.Up
+			self.addGestureRecognizer(swipeUp)
+		}
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

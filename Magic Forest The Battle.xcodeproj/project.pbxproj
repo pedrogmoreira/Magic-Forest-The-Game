@@ -35,6 +35,8 @@
 		EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A01BD5709800536AD1 /* GameObject.swift */; };
 		EB9057A31BD5712500536AD1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A21BD5712500536AD1 /* Player.swift */; };
 		EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A41BD573B700536AD1 /* GameLayer.swift */; };
+		EBDBC0C41BDE36A700292C71 /* Ataque.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDBC0C21BDE36A700292C71 /* Ataque.png */; };
+		EBDBC0C51BDE36A700292C71 /* Pulo.png in Resources */ = {isa = PBXBuildFile; fileRef = EBDBC0C31BDE36A700292C71 /* Pulo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +91,8 @@
 		EB9057A01BD5709800536AD1 /* GameObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		EB9057A21BD5712500536AD1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		EB9057A41BD573B700536AD1 /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
+		EBDBC0C21BDE36A700292C71 /* Ataque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ataque.png; sourceTree = "<group>"; };
+		EBDBC0C31BDE36A700292C71 /* Pulo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pulo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,8 +149,8 @@
 		EB1214AA1BD95CB000D0552F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				EB1214AB1BD95CB000D0552F /* JoystickBase.png */,
-				EB1214AC1BD95CB000D0552F /* JoystickKnob.png */,
+				EBDBC0C11BDE360800292C71 /* Buttons */,
+				EBDBC0C01BDE35FB00292C71 /* Joystick */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -234,6 +238,24 @@
 				EB9057A21BD5712500536AD1 /* Player.swift */,
 			);
 			name = Entity;
+			sourceTree = "<group>";
+		};
+		EBDBC0C01BDE35FB00292C71 /* Joystick */ = {
+			isa = PBXGroup;
+			children = (
+				EB1214AB1BD95CB000D0552F /* JoystickBase.png */,
+				EB1214AC1BD95CB000D0552F /* JoystickKnob.png */,
+			);
+			name = Joystick;
+			sourceTree = "<group>";
+		};
+		EBDBC0C11BDE360800292C71 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				EBDBC0C21BDE36A700292C71 /* Ataque.png */,
+				EBDBC0C31BDE36A700292C71 /* Pulo.png */,
+			);
+			name = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -339,6 +361,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBDBC0C41BDE36A700292C71 /* Ataque.png in Resources */,
+				EBDBC0C51BDE36A700292C71 /* Pulo.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
 				EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */,

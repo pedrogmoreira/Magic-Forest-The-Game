@@ -32,7 +32,7 @@ class GameViewController: UIViewController {
 		
 		skView.presentScene(scene)
 		
-		controllerMode = MFCSControllerMode.JoystickAndButton
+		controllerMode = MFCSControllerMode.JoystickAndSwipe
 		
 		controlUnit = MFCSControlUnit(frame: self.view.frame, delegate: scene.gameLayer!, controllerMode: controllerMode!)
 		
