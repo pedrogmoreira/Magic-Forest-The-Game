@@ -16,9 +16,9 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 	*/
 	required init(size: CGSize) {
 		super.init()
-		
-		self.background = SKSpriteNode(color: UIColor.greenColor(), size: size)
-		
+				
+        self.background = SKSpriteNode(imageNamed: "floresta.jpg")
+        
 		self.addChild(self.background!)
 	}
 

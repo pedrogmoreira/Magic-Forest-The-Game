@@ -23,7 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		self.gameLayer = GameLayer(size: size)
 		self.gameLayer?.zPosition = -5
 		
-		self.backgroundLayer = ForestScenery(size: size)
+		self.backgroundLayer = VulcanScenery(size: size)
 		self.backgroundLayer?.zPosition = -10
 		self.backgroundLayer?.position = CGPoint(x: size.width / 2, y: size.height / 2)
 		
@@ -32,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
+        self.physicsBody = SKPhysicsBody.init(edgeLoopFromRect: self.frame)
 	}
 
 	required init?(coder aDecoder: NSCoder) {

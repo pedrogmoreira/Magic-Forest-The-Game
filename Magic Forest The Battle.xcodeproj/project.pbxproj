@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		67F27E061BDE975D00362144 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F27E051BDE975D00362144 /* PhysicsCategory.swift */; };
 		67F27E0B1BDEB32F00362144 /* sonic.png in Resources */ = {isa = PBXBuildFile; fileRef = 67F27E0A1BDEB32F00362144 /* sonic.png */; };
+		67F27E0F1BDEB7FD00362144 /* floresta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67F27E0D1BDEB7FD00362144 /* floresta.jpg */; };
+		67F27E101BDEB7FD00362144 /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67F27E0E1BDEB7FD00362144 /* vulcao.jpg */; };
 		EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */; };
 		EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */; };
 		EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */; };
@@ -61,6 +63,8 @@
 /* Begin PBXFileReference section */
 		67F27E051BDE975D00362144 /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhysicsCategory.swift; path = ../PhysicsCategory.swift; sourceTree = "<group>"; };
 		67F27E0A1BDEB32F00362144 /* sonic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sonic.png; sourceTree = "<group>"; };
+		67F27E0D1BDEB7FD00362144 /* floresta.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floresta.jpg; sourceTree = "<group>"; };
+		67F27E0E1BDEB7FD00362144 /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
 		EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -135,6 +139,7 @@
 		67F27E081BDEB30F00362144 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67F27E0C1BDEB7EA00362144 /* Background Placeholder */,
 				67F27E091BDEB31B00362144 /* Player Placeholder */,
 			);
 			name = Resources;
@@ -146,6 +151,15 @@
 				67F27E0A1BDEB32F00362144 /* sonic.png */,
 			);
 			name = "Player Placeholder";
+			sourceTree = "<group>";
+		};
+		67F27E0C1BDEB7EA00362144 /* Background Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				67F27E0D1BDEB7FD00362144 /* floresta.jpg */,
+				67F27E0E1BDEB7FD00362144 /* vulcao.jpg */,
+			);
+			name = "Background Placeholder";
 			sourceTree = "<group>";
 		};
 		EB1214A01BD95CA700D0552F /* SKTUtils */ = {
@@ -392,10 +406,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				67F27E0B1BDEB32F00362144 /* sonic.png in Resources */,
+				67F27E101BDEB7FD00362144 /* vulcao.jpg in Resources */,
 				EBDBC0C41BDE36A700292C71 /* Ataque.png in Resources */,
 				EBDBC0C51BDE36A700292C71 /* Pulo.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
+				67F27E0F1BDEB7FD00362144 /* floresta.jpg in Resources */,
 				EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */,
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
 				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
