@@ -30,11 +30,69 @@ class Player: SKSpriteNode, GameObject {
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
 		self.movementSpeed = 2
 		self.jumpForce = 400
+		
+		initializeAnimations()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
+
+	
+	
+	func initializeAnimations () {
+		self.runAction(idle())
+		self.runAction(run())
+	}
+	
+	/**
+	Gerar animação idle dos personagens
+	- returns: SKAction
+	*/
+
+	func loadIdleAnimation () -> SKAction {
+		var idleTextures = [SKTexture]()
+		
+		for i in 1...11 {
+			idleTextures.append(SKTexture(imageNamed: "idle\(i)"))
+		}
+		let idle = SKAction.animateWithTextures(idleTextures, timePerFrame: 0.2)
+		return idle
+	}
+	
+	/**
+	Fazer a animação do idle repetir para sempre
+	- returns: SKAction
+	*/
+	
+	func idle () -> SKAction {
+		let repeateForever = SKAction.repeatActionForever(self.loadIdleAnimation())
+		return repeateForever
+	}
+	/**
+	Gerar animação run dos personagens
+	- returns: SKAction
+	*/
+	func loadRunAnimation () -> SKAction {
+		var runTextures = [SKTexture]()
+		
+		for i in 1...8{
+			runTextures.append(SKTexture(imageNamed: "corre\(i)"))
+		}
+		let run = SKAction.animateWithTextures(runTextures, timePerFrame: 0.2)
+		return run
+	}
+	
+	/**
+	Fazer a animação run repetir para sempre
+	- returns: SKAction
+	*/
+	
+	func run () -> SKAction {
+		let repeateForever = SKAction.repeatActionForever(self.loadRunAnimation())
+		return repeateForever
+	}
+	
 	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
