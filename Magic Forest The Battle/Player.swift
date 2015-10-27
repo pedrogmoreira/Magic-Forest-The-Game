@@ -29,17 +29,53 @@ class Player: SKSpriteNode, GameObject {
 		self.life = 100
 		self.energy = 100
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
-		self.movementSpeed = 20
+		self.movementSpeed = 7
 		self.jumpForce = 400
-		self.state = PlayerState.Idle
+		self.changeState(PlayerState.Idle)
 		
-		initializeAnimations()
+//		initializeAnimations()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
+	
+	
+	func update(currentTime: CFTimeInterval) {
+		/* Called before each frame is rendered */
+		let velocityX = movementVelocity!.dx * movementSpeed!
+		let velocityY = movementVelocity!.dy * 0
+		
+		
+		if velocityX != 0 {
+			let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
+			
+			self.changeState(PlayerState.Running)
+			
+			self.runAction(move)
+		} else {
+			self.changeState(PlayerState.Idle)
+		}
+		
+	}
+	
+	func changeState(state: PlayerState) {
+		if self.state != state {
+			self.state = state
+			
+			switch (self.state!) {
+			case PlayerState.Running:
+				self.runAction(run())
+			case PlayerState.Idle:
+				self.runAction(idle())
+			default:
+				print("<< State Not Handled >>")
+			}
+		}
+	}
 
+	// MARK: Animations
+	
 	func initializeAnimations () {
 		self.runAction(idle())
 		self.runAction(run())
@@ -92,16 +128,6 @@ class Player: SKSpriteNode, GameObject {
 		let repeateForever = SKAction.repeatActionForever(self.loadRunAnimation())
 		return repeateForever
 	}
-	
-	
-	func update(currentTime: CFTimeInterval) {
-		/* Called before each frame is rendered */
-		let velocityX = movementVelocity!.dx * movementSpeed!
-		let velocityY = movementVelocity!.dy * 0
-		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
-		self.runAction(move)
-	}
-
 	
 	/**
 	Generates a texture
