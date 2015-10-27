@@ -15,6 +15,7 @@ class Player: SKSpriteNode, GameObject {
 	var movementVelocity: CGVector?
 	var movementSpeed: CGFloat?
 	var jumpForce: CGFloat?
+	var state: PlayerState?
 	
 	/**
 	Initializes the player
@@ -28,22 +29,91 @@ class Player: SKSpriteNode, GameObject {
 		self.life = 100
 		self.energy = 100
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
-		self.movementSpeed = 2
+		self.movementSpeed = 7
 		self.jumpForce = 400
+		self.changeState(PlayerState.Idle)
+		
+//		initializeAnimations()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
 		let velocityX = movementVelocity!.dx * movementSpeed!
 		let velocityY = movementVelocity!.dy * 0
-		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
-		self.runAction(move)
+		
+		
+		if velocityX != 0 {
+			let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
+			
+			self.changeState(PlayerState.Running)
+			
+			self.runAction(move)
+		} else {
+			self.changeState(PlayerState.Idle)
+		}
+		
+	}
+	
+	func changeState(state: PlayerState) {
+		if self.state != state {
+			self.state = state
+			
+			switch (self.state!) {
+			case PlayerState.Running:
+				self.runAction(run())
+			case PlayerState.Idle:
+				self.runAction(idle())
+			default:
+				print("<< State Not Handled >>")
+			}
+		}
 	}
 
+	// MARK: Animations
+	
+	func initializeAnimations () {
+		self.runAction(idle())
+		self.runAction(run())
+	}
+	/**
+	Gerar animação dos personagens
+	- parameter: name: animation's name endIndex: The amount of sprites timePerFrame: The amount of time that each texture is displayed.
+	- returns: SKAction
+	*/
+	func loadAnimation (name: String, endIndex: Int, timePerFrame: NSTimeInterval) -> SKAction {
+		var animationTextures = [SKTexture]()
+		
+		for i in 1...endIndex {
+			animationTextures.append(SKTexture(imageNamed: name + "\(i)"))
+		}
+		let animation = SKAction.animateWithTextures(animationTextures, timePerFrame: timePerFrame)
+		return animation
+	}
+	
+	/**
+	Fazer a animação do idle repetir para sempre
+	- returns: SKAction
+	*/
+	
+	func idle () -> SKAction {
+		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("idle", endIndex: 11, timePerFrame: 0.2))
+		return repeateForever
+	}
+	
+	/**
+	Fazer a animação run repetir para sempre
+	- returns: SKAction
+	*/
+	
+	func run () -> SKAction {
+		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("corre",endIndex: 8, timePerFrame: 0.2))
+		return repeateForever
+	}
 	
 	/**
 	Generates a texture

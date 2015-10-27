@@ -39,11 +39,34 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		if command == MFCSCommandType.Attack {
 			print("attack")
 		} else if command == MFCSCommandType.Jump {
+//			self.player?.removeActionForKey("moveAction")
+//			runAction(self.player!.loadJumpAnimation())
 			print("jump")
 		}
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
+		self.player?.removeActionForKey("moveAction")
+		self.setFlip(position)
+//		let movement = SKAction.moveToX(position.x, duration: 1)
+//		self.player?.runAction((self.player?.run())!, withKey: "correr")
+//		let completion = SKAction.runBlock { () -> Void in
+//			self.player?.removeActionForKey("correr")
+//			self.player?.runAction((self.player?.idle())!)
+//		}
+//		let sequence = SKAction.sequence([movement,completion])
+//		self.player?.runAction(sequence, withKey: "moveAction")
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
+	
+	
+	func setFlip (flipX : CGPoint) {
+		if flipX.x < 0 {
+			self.player?.xScale = -fabs((self.player?.xScale)!)
+		} else {
+			self.player?.xScale = fabs((self.player?.xScale)!)
+		}
+	}
+	
+	
 }
