@@ -44,8 +44,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
-//		self.player?.removeActionForKey("moveAction")
-//		self.setFlip(position)
+		self.player?.removeActionForKey("moveAction")
+		self.setFlip(position)
 //		let movement = SKAction.moveToX(position.x, duration: 1)
 //		self.player?.runAction((self.player?.run())!, withKey: "correr")
 //		let completion = SKAction.runBlock { () -> Void in
@@ -59,7 +59,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	
 	
 	func setFlip (flipX : CGPoint) {
-		if flipX.x < self.player?.position.x {
+		if flipX.x < 0 {
 			self.player?.xScale = -fabs((self.player?.xScale)!)
 		} else {
 			self.player?.xScale = fabs((self.player?.xScale)!)

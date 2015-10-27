@@ -15,6 +15,7 @@
 		576964EC1BDFDCD000CBB81D /* corre6.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E41BDFDCD000CBB81D /* corre6.png */; };
 		576964ED1BDFDCD000CBB81D /* corre7.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E51BDFDCD000CBB81D /* corre7.png */; };
 		576964EE1BDFDCD000CBB81D /* corre8.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E61BDFDCD000CBB81D /* corre8.png */; };
+		576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576964EF1BDFEB4800CBB81D /* PlayerState.swift */; };
 		57A558021BDEA4F600A948DE /* Uhong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558011BDEA4F600A948DE /* Uhong.swift */; };
 		57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558041BDEA7FC00A948DE /* Dinak.swift */; };
 		57A558071BDEA85000A948DE /* Salamang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558061BDEA85000A948DE /* Salamang.swift */; };
@@ -86,6 +87,7 @@
 		576964E41BDFDCD000CBB81D /* corre6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre6.png; sourceTree = "<group>"; };
 		576964E51BDFDCD000CBB81D /* corre7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre7.png; sourceTree = "<group>"; };
 		576964E61BDFDCD000CBB81D /* corre8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre8.png; sourceTree = "<group>"; };
+		576964EF1BDFEB4800CBB81D /* PlayerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
 		57A558041BDEA7FC00A948DE /* Dinak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dinak.swift; sourceTree = "<group>"; };
 		57A558061BDEA85000A948DE /* Salamang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salamang.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 				57A558041BDEA7FC00A948DE /* Dinak.swift */,
 				57A558061BDEA85000A948DE /* Salamang.swift */,
 				57A558081BDEA86000A948DE /* Neith.swift */,
+				576964EF1BDFEB4800CBB81D /* PlayerState.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
 				EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */,
 				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,
+				576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */,
 				EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */,
 				EB1214A81BD95CA700D0552F /* Int+Extensions.swift in Sources */,
 				EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */,

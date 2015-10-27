@@ -15,6 +15,7 @@ class Player: SKSpriteNode, GameObject {
 	var movementVelocity: CGVector?
 	var movementSpeed: CGFloat?
 	var jumpForce: CGFloat?
+	var state: PlayerState?
 	
 	/**
 	Initializes the player
@@ -28,8 +29,9 @@ class Player: SKSpriteNode, GameObject {
 		self.life = 100
 		self.energy = 100
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
-		self.movementSpeed = 2
+		self.movementSpeed = 20
 		self.jumpForce = 400
+		self.state = PlayerState.Idle
 		
 		initializeAnimations()
 	}
@@ -38,8 +40,6 @@ class Player: SKSpriteNode, GameObject {
 	    fatalError("init(coder:) has not been implemented")
 	}
 
-	
-	
 	func initializeAnimations () {
 		self.runAction(idle())
 		self.runAction(run())
