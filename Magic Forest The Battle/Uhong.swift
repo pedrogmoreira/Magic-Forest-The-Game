@@ -30,8 +30,8 @@ class Uhong: Player {
 	// MARK: Animations
 	
 	func initializeAnimations () {
-		self.runAction(idle())
-		self.runAction(run())
+		//testar animacoes
+		self.runAction(hit())
 	}
 	
 	/**
@@ -54,6 +54,13 @@ class Uhong: Player {
 	func run () -> SKAction {
 		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("corre",endIndex: 8, timePerFrame: 0.2))
 		return repeateForever
+	}
+	/**
+	Fazer a animação hit
+	- returns: SKAction
+	*/
+	func hit () -> SKAction {
+		return self.loadAnimation("hit", endIndex: 3, timePerFrame: 0.2)
 	}
 	
 	override func changeState(state: PlayerState) {
