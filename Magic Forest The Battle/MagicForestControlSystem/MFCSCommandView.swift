@@ -27,7 +27,7 @@ class MFCSCommandView: UIView {
 		self.userInteractionEnabled = true
 		
 		updateCenter()
-		
+//		
 //		if controllerMode == MFCSControllerMode.JoystickAndButton {
 //			
 //			let ratio = frame.size.width / frame.size.height

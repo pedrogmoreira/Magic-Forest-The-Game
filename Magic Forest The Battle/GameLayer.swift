@@ -19,7 +19,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	required init(size: CGSize) {
 		super.init()
 		
-		self.player = Player(position: CGPoint(x: 100, y: 150))
+		self.player = Uhong(position: CGPoint(x: 100, y: 150))
 		
 		self.addChild(self.player!)
 	}

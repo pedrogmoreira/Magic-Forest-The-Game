@@ -32,8 +32,7 @@ class Player: SKSpriteNode, GameObject {
 		self.movementSpeed = 7
 		self.jumpForce = 400
 		self.changeState(PlayerState.Idle)
-		
-//		initializeAnimations()
+
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -58,28 +57,7 @@ class Player: SKSpriteNode, GameObject {
 		}
 		
 	}
-	
-	func changeState(state: PlayerState) {
-		if self.state != state {
-			self.state = state
-			
-			switch (self.state!) {
-			case PlayerState.Running:
-				self.runAction(run())
-			case PlayerState.Idle:
-				self.runAction(idle())
-			default:
-				print("<< State Not Handled >>")
-			}
-		}
-	}
 
-	// MARK: Animations
-	
-	func initializeAnimations () {
-		self.runAction(idle())
-		self.runAction(run())
-	}
 	/**
 	Gerar animação dos personagens
 	- parameter: name: animation's name endIndex: The amount of sprites timePerFrame: The amount of time that each texture is displayed.
@@ -95,25 +73,7 @@ class Player: SKSpriteNode, GameObject {
 		return animation
 	}
 	
-	/**
-	Fazer a animação do idle repetir para sempre
-	- returns: SKAction
-	*/
-	
-	func idle () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("idle", endIndex: 11, timePerFrame: 0.2))
-		return repeateForever
-	}
-	
-	/**
-	Fazer a animação run repetir para sempre
-	- returns: SKAction
-	*/
-	
-	func run () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("corre",endIndex: 8, timePerFrame: 0.2))
-		return repeateForever
-	}
+
 	
 	/**
 	Generates a texture
@@ -139,5 +99,11 @@ class Player: SKSpriteNode, GameObject {
 		
 		return physicsBody
 	}
+	
+	func changeState(state: PlayerState) {
+		//Override
+		
+	}
+
 	
 }
