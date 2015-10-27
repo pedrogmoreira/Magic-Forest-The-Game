@@ -44,20 +44,19 @@ class Player: SKSpriteNode, GameObject {
 		self.runAction(idle())
 		self.runAction(run())
 	}
-	
 	/**
-	Gerar animação idle dos personagens
+	Gerar animação dos personagens
+	- parameter: name: animation's name endIndex: The amount of sprites timePerFrame: The amount of time that each texture is displayed.
 	- returns: SKAction
 	*/
-
-	func loadIdleAnimation () -> SKAction {
-		var idleTextures = [SKTexture]()
+	func loadAnimation (name: String, endIndex: Int, timePerFrame: NSTimeInterval) -> SKAction {
+		var animationTextures = [SKTexture]()
 		
-		for i in 1...11 {
-			idleTextures.append(SKTexture(imageNamed: "idle\(i)"))
+		for i in 1...endIndex {
+			animationTextures.append(SKTexture(imageNamed: name + "\(i)"))
 		}
-		let idle = SKAction.animateWithTextures(idleTextures, timePerFrame: 0.2)
-		return idle
+		let animation = SKAction.animateWithTextures(animationTextures, timePerFrame: timePerFrame)
+		return animation
 	}
 	
 	/**
@@ -66,21 +65,8 @@ class Player: SKSpriteNode, GameObject {
 	*/
 	
 	func idle () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(self.loadIdleAnimation())
+		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("idle", endIndex: 11, timePerFrame: 0.2))
 		return repeateForever
-	}
-	/**
-	Gerar animação run dos personagens
-	- returns: SKAction
-	*/
-	func loadRunAnimation () -> SKAction {
-		var runTextures = [SKTexture]()
-		
-		for i in 1...8{
-			runTextures.append(SKTexture(imageNamed: "corre\(i)"))
-		}
-		let run = SKAction.animateWithTextures(runTextures, timePerFrame: 0.2)
-		return run
 	}
 	
 	/**
@@ -89,10 +75,11 @@ class Player: SKSpriteNode, GameObject {
 	*/
 	
 	func run () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(self.loadRunAnimation())
+		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("corre",endIndex: 8, timePerFrame: 0.2))
 		return repeateForever
 	}
 	
+
 	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */

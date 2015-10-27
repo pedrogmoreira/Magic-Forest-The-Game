@@ -16,6 +16,9 @@
 		576964ED1BDFDCD000CBB81D /* corre7.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E51BDFDCD000CBB81D /* corre7.png */; };
 		576964EE1BDFDCD000CBB81D /* corre8.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E61BDFDCD000CBB81D /* corre8.png */; };
 		576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576964EF1BDFEB4800CBB81D /* PlayerState.swift */; };
+		576964F31BDFEEB500CBB81D /* jump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F11BDFEEB500CBB81D /* jump1.png */; };
+		576964F41BDFEEB500CBB81D /* jump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F21BDFEEB500CBB81D /* jump2.png */; };
+		576964F61BDFEF3D00CBB81D /* jump3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F51BDFEF3D00CBB81D /* jump3.png */; };
 		57A558021BDEA4F600A948DE /* Uhong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558011BDEA4F600A948DE /* Uhong.swift */; };
 		57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558041BDEA7FC00A948DE /* Dinak.swift */; };
 		57A558071BDEA85000A948DE /* Salamang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558061BDEA85000A948DE /* Salamang.swift */; };
@@ -88,6 +91,9 @@
 		576964E51BDFDCD000CBB81D /* corre7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre7.png; sourceTree = "<group>"; };
 		576964E61BDFDCD000CBB81D /* corre8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre8.png; sourceTree = "<group>"; };
 		576964EF1BDFEB4800CBB81D /* PlayerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerState.swift; sourceTree = "<group>"; };
+		576964F11BDFEEB500CBB81D /* jump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump1.png; sourceTree = "<group>"; };
+		576964F21BDFEEB500CBB81D /* jump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump2.png; sourceTree = "<group>"; };
+		576964F51BDFEF3D00CBB81D /* jump3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump3.png; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
 		57A558041BDEA7FC00A948DE /* Dinak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dinak.swift; sourceTree = "<group>"; };
 		57A558061BDEA85000A948DE /* Salamang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salamang.swift; sourceTree = "<group>"; };
@@ -167,6 +173,9 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				576964F11BDFEEB500CBB81D /* jump1.png */,
+				576964F21BDFEEB500CBB81D /* jump2.png */,
+				576964F51BDFEF3D00CBB81D /* jump3.png */,
 				576964DF1BDFDCD000CBB81D /* corre1.png */,
 				576964E01BDFDCD000CBB81D /* corre2.png */,
 				576964E11BDFDCD000CBB81D /* corre3.png */,
@@ -419,11 +428,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				576964F31BDFEEB500CBB81D /* jump1.png in Resources */,
 				576964EE1BDFDCD000CBB81D /* corre8.png in Resources */,
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
+				576964F41BDFEEB500CBB81D /* jump2.png in Resources */,
 				57A558201BDEBB1C00A948DE /* idle10.png in Resources */,
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
@@ -439,6 +450,7 @@
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
+				576964F61BDFEF3D00CBB81D /* jump3.png in Resources */,
 				57A558181BDEBB1C00A948DE /* idle2.png in Resources */,
 				57A558211BDEBB1C00A948DE /* idle11.png in Resources */,
 				57A5581A1BDEBB1C00A948DE /* idle4.png in Resources */,
