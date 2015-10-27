@@ -39,6 +39,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		if command == MFCSCommandType.Attack {
 			print("attack")
 		} else if command == MFCSCommandType.Jump {
+//			self.player?.removeActionForKey("moveAction")
+//			runAction(self.player!.loadJumpAnimation())
 			print("jump")
 		}
 	}
