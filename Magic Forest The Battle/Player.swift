@@ -115,20 +115,6 @@ class Player: SKSpriteNode, GameObject {
 		return repeateForever
 	}
 	
-<<<<<<< HEAD
-=======
-
-	
-	func update(currentTime: CFTimeInterval) {
-		/* Called before each frame is rendered */
-		let velocityX = movementVelocity!.dx * movementSpeed!
-		let velocityY = movementVelocity!.dy * 0
-		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
-		self.runAction(move)
-	}
-
-	
->>>>>>> origin/Cami
 	/**
 	Generates a texture
 	- parameter name: The image name for creating the texture
