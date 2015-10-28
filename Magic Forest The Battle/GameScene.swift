@@ -24,12 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		self.gameLayer = GameLayer(size: size)
 		self.gameLayer?.zPosition = -5
 		
-<<<<<<< HEAD
 		self.backgroundLayer = VulcanScenery(size: size)
-=======
-		self.backgroundLayer = ForestScenery(size: size)
-		self.backgroundLayer?.setScale(1)
->>>>>>> scenery-forest
 		self.backgroundLayer?.zPosition = -10
 		
 		self.addChild(self.gameLayer!)
