@@ -9,5 +9,25 @@
 import SpriteKit
 
 class MenuScene: SKScene {
+    
+    var mainMenu: MainMenuLayer?
+    
+    /**
+     Initializes the game scene
+     - parameter size: A reference to the device's screen size
+     */
+    override init(size: CGSize) {
+        super.init(size: size)
+        
+        self.mainMenu = MainMenuLayer(size: size)
+        self.addChild(mainMenu!)
+    }
 
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.mainMenu?.touchesBegan(touches, withEvent: event)
+    }
 }

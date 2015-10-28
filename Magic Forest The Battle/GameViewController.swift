@@ -17,7 +17,7 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		let scene = GameScene(size: self.view.bounds.size)
+		let scene = MenuScene(size: self.view.bounds.size)
 		
 		// Configure the view.
 		let skView = self.view as! SKView
@@ -35,9 +35,9 @@ class GameViewController: UIViewController {
 		
 		controllerMode = MFCSControllerMode.JoystickAndSwipe
 		
-		controlUnit = MFCSControlUnit(frame: self.view.frame, delegate: scene.gameLayer!, controllerMode: controllerMode!)
+//		controlUnit = MFCSControlUnit(frame: self.view.frame, delegate: scene.gameLayer!, controllerMode: controllerMode!)
 		
-		self.view.addSubview(self.controlUnit!)
+//		self.view.addSubview(self.controlUnit!)
     }
 
     override func shouldAutorotate() -> Bool {
