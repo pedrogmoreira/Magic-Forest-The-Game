@@ -17,9 +17,11 @@ class VulcanScenery: BackgroundLayer , BasicLayer {
 	required init(size: CGSize) {
 		super.init()
 		
-		self.background = SKSpriteNode(color: UIColor.redColor(), size: size)
+		self.background = SKSpriteNode(imageNamed: "vulcao.jpg")
 		
 		self.addChild(self.background!)
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

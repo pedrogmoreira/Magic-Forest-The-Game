@@ -23,6 +23,7 @@ class GameViewController: UIViewController {
 		let skView = self.view as! SKView
 		skView.showsFPS = true
 		skView.showsNodeCount = true
+        skView.showsPhysics = true
 		
 		/* Sprite Kit applies additional optimizations to improve rendering performance */
 		skView.ignoresSiblingOrder = true
@@ -32,7 +33,7 @@ class GameViewController: UIViewController {
 		
 		skView.presentScene(scene)
 		
-		controllerMode = MFCSControllerMode.JoystickAndButton
+		controllerMode = MFCSControllerMode.JoystickAndSwipe
 		
 		controlUnit = MFCSControlUnit(frame: self.view.frame, delegate: scene.gameLayer!, controllerMode: controllerMode!)
 		

@@ -22,17 +22,13 @@ class Player: SKSpriteNode, GameObject {
 	- parameter position: The point where the player will apear
 	*/
 	required init(position: CGPoint) {
-		super.init(texture: nil, color: UIColor.blackColor(), size: CGSize(width: 50, height: 100))
+        let playerTexture = SKTexture(imageNamed: "sonic")
+        
+		super.init(texture: playerTexture, color: UIColor.blackColor(), size: CGSize(width: 50, height: 100))
 		
 		self.position = position
 		
-		self.life = 100
-		self.energy = 100
-		self.movementVelocity = CGVector(dx: 0, dy: 0)
-		self.movementSpeed = 7
-		self.jumpForce = 400
-		self.changeState(PlayerState.Idle)
-
+        self.setBasicAttributes()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -73,16 +69,19 @@ class Player: SKSpriteNode, GameObject {
 		return animation
 	}
 	
-
-	
-	/**
-	Generates a texture
-	- parameter name: The image name for creating the texture
-	- returns: SKTexture
-	*/
-	func generateTexture(name: String) -> SKTexture {
-		return SKTexture(imageNamed: name)
-	}
+    
+    /**
+     Generates basic attributes
+     */
+    func setBasicAttributes() {
+        self.physicsBody = self.generatePhysicsBody()
+        
+        self.life = 100
+        self.energy = 100
+        self.movementVelocity = CGVector(dx: 0, dy: 0)
+        self.movementSpeed = 20
+        self.jumpForce = 400
+    }
 	
 	/**
 	Generates a physics body
@@ -91,7 +90,7 @@ class Player: SKSpriteNode, GameObject {
 	func generatePhysicsBody() -> SKPhysicsBody {
 		let physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
 		
-		physicsBody.categoryBitMask = 0
+        physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.contactTestBitMask = 0
 		physicsBody.mass = 100
 		physicsBody.affectedByGravity = true
