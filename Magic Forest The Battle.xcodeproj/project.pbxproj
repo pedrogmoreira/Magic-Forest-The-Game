@@ -55,6 +55,14 @@
 		EB1214BA1BD95CB000D0552F /* MFCSControllerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */; };
 		EB1214BB1BD95CB000D0552F /* MFCSControlUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */; };
 		EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */; };
+		EB3E77051BE1647300103DEC /* ForestSceneryPlatform_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E76FB1BE1647300103DEC /* ForestSceneryPlatform_1.png */; };
+		EB3E77061BE1647300103DEC /* ForestSceneryPlatform_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E76FC1BE1647300103DEC /* ForestSceneryPlatform_2.png */; };
+		EB3E77071BE1647300103DEC /* ForestSceneryPlatform_3.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E76FD1BE1647300103DEC /* ForestSceneryPlatform_3.png */; };
+		EB3E77081BE1647300103DEC /* ForestScenery_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77001BE1647300103DEC /* ForestScenery_1.png */; };
+		EB3E77091BE1647300103DEC /* ForestScenery_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77011BE1647300103DEC /* ForestScenery_2.png */; };
+		EB3E770A1BE1647300103DEC /* ForestScenery_3.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77021BE1647300103DEC /* ForestScenery_3.png */; };
+		EB3E770B1BE1647300103DEC /* ForestScenery_4.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77031BE1647300103DEC /* ForestScenery_4.png */; };
+		EB3E770C1BE1647300103DEC /* ForestScenery_5.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77041BE1647300103DEC /* ForestScenery_5.png */; };
 		EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057591BD55CF200536AD1 /* AppDelegate.swift */; };
 		EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575D1BD55CF200536AD1 /* GameScene.swift */; };
 		EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575F1BD55CF200536AD1 /* GameViewController.swift */; };
@@ -138,6 +146,14 @@
 		EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControllerMode.swift; sourceTree = "<group>"; };
 		EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControlUnit.swift; sourceTree = "<group>"; };
 		EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSMovementView.swift; sourceTree = "<group>"; };
+		EB3E76FB1BE1647300103DEC /* ForestSceneryPlatform_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestSceneryPlatform_1.png; sourceTree = "<group>"; };
+		EB3E76FC1BE1647300103DEC /* ForestSceneryPlatform_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestSceneryPlatform_2.png; sourceTree = "<group>"; };
+		EB3E76FD1BE1647300103DEC /* ForestSceneryPlatform_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestSceneryPlatform_3.png; sourceTree = "<group>"; };
+		EB3E77001BE1647300103DEC /* ForestScenery_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_1.png; sourceTree = "<group>"; };
+		EB3E77011BE1647300103DEC /* ForestScenery_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_2.png; sourceTree = "<group>"; };
+		EB3E77021BE1647300103DEC /* ForestScenery_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_3.png; sourceTree = "<group>"; };
+		EB3E77031BE1647300103DEC /* ForestScenery_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_4.png; sourceTree = "<group>"; };
+		EB3E77041BE1647300103DEC /* ForestScenery_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_5.png; sourceTree = "<group>"; };
 		EB9057561BD55CF200536AD1 /* Magic Forest The Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Forest The Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9057591BD55CF200536AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB90575D1BD55CF200536AD1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -280,6 +296,8 @@
 		67A74CFC1BE129D100AF3B0E /* Background */ = {
 			isa = PBXGroup;
 			children = (
+				EB3E76FA1BE1647300103DEC /* Platform */,
+				EB3E76FE1BE1647300103DEC /* Scenery */,
 				67A74CF81BE129CD00AF3B0E /* floresta.jpg */,
 				67A74CF91BE129CD00AF3B0E /* vulcao.jpg */,
 			);
@@ -319,6 +337,36 @@
 				EB1214AC1BD95CB000D0552F /* JoystickKnob.png */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		EB3E76FA1BE1647300103DEC /* Platform */ = {
+			isa = PBXGroup;
+			children = (
+				EB3E76FB1BE1647300103DEC /* ForestSceneryPlatform_1.png */,
+				EB3E76FC1BE1647300103DEC /* ForestSceneryPlatform_2.png */,
+				EB3E76FD1BE1647300103DEC /* ForestSceneryPlatform_3.png */,
+			);
+			path = Platform;
+			sourceTree = "<group>";
+		};
+		EB3E76FE1BE1647300103DEC /* Scenery */ = {
+			isa = PBXGroup;
+			children = (
+				EB3E76FF1BE1647300103DEC /* Forest */,
+			);
+			path = Scenery;
+			sourceTree = "<group>";
+		};
+		EB3E76FF1BE1647300103DEC /* Forest */ = {
+			isa = PBXGroup;
+			children = (
+				EB3E77001BE1647300103DEC /* ForestScenery_1.png */,
+				EB3E77011BE1647300103DEC /* ForestScenery_2.png */,
+				EB3E77021BE1647300103DEC /* ForestScenery_3.png */,
+				EB3E77031BE1647300103DEC /* ForestScenery_4.png */,
+				EB3E77041BE1647300103DEC /* ForestScenery_5.png */,
+			);
+			path = Forest;
 			sourceTree = "<group>";
 		};
 		EB90574D1BD55CF200536AD1 = {
@@ -520,8 +568,10 @@
 				576964EE1BDFDCD000CBB81D /* corre8.png in Resources */,
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
+				EB3E770A1BE1647300103DEC /* ForestScenery_3.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */,
+				EB3E77061BE1647300103DEC /* ForestSceneryPlatform_2.png in Resources */,
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
 				576964F41BDFEEB500CBB81D /* jump2.png in Resources */,
 				67A74CF31BE1299000AF3B0E /* Ataque.png in Resources */,
@@ -534,8 +584,11 @@
 				57A5581E1BDEBB1C00A948DE /* idle8.png in Resources */,
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
+				EB3E77071BE1647300103DEC /* ForestSceneryPlatform_3.png in Resources */,
 				57A5581D1BDEBB1C00A948DE /* idle7.png in Resources */,
+				EB3E770C1BE1647300103DEC /* ForestScenery_5.png in Resources */,
 				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
+				EB3E77091BE1647300103DEC /* ForestScenery_2.png in Resources */,
 				57A5581B1BDEBB1C00A948DE /* idle5.png in Resources */,
 				576964EB1BDFDCD000CBB81D /* corre5.png in Resources */,
 				57A558191BDEBB1C00A948DE /* idle3.png in Resources */,
@@ -544,12 +597,15 @@
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
 				576964F61BDFEF3D00CBB81D /* jump3.png in Resources */,
+				EB3E770B1BE1647300103DEC /* ForestScenery_4.png in Resources */,
 				67A74CF41BE1299000AF3B0E /* Pulo.png in Resources */,
 				57A558181BDEBB1C00A948DE /* idle2.png in Resources */,
 				57A558211BDEBB1C00A948DE /* idle11.png in Resources */,
 				57A5581A1BDEBB1C00A948DE /* idle4.png in Resources */,
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
 				67A74CFA1BE129CD00AF3B0E /* floresta.jpg in Resources */,
+				EB3E77081BE1647300103DEC /* ForestScenery_1.png in Resources */,
+				EB3E77051BE1647300103DEC /* ForestSceneryPlatform_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
