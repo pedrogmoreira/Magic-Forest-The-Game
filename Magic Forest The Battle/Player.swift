@@ -40,14 +40,25 @@ class Player: SKSpriteNode, GameObject {
 		/* Called before each frame is rendered */
 		let velocityX = movementVelocity!.dx * movementSpeed!
 		let velocityY = movementVelocity!.dy * 0
+	//	let y = self.position.y
 		
-		
-		if velocityX != 0 {
+		 if velocityX != 0 {
 			let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
-			
-			self.changeState(PlayerState.Running)
-			
 			self.runAction(move)
+			print(self.state)
+			if self.state != .Jump && self.state != .Hit && self.state != .Attack && self.state != .Falling {
+				self.changeState(PlayerState.Running)
+			}
+			
+		} else if (self.physicsBody?.velocity.dy > 0 && self.state != .Hit && self.state != .Attack) {
+			self.changeState(PlayerState.Jump)
+			
+		} else if self.physicsBody?.velocity.dy < 0 {
+			self.changeState(PlayerState.Falling)
+			
+//		} else if commandType == 2 {
+//			self.changeState(PlayerState.Attack)
+		
 		} else {
 			self.changeState(PlayerState.Idle)
 		}
@@ -80,7 +91,7 @@ class Player: SKSpriteNode, GameObject {
         self.energy = 100
         self.movementVelocity = CGVector(dx: 0, dy: 0)
         self.movementSpeed = 90
-        self.jumpForce = 400
+        self.jumpForce = 900
     }
 	
 	/**

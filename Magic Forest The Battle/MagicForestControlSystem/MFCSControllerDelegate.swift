@@ -10,7 +10,7 @@ import UIKit
 
 protocol MFCSControllerDelegate {
 
-	func recieveCommand(command: MFCSCommandType)
+	func recieveCommand(command: MFCSCommandType) 
 	func analogUpdate(relativePosition position: CGPoint)
 	
 }
