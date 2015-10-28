@@ -19,7 +19,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	required init(size: CGSize) {
 		super.init()
 		
-		self.player = Player(position: CGPoint(x: 100, y: 150))
+		self.player = Player(position: CGPoint(x: 0, y: 0))
 		
 		self.addChild(self.player!)
 	}
@@ -39,7 +39,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		if command == MFCSCommandType.Attack {
 			print("attack")
 		} else if command == MFCSCommandType.Jump {
-			print("jump")
+			self.player?.physicsBody?.velocity = CGVector(dx: 0, dy: 900)
 		}
 	}
 	

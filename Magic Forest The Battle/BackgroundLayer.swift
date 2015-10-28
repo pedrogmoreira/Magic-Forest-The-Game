@@ -11,5 +11,7 @@ import SpriteKit
 class BackgroundLayer: SKNode {
 	
 	var background: SKSpriteNode?
+    
 
 }
+

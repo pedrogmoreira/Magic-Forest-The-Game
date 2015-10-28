@@ -12,6 +12,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	
 	var backgroundLayer: BackgroundLayer?
 	var gameLayer: GameLayer?
+    var playerCamera: SKCameraNode?
 	
 	/**
 	Initializes the game scene
@@ -25,15 +26,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		
 		self.backgroundLayer = VulcanScenery(size: size)
 		self.backgroundLayer?.zPosition = -10
-		self.backgroundLayer?.position = CGPoint(x: size.width / 2, y: size.height / 2)
 		
 		self.addChild(self.gameLayer!)
 		self.addChild(self.backgroundLayer!)
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
-        self.physicsBody = SKPhysicsBody.init(edgeLoopFromRect: self.frame)
+        
+        self.initializeCamera()
 	}
+    
+    private func initializeCamera(){
+        self.playerCamera = SKCameraNode()
+        self.camera = self.playerCamera
+    }
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
@@ -42,5 +48,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	override func update(currentTime: NSTimeInterval) {
 		self.gameLayer?.update(currentTime)
 	}
-	
+    
+    // Set the Y position of camera
+    private func cameraPositionYAxis(){
+        let playerYPosition = (self.gameLayer?.player?.position.y)!;
+        let screenHeight = (self.view?.frame.size.height)!
+        let playerHeight = (self.gameLayer?.player?.size.height)!
+        let backgroundHeight = self.backgroundLayer?.background?.size.height
+
+        
+        self.playerCamera?.position.y = playerYPosition
+        
+        let cameraYPosition = self.playerCamera!.position.y
+
+        if cameraYPosition < -(backgroundHeight!/2) + screenHeight/2 {
+            self.playerCamera?.position.y = -(backgroundHeight!/2) + screenHeight/2
+        } else if cameraYPosition > (backgroundHeight!/2) - screenHeight/2 {
+            self.playerCamera?.position.y = (backgroundHeight!/2) - screenHeight/2
+        }
+    }
+    
+    private func cameraPositionXAxis(){
+        
+        let playerXPosition = (self.gameLayer?.player?.position.x)!
+        self.playerCamera?.position.x = playerXPosition
+        
+        let cameraXPosition = self.playerCamera!.position.x
+        let backgroundWidth = self.backgroundLayer?.background?.size.width
+        let screenWidth = self.size.width
+        
+        if cameraXPosition < -(backgroundWidth!/2) + screenWidth/2 {
+            self.playerCamera?.position.x = -(backgroundWidth!/2) + screenWidth/2
+        } else if cameraXPosition > backgroundWidth!/2 - screenWidth/2 {
+            self.playerCamera?.position.x = backgroundWidth!/2 - screenWidth/2
+        }
+        
+    }
+    
+    override func didFinishUpdate() {
+        self.cameraPositionYAxis()
+        self.cameraPositionXAxis()
+    }
 }

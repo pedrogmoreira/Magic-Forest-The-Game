@@ -20,6 +20,8 @@ class VulcanScenery: BackgroundLayer , BasicLayer {
 		self.background = SKSpriteNode(imageNamed: "vulcao.jpg")
 		
 		self.addChild(self.background!)
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
