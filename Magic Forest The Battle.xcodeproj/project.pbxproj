@@ -37,7 +37,11 @@
 		57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558141BDEBB1C00A948DE /* idle9.png */; };
 		57A558201BDEBB1C00A948DE /* idle10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558151BDEBB1C00A948DE /* idle10.png */; };
 		57A558211BDEBB1C00A948DE /* idle11.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558161BDEBB1C00A948DE /* idle11.png */; };
-		67A74CE61BE1282E00AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE51BE1282E00AF3B0E /* PhysicsCategory.swift */; };
+		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
+		67A74CF31BE1299000AF3B0E /* Ataque.png in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF11BE1299000AF3B0E /* Ataque.png */; };
+		67A74CF41BE1299000AF3B0E /* Pulo.png in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF21BE1299000AF3B0E /* Pulo.png */; };
+		67A74CFA1BE129CD00AF3B0E /* floresta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF81BE129CD00AF3B0E /* floresta.jpg */; };
+		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
 		EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */; };
 		EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */; };
 		EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */; };
@@ -116,7 +120,11 @@
 		57A558141BDEBB1C00A948DE /* idle9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle9.png; sourceTree = "<group>"; };
 		57A558151BDEBB1C00A948DE /* idle10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle10.png; sourceTree = "<group>"; };
 		57A558161BDEBB1C00A948DE /* idle11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle11.png; sourceTree = "<group>"; };
-		67A74CE51BE1282E00AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhysicsCategory.swift; path = ../PhysicsCategory.swift; sourceTree = "<group>"; };
+		67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
+		67A74CF11BE1299000AF3B0E /* Ataque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ataque.png; path = MagicForestControlSystem/Assets/Ataque.png; sourceTree = "<group>"; };
+		67A74CF21BE1299000AF3B0E /* Pulo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pulo.png; path = MagicForestControlSystem/Assets/Pulo.png; sourceTree = "<group>"; };
+		67A74CF81BE129CD00AF3B0E /* floresta.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floresta.jpg; sourceTree = "<group>"; };
+		67A74CF91BE129CD00AF3B0E /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
 		EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -181,9 +189,45 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67A74CFC1BE129D100AF3B0E /* Background */,
+				67A74CF51BE1299B00AF3B0E /* Buttons */,
+				67A74CEB1BE1290100AF3B0E /* Player */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		67A74CE71BE1283600AF3B0E /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */,
+			);
+			name = Physics;
+			sourceTree = "<group>";
+		};
+		67A74CEB1BE1290100AF3B0E /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				67A74CEF1BE1293F00AF3B0E /* Hit */,
+				67A74CEE1BE1292D00AF3B0E /* Idle */,
+				67A74CED1BE1291E00AF3B0E /* Run */,
+				67A74CEC1BE1290B00AF3B0E /* Jump */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		67A74CEC1BE1290B00AF3B0E /* Jump */ = {
+			isa = PBXGroup;
+			children = (
 				576964F11BDFEEB500CBB81D /* jump1.png */,
 				576964F21BDFEEB500CBB81D /* jump2.png */,
 				576964F51BDFEF3D00CBB81D /* jump3.png */,
+			);
+			name = Jump;
+			sourceTree = "<group>";
+		};
+		67A74CED1BE1291E00AF3B0E /* Run */ = {
+			isa = PBXGroup;
+			children = (
 				576964DF1BDFDCD000CBB81D /* corre1.png */,
 				576964E01BDFDCD000CBB81D /* corre2.png */,
 				576964E11BDFDCD000CBB81D /* corre3.png */,
@@ -192,6 +236,13 @@
 				576964E41BDFDCD000CBB81D /* corre6.png */,
 				576964E51BDFDCD000CBB81D /* corre7.png */,
 				576964E61BDFDCD000CBB81D /* corre8.png */,
+			);
+			name = Run;
+			sourceTree = "<group>";
+		};
+		67A74CEE1BE1292D00AF3B0E /* Idle */ = {
+			isa = PBXGroup;
+			children = (
 				57A5580C1BDEBB1C00A948DE /* idle1.png */,
 				57A5580D1BDEBB1C00A948DE /* idle2.png */,
 				57A5580E1BDEBB1C00A948DE /* idle3.png */,
@@ -203,19 +254,36 @@
 				57A558141BDEBB1C00A948DE /* idle9.png */,
 				57A558151BDEBB1C00A948DE /* idle10.png */,
 				57A558161BDEBB1C00A948DE /* idle11.png */,
+			);
+			name = Idle;
+			sourceTree = "<group>";
+		};
+		67A74CEF1BE1293F00AF3B0E /* Hit */ = {
+			isa = PBXGroup;
+			children = (
 				576964F71BE018B400CBB81D /* hit1.png */,
 				576964F81BE018B400CBB81D /* hit2.png */,
 				576964F91BE018B400CBB81D /* hit3.png */,
 			);
-			name = Resources;
+			name = Hit;
 			sourceTree = "<group>";
 		};
-		67A74CE71BE1283600AF3B0E /* Physics */ = {
+		67A74CF51BE1299B00AF3B0E /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				67A74CE51BE1282E00AF3B0E /* PhysicsCategory.swift */,
+				67A74CF11BE1299000AF3B0E /* Ataque.png */,
+				67A74CF21BE1299000AF3B0E /* Pulo.png */,
 			);
-			name = Physics;
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		67A74CFC1BE129D100AF3B0E /* Background */ = {
+			isa = PBXGroup;
+			children = (
+				67A74CF81BE129CD00AF3B0E /* floresta.jpg */,
+				67A74CF91BE129CD00AF3B0E /* vulcao.jpg */,
+			);
+			name = Background;
 			sourceTree = "<group>";
 		};
 		EB1214A01BD95CA700D0552F /* SKTUtils */ = {
@@ -453,8 +521,10 @@
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
+				67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */,
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
 				576964F41BDFEEB500CBB81D /* jump2.png in Resources */,
+				67A74CF31BE1299000AF3B0E /* Ataque.png in Resources */,
 				57A558201BDEBB1C00A948DE /* idle10.png in Resources */,
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
@@ -474,10 +544,12 @@
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
 				576964F61BDFEF3D00CBB81D /* jump3.png in Resources */,
+				67A74CF41BE1299000AF3B0E /* Pulo.png in Resources */,
 				57A558181BDEBB1C00A948DE /* idle2.png in Resources */,
 				57A558211BDEBB1C00A948DE /* idle11.png in Resources */,
 				57A5581A1BDEBB1C00A948DE /* idle4.png in Resources */,
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
+				67A74CFA1BE129CD00AF3B0E /* floresta.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,7 +577,6 @@
 				EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */,
 				57A558021BDEA4F600A948DE /* Uhong.swift in Sources */,
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
-				67A74CE61BE1282E00AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
@@ -515,6 +586,7 @@
 				EB1214B81BD95CB000D0552F /* MFCSCommandView.swift in Sources */,
 				EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */,
 				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
+				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
 				57A558091BDEA86000A948DE /* Neith.swift in Sources */,
 				57A558071BDEA85000A948DE /* Salamang.swift in Sources */,

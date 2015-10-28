@@ -18,7 +18,7 @@ class Uhong: Player {
 		self.life = 100
 		self.energy = 100
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
-		self.movementSpeed = 2
+		self.movementSpeed = 10
 		self.jumpForce = 400
 		initializeAnimations()
 	}
