@@ -37,6 +37,7 @@
 		57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558141BDEBB1C00A948DE /* idle9.png */; };
 		57A558201BDEBB1C00A948DE /* idle10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558151BDEBB1C00A948DE /* idle10.png */; };
 		57A558211BDEBB1C00A948DE /* idle11.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558161BDEBB1C00A948DE /* idle11.png */; };
+		67A74CE61BE1282E00AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE51BE1282E00AF3B0E /* PhysicsCategory.swift */; };
 		EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */; };
 		EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */; };
 		EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */; };
@@ -115,6 +116,7 @@
 		57A558141BDEBB1C00A948DE /* idle9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle9.png; sourceTree = "<group>"; };
 		57A558151BDEBB1C00A948DE /* idle10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle10.png; sourceTree = "<group>"; };
 		57A558161BDEBB1C00A948DE /* idle11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle11.png; sourceTree = "<group>"; };
+		67A74CE51BE1282E00AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PhysicsCategory.swift; path = ../PhysicsCategory.swift; sourceTree = "<group>"; };
 		EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -208,6 +210,14 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		67A74CE71BE1283600AF3B0E /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				67A74CE51BE1282E00AF3B0E /* PhysicsCategory.swift */,
+			);
+			name = Physics;
+			sourceTree = "<group>";
+		};
 		EB1214A01BD95CA700D0552F /* SKTUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +276,7 @@
 		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
 			isa = PBXGroup;
 			children = (
+				67A74CE71BE1283600AF3B0E /* Physics */,
 				57A558031BDEA76E00A948DE /* Resources */,
 				EB1214A01BD95CA700D0552F /* SKTUtils */,
 				EB90579F1BD5705F00536AD1 /* Entity */,
@@ -494,6 +505,7 @@
 				EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */,
 				57A558021BDEA4F600A948DE /* Uhong.swift in Sources */,
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
+				67A74CE61BE1282E00AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
