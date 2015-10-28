@@ -17,13 +17,17 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		let scene = GameScene(size: self.view.bounds.size)
+		let scene = GameScene(size: self.view.frame.size)
 		
 		// Configure the view.
 		let skView = self.view as! SKView
 		skView.showsFPS = true
 		skView.showsNodeCount = true
+<<<<<<< HEAD
         skView.showsPhysics = true
+=======
+		skView.showsPhysics = true
+>>>>>>> scenery-forest
 		
 		/* Sprite Kit applies additional optimizations to improve rendering performance */
 		skView.ignoresSiblingOrder = true
