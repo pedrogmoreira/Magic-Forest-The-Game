@@ -49,18 +49,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		self.gameLayer?.update(currentTime)
 	}
     
+    //FIXME: The two next methods has duplicated code. They need to be refactored
+    
     // Set the Y position of camera
     private func cameraPositionYAxis(){
+        // The camera usually follows the player...
         let playerYPosition = (self.gameLayer?.player?.position.y)!;
-        let screenHeight = (self.view?.frame.size.height)!
-        let playerHeight = (self.gameLayer?.player?.size.height)!
-        let backgroundHeight = self.backgroundLayer?.background?.size.height
-
-        
         self.playerCamera?.position.y = playerYPosition
         
+        let screenHeight = (self.view?.frame.size.height)!
+        let backgroundHeight = self.backgroundLayer?.background?.size.height
         let cameraYPosition = self.playerCamera!.position.y
 
+        //... but if player comes too close to an edge the camera stops to follow
         if cameraYPosition < -(backgroundHeight!/2) + screenHeight/2 {
             self.playerCamera?.position.y = -(backgroundHeight!/2) + screenHeight/2
         } else if cameraYPosition > (backgroundHeight!/2) - screenHeight/2 {
@@ -68,8 +69,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    // Set the X position of camera
     private func cameraPositionXAxis(){
-        
+        // The camera usually follows the player...
         let playerXPosition = (self.gameLayer?.player?.position.x)!
         self.playerCamera?.position.x = playerXPosition
         
@@ -77,6 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let backgroundWidth = self.backgroundLayer?.background?.size.width
         let screenWidth = self.size.width
         
+        //...but if player comes too close to an edge the camera stops to follow
         if cameraXPosition < -(backgroundWidth!/2) + screenWidth/2 {
             self.playerCamera?.position.x = -(backgroundWidth!/2) + screenWidth/2
         } else if cameraXPosition > backgroundWidth!/2 - screenWidth/2 {
