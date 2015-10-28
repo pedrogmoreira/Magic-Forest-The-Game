@@ -42,6 +42,8 @@
 		67A74CF41BE1299000AF3B0E /* Pulo.png in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF21BE1299000AF3B0E /* Pulo.png */; };
 		67A74CFA1BE129CD00AF3B0E /* floresta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF81BE129CD00AF3B0E /* floresta.jpg */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
+		67CA73A11BE13E9400972A85 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA73A01BE13E9400972A85 /* MenuScene.swift */; };
+		67CA73A61BE13F6600972A85 /* MainMenuLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CA73A51BE13F6600972A85 /* MainMenuLayer.swift */; };
 		EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */; };
 		EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */; };
 		EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */; };
@@ -125,6 +127,8 @@
 		67A74CF21BE1299000AF3B0E /* Pulo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pulo.png; path = MagicForestControlSystem/Assets/Pulo.png; sourceTree = "<group>"; };
 		67A74CF81BE129CD00AF3B0E /* floresta.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floresta.jpg; sourceTree = "<group>"; };
 		67A74CF91BE129CD00AF3B0E /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
+		67CA73A01BE13E9400972A85 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		67CA73A51BE13F6600972A85 /* MainMenuLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuLayer.swift; sourceTree = "<group>"; };
 		EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -286,6 +290,23 @@
 			name = Background;
 			sourceTree = "<group>";
 		};
+		67CA73A21BE13ED700972A85 /* Game layers */ = {
+			isa = PBXGroup;
+			children = (
+				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
+				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
+			);
+			name = "Game layers";
+			sourceTree = "<group>";
+		};
+		67CA73A41BE13F2200972A85 /* Menu layers */ = {
+			isa = PBXGroup;
+			children = (
+				67CA73A51BE13F6600972A85 /* MainMenuLayer.swift */,
+			);
+			name = "Menu layers";
+			sourceTree = "<group>";
+		};
 		EB1214A01BD95CA700D0552F /* SKTUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -351,6 +372,7 @@
 				EB1214A91BD95CB000D0552F /* MagicForestControlSystem */,
 				EB9057951BD5655E00536AD1 /* Layers */,
 				EB9057591BD55CF200536AD1 /* AppDelegate.swift */,
+				67CA73A01BE13E9400972A85 /* MenuScene.swift */,
 				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
 				EB90575F1BD55CF200536AD1 /* GameViewController.swift */,
 				EB9057611BD55CF200536AD1 /* Main.storyboard */,
@@ -383,8 +405,8 @@
 			isa = PBXGroup;
 			children = (
 				EB9057961BD5665F00536AD1 /* BasicLayer.swift */,
-				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
-				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
+				67CA73A41BE13F2200972A85 /* Menu layers */,
+				67CA73A21BE13ED700972A85 /* Game layers */,
 				EB90579A1BD56CC700536AD1 /* Sceneries */,
 			);
 			name = Layers;
@@ -590,7 +612,9 @@
 				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
 				57A558091BDEA86000A948DE /* Neith.swift in Sources */,
 				57A558071BDEA85000A948DE /* Salamang.swift in Sources */,
+				67CA73A61BE13F6600972A85 /* MainMenuLayer.swift in Sources */,
 				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
+				67CA73A11BE13E9400972A85 /* MenuScene.swift in Sources */,
 				EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */,
 				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,
 				576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */,
