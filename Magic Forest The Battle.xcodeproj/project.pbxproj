@@ -18,10 +18,20 @@
 		576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576964EF1BDFEB4800CBB81D /* PlayerState.swift */; };
 		576964F31BDFEEB500CBB81D /* jump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F11BDFEEB500CBB81D /* jump1.png */; };
 		576964F41BDFEEB500CBB81D /* jump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F21BDFEEB500CBB81D /* jump2.png */; };
-		576964F61BDFEF3D00CBB81D /* jump3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F51BDFEF3D00CBB81D /* jump3.png */; };
 		576964FA1BE018B400CBB81D /* hit1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F71BE018B400CBB81D /* hit1.png */; };
 		576964FB1BE018B400CBB81D /* hit2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F81BE018B400CBB81D /* hit2.png */; };
 		576964FC1BE018B400CBB81D /* hit3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964F91BE018B400CBB81D /* hit3.png */; };
+		5769651D1BE2859F00CBB81D /* Attack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965121BE2859F00CBB81D /* Attack1.png */; };
+		5769651E1BE2859F00CBB81D /* Attack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965131BE2859F00CBB81D /* Attack2.png */; };
+		5769651F1BE2859F00CBB81D /* Attack3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965141BE2859F00CBB81D /* Attack3.png */; };
+		576965201BE2859F00CBB81D /* Attack4.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965151BE2859F00CBB81D /* Attack4.png */; };
+		576965211BE2859F00CBB81D /* Death1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965161BE2859F00CBB81D /* Death1.png */; };
+		576965221BE2859F00CBB81D /* Death2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965171BE2859F00CBB81D /* Death2.png */; };
+		576965231BE2859F00CBB81D /* Death3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965181BE2859F00CBB81D /* Death3.png */; };
+		576965241BE2859F00CBB81D /* falling1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965191BE2859F00CBB81D /* falling1.png */; };
+		576965251BE2859F00CBB81D /* falling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651A1BE2859F00CBB81D /* falling2.png */; };
+		576965261BE2859F00CBB81D /* falling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651B1BE2859F00CBB81D /* falling3.png */; };
+		576965271BE2859F00CBB81D /* sonic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651C1BE2859F00CBB81D /* sonic.png */; };
 		57A558021BDEA4F600A948DE /* Uhong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558011BDEA4F600A948DE /* Uhong.swift */; };
 		57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558041BDEA7FC00A948DE /* Dinak.swift */; };
 		57A558071BDEA85000A948DE /* Salamang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558061BDEA85000A948DE /* Salamang.swift */; };
@@ -113,6 +123,17 @@
 		576964F71BE018B400CBB81D /* hit1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit1.png; sourceTree = "<group>"; };
 		576964F81BE018B400CBB81D /* hit2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit2.png; sourceTree = "<group>"; };
 		576964F91BE018B400CBB81D /* hit3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit3.png; sourceTree = "<group>"; };
+		576965121BE2859F00CBB81D /* Attack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack1.png; path = "Magic Forest The Battle/Attack1.png"; sourceTree = "<group>"; };
+		576965131BE2859F00CBB81D /* Attack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack2.png; path = "Magic Forest The Battle/Attack2.png"; sourceTree = "<group>"; };
+		576965141BE2859F00CBB81D /* Attack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack3.png; path = "Magic Forest The Battle/Attack3.png"; sourceTree = "<group>"; };
+		576965151BE2859F00CBB81D /* Attack4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack4.png; path = "Magic Forest The Battle/Attack4.png"; sourceTree = "<group>"; };
+		576965161BE2859F00CBB81D /* Death1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death1.png; path = "Magic Forest The Battle/Death1.png"; sourceTree = "<group>"; };
+		576965171BE2859F00CBB81D /* Death2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death2.png; path = "Magic Forest The Battle/Death2.png"; sourceTree = "<group>"; };
+		576965181BE2859F00CBB81D /* Death3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death3.png; path = "Magic Forest The Battle/Death3.png"; sourceTree = "<group>"; };
+		576965191BE2859F00CBB81D /* falling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling1.png; path = "Magic Forest The Battle/falling1.png"; sourceTree = "<group>"; };
+		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling2.png; path = "Magic Forest The Battle/falling2.png"; sourceTree = "<group>"; };
+		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling3.png; path = "Magic Forest The Battle/falling3.png"; sourceTree = "<group>"; };
+		5769651C1BE2859F00CBB81D /* sonic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sonic.png; path = "Magic Forest The Battle/sonic.png"; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
 		57A558041BDEA7FC00A948DE /* Dinak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dinak.swift; sourceTree = "<group>"; };
 		57A558061BDEA85000A948DE /* Salamang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salamang.swift; sourceTree = "<group>"; };
@@ -372,6 +393,17 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
+				576965121BE2859F00CBB81D /* Attack1.png */,
+				576965131BE2859F00CBB81D /* Attack2.png */,
+				576965141BE2859F00CBB81D /* Attack3.png */,
+				576965151BE2859F00CBB81D /* Attack4.png */,
+				576965161BE2859F00CBB81D /* Death1.png */,
+				576965171BE2859F00CBB81D /* Death2.png */,
+				576965181BE2859F00CBB81D /* Death3.png */,
+				576965191BE2859F00CBB81D /* falling1.png */,
+				5769651A1BE2859F00CBB81D /* falling2.png */,
+				5769651B1BE2859F00CBB81D /* falling3.png */,
+				5769651C1BE2859F00CBB81D /* sonic.png */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
 				EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */,
 				EB90577C1BD55CF300536AD1 /* Magic Forest The BattleUITests */,
@@ -564,25 +596,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5769651E1BE2859F00CBB81D /* Attack2.png in Resources */,
 				576964F31BDFEEB500CBB81D /* jump1.png in Resources */,
 				576964EE1BDFDCD000CBB81D /* corre8.png in Resources */,
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
 				EB3E770A1BE1647300103DEC /* ForestScenery_3.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
+				5769651F1BE2859F00CBB81D /* Attack3.png in Resources */,
 				67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */,
 				EB3E77061BE1647300103DEC /* ForestSceneryPlatform_2.png in Resources */,
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
 				576964F41BDFEEB500CBB81D /* jump2.png in Resources */,
 				67A74CF31BE1299000AF3B0E /* Ataque.png in Resources */,
 				57A558201BDEBB1C00A948DE /* idle10.png in Resources */,
+				576965231BE2859F00CBB81D /* Death3.png in Resources */,
+				576965201BE2859F00CBB81D /* Attack4.png in Resources */,
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
+				576965251BE2859F00CBB81D /* falling2.png in Resources */,
 				EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */,
 				576964FC1BE018B400CBB81D /* hit3.png in Resources */,
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
 				57A5581E1BDEBB1C00A948DE /* idle8.png in Resources */,
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
+				576965211BE2859F00CBB81D /* Death1.png in Resources */,
+				576965271BE2859F00CBB81D /* sonic.png in Resources */,
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
 				EB3E77071BE1647300103DEC /* ForestSceneryPlatform_3.png in Resources */,
 				57A5581D1BDEBB1C00A948DE /* idle7.png in Resources */,
@@ -596,7 +635,9 @@
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
-				576964F61BDFEF3D00CBB81D /* jump3.png in Resources */,
+				576965261BE2859F00CBB81D /* falling3.png in Resources */,
+				576965221BE2859F00CBB81D /* Death2.png in Resources */,
+				5769651D1BE2859F00CBB81D /* Attack1.png in Resources */,
 				EB3E770B1BE1647300103DEC /* ForestScenery_4.png in Resources */,
 				67A74CF41BE1299000AF3B0E /* Pulo.png in Resources */,
 				57A558181BDEBB1C00A948DE /* idle2.png in Resources */,
@@ -604,6 +645,7 @@
 				57A5581A1BDEBB1C00A948DE /* idle4.png in Resources */,
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
 				67A74CFA1BE129CD00AF3B0E /* floresta.jpg in Resources */,
+				576965241BE2859F00CBB81D /* falling1.png in Resources */,
 				EB3E77081BE1647300103DEC /* ForestScenery_1.png in Resources */,
 				EB3E77051BE1647300103DEC /* ForestSceneryPlatform_1.png in Resources */,
 			);
