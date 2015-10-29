@@ -19,8 +19,10 @@ class Uhong: Player {
 		self.energy = 100
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
 		self.movementSpeed = 10
-		self.jumpForce = 400
-		initializeAnimations()
+		self.jumpForce = 100000
+		
+//		self.changeState(PlayerState.Jump)
+		//initializeAnimations()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -34,13 +36,14 @@ class Uhong: Player {
 		self.runAction(hit())
 	}
 	
+	
 	/**
 	Fazer a animação do idle repetir para sempre
 	- returns: SKAction
 	*/
 	
 	
-	func idle () -> SKAction {
+	override func idle () -> SKAction {
 		
 		let repeateForever = SKAction.repeatActionForever(loadAnimation("idle", endIndex: 11, timePerFrame: 0.2))
 		return repeateForever
@@ -51,32 +54,49 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	
-	func run () -> SKAction {
+	override func run () -> SKAction {
 		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("corre",endIndex: 8, timePerFrame: 0.2))
 		return repeateForever
 	}
+	
 	/**
 	Fazer a animação hit
 	- returns: SKAction
 	*/
-	func hit () -> SKAction {
+	override func hit () -> SKAction {
 		return self.loadAnimation("hit", endIndex: 3, timePerFrame: 0.2)
 	}
 	
-	override func changeState(state: PlayerState) {
-		if self.state != state {
-			self.state = state
-			
-			switch (self.state!) {
-			case PlayerState.Running:
-				self.runAction(run())
-			case PlayerState.Idle:
-				self.runAction(idle())
-			default:
-				print("<< State Not Handled >>")
-			}
-		}
+	/**
+	Fazer a animação jump
+	- returns: SKAction
+	*/
+	override func jump () -> SKAction {
+		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5))
+		return self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5)
 	}
+	/**
+	Fazer a animação falling
+	- returns: SKAction
+	*/
+	override func falling () -> SKAction {
+		return self.loadAnimation("falling", endIndex: 3, timePerFrame: 0.3)
+	}
+	/**
+	Fazer a animação attack
+	- returns: SKAction
+	*/
+	override func attack () -> SKAction {
+		return self.loadAnimation("Attack", endIndex: 3, timePerFrame: 0.1)
+	}
+	/**
+	Fazer a animação death
+	- returns: SKAction
+	*/
+	override func death() -> SKAction {
+		return self.loadAnimation("Death", endIndex: 3, timePerFrame: 0.3)
+	}
+
 	
 }
 

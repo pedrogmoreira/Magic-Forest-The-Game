@@ -8,6 +8,7 @@
 
 import SpriteKit
 
+
 class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 	var player: Player?
@@ -32,33 +33,30 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		/* Called before each frame is rendered */
 		self.player?.update(currentTime)
 	}
-
+	
 	
 	// MARK: MFCSContrllerDelegate Methods
-	func recieveCommand(command: MFCSCommandType) {
+	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
-			print("attack")
+			self.player?.isAttacking = true
 		} else if command == MFCSCommandType.Jump {
-			self.player?.physicsBody?.velocity = CGVector(dx: 0, dy: 900)
+			self.player?.isJumping = true
+			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 		}
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
-		self.player?.removeActionForKey("moveAction")
+		
 		self.setFlip(position)
-//		let movement = SKAction.moveToX(position.x, duration: 1)
-//		self.player?.runAction((self.player?.run())!, withKey: "correr")
-//		let completion = SKAction.runBlock { () -> Void in
-//			self.player?.removeActionForKey("correr")
-//			self.player?.runAction((self.player?.idle())!)
-//		}
-//		let sequence = SKAction.sequence([movement,completion])
-//		self.player?.runAction(sequence, withKey: "moveAction")
+
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
 	
 	
 	func setFlip (flipX : CGPoint) {
+		if flipX.x == 0 {
+			return
+		}
 		if flipX.x < 0 {
 			self.player?.xScale = -fabs((self.player?.xScale)!)
 		} else {

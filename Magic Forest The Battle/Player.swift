@@ -16,7 +16,8 @@ class Player: SKSpriteNode, GameObject {
 	var movementSpeed: CGFloat?
 	var jumpForce: CGFloat?
 	var state: PlayerState?
-	
+	var isAttacking: Bool = false
+	var isJumping: Bool = false
 	/**
 	Initializes the player
 	- parameter position: The point where the player will apear
@@ -40,20 +41,32 @@ class Player: SKSpriteNode, GameObject {
 		/* Called before each frame is rendered */
 		let velocityX = movementVelocity!.dx * movementSpeed!
 		let velocityY = movementVelocity!.dy * 0
-		
-		
-		if velocityX != 0 {
-			let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
-			
-			self.changeState(PlayerState.Running)
-			
-			self.runAction(move)
+		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
+		self.runAction(move)
+		print(self.state)
+		if self.life <= 0 {
+			print("to morto")
+			self.changeState(PlayerState.Death)
 		} else {
-			self.changeState(PlayerState.Idle)
+			if velocityX != 0 && self.physicsBody?.velocity.dy == 0 && self.state != .Hit && !isAttacking {
+				self.changeState(PlayerState.Running)
+				
+			} else if (isJumping && self.state != .Hit && !isAttacking) {
+				self.changeState(PlayerState.Jump)
+				
+			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !isAttacking{
+				self.changeState(PlayerState.Falling)
+				
+			} else if isAttacking {
+				self.changeState(PlayerState.Attack)
+				
+			}else{
+				self.changeState(PlayerState.Idle)
+			}
 		}
 		
 	}
-
+	
 	/**
 	Gerar animação dos personagens
 	- parameter: name: animation's name endIndex: The amount of sprites timePerFrame: The amount of time that each texture is displayed.
@@ -80,7 +93,7 @@ class Player: SKSpriteNode, GameObject {
         self.energy = 100
         self.movementVelocity = CGVector(dx: 0, dy: 0)
         self.movementSpeed = 90
-        self.jumpForce = 400
+        self.jumpForce = 900
     }
 	
 	/**
@@ -98,10 +111,80 @@ class Player: SKSpriteNode, GameObject {
 		
 		return physicsBody
 	}
+		// MARK: States Animation
+	func run () -> SKAction {
+		return SKAction()
+		
+	}
+	func idle () -> SKAction {
+		return SKAction()
+	}
+	
+	func jump () -> SKAction {
+		return SKAction()
+	}
+	
+	func falling () -> SKAction {
+		return SKAction()
+	}
+	
+	func attack () -> SKAction {
+		return SKAction()
+	}
+	
+	func hit () -> SKAction {
+		return SKAction()		
+	}
+	
+	func death () -> SKAction {
+		return SKAction()
+	}
 	
 	func changeState(state: PlayerState) {
-		//Override
 		
+		if((self.actionForKey("attack")) != nil){
+			self.isAttacking = true
+		}
+		else{
+			self.isAttacking = false
+		}
+//		if((self.actionForKey("jump")) != nil){
+//			self.isJumping = true
+//		}
+//		else{
+//			self.isJumping = false
+//		}
+		
+		if self.state != state {
+			self.state = state
+			if self.state != PlayerState.Attack {
+				self.isAttacking = false
+			}
+			switch (self.state!) {
+			case PlayerState.Running:
+				self.runAction(run())
+			case PlayerState.Idle:
+				self.runAction(idle())
+			case PlayerState.Jump:
+				self.runAction(jump(), completion: { () -> Void in
+					self.isJumping = false
+				})
+//				self.runAction(SKAction.sequence([jump(),SKAction.runBlock({ () -> Void in
+//					self.isJumping = false
+//				})]), withKey: "jump")
+				
+			case PlayerState.Falling:
+				self.runAction(falling())
+			case PlayerState.Attack:
+				self.runAction(SKAction.sequence([attack(),SKAction.runBlock({ () -> Void in
+					self.isAttacking = false
+				})]), withKey: "attack")
+			case PlayerState.Death:
+				self.runAction(death())
+			default:
+				self.runAction(idle())
+			}
+		}
 	}
 
 	
