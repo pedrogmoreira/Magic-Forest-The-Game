@@ -74,6 +74,9 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.addChild(self.background3!)
 		self.addChild(self.background4!)
 		self.addChild(self.background5!)
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
+
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
