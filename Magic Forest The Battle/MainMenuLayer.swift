@@ -8,16 +8,22 @@
 
 import SpriteKit
 
+enum Screen {
+    case firstScreen
+    case secondScreen
+}
+
 class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     private var size: CGSize?
     private var view: SKView?
+    private var currentScreen: Screen?
     
     private let configurationButton = SKSpriteNode(imageNamed: "configurationButton.png")
     private let gameCenterButton = SKSpriteNode(imageNamed: "gameCenterButton.png")
     private let practiceButton = SKSpriteNode(imageNamed: "practiceButton.png")
     private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
     private let storeButton = SKSpriteNode(imageNamed: "storeButton.jpg")
-
+    private let skinButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     
     required init(size: CGSize) {
         super.init()
@@ -35,6 +41,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         
         self.size = size
         self.view = view
+        
+        self.currentScreen = Screen.firstScreen
         
         self.addButtonsToLayer()
         self.addSwipeGestureToLayer()
@@ -61,24 +69,34 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         let halfConfigurationButtonWidth = self.configurationButton.size.width/2
         let halfConfigurationButtonHeight = self.configurationButton.size.height/2
         let configurationButtonPosition = CGPoint(x: self.size!.width - padding - halfConfigurationButtonWidth, y: self.size!.height - padding - halfConfigurationButtonHeight)
-        addButton(configurationButton, name: "configurationButton", position: configurationButtonPosition)
+        addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
         
         // Adding gameCenter Button
         self.gameCenterButton.setScale(0.2)
         let halfGameCenterButtonWidth = self.gameCenterButton.size.width/2
         let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
         let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height - halfGameCenterButtonHeight - padding)
-        addButton(gameCenterButton, name: "gameCenterButton", position: gameCenterButtonPosition)
+        addButton(self.gameCenterButton, name: "gameCenterButton", position: gameCenterButtonPosition)
         
         // Adding play Button
         self.playButton.setScale(0.5)
         let playButtonPosition = CGPoint(x: self.size!.width/4 , y: self.size!.height/4)
-        addButton(playButton, name: "playButton", position: playButtonPosition)
+        addButton(self.playButton, name: "playButton", position: playButtonPosition)
         
         // Adding practice Button
         self.practiceButton.setScale(0.5)
         let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: self.size!.height/4)
         addButton(practiceButton, name: "practiceButton", position: practiceButtonPosition)
+        
+        // Add store Button
+        self.storeButton.setScale(0.3)
+        let storeButtonPosition = CGPoint(x: self.size!.width/4 + self.size!.width, y: self.size!.height/4)
+        addButton(self.storeButton, name: "storeButton", position: storeButtonPosition)
+        
+        // Add skins Button
+        self.skinButton.setScale(0.3)
+        let skinButtonPosition = CGPoint(x: 3*self.size!.width/4 + self.size!.width, y: self.size!.height/4)
+        addButton(self.skinButton, name: "skinButton", position: skinButtonPosition)
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -97,6 +115,10 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             print("practiceButton touched")
         } else if nodeName == "gameCenterButton" {
             print("gameCenterButton touched")
+        } else if nodeName == "storeButton" {
+            print("storeButton touched")
+        } else if nodeName == "skinButton" {
+            print("skinButton touched")
         }
     }
     
@@ -119,10 +141,13 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     
     // Handle the given swipe
     func handleSwipe(sender: UISwipeGestureRecognizer) {
-        if sender.direction == .Right {
-            print("swipe to right")
-        } else if sender.direction == .Left {
-            print("swipe to left")
+        if sender.direction == .Right && self.currentScreen == Screen.secondScreen {
+            self.runAction(SKAction.moveByX(self.size!.width, y: 0, duration: 0.5))
+            self.currentScreen = Screen.firstScreen
+            
+        } else if sender.direction == .Left && self.currentScreen == Screen.firstScreen {
+            self.runAction(SKAction.moveByX(-self.size!.width, y: 0, duration: 0.5))
+            self.currentScreen = Screen.secondScreen
         }
     }
 }
