@@ -10,6 +10,8 @@ import SpriteKit
 
 class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     private var size: CGSize?
+    private var view: SKView?
+    
     private let configurationButton = SKSpriteNode(imageNamed: "configurationButton.png")
     private let gameCenterButton = SKSpriteNode(imageNamed: "gameCenterButton.png")
     private let practiceButton = SKSpriteNode(imageNamed: "practiceButton.png")
@@ -20,14 +22,18 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     required init(size: CGSize) {
         super.init()
         
-        self.size = size
-        
-        self.addButtonsToLayer()
-        
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: Selector("handleSwipe"))
-        swipeGesture.delegate = self
-    
+        assert(false, "Dont initialize main menu with size. Use init with size and view instend")
     }
+    
+    init(size: CGSize, view: SKView) {
+        super.init()
+        
+        self.size = size
+        self.view = view
+        self.addButtonsToLayer()
+        self.addSwipeGestureToLayer()
+    }
+
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -78,6 +84,27 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             print("practiceButton touched")
         } else if nodeName == "gameCenterButton" {
             print("gameCenterButton touched")
+        }
+    }
+    
+    private func addSwipeGestureToLayer() {
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
+        rightSwipe.delegate = self
+        rightSwipe.direction = .Right
+        
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
+        leftSwipe.delegate = self
+        rightSwipe.direction = .Left
+        
+        self.view?.addGestureRecognizer(rightSwipe)
+        self.view?.addGestureRecognizer(leftSwipe)
+    }
+    
+    func handleSwipe(sender: UISwipeGestureRecognizer) {
+        if sender.direction == .Right {
+            print("swipe to right")
+        } else if sender.direction == .Left {
+            print("swipe to left")
         }
     }
 }

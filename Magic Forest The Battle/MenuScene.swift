@@ -18,8 +18,11 @@ class MenuScene: SKScene {
      */
     override init(size: CGSize) {
         super.init(size: size)
-        
-        self.mainMenu = MainMenuLayer(size: size)
+    
+    }
+    
+    override func didMoveToView(view: SKView) {
+        self.mainMenu = MainMenuLayer(size: size, view: view)
         self.addChild(mainMenu!)
     }
 
@@ -30,4 +33,5 @@ class MenuScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.mainMenu?.touchesBegan(touches, withEvent: event)
     }
+    
 }
