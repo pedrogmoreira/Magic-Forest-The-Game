@@ -21,7 +21,6 @@ class Uhong: Player {
 		self.movementSpeed = 10
 		self.jumpForce = 100000
 		
-		self.runAction(SKAction.repeatActionForever(self.jump()))
 //		self.changeState(PlayerState.Jump)
 		//initializeAnimations()
 	}
@@ -44,7 +43,7 @@ class Uhong: Player {
 	*/
 	
 	
-	func idle () -> SKAction {
+	override func idle () -> SKAction {
 		
 		let repeateForever = SKAction.repeatActionForever(loadAnimation("idle", endIndex: 11, timePerFrame: 0.2))
 		return repeateForever
@@ -55,7 +54,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	
-	func run () -> SKAction {
+	override func run () -> SKAction {
 		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("corre",endIndex: 8, timePerFrame: 0.2))
 		return repeateForever
 	}
@@ -64,15 +63,15 @@ class Uhong: Player {
 	Fazer a animação hit
 	- returns: SKAction
 	*/
-	func hit () -> SKAction {
+	override func hit () -> SKAction {
 		return self.loadAnimation("hit", endIndex: 3, timePerFrame: 0.2)
 	}
 	
 	/**
-	Fazer a animação hit
+	Fazer a animação jump
 	- returns: SKAction
 	*/
-	func jump () -> SKAction {
+	override func jump () -> SKAction {
 		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5))
 		return self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5)
 	}
@@ -80,37 +79,24 @@ class Uhong: Player {
 	Fazer a animação falling
 	- returns: SKAction
 	*/
-	func falling () -> SKAction {
+	override func falling () -> SKAction {
 		return self.loadAnimation("falling", endIndex: 3, timePerFrame: 0.3)
 	}
 	/**
 	Fazer a animação attack
 	- returns: SKAction
 	*/
-	func attack () -> SKAction {
-		return self.loadAnimation("Attack", endIndex: 4, timePerFrame: 0.2)
+	override func attack () -> SKAction {
+		return self.loadAnimation("Attack", endIndex: 3, timePerFrame: 0.1)
 	}
-	
-	override func changeState(state: PlayerState) {
-		
-		
-		if self.state != state {
-			self.state = state
-			
-			switch (self.state!) {
-			case PlayerState.Running:
-				self.runAction(run())
-			case PlayerState.Idle:
-				self.runAction(idle())
-			case PlayerState.Jump:
-				self.runAction(jump())
-			case PlayerState.Falling:
-				self.runAction(falling())
-			default:
-				self.runAction(idle())
-			}
-		}
+	/**
+	Fazer a animação death
+	- returns: SKAction
+	*/
+	override func death() -> SKAction {
+		return self.loadAnimation("Death", endIndex: 3, timePerFrame: 0.3)
 	}
+
 	
 }
 

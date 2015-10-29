@@ -12,7 +12,7 @@ import SpriteKit
 class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 	var player: Player?
-
+	
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
@@ -38,9 +38,9 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
-			print("attack")
+			self.player?.isAttacking = true
 		} else if command == MFCSCommandType.Jump {
-			print("jump")
+			self.player?.isJumping = true
 			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 		}
 	}
@@ -54,6 +54,9 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	
 	
 	func setFlip (flipX : CGPoint) {
+		if flipX.x == 0 {
+			return
+		}
 		if flipX.x < 0 {
 			self.player?.xScale = -fabs((self.player?.xScale)!)
 		} else {

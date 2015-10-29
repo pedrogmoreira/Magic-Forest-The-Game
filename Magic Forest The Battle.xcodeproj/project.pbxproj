@@ -28,6 +28,9 @@
 		576965061BE14D4600CBB81D /* Attack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965021BE14D4600CBB81D /* Attack2.png */; };
 		576965071BE14D4600CBB81D /* Attack3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965031BE14D4600CBB81D /* Attack3.png */; };
 		576965081BE14D4600CBB81D /* Attack4.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965041BE14D4600CBB81D /* Attack4.png */; };
+		5769650F1BE27A1200CBB81D /* Death1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769650C1BE27A1200CBB81D /* Death1.png */; };
+		576965101BE27A1200CBB81D /* Death2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769650D1BE27A1200CBB81D /* Death2.png */; };
+		576965111BE27A1200CBB81D /* Death3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769650E1BE27A1200CBB81D /* Death3.png */; };
 		57A558021BDEA4F600A948DE /* Uhong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558011BDEA4F600A948DE /* Uhong.swift */; };
 		57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558041BDEA7FC00A948DE /* Dinak.swift */; };
 		57A558071BDEA85000A948DE /* Salamang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558061BDEA85000A948DE /* Salamang.swift */; };
@@ -117,6 +120,9 @@
 		576965021BE14D4600CBB81D /* Attack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack2.png; sourceTree = "<group>"; };
 		576965031BE14D4600CBB81D /* Attack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack3.png; sourceTree = "<group>"; };
 		576965041BE14D4600CBB81D /* Attack4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack4.png; sourceTree = "<group>"; };
+		5769650C1BE27A1200CBB81D /* Death1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death1.png; sourceTree = "<group>"; };
+		5769650D1BE27A1200CBB81D /* Death2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death2.png; sourceTree = "<group>"; };
+		5769650E1BE27A1200CBB81D /* Death3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death3.png; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
 		57A558041BDEA7FC00A948DE /* Dinak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dinak.swift; sourceTree = "<group>"; };
 		57A558061BDEA85000A948DE /* Salamang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salamang.swift; sourceTree = "<group>"; };
@@ -219,6 +225,16 @@
 			name = Attack;
 			sourceTree = "<group>";
 		};
+		5769650B1BE279FF00CBB81D /* Death */ = {
+			isa = PBXGroup;
+			children = (
+				5769650C1BE27A1200CBB81D /* Death1.png */,
+				5769650D1BE27A1200CBB81D /* Death2.png */,
+				5769650E1BE27A1200CBB81D /* Death3.png */,
+			);
+			name = Death;
+			sourceTree = "<group>";
+		};
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +256,7 @@
 		67A74CEB1BE1290100AF3B0E /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				5769650B1BE279FF00CBB81D /* Death */,
 				5769650A1BE14D8E00CBB81D /* Attack */,
 				576965091BE14D7200CBB81D /* Falling */,
 				67A74CEF1BE1293F00AF3B0E /* Hit */,
@@ -551,6 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				576964F31BDFEEB500CBB81D /* falling3.png in Resources */,
+				576965101BE27A1200CBB81D /* Death2.png in Resources */,
 				576964EE1BDFDCD000CBB81D /* corre8.png in Resources */,
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
@@ -564,9 +582,11 @@
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
 				EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */,
 				576965071BE14D4600CBB81D /* Attack3.png in Resources */,
+				5769650F1BE27A1200CBB81D /* Death1.png in Resources */,
 				576964FC1BE018B400CBB81D /* hit3.png in Resources */,
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
 				57A5581E1BDEBB1C00A948DE /* idle8.png in Resources */,
+				576965111BE27A1200CBB81D /* Death3.png in Resources */,
 				576965061BE14D4600CBB81D /* Attack2.png in Resources */,
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
