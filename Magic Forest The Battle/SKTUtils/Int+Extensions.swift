@@ -62,6 +62,9 @@ public extension Int {
     return Int(arc4random_uniform(UInt32(range.endIndex - range.startIndex))) + range.startIndex
   }
 
+	public static func randomWithInt(range: Range<Int>) -> Int {
+		return Int(arc4random_uniform(UInt32(range.endIndex - range.startIndex))) + range.startIndex
+	}
   /**
    * Returns a random integer between 0 and n-1.
    */

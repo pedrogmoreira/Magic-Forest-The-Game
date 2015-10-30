@@ -20,8 +20,7 @@ class Uhong: Player {
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
 		self.movementSpeed = 10
 		self.jumpForce = 100000
-		
-//		self.changeState(PlayerState.Jump)
+
 		//initializeAnimations()
 	}
 

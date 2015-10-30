@@ -43,7 +43,6 @@ class Player: SKSpriteNode, GameObject {
 		let velocityY = movementVelocity!.dy * 0
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
 		self.runAction(move)
-		print(self.state)
 		if self.life <= 0 {
 			print("to morto")
 			self.changeState(PlayerState.Death)
@@ -148,12 +147,6 @@ class Player: SKSpriteNode, GameObject {
 		else{
 			self.isAttacking = false
 		}
-//		if((self.actionForKey("jump")) != nil){
-//			self.isJumping = true
-//		}
-//		else{
-//			self.isJumping = false
-//		}
 		
 		if self.state != state {
 			self.state = state
@@ -169,9 +162,6 @@ class Player: SKSpriteNode, GameObject {
 				self.runAction(jump(), completion: { () -> Void in
 					self.isJumping = false
 				})
-//				self.runAction(SKAction.sequence([jump(),SKAction.runBlock({ () -> Void in
-//					self.isJumping = false
-//				})]), withKey: "jump")
 				
 			case PlayerState.Falling:
 				self.runAction(falling())
