@@ -10,7 +10,8 @@ import UIKit
 
 public enum MFCSCommandType: UInt32 {
 	
-	case Attack = 2
-	case Jump = 4
+	case Attack
+	case SpecialAttack
+	case Jump
 	
 }

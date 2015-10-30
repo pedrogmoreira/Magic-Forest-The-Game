@@ -32,13 +32,21 @@ class MFCSCommandView: UIView {
 			
 			let ratio = frame.size.width / frame.size.height
 			
-			let imageAttack = UIImage(named: "Ataque.png")
+			let imageAttack = UIImage(named: "AttackButton.png")
 			let width = (imageAttack?.size.width)! * ratio * 0.7
 			let height = (imageAttack?.size.height)! * ratio * 0.7
+			
 			let buttonAttack = UIButton(frame: CGRect(x: frame.size.width - width - 20, y: frame.size.height - height - 20, width: width, height: height))
 			buttonAttack.setImage(imageAttack, forState: UIControlState.Normal)
 			buttonAttack.addTarget(self, action: "attack", forControlEvents: UIControlEvents.TouchUpInside)
 			self.addSubview(buttonAttack)
+			
+			let imageSpecialAttack = UIImage(named: "SpecialButton.png")
+			
+			let buttonSpecialAttack = UIButton(frame: CGRect(x: frame.size.width - width * 2 - 40, y: frame.size.height - height - 20, width: width, height: height))
+			buttonSpecialAttack.setImage(imageSpecialAttack, forState: UIControlState.Normal)
+			buttonSpecialAttack.addTarget(self, action: "specialAttack", forControlEvents: UIControlEvents.TouchUpInside)
+			self.addSubview(buttonSpecialAttack)
 			
 		} else if controllerMode == MFCSControllerMode.JoystickAndSwipe {
 			let tapTest = UITapGestureRecognizer(target: self, action: "attack")
@@ -47,6 +55,10 @@ class MFCSCommandView: UIView {
 			let swipeUp = UISwipeGestureRecognizer(target: self, action: "jump")
 			swipeUp.direction = UISwipeGestureRecognizerDirection.Up
 			self.addGestureRecognizer(swipeUp)
+			
+			let swipeRight = UISwipeGestureRecognizer(target: self, action: "specialAttack")
+			swipeRight.direction = UISwipeGestureRecognizerDirection.Right
+			self.addGestureRecognizer(swipeRight)
 		}
 	}
 	
@@ -75,6 +87,13 @@ class MFCSCommandView: UIView {
 	*/
 	func attack(){
 		delegate?.recieveCommand(MFCSCommandType.Attack)
+	}
+	
+	/**
+	Sends the special attack command to delegate
+	*/
+	func specialAttack(){
+		delegate?.recieveCommand(MFCSCommandType.SpecialAttack)
 	}
 	
 	/**

@@ -39,6 +39,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
 			self.player?.isAttacking = true
+		} else if command == MFCSCommandType.SpecialAttack {
+				print("Special Attack")
 		} else if command == MFCSCommandType.Jump {
 			self.player?.isJumping = true
 			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))

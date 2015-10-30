@@ -42,15 +42,15 @@ class Player: SKSpriteNode, GameObject {
 		let velocityX = movementVelocity!.dx * movementSpeed!
 		let velocityY = movementVelocity!.dy * 0
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
+		
 		self.runAction(move)
-		print(self.state)
+		
 		if self.life <= 0 {
 			print("to morto")
 			self.changeState(PlayerState.Death)
 		} else {
 			if velocityX != 0 && self.physicsBody?.velocity.dy == 0 && self.state != .Hit && !isAttacking {
 				self.changeState(PlayerState.Running)
-				
 			} else if (isJumping && self.state != .Hit && !isAttacking) {
 				self.changeState(PlayerState.Jump)
 				

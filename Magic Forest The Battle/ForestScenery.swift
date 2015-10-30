@@ -27,7 +27,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.background3 = SKSpriteNode(imageNamed: "ForestScenery_3")
 		self.background4 = SKSpriteNode(imageNamed: "ForestScenery_4")
 		self.background5 = SKSpriteNode(imageNamed: "ForestScenery_5")
-		
+
 		// Background 1 Resize
 		var xRatio =  size.width / (self.background?.size.width)!
 		var yRatio =  size.height / (self.background?.size.height)!
@@ -74,7 +74,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.addChild(self.background3!)
 		self.addChild(self.background4!)
 		self.addChild(self.background5!)
-        
+		
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
 
 	}
