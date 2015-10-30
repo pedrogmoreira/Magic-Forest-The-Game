@@ -9,21 +9,29 @@
 import SpriteKit
 
 enum Screen {
-    case firstScreen
-    case secondScreen
+    case middleScreen
+    case leftScreen
+    case rightScreen
 }
 
 class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     private var size: CGSize?
     private var view: SKView?
     private var currentScreen: Screen?
+    private var rightSwipe: UISwipeGestureRecognizer?
+    private var leftSwipe: UISwipeGestureRecognizer?
+    
+    var controlUnit: MFCSControlUnit?
+    var controllerMode: MFCSControllerMode?
     
     private let configurationButton = SKSpriteNode(imageNamed: "configurationButton.png")
     private let gameCenterButton = SKSpriteNode(imageNamed: "gameCenterButton.png")
     private let practiceButton = SKSpriteNode(imageNamed: "practiceButton.png")
-    private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
     private let storeButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     private let skinButton = SKSpriteNode(imageNamed: "storeButton.jpg")
+    private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+    private let historyButton = SKSpriteNode(imageNamed: "storeButton.jpg")
+    private let statisticsButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     
     required init(size: CGSize) {
         super.init()
@@ -42,7 +50,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         self.size = size
         self.view = view
         
-        self.currentScreen = Screen.firstScreen
+        self.currentScreen = Screen.middleScreen
         
         self.addButtonsToLayer()
         self.addSwipeGestureToLayer()
@@ -97,6 +105,18 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         self.skinButton.setScale(0.3)
         let skinButtonPosition = CGPoint(x: 3*self.size!.width/4 + self.size!.width, y: self.size!.height/4)
         addButton(self.skinButton, name: "skinButton", position: skinButtonPosition)
+        
+        // Add history Button
+        self.historyButton.setScale(0.3)
+        let historyButtonPosition = CGPoint(x: self.size!.width/4 - self.size!.width, y: self.size!.height/4)
+        addButton(self.historyButton, name: "historyButton", position: historyButtonPosition)
+        
+        // Add skins Button
+        self.statisticsButton.setScale(0.3)
+        let statisticsButtonPosition = CGPoint(x: 3*self.size!.width/4 - self.size!.width, y: self.size!.height/4)
+        addButton(self.statisticsButton, name: "statisticsButton", position: statisticsButtonPosition)
+        
+        
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -108,7 +128,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         let nodeName = nodeTouched.name
         
         if nodeName == "playButton" {
-            print("playButton touched")
+            self.startGame()
+            self.removeGesturesFromLayer()
         } else if nodeName == "configurationButton" {
             print("configurationButton touched")
         } else if nodeName == "practiceButton" {
@@ -119,35 +140,63 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             print("storeButton touched")
         } else if nodeName == "skinButton" {
             print("skinButton touched")
+        } else if nodeName == "statisticsButton" {
+            print("statisticsButton touched")
+        } else if nodeName == "historyButton" {
+            print("historyButton touched")
         }
     }
     
-    // Add swipes gestures to the layer
+    // TODO: Refactor star game method.
+    private func startGame() {
+        let gameScene = GameScene(size: self.size!)
+        self.view?.presentScene(gameScene, transition: SKTransition.flipHorizontalWithDuration(2))
+        
+        self.controllerMode = MFCSControllerMode.JoystickAndSwipe
+        
+        self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
+        
+        self.view?.addSubview(self.controlUnit!)
+    }
+    
+    // Add swipe gestures to the layer
     private func addSwipeGestureToLayer() {
         // Configuring right swipe gesture
-        let rightSwipe = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
-        rightSwipe.delegate = self
-        rightSwipe.direction = .Right
+        self.rightSwipe = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
+        self.rightSwipe!.delegate = self
+        self.rightSwipe!.direction = .Right
         
         // Configuring left swipe gesture
-        let leftSwipe = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
-        leftSwipe.delegate = self
-        rightSwipe.direction = .Left
+        self.leftSwipe = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
+        self.leftSwipe!.delegate = self
+        self.leftSwipe!.direction = .Left
         
         // Adding gestures to the view
-        self.view?.addGestureRecognizer(rightSwipe)
-        self.view?.addGestureRecognizer(leftSwipe)
+        self.view?.addGestureRecognizer(rightSwipe!)
+        self.view?.addGestureRecognizer(leftSwipe!)
+    }
+    
+    // Remove swipe gestures from layer
+    private func removeGesturesFromLayer() {
+        self.view?.removeGestureRecognizer(self.rightSwipe!)
+        self.view?.removeGestureRecognizer(self.leftSwipe!)
     }
     
     // Handle the given swipe
     func handleSwipe(sender: UISwipeGestureRecognizer) {
-        if sender.direction == .Right && self.currentScreen == Screen.secondScreen {
+        if sender.direction == .Right && self.currentScreen == Screen.rightScreen {
             self.runAction(SKAction.moveByX(self.size!.width, y: 0, duration: 0.5))
-            self.currentScreen = Screen.firstScreen
+            self.currentScreen = Screen.middleScreen
             
-        } else if sender.direction == .Left && self.currentScreen == Screen.firstScreen {
+        } else if sender.direction == .Right && self.currentScreen == Screen.middleScreen {
+            self.runAction(SKAction.moveByX(self.size!.width, y: 0, duration: 0.5))
+            self.currentScreen = Screen.leftScreen
+        } else if sender.direction == .Left && self.currentScreen == Screen.leftScreen {
             self.runAction(SKAction.moveByX(-self.size!.width, y: 0, duration: 0.5))
-            self.currentScreen = Screen.secondScreen
+            self.currentScreen = Screen.middleScreen
+        } else if sender.direction == .Left && self.currentScreen == Screen.middleScreen {
+            self.runAction(SKAction.moveByX(-self.size!.width, y: 0, duration: 0.5))
+            self.currentScreen = Screen.rightScreen
         }
     }
 }
