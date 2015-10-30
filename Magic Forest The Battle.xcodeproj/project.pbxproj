@@ -127,16 +127,16 @@
 		576964F71BE018B400CBB81D /* hit1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit1.png; sourceTree = "<group>"; };
 		576964F81BE018B400CBB81D /* hit2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit2.png; sourceTree = "<group>"; };
 		576964F91BE018B400CBB81D /* hit3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit3.png; sourceTree = "<group>"; };
-		576965121BE2859F00CBB81D /* Attack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack1.png; path = "Magic Forest The Battle/Attack1.png"; sourceTree = "<group>"; };
-		576965131BE2859F00CBB81D /* Attack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack2.png; path = "Magic Forest The Battle/Attack2.png"; sourceTree = "<group>"; };
-		576965141BE2859F00CBB81D /* Attack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack3.png; path = "Magic Forest The Battle/Attack3.png"; sourceTree = "<group>"; };
-		576965151BE2859F00CBB81D /* Attack4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack4.png; path = "Magic Forest The Battle/Attack4.png"; sourceTree = "<group>"; };
-		576965161BE2859F00CBB81D /* Death1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death1.png; path = "Magic Forest The Battle/Death1.png"; sourceTree = "<group>"; };
-		576965171BE2859F00CBB81D /* Death2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death2.png; path = "Magic Forest The Battle/Death2.png"; sourceTree = "<group>"; };
-		576965181BE2859F00CBB81D /* Death3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death3.png; path = "Magic Forest The Battle/Death3.png"; sourceTree = "<group>"; };
-		576965191BE2859F00CBB81D /* falling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling1.png; path = "Magic Forest The Battle/falling1.png"; sourceTree = "<group>"; };
-		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling2.png; path = "Magic Forest The Battle/falling2.png"; sourceTree = "<group>"; };
-		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling3.png; path = "Magic Forest The Battle/falling3.png"; sourceTree = "<group>"; };
+		576965121BE2859F00CBB81D /* Attack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack1.png; sourceTree = "<group>"; };
+		576965131BE2859F00CBB81D /* Attack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack2.png; sourceTree = "<group>"; };
+		576965141BE2859F00CBB81D /* Attack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack3.png; sourceTree = "<group>"; };
+		576965151BE2859F00CBB81D /* Attack4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack4.png; sourceTree = "<group>"; };
+		576965161BE2859F00CBB81D /* Death1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death1.png; sourceTree = "<group>"; };
+		576965171BE2859F00CBB81D /* Death2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death2.png; sourceTree = "<group>"; };
+		576965181BE2859F00CBB81D /* Death3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death3.png; sourceTree = "<group>"; };
+		576965191BE2859F00CBB81D /* falling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling1.png; sourceTree = "<group>"; };
+		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling2.png; sourceTree = "<group>"; };
+		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling3.png; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
 		57A558041BDEA7FC00A948DE /* Dinak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dinak.swift; sourceTree = "<group>"; };
 		57A558061BDEA85000A948DE /* Salamang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salamang.swift; sourceTree = "<group>"; };
@@ -253,6 +253,9 @@
 		67A74CEB1BE1290100AF3B0E /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				67D98E071BE3F2430045029A /* Fall */,
+				67D98E061BE3F2370045029A /* Death */,
+				67D98E051BE3F2230045029A /* Attack */,
 				67A74CEF1BE1293F00AF3B0E /* Hit */,
 				67A74CEE1BE1292D00AF3B0E /* Idle */,
 				67A74CED1BE1291E00AF3B0E /* Run */,
@@ -321,6 +324,64 @@
 				67A74CF91BE129CD00AF3B0E /* vulcao.jpg */,
 			);
 			name = Background;
+			sourceTree = "<group>";
+		};
+		67D98E021BE3F1A20045029A /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				EB9057961BD5665F00536AD1 /* BasicLayer.swift */,
+				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
+				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		67D98E031BE3F1B60045029A /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				EB0EACB81BE3E39F00D93287 /* MainMenuLayer.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		67D98E041BE3F1C20045029A /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
+				EB0EACB91BE3E39F00D93287 /* MenuScene.swift */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		67D98E051BE3F2230045029A /* Attack */ = {
+			isa = PBXGroup;
+			children = (
+				576965121BE2859F00CBB81D /* Attack1.png */,
+				576965131BE2859F00CBB81D /* Attack2.png */,
+				576965141BE2859F00CBB81D /* Attack3.png */,
+				576965151BE2859F00CBB81D /* Attack4.png */,
+			);
+			name = Attack;
+			sourceTree = "<group>";
+		};
+		67D98E061BE3F2370045029A /* Death */ = {
+			isa = PBXGroup;
+			children = (
+				576965161BE2859F00CBB81D /* Death1.png */,
+				576965171BE2859F00CBB81D /* Death2.png */,
+				576965181BE2859F00CBB81D /* Death3.png */,
+			);
+			name = Death;
+			sourceTree = "<group>";
+		};
+		67D98E071BE3F2430045029A /* Fall */ = {
+			isa = PBXGroup;
+			children = (
+				576965191BE2859F00CBB81D /* falling1.png */,
+				5769651A1BE2859F00CBB81D /* falling2.png */,
+				5769651B1BE2859F00CBB81D /* falling3.png */,
+			);
+			name = Fall;
 			sourceTree = "<group>";
 		};
 		EB0EACC41BE3E3AB00D93287 /* Buttons */ = {
@@ -405,16 +466,6 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
-				576965121BE2859F00CBB81D /* Attack1.png */,
-				576965131BE2859F00CBB81D /* Attack2.png */,
-				576965141BE2859F00CBB81D /* Attack3.png */,
-				576965151BE2859F00CBB81D /* Attack4.png */,
-				576965161BE2859F00CBB81D /* Death1.png */,
-				576965171BE2859F00CBB81D /* Death2.png */,
-				576965181BE2859F00CBB81D /* Death3.png */,
-				576965191BE2859F00CBB81D /* falling1.png */,
-				5769651A1BE2859F00CBB81D /* falling2.png */,
-				5769651B1BE2859F00CBB81D /* falling3.png */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
 				EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */,
 				EB90577C1BD55CF300536AD1 /* Magic Forest The BattleUITests */,
@@ -441,9 +492,8 @@
 				EB90579F1BD5705F00536AD1 /* Entity */,
 				EB1214A91BD95CB000D0552F /* MagicForestControlSystem */,
 				EB9057951BD5655E00536AD1 /* Layers */,
+				67D98E041BE3F1C20045029A /* Scenes */,
 				EB9057591BD55CF200536AD1 /* AppDelegate.swift */,
-				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
-				EB0EACB91BE3E39F00D93287 /* MenuScene.swift */,
 				EB90575F1BD55CF200536AD1 /* GameViewController.swift */,
 				EB9057611BD55CF200536AD1 /* Main.storyboard */,
 				EB9057641BD55CF300536AD1 /* Assets.xcassets */,
@@ -474,10 +524,8 @@
 		EB9057951BD5655E00536AD1 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				EB0EACB81BE3E39F00D93287 /* MainMenuLayer.swift */,
-				EB9057961BD5665F00536AD1 /* BasicLayer.swift */,
-				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
-				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
+				67D98E031BE3F1B60045029A /* Menu */,
+				67D98E021BE3F1A20045029A /* Game */,
 				EB90579A1BD56CC700536AD1 /* Sceneries */,
 			);
 			name = Layers;
