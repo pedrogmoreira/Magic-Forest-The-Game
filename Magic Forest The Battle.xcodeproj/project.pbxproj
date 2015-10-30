@@ -31,6 +31,8 @@
 		576965241BE2859F00CBB81D /* falling1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965191BE2859F00CBB81D /* falling1.png */; };
 		576965251BE2859F00CBB81D /* falling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651A1BE2859F00CBB81D /* falling2.png */; };
 		576965261BE2859F00CBB81D /* falling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651B1BE2859F00CBB81D /* falling3.png */; };
+		579B805F1BE3FC030025B374 /* SpawnPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B805E1BE3FC030025B374 /* SpawnPoint.swift */; };
+		579B80611BE3FC150025B374 /* SpawnPointsLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B80601BE3FC150025B374 /* SpawnPointsLocation.swift */; };
 		57A558021BDEA4F600A948DE /* Uhong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558011BDEA4F600A948DE /* Uhong.swift */; };
 		57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558041BDEA7FC00A948DE /* Dinak.swift */; };
 		57A558071BDEA85000A948DE /* Salamang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558061BDEA85000A948DE /* Salamang.swift */; };
@@ -137,6 +139,8 @@
 		576965191BE2859F00CBB81D /* falling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling1.png; sourceTree = "<group>"; };
 		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling2.png; sourceTree = "<group>"; };
 		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling3.png; sourceTree = "<group>"; };
+		579B805E1BE3FC030025B374 /* SpawnPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpawnPoint.swift; sourceTree = "<group>"; };
+		579B80601BE3FC150025B374 /* SpawnPointsLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpawnPointsLocation.swift; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
 		57A558041BDEA7FC00A948DE /* Dinak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dinak.swift; sourceTree = "<group>"; };
 		57A558061BDEA85000A948DE /* Salamang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salamang.swift; sourceTree = "<group>"; };
@@ -347,6 +351,7 @@
 		67D98E041BE3F1C20045029A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				579B80601BE3FC150025B374 /* SpawnPointsLocation.swift */,
 				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
 				EB0EACB91BE3E39F00D93287 /* MenuScene.swift */,
 			);
@@ -543,6 +548,7 @@
 		EB90579F1BD5705F00536AD1 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				579B805E1BE3FC030025B374 /* SpawnPoint.swift */,
 				EB9057A01BD5709800536AD1 /* GameObject.swift */,
 				EB9057A21BD5712500536AD1 /* Player.swift */,
 				57A558011BDEA4F600A948DE /* Uhong.swift */,
@@ -742,6 +748,7 @@
 				57A558021BDEA4F600A948DE /* Uhong.swift in Sources */,
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
+				579B80611BE3FC150025B374 /* SpawnPointsLocation.swift in Sources */,
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
 				EB90579E1BD56F9000536AD1 /* VulcanScenery.swift in Sources */,
@@ -760,6 +767,7 @@
 				576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */,
 				EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */,
 				EB1214A81BD95CA700D0552F /* Int+Extensions.swift in Sources */,
+				579B805F1BE3FC030025B374 /* SpawnPoint.swift in Sources */,
 				EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */,
 				EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */,
 				EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */,
