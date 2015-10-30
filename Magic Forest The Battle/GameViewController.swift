@@ -10,15 +10,12 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
-
-	var controlUnit: MFCSControlUnit?
-	var controllerMode: MFCSControllerMode?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		let scene = GameScene(size: self.view.bounds.size)
-		
+		let scene = MenuScene(size: self.view.frame.size)
+        
 		// Configure the view.
 		let skView = self.view as! SKView
 		skView.showsFPS = true
@@ -32,12 +29,8 @@ class GameViewController: UIViewController {
 		scene.scaleMode = .AspectFill
 		
 		skView.presentScene(scene)
-		
-		controllerMode = MFCSControllerMode.JoystickAndSwipe
-		
-		controlUnit = MFCSControlUnit(frame: self.view.frame, delegate: scene.gameLayer!, controllerMode: controllerMode!)
-		
-		self.view.addSubview(self.controlUnit!)
+        
+        
     }
 
     override func shouldAutorotate() -> Bool {
