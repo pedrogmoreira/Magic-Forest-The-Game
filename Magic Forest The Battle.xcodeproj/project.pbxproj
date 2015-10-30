@@ -31,7 +31,6 @@
 		576965241BE2859F00CBB81D /* falling1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965191BE2859F00CBB81D /* falling1.png */; };
 		576965251BE2859F00CBB81D /* falling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651A1BE2859F00CBB81D /* falling2.png */; };
 		576965261BE2859F00CBB81D /* falling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651B1BE2859F00CBB81D /* falling3.png */; };
-		576965271BE2859F00CBB81D /* sonic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651C1BE2859F00CBB81D /* sonic.png */; };
 		57A558021BDEA4F600A948DE /* Uhong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558011BDEA4F600A948DE /* Uhong.swift */; };
 		57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558041BDEA7FC00A948DE /* Dinak.swift */; };
 		57A558071BDEA85000A948DE /* Salamang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558061BDEA85000A948DE /* Salamang.swift */; };
@@ -50,8 +49,14 @@
 		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CF31BE1299000AF3B0E /* Ataque.png in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF11BE1299000AF3B0E /* Ataque.png */; };
 		67A74CF41BE1299000AF3B0E /* Pulo.png in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF21BE1299000AF3B0E /* Pulo.png */; };
-		67A74CFA1BE129CD00AF3B0E /* floresta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF81BE129CD00AF3B0E /* floresta.jpg */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
+		67D98DF21BE3DB6C0045029A /* configurationButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 67D98DED1BE3DB6C0045029A /* configurationButton.png */; };
+		67D98DF31BE3DB6C0045029A /* gameCenterButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 67D98DEE1BE3DB6C0045029A /* gameCenterButton.png */; };
+		67D98DF41BE3DB6C0045029A /* playButton.gif in Resources */ = {isa = PBXBuildFile; fileRef = 67D98DEF1BE3DB6C0045029A /* playButton.gif */; };
+		67D98DF51BE3DB6C0045029A /* practiceButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 67D98DF01BE3DB6C0045029A /* practiceButton.png */; };
+		67D98DF61BE3DB6C0045029A /* storeButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67D98DF11BE3DB6C0045029A /* storeButton.jpg */; };
+		67D98DFA1BE3DB9A0045029A /* MainMenuLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D98DF91BE3DB9A0045029A /* MainMenuLayer.swift */; };
+		67D98DFD1BE3DBBB0045029A /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D98DFC1BE3DBBB0045029A /* MenuScene.swift */; };
 		EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */; };
 		EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */; };
 		EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */; };
@@ -123,17 +128,16 @@
 		576964F71BE018B400CBB81D /* hit1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit1.png; sourceTree = "<group>"; };
 		576964F81BE018B400CBB81D /* hit2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit2.png; sourceTree = "<group>"; };
 		576964F91BE018B400CBB81D /* hit3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hit3.png; sourceTree = "<group>"; };
-		576965121BE2859F00CBB81D /* Attack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack1.png; path = "Magic Forest The Battle/Attack1.png"; sourceTree = "<group>"; };
-		576965131BE2859F00CBB81D /* Attack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack2.png; path = "Magic Forest The Battle/Attack2.png"; sourceTree = "<group>"; };
-		576965141BE2859F00CBB81D /* Attack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack3.png; path = "Magic Forest The Battle/Attack3.png"; sourceTree = "<group>"; };
-		576965151BE2859F00CBB81D /* Attack4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Attack4.png; path = "Magic Forest The Battle/Attack4.png"; sourceTree = "<group>"; };
-		576965161BE2859F00CBB81D /* Death1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death1.png; path = "Magic Forest The Battle/Death1.png"; sourceTree = "<group>"; };
-		576965171BE2859F00CBB81D /* Death2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death2.png; path = "Magic Forest The Battle/Death2.png"; sourceTree = "<group>"; };
-		576965181BE2859F00CBB81D /* Death3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Death3.png; path = "Magic Forest The Battle/Death3.png"; sourceTree = "<group>"; };
-		576965191BE2859F00CBB81D /* falling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling1.png; path = "Magic Forest The Battle/falling1.png"; sourceTree = "<group>"; };
-		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling2.png; path = "Magic Forest The Battle/falling2.png"; sourceTree = "<group>"; };
-		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling3.png; path = "Magic Forest The Battle/falling3.png"; sourceTree = "<group>"; };
-		5769651C1BE2859F00CBB81D /* sonic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sonic.png; path = "Magic Forest The Battle/sonic.png"; sourceTree = "<group>"; };
+		576965121BE2859F00CBB81D /* Attack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack1.png; sourceTree = "<group>"; };
+		576965131BE2859F00CBB81D /* Attack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack2.png; sourceTree = "<group>"; };
+		576965141BE2859F00CBB81D /* Attack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack3.png; sourceTree = "<group>"; };
+		576965151BE2859F00CBB81D /* Attack4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack4.png; sourceTree = "<group>"; };
+		576965161BE2859F00CBB81D /* Death1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death1.png; sourceTree = "<group>"; };
+		576965171BE2859F00CBB81D /* Death2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death2.png; sourceTree = "<group>"; };
+		576965181BE2859F00CBB81D /* Death3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Death3.png; sourceTree = "<group>"; };
+		576965191BE2859F00CBB81D /* falling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling1.png; sourceTree = "<group>"; };
+		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling2.png; sourceTree = "<group>"; };
+		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling3.png; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
 		57A558041BDEA7FC00A948DE /* Dinak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dinak.swift; sourceTree = "<group>"; };
 		57A558061BDEA85000A948DE /* Salamang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salamang.swift; sourceTree = "<group>"; };
@@ -152,8 +156,14 @@
 		67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		67A74CF11BE1299000AF3B0E /* Ataque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ataque.png; path = MagicForestControlSystem/Assets/Ataque.png; sourceTree = "<group>"; };
 		67A74CF21BE1299000AF3B0E /* Pulo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pulo.png; path = MagicForestControlSystem/Assets/Pulo.png; sourceTree = "<group>"; };
-		67A74CF81BE129CD00AF3B0E /* floresta.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floresta.jpg; sourceTree = "<group>"; };
 		67A74CF91BE129CD00AF3B0E /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
+		67D98DED1BE3DB6C0045029A /* configurationButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = configurationButton.png; sourceTree = "<group>"; };
+		67D98DEE1BE3DB6C0045029A /* gameCenterButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameCenterButton.png; sourceTree = "<group>"; };
+		67D98DEF1BE3DB6C0045029A /* playButton.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = playButton.gif; sourceTree = "<group>"; };
+		67D98DF01BE3DB6C0045029A /* practiceButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = practiceButton.png; sourceTree = "<group>"; };
+		67D98DF11BE3DB6C0045029A /* storeButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = storeButton.jpg; sourceTree = "<group>"; };
+		67D98DF91BE3DB9A0045029A /* MainMenuLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuLayer.swift; sourceTree = "<group>"; };
+		67D98DFC1BE3DBBB0045029A /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -226,6 +236,7 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				67D98DEC1BE3DB4C0045029A /* MainMenu */,
 				67A74CFC1BE129D100AF3B0E /* Background */,
 				67A74CF51BE1299B00AF3B0E /* Buttons */,
 				67A74CEB1BE1290100AF3B0E /* Player */,
@@ -244,6 +255,9 @@
 		67A74CEB1BE1290100AF3B0E /* Player */ = {
 			isa = PBXGroup;
 			children = (
+				67D98E001BE3DC290045029A /* Fall */,
+				67D98DFF1BE3DC150045029A /* Death */,
+				67D98DFE1BE3DC060045029A /* Attack */,
 				67A74CEF1BE1293F00AF3B0E /* Hit */,
 				67A74CEE1BE1292D00AF3B0E /* Idle */,
 				67A74CED1BE1291E00AF3B0E /* Run */,
@@ -319,10 +333,79 @@
 			children = (
 				EB3E76FA1BE1647300103DEC /* Platform */,
 				EB3E76FE1BE1647300103DEC /* Scenery */,
-				67A74CF81BE129CD00AF3B0E /* floresta.jpg */,
 				67A74CF91BE129CD00AF3B0E /* vulcao.jpg */,
 			);
 			name = Background;
+			sourceTree = "<group>";
+		};
+		67D98DEC1BE3DB4C0045029A /* MainMenu */ = {
+			isa = PBXGroup;
+			children = (
+				67D98DED1BE3DB6C0045029A /* configurationButton.png */,
+				67D98DEE1BE3DB6C0045029A /* gameCenterButton.png */,
+				67D98DEF1BE3DB6C0045029A /* playButton.gif */,
+				67D98DF01BE3DB6C0045029A /* practiceButton.png */,
+				67D98DF11BE3DB6C0045029A /* storeButton.jpg */,
+			);
+			name = MainMenu;
+			sourceTree = "<group>";
+		};
+		67D98DF71BE3DB770045029A /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				67D98DF91BE3DB9A0045029A /* MainMenuLayer.swift */,
+			);
+			name = Menu;
+			sourceTree = "<group>";
+		};
+		67D98DF81BE3DB8B0045029A /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				EB9057961BD5665F00536AD1 /* BasicLayer.swift */,
+				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
+				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
+			);
+			name = Game;
+			sourceTree = "<group>";
+		};
+		67D98DFE1BE3DC060045029A /* Attack */ = {
+			isa = PBXGroup;
+			children = (
+				576965121BE2859F00CBB81D /* Attack1.png */,
+				576965131BE2859F00CBB81D /* Attack2.png */,
+				576965141BE2859F00CBB81D /* Attack3.png */,
+				576965151BE2859F00CBB81D /* Attack4.png */,
+			);
+			name = Attack;
+			sourceTree = "<group>";
+		};
+		67D98DFF1BE3DC150045029A /* Death */ = {
+			isa = PBXGroup;
+			children = (
+				576965161BE2859F00CBB81D /* Death1.png */,
+				576965171BE2859F00CBB81D /* Death2.png */,
+				576965181BE2859F00CBB81D /* Death3.png */,
+			);
+			name = Death;
+			sourceTree = "<group>";
+		};
+		67D98E001BE3DC290045029A /* Fall */ = {
+			isa = PBXGroup;
+			children = (
+				576965191BE2859F00CBB81D /* falling1.png */,
+				5769651A1BE2859F00CBB81D /* falling2.png */,
+				5769651B1BE2859F00CBB81D /* falling3.png */,
+			);
+			name = Fall;
+			sourceTree = "<group>";
+		};
+		67D98E011BE3DC600045029A /* Game scenes */ = {
+			isa = PBXGroup;
+			children = (
+				67D98DFC1BE3DBBB0045029A /* MenuScene.swift */,
+				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
+			);
+			name = "Game scenes";
 			sourceTree = "<group>";
 		};
 		EB1214A01BD95CA700D0552F /* SKTUtils */ = {
@@ -393,17 +476,6 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
-				576965121BE2859F00CBB81D /* Attack1.png */,
-				576965131BE2859F00CBB81D /* Attack2.png */,
-				576965141BE2859F00CBB81D /* Attack3.png */,
-				576965151BE2859F00CBB81D /* Attack4.png */,
-				576965161BE2859F00CBB81D /* Death1.png */,
-				576965171BE2859F00CBB81D /* Death2.png */,
-				576965181BE2859F00CBB81D /* Death3.png */,
-				576965191BE2859F00CBB81D /* falling1.png */,
-				5769651A1BE2859F00CBB81D /* falling2.png */,
-				5769651B1BE2859F00CBB81D /* falling3.png */,
-				5769651C1BE2859F00CBB81D /* sonic.png */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
 				EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */,
 				EB90577C1BD55CF300536AD1 /* Magic Forest The BattleUITests */,
@@ -430,8 +502,8 @@
 				EB90579F1BD5705F00536AD1 /* Entity */,
 				EB1214A91BD95CB000D0552F /* MagicForestControlSystem */,
 				EB9057951BD5655E00536AD1 /* Layers */,
+				67D98E011BE3DC600045029A /* Game scenes */,
 				EB9057591BD55CF200536AD1 /* AppDelegate.swift */,
-				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
 				EB90575F1BD55CF200536AD1 /* GameViewController.swift */,
 				EB9057611BD55CF200536AD1 /* Main.storyboard */,
 				EB9057641BD55CF300536AD1 /* Assets.xcassets */,
@@ -462,9 +534,8 @@
 		EB9057951BD5655E00536AD1 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				EB9057961BD5665F00536AD1 /* BasicLayer.swift */,
-				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
-				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
+				67D98DF81BE3DB8B0045029A /* Game */,
+				67D98DF71BE3DB770045029A /* Menu */,
 				EB90579A1BD56CC700536AD1 /* Sceneries */,
 			);
 			name = Layers;
@@ -615,13 +686,15 @@
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
 				576965251BE2859F00CBB81D /* falling2.png in Resources */,
+				67D98DF21BE3DB6C0045029A /* configurationButton.png in Resources */,
 				EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */,
 				576964FC1BE018B400CBB81D /* hit3.png in Resources */,
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
+				67D98DF41BE3DB6C0045029A /* playButton.gif in Resources */,
 				57A5581E1BDEBB1C00A948DE /* idle8.png in Resources */,
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
 				576965211BE2859F00CBB81D /* Death1.png in Resources */,
-				576965271BE2859F00CBB81D /* sonic.png in Resources */,
+				67D98DF51BE3DB6C0045029A /* practiceButton.png in Resources */,
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
 				EB3E77071BE1647300103DEC /* ForestSceneryPlatform_3.png in Resources */,
 				57A5581D1BDEBB1C00A948DE /* idle7.png in Resources */,
@@ -631,6 +704,7 @@
 				57A5581B1BDEBB1C00A948DE /* idle5.png in Resources */,
 				576964EB1BDFDCD000CBB81D /* corre5.png in Resources */,
 				57A558191BDEBB1C00A948DE /* idle3.png in Resources */,
+				67D98DF31BE3DB6C0045029A /* gameCenterButton.png in Resources */,
 				576964FB1BE018B400CBB81D /* hit2.png in Resources */,
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
@@ -644,8 +718,8 @@
 				57A558211BDEBB1C00A948DE /* idle11.png in Resources */,
 				57A5581A1BDEBB1C00A948DE /* idle4.png in Resources */,
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
-				67A74CFA1BE129CD00AF3B0E /* floresta.jpg in Resources */,
 				576965241BE2859F00CBB81D /* falling1.png in Resources */,
+				67D98DF61BE3DB6C0045029A /* storeButton.jpg in Resources */,
 				EB3E77081BE1647300103DEC /* ForestScenery_1.png in Resources */,
 				EB3E77051BE1647300103DEC /* ForestSceneryPlatform_1.png in Resources */,
 			);
@@ -673,6 +747,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */,
+				67D98DFD1BE3DBBB0045029A /* MenuScene.swift in Sources */,
+				67D98DFA1BE3DB9A0045029A /* MainMenuLayer.swift in Sources */,
 				57A558021BDEA4F600A948DE /* Uhong.swift in Sources */,
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
