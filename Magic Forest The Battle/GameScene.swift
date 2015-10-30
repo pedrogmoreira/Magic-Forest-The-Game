@@ -39,6 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func initializeCamera(){
         self.playerCamera = SKCameraNode()
         self.camera = self.playerCamera
+		self.playerCamera?.setScale(3)
     }
 
 	required init?(coder aDecoder: NSCoder) {
