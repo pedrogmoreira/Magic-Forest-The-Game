@@ -31,7 +31,6 @@
 		576965241BE2859F00CBB81D /* falling1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965191BE2859F00CBB81D /* falling1.png */; };
 		576965251BE2859F00CBB81D /* falling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651A1BE2859F00CBB81D /* falling2.png */; };
 		576965261BE2859F00CBB81D /* falling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651B1BE2859F00CBB81D /* falling3.png */; };
-		576965271BE2859F00CBB81D /* sonic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651C1BE2859F00CBB81D /* sonic.png */; };
 		57A558021BDEA4F600A948DE /* Uhong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558011BDEA4F600A948DE /* Uhong.swift */; };
 		57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558041BDEA7FC00A948DE /* Dinak.swift */; };
 		57A558071BDEA85000A948DE /* Salamang.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558061BDEA85000A948DE /* Salamang.swift */; };
@@ -54,6 +53,13 @@
 		EB0EACB11BE3E06D00D93287 /* ForestScenery_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACB01BE3E06D00D93287 /* ForestScenery_2.png */; };
 		EB0EACB31BE3E0E900D93287 /* ForestScenery_4.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACB21BE3E0E900D93287 /* ForestScenery_4.png */; };
 		EB0EACB51BE3E15600D93287 /* ForestScenery_5.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACB41BE3E15600D93287 /* ForestScenery_5.png */; };
+		EB0EACBD1BE3E39F00D93287 /* configurationButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACB61BE3E39F00D93287 /* configurationButton.png */; };
+		EB0EACBE1BE3E39F00D93287 /* gameCenterButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACB71BE3E39F00D93287 /* gameCenterButton.png */; };
+		EB0EACBF1BE3E39F00D93287 /* MainMenuLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0EACB81BE3E39F00D93287 /* MainMenuLayer.swift */; };
+		EB0EACC01BE3E39F00D93287 /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0EACB91BE3E39F00D93287 /* MenuScene.swift */; };
+		EB0EACC11BE3E39F00D93287 /* playButton.gif in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACBA1BE3E39F00D93287 /* playButton.gif */; };
+		EB0EACC21BE3E39F00D93287 /* practiceButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACBB1BE3E39F00D93287 /* practiceButton.png */; };
+		EB0EACC31BE3E39F00D93287 /* storeButton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACBC1BE3E39F00D93287 /* storeButton.jpg */; };
 		EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */; };
 		EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */; };
 		EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */; };
@@ -131,7 +137,6 @@
 		576965191BE2859F00CBB81D /* falling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling1.png; path = "Magic Forest The Battle/falling1.png"; sourceTree = "<group>"; };
 		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling2.png; path = "Magic Forest The Battle/falling2.png"; sourceTree = "<group>"; };
 		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = falling3.png; path = "Magic Forest The Battle/falling3.png"; sourceTree = "<group>"; };
-		5769651C1BE2859F00CBB81D /* sonic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sonic.png; path = "Magic Forest The Battle/sonic.png"; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
 		57A558041BDEA7FC00A948DE /* Dinak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dinak.swift; sourceTree = "<group>"; };
 		57A558061BDEA85000A948DE /* Salamang.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Salamang.swift; sourceTree = "<group>"; };
@@ -154,6 +159,13 @@
 		EB0EACB01BE3E06D00D93287 /* ForestScenery_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_2.png; sourceTree = "<group>"; };
 		EB0EACB21BE3E0E900D93287 /* ForestScenery_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_4.png; sourceTree = "<group>"; };
 		EB0EACB41BE3E15600D93287 /* ForestScenery_5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_5.png; sourceTree = "<group>"; };
+		EB0EACB61BE3E39F00D93287 /* configurationButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = configurationButton.png; sourceTree = "<group>"; };
+		EB0EACB71BE3E39F00D93287 /* gameCenterButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gameCenterButton.png; sourceTree = "<group>"; };
+		EB0EACB81BE3E39F00D93287 /* MainMenuLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuLayer.swift; sourceTree = "<group>"; };
+		EB0EACB91BE3E39F00D93287 /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		EB0EACBA1BE3E39F00D93287 /* playButton.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = playButton.gif; sourceTree = "<group>"; };
+		EB0EACBB1BE3E39F00D93287 /* practiceButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = practiceButton.png; sourceTree = "<group>"; };
+		EB0EACBC1BE3E39F00D93287 /* storeButton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = storeButton.jpg; sourceTree = "<group>"; };
 		EB1214A11BD95CA700D0552F /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A21BD95CA700D0552F /* CGPoint+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Extensions.swift"; sourceTree = "<group>"; };
 		EB1214A31BD95CA700D0552F /* CGVector+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGVector+Extensions.swift"; sourceTree = "<group>"; };
@@ -223,6 +235,7 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EB0EACC41BE3E3AB00D93287 /* Buttons */,
 				67A74CFC1BE129D100AF3B0E /* Background */,
 				67A74CEB1BE1290100AF3B0E /* Player */,
 			);
@@ -310,6 +323,18 @@
 			name = Background;
 			sourceTree = "<group>";
 		};
+		EB0EACC41BE3E3AB00D93287 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				EB0EACB61BE3E39F00D93287 /* configurationButton.png */,
+				EB0EACB71BE3E39F00D93287 /* gameCenterButton.png */,
+				EB0EACBA1BE3E39F00D93287 /* playButton.gif */,
+				EB0EACBB1BE3E39F00D93287 /* practiceButton.png */,
+				EB0EACBC1BE3E39F00D93287 /* storeButton.jpg */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 		EB1214A01BD95CA700D0552F /* SKTUtils */ = {
 			isa = PBXGroup;
 			children = (
@@ -390,7 +415,6 @@
 				576965191BE2859F00CBB81D /* falling1.png */,
 				5769651A1BE2859F00CBB81D /* falling2.png */,
 				5769651B1BE2859F00CBB81D /* falling3.png */,
-				5769651C1BE2859F00CBB81D /* sonic.png */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
 				EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */,
 				EB90577C1BD55CF300536AD1 /* Magic Forest The BattleUITests */,
@@ -419,6 +443,7 @@
 				EB9057951BD5655E00536AD1 /* Layers */,
 				EB9057591BD55CF200536AD1 /* AppDelegate.swift */,
 				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
+				EB0EACB91BE3E39F00D93287 /* MenuScene.swift */,
 				EB90575F1BD55CF200536AD1 /* GameViewController.swift */,
 				EB9057611BD55CF200536AD1 /* Main.storyboard */,
 				EB9057641BD55CF300536AD1 /* Assets.xcassets */,
@@ -449,6 +474,7 @@
 		EB9057951BD5655E00536AD1 /* Layers */ = {
 			isa = PBXGroup;
 			children = (
+				EB0EACB81BE3E39F00D93287 /* MainMenuLayer.swift */,
 				EB9057961BD5665F00536AD1 /* BasicLayer.swift */,
 				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
 				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
@@ -596,6 +622,7 @@
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
 				576964F41BDFEEB500CBB81D /* jump2.png in Resources */,
 				57A558201BDEBB1C00A948DE /* idle10.png in Resources */,
+				EB0EACC21BE3E39F00D93287 /* practiceButton.png in Resources */,
 				576965231BE2859F00CBB81D /* Death3.png in Resources */,
 				576965201BE2859F00CBB81D /* Attack4.png in Resources */,
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
@@ -605,13 +632,14 @@
 				EB0EACB51BE3E15600D93287 /* ForestScenery_5.png in Resources */,
 				576964FC1BE018B400CBB81D /* hit3.png in Resources */,
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
+				EB0EACBD1BE3E39F00D93287 /* configurationButton.png in Resources */,
 				57A5581E1BDEBB1C00A948DE /* idle8.png in Resources */,
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
 				576965211BE2859F00CBB81D /* Death1.png in Resources */,
-				576965271BE2859F00CBB81D /* sonic.png in Resources */,
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
 				EB3E77071BE1647300103DEC /* ForestSceneryPlatform_3.png in Resources */,
 				57A5581D1BDEBB1C00A948DE /* idle7.png in Resources */,
+				EB0EACC11BE3E39F00D93287 /* playButton.gif in Resources */,
 				EB0EACB31BE3E0E900D93287 /* ForestScenery_4.png in Resources */,
 				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
 				57A5581B1BDEBB1C00A948DE /* idle5.png in Resources */,
@@ -628,12 +656,14 @@
 				57A558211BDEBB1C00A948DE /* idle11.png in Resources */,
 				57A5581A1BDEBB1C00A948DE /* idle4.png in Resources */,
 				EB0EACAF1BE3DCD700D93287 /* SpecialButton.png in Resources */,
+				EB0EACBE1BE3E39F00D93287 /* gameCenterButton.png in Resources */,
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
 				EB0EACB11BE3E06D00D93287 /* ForestScenery_2.png in Resources */,
 				576965241BE2859F00CBB81D /* falling1.png in Resources */,
 				EB3E77081BE1647300103DEC /* ForestScenery_1.png in Resources */,
 				EB3E77051BE1647300103DEC /* ForestSceneryPlatform_1.png in Resources */,
 				EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */,
+				EB0EACC31BE3E39F00D93287 /* storeButton.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,6 +689,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */,
+				EB0EACC01BE3E39F00D93287 /* MenuScene.swift in Sources */,
+				EB0EACBF1BE3E39F00D93287 /* MainMenuLayer.swift in Sources */,
 				57A558021BDEA4F600A948DE /* Uhong.swift in Sources */,
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
