@@ -16,4 +16,5 @@ enum PlayerState {
 	case Death
 	case Falling
 	case Hit
+	case SpecialAttack
 }
