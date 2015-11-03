@@ -46,6 +46,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		if command == MFCSCommandType.Attack {
 			self.player?.isAttacking = true
 		} else if command == MFCSCommandType.SpecialAttack {
+			self.player?.isSpecialAttacking = true
 				print("Special Attack")
 		} else if command == MFCSCommandType.Jump {
 			self.player?.isJumping = true

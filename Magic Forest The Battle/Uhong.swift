@@ -27,7 +27,17 @@ class Uhong: Player {
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
-	
+	override func generatePhysicsBody() -> SKPhysicsBody {
+		let physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
+		
+		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
+		physicsBody.contactTestBitMask = PhysicsCategory.Player.rawValue
+		physicsBody.mass = 100
+		physicsBody.affectedByGravity = true
+		physicsBody.allowsRotation = false
+		
+		return physicsBody
+	}
 	// MARK: Animations
 	
 	func initializeAnimations () {
@@ -89,11 +99,18 @@ class Uhong: Player {
 		return self.loadAnimation("Attack", endIndex: 3, timePerFrame: 0.1)
 	}
 	/**
+	Fazer a animação attack special
+	- returns: SKAction
+	*/
+	override func specialAttack() -> SKAction {
+		return self.loadAnimation("SpecialAttack", endIndex: 2, timePerFrame: 0.3)
+	}
+	/**
 	Fazer a animação death
 	- returns: SKAction
 	*/
 	override func death() -> SKAction {
-		return self.loadAnimation("Death", endIndex: 3, timePerFrame: 0.3)
+		return self.loadAnimation("Death", endIndex: 3, timePerFrame: 0.5)
 	}
 
 	

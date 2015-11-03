@@ -18,6 +18,7 @@ class Player: SKSpriteNode, GameObject {
 	var state: PlayerState?
 	var isAttacking: Bool = false
 	var isJumping: Bool = false
+	var isSpecialAttacking: Bool = false
 	/**
 	Initializes the player
 	- parameter position: The point where the player will apear
@@ -59,7 +60,8 @@ class Player: SKSpriteNode, GameObject {
 				
 			} else if isAttacking {
 				self.changeState(PlayerState.Attack)
-				
+			}else if isSpecialAttacking {
+				self.changeState(PlayerState.SpecialAttack)
 			}else{
 				self.changeState(PlayerState.Idle)
 			}
@@ -101,15 +103,7 @@ class Player: SKSpriteNode, GameObject {
 	- returns: SKPhysicsBody
 	*/
 	func generatePhysicsBody() -> SKPhysicsBody {
-		let physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
-		
-        physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
-		physicsBody.contactTestBitMask = 0
-		physicsBody.mass = 100
-		physicsBody.affectedByGravity = true
-		physicsBody.allowsRotation = false
-		
-		return physicsBody
+		return SKPhysicsBody()
 	}
 		// MARK: States Animation
 	func run () -> SKAction {
@@ -139,6 +133,9 @@ class Player: SKSpriteNode, GameObject {
 	func death () -> SKAction {
 		return SKAction()
 	}
+	func specialAttack () -> SKAction {
+		return SKAction()
+	}
 	
 	func changeState(state: PlayerState) {
 		
@@ -147,6 +144,12 @@ class Player: SKSpriteNode, GameObject {
 		}
 		else{
 			self.isAttacking = false
+		}
+		if((self.actionForKey("specialAttack")) != nil){
+			self.isSpecialAttacking = true
+		}
+		else{
+			self.isSpecialAttacking = false
 		}
 		
 		if self.state != state {
@@ -170,6 +173,10 @@ class Player: SKSpriteNode, GameObject {
 				self.runAction(SKAction.sequence([attack(),SKAction.runBlock({ () -> Void in
 					self.isAttacking = false
 				})]), withKey: "attack")
+			case PlayerState.SpecialAttack:
+				self.runAction(SKAction.sequence([specialAttack(),SKAction.runBlock({ () -> Void in
+					self.isSpecialAttacking = false
+				})]), withKey: "specialAttack")
 			case PlayerState.Death:
 				self.runAction(death())
 			default:
