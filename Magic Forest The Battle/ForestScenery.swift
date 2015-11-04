@@ -7,13 +7,14 @@
 //
 
 import SpriteKit
+//import Darwin
 
 class ForestScenery: BackgroundLayer, BasicLayer {
 	
 	var background2: SKSpriteNode?
 	var background3: SKSpriteNode?
 	var background4: SKSpriteNode?
-	var background5: SKSpriteNode?
+	
 	
 	/**
 	Initializes the forest scenery
@@ -26,7 +27,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.background2 = SKSpriteNode(imageNamed: "ForestScenery_2")
 		self.background3 = SKSpriteNode(imageNamed: "ForestScenery_3")
 		self.background4 = SKSpriteNode(imageNamed: "ForestScenery_4")
-		self.background5 = SKSpriteNode(imageNamed: "ForestScenery_5")
+		self.lastBackground = SKSpriteNode(imageNamed: "ForestScenery_5")
 		
 		// Background 1 Resize
 		var xRatio =  size.width / (self.background?.size.width)!
@@ -57,23 +58,23 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.background4?.size = CGSize(width: (self.background4?.size.width)! * xRatio * scale, height: (self.background4?.size.height)! * yRatio * scale)
 		
 		// Background 5 Resize
-		xRatio =  size.width / (self.background5?.size.width)!
-		yRatio =  size.height / (self.background5?.size.height)!
+		xRatio =  size.width / (self.lastBackground?.size.width)!
+		yRatio =  size.height / (self.lastBackground?.size.height)!
 		scale = CGFloat(4.6)
 		
-		self.background5?.size = CGSize(width: (self.background5?.size.width)! * xRatio * scale, height: (self.background5?.size.height)! * yRatio * scale)
+		self.lastBackground?.size = CGSize(width: (self.lastBackground?.size.width)! * xRatio * scale, height: (self.lastBackground?.size.height)! * yRatio * scale)
 		
-		self.background?.zPosition = -11
-		self.background2?.zPosition = -10
-		self.background3?.zPosition = -9
-		self.background4?.zPosition = -8
-		self.background5?.zPosition = -7
+		self.background?.zPosition = -90
+		self.background2?.zPosition = -80
+		self.background3?.zPosition = -70
+		self.background4?.zPosition = -60
+		self.lastBackground?.zPosition = -50
 		
 		self.addChild(self.background!)
 		self.addChild(self.background2!)
 		self.addChild(self.background3!)
 		self.addChild(self.background4!)
-		self.addChild(self.background5!)
+		self.addChild(self.lastBackground!)
         
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
 		
@@ -86,15 +87,13 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 	}
 	
 	private func generatePlatforms() {
+		var x = CGFloat(0)
+		var y = CGFloat(0)
+		
 		let originX = (self.background?.frame.origin.x)!
 		let originY = (self.background?.frame.origin.y)!
 		let width = (self.background?.frame.width)!
-		let height = (self.background?.frame.height)!
-		
-		let edgeRight = originX + width / 2
-		let edgeLeft = originX - width / 2
-		let edgeTop = originY + height / 2
-		let edgeBottom = originY - height / 2
+//		let height = (self.background?.frame.height)!
 		
 		let space = width / 8
 		
@@ -103,177 +102,63 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		let baseCPlatform = self.generateTriplePlatform()
 		let baseRPlatform = self.generateQuadruplePlatform()
 		
+		let firstFloorLPlatfom = self.generateSinglePlatform()
+		
+		let secondFLoorLPlatform = self.generateDoublePlatform()
+		let secondFloorRPlatform = self.generateQuadruplePlatform()
+		
+		let thirdFloorLPlatform = self.generateDoublePlatform()
+		let thirdFloorCPlatform = self.generateTriplePlatform()
+		let thirdFloorRPlatform = self.generateTriplePlatform()
+		
+		
+		// Platforms configuration
+		firstFloorLPlatfom.zPosition = -15
+		thirdFloorLPlatform.runAction(SKAction.rotateByAngle(CGFloat(-3 * M_PI / 180), duration: 0))
+		thirdFloorLPlatform.runAction(SKAction.rotateByAngle(CGFloat(2.5 * M_PI / 180), duration: 0))
+		
 		// Platforms positioning
-		baseLPlatform.position = CGPoint(x: originX + space + baseLPlatform.size.width * 0.5 , y: originY + space + baseLPlatform.size.height * 0.5)
-		baseCPlatform.position = CGPoint(x: baseLPlatform.position.x +  baseLPlatform.size.width * 0.5 + baseCPlatform.size.width * 0.5 + space * 0.6, y: baseLPlatform.position.y)
-		baseRPlatform.position = CGPoint(x: baseCPlatform.position.x +  baseCPlatform.size.width * 0.5 + baseRPlatform.size.width * 0.5 + space * 0.6, y: baseLPlatform.position.y)
+		
+		y = originY + space
+		
+		baseLPlatform.position = CGPoint(x: originX + space + baseLPlatform.size.width * 0.5 , y: y - baseLPlatform.size.height * 0.3)
+		baseCPlatform.position = CGPoint(x: baseLPlatform.position.x +  baseLPlatform.size.width * 0.5 + baseCPlatform.size.width * 0.5 + space * 0.6, y: y  + baseCPlatform.size.height / 4)
+		baseRPlatform.position = CGPoint(x: baseCPlatform.position.x +  baseCPlatform.size.width * 0.5 + baseRPlatform.size.width * 0.5 + space * 0.6, y: y)
+		firstFloorLPlatfom.position = CGPoint(x: baseLPlatform.position.x, y: baseLPlatform.position.y + firstFloorLPlatfom.size.height * 0.7)
+
+		x = ( (baseLPlatform.position.x + baseLPlatform.size.width / 2) - (baseCPlatform.position.x - baseCPlatform.size.width / 2) ) / 2 - secondFLoorLPlatform.size.width / 2
+		y = originY + space * 2 - secondFLoorLPlatform.size.height * 0.25
+		
+		secondFLoorLPlatform.position = CGPoint(x: x, y: y  - secondFLoorLPlatform.size.height / 5)
+		
+		x = baseRPlatform.position.x - baseRPlatform.size.width / 2
+		secondFloorRPlatform.position = CGPoint(x: x, y: y)
+		
+		y = secondFLoorLPlatform.position.y + space - thirdFloorLPlatform.size.height * 0.45
+		
+		thirdFloorLPlatform.position = CGPoint(x: firstFloorLPlatfom.position.x - space * 0.6, y: y)
+		
+		x = secondFLoorLPlatform.position.x + secondFLoorLPlatform.size.width / 2
+		y = secondFLoorLPlatform.position.y + space - thirdFloorCPlatform.size.height * 0.25
+		
+		thirdFloorCPlatform.position = CGPoint(x: x, y: y)
+		
+		x = x + thirdFloorCPlatform.size.width / 2 + space * 1.8
+		
+		thirdFloorRPlatform.position = CGPoint(x: x, y: y - thirdFloorRPlatform.size.height * 0.3)
 		
 		// Adding platforms to scenery
 		self.addChild(baseLPlatform)
 		self.addChild(baseCPlatform)
 		self.addChild(baseRPlatform)
+		
+		self.addChild(firstFloorLPlatfom)
+		
+		self.addChild(secondFLoorLPlatform)
+		self.addChild(secondFloorRPlatform)
+		
+		self.addChild(thirdFloorLPlatform)
+		self.addChild(thirdFloorCPlatform)
+		self.addChild(thirdFloorRPlatform)
 	}
-	
-	private func generateSimplePlatform() -> SKSpriteNode {
-		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
-		let right = left.copy() as! SKSpriteNode
-		right.runAction(SKAction.scaleXBy(-1, y: 1, duration: 0))
-		
-		let width = left.frame.width + right.frame.width
-		let height = left.frame.height
-		let size = CGSize(width: width, height: height)
-		
-		let simplePlatform = SKSpriteNode(color: UIColor.clearColor(), size: size)
-		simplePlatform.color = UIColor.blackColor()
-		simplePlatform.addChild(left)
-		simplePlatform.addChild(right)
-		
-		left.position = CGPoint(x: -width / 2 + left.frame.width / 2, y: 0)
-		right.position = CGPoint(x: left.position.x + right.size.width, y: 0)
-		
-		simplePlatform.setScale(0.4)
-		simplePlatform.zPosition = -6
-		
-		left.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		right.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		
-		return simplePlatform
-	}
-	
-	private func generateSinglePlatform() -> SKSpriteNode {
-		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
-		let center = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let right = SKSpriteNode(imageNamed: "ForestSceneryPlatformRight")
-		
-		let width = left.frame.width + right.frame.width + center.frame.width
-		let height = left.frame.height
-		let size = CGSize(width: width, height: height)
-		
-		let singlePlatform = SKSpriteNode(color: UIColor.clearColor(), size: size)
-		singlePlatform.addChild(left)
-		singlePlatform.addChild(center)
-		singlePlatform.addChild(right)
-		
-		left.position = CGPoint(x: -width / 2 + left.frame.width / 2, y: 0)
-		center.position = CGPoint(x: left.position.x + left.size.width, y: 0)
-		right.position = CGPoint(x: center.position.x + center.size.width, y: 0)
-		
-		singlePlatform.setScale(0.4)
-		singlePlatform.zPosition = -6
-		
-		left.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		center.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		right.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		
-		return singlePlatform
-	}
-	
-	private func generateDoublePlatform() -> SKSpriteNode {
-		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
-		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let centerR = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let right = SKSpriteNode(imageNamed: "ForestSceneryPlatformRight")
-		
-		let width = left.frame.width + right.frame.width + centerL.frame.width + centerR.frame.width
-		let height = left.frame.height
-		let size = CGSize(width: width, height: height)
-		
-		let doublePlatform = SKSpriteNode(color: UIColor.clearColor(), size: size)
-		doublePlatform.addChild(left)
-		doublePlatform.addChild(centerL)
-		doublePlatform.addChild(centerR)
-		doublePlatform.addChild(right)
-		
-		left.position = CGPoint(x: -width / 2 + left.frame.width / 2, y: 0)
-		centerL.position = CGPoint(x: left.position.x + left.size.width, y: 0)
-		centerR.position = CGPoint(x: centerL.position.x + centerL.size.width, y: 0)
-		right.position = CGPoint(x: centerR.position.x + centerR.size.width, y: 0)
-		
-		doublePlatform.setScale(0.4)
-		doublePlatform.zPosition = -6
-		
-		left.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerL.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerR.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		right.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		
-		return doublePlatform
-	}
-	
-	private func generateTriplePlatform() -> SKSpriteNode {
-		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
-		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let centerC = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let centerR = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let right = SKSpriteNode(imageNamed: "ForestSceneryPlatformRight")
-		
-		let width = left.frame.width + right.frame.width + centerL.frame.width + centerC.frame.width + centerR.frame.width
-		let height = left.frame.height
-		let size = CGSize(width: width, height: height)
-		
-		let triplePlatform = SKSpriteNode(color: UIColor.clearColor(), size: size)
-		triplePlatform.addChild(left)
-		triplePlatform.addChild(centerL)
-		triplePlatform.addChild(centerC)
-		triplePlatform.addChild(centerR)
-		triplePlatform.addChild(right)
-		
-		left.position = CGPoint(x: -width / 2 + left.frame.width / 2, y: 0)
-		centerL.position = CGPoint(x: left.position.x + left.size.width, y: 0)
-		centerC.position = CGPoint(x: centerL.position.x + centerL.size.width, y: 0)
-		centerR.position = CGPoint(x: centerC.position.x + centerC.size.width, y: 0)
-		right.position = CGPoint(x: centerR.position.x + centerR.size.width, y: 0)
-		
-		triplePlatform.setScale(0.4)
-		triplePlatform.zPosition = -6
-		
-		left.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerL.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerC.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerR.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		right.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		
-		return triplePlatform
-	}
-	
-	private func generateQuadruplePlatform() -> SKSpriteNode {
-		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
-		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let centerCL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let centerCR = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let centerR = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
-		let right = SKSpriteNode(imageNamed: "ForestSceneryPlatformRight")
-		
-		let width = left.frame.width + right.frame.width + centerL.frame.width + centerCL.frame.width + centerCR.frame.width + centerR.frame.width
-		let height = left.frame.height
-		let size = CGSize(width: width, height: height)
-		
-		let quadruplePlatform = SKSpriteNode(color: UIColor.clearColor(), size: size)
-		quadruplePlatform.addChild(left)
-		quadruplePlatform.addChild(centerL)
-		quadruplePlatform.addChild(centerCL)
-		quadruplePlatform.addChild(centerCR)
-		quadruplePlatform.addChild(centerR)
-		quadruplePlatform.addChild(right)
-		
-		left.position = CGPoint(x: -width / 2 + left.frame.width / 2, y: 0)
-		centerL.position = CGPoint(x: left.position.x + left.size.width, y: 0)
-		centerCL.position = CGPoint(x: centerL.position.x + centerL.size.width, y: 0)
-		centerCR.position = CGPoint(x: centerCL.position.x + centerCL.size.width, y: 0)
-		centerR.position = CGPoint(x: centerCR.position.x + centerCR.size.width, y: 0)
-		right.position = CGPoint(x: centerR.position.x + centerR.size.width, y: 0)
-		
-		quadruplePlatform.setScale(0.4)
-		quadruplePlatform.zPosition = -6
-		
-		left.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerL.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerCL.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerCR.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		centerR.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		right.runAction(SKAction.colorizeWithColor(UIColor.brownColor(), colorBlendFactor: 1, duration: 0))
-		
-		return quadruplePlatform
-	}
-	
 }

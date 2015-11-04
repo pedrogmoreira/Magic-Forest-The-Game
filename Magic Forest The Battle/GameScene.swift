@@ -39,8 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private func initializeCamera(){
         self.playerCamera = SKCameraNode()
         self.camera = self.playerCamera
-		self.playerCamera?.setScale(3)
-    }
+	}
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
@@ -61,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let screenHeight = (self.view?.frame.size.height)!
         let backgroundHeight = self.backgroundLayer?.background?.size.height
         let cameraYPosition = self.playerCamera!.position.y
-
+		
         //... but if player comes too close to an edge the camera stops to follow
         if cameraYPosition < -(backgroundHeight!/2) + screenHeight/2 {
             self.playerCamera?.position.y = -(backgroundHeight!/2) + screenHeight/2
