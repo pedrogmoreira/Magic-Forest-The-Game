@@ -12,13 +12,20 @@ class Player: SKSpriteNode, GameObject {
 	
 	var life: CGFloat?
 	var energy: CGFloat?
+	var attackDamage: CGFloat?
+	var specialDamage: CGFloat?
 	var movementVelocity: CGVector?
 	var movementSpeed: CGFloat?
+	var attackSpeed: CGFloat?
+	var defesa: CGFloat?
 	var jumpForce: CGFloat?
 	var state: PlayerState?
 	var isAttacking: Bool = false
 	var isJumping: Bool = false
 	var isSpecialAttacking: Bool = false
+	var doubleJump: Bool = false
+	var regLife: CGFloat?
+	var regEnergy: CGFloat?
 	/**
 	Initializes the player
 	- parameter position: The point where the player will apear
