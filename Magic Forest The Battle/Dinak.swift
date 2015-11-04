@@ -14,11 +14,19 @@ class Dinak: Player {
 		
 		self.position = position
 		
-		self.life = 100
+		self.life = 1000
 		self.energy = 100
+		self.attackDamage = 100
+		self.specialDamage = 200
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
-		self.movementSpeed = 2
-		self.jumpForce = 400
+		self.movementSpeed = 20
+		self.jumpForce = 100000
+		self.defesa = 20 //defende 20% do dano
+		self.attackSpeed = 2
+		self.doubleJump = true
+		//Porcentagem 10% e 1%
+		self.regEnergy = 10
+		self.regEnergy = 1
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

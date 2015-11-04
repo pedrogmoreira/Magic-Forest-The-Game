@@ -14,12 +14,20 @@ class Uhong: Player {
 		super.init(position: position)
 		
 		self.position = position
-		
-		self.life = 100
+	
+		self.life = 1500
 		self.energy = 100
+		self.attackDamage = 100
+		self.specialDamage = 200
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
 		self.movementSpeed = 10
 		self.jumpForce = 100000
+		self.defesa = 30 //Defende 30% do dano
+		self.attackSpeed = 1
+		self.doubleJump = false
+		//Porcentagem 10% e 1%
+		self.regEnergy = 10
+		self.regEnergy = 1
 
 		//initializeAnimations()
 	}
