@@ -18,16 +18,19 @@ class Player: SKSpriteNode, GameObject {
 	var state: PlayerState?
 	var isAttacking: Bool = false
 	var isJumping: Bool = false
+	
+	let scale = CGFloat(0.07)
 	/**
 	Initializes the player
 	- parameter position: The point where the player will apear
 	*/
-	required init(position: CGPoint) {
+	required init(position: CGPoint, screenSize: CGSize) {
         let playerTexture = SKTexture(imageNamed: "sonic")
         
 		super.init(texture: playerTexture, color: UIColor.blackColor(), size: CGSize(width: 50, height: 100))
 		
 		self.position = position
+		self.resize(screenSize)
 		
         self.setBasicAttributes()
 	}
@@ -36,6 +39,18 @@ class Player: SKSpriteNode, GameObject {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	private func resize(screenSize: CGSize) {
+		
+		// Resize
+		let widthRatio =  screenSize.width / self.size.width
+		let spriteRatio =  self.size.width / self.size.height
+		
+		
+		let width = self.size.width * widthRatio * self.scale
+		let height = width / spriteRatio
+		
+		self.size = CGSize(width: width, height: height)
+	}
 	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
@@ -43,7 +58,7 @@ class Player: SKSpriteNode, GameObject {
 		let velocityY = movementVelocity!.dy * 0
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
 		self.runAction(move)
-		print(self.state)
+		
 		if self.life <= 0 {
 			print("to morto")
 			self.changeState(PlayerState.Death)
@@ -186,6 +201,5 @@ class Player: SKSpriteNode, GameObject {
 			}
 		}
 	}
-
 	
 }

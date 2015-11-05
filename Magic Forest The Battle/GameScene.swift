@@ -38,6 +38,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func initializeCamera(){
         self.playerCamera = SKCameraNode()
+		
+		self.playerCamera?.setScale(1.3)
+		
         self.camera = self.playerCamera
 	}
 
@@ -49,7 +52,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		self.gameLayer?.update(currentTime)
 	}
     
-    //FIXME: The two next methods has duplicated code. They need to be refactored
+    // FIXME: The two next methods has duplicated code. They need to be refactored
+	// IF CAMERA SCALE EQUALS 1.3, USE Y 0.9 / X 0.905
+	// IF CAMERA SCALE EQUALS 1.5, USE Y 0.84 / X 0.845
     
     // Set the Y position of camera
     private func cameraPositionYAxis(){
@@ -59,13 +64,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let screenHeight = (self.view?.frame.size.height)!
         let backgroundHeight = self.backgroundLayer?.background?.size.height
+//		backgroundHeight = backgroundHeight! * 0.8
         let cameraYPosition = self.playerCamera!.position.y
 		
         //... but if player comes too close to an edge the camera stops to follow
-        if cameraYPosition < -(backgroundHeight!/2) + screenHeight/2 {
-            self.playerCamera?.position.y = -(backgroundHeight!/2) + screenHeight/2
-        } else if cameraYPosition > (backgroundHeight!/2) - screenHeight/2 {
-            self.playerCamera?.position.y = (backgroundHeight!/2) - screenHeight/2
+        if cameraYPosition < (-(backgroundHeight!/2) + screenHeight/2) * 0.9 {
+            self.playerCamera?.position.y = (-(backgroundHeight!/2) + screenHeight/2) * 0.9
+        } else if cameraYPosition > ((backgroundHeight!/2) - screenHeight/2) * 0.9 {
+            self.playerCamera?.position.y = ((backgroundHeight!/2) - screenHeight/2) * 0.9
         }
     }
     
@@ -80,10 +86,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let screenWidth = self.size.width
         
         //...but if player comes too close to an edge the camera stops to follow
-        if cameraXPosition < -(backgroundWidth!/2) + screenWidth/2 {
-            self.playerCamera?.position.x = -(backgroundWidth!/2) + screenWidth/2
-        } else if cameraXPosition > backgroundWidth!/2 - screenWidth/2 {
-            self.playerCamera?.position.x = backgroundWidth!/2 - screenWidth/2
+        if cameraXPosition < (-(backgroundWidth!/2) + screenWidth/2) * 0.905 {
+            self.playerCamera?.position.x = (-(backgroundWidth!/2) + screenWidth/2) * 0.905
+        } else if cameraXPosition > (backgroundWidth!/2 - screenWidth/2) * 0.905 {
+            self.playerCamera?.position.x = (backgroundWidth!/2 - screenWidth/2) * 0.905
         }
         
     }

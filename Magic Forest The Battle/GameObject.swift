@@ -10,7 +10,7 @@ import SpriteKit
 
 @objc protocol GameObject {
 	
-	init(position: CGPoint)
+	init(position: CGPoint, screenSize: CGSize)
 	func generatePhysicsBody() -> SKPhysicsBody
     optional func setBasicAttributes()
 

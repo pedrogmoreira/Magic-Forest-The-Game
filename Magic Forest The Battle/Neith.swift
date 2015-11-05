@@ -9,8 +9,8 @@
 import UIKit
 
 class Neith: Player {
-	required init(position: CGPoint) {
-		super.init(position: position)
+	required init(position: CGPoint, screenSize: CGSize) {
+		super.init(position: position, screenSize: screenSize)
 		
 		self.position = position
 		

@@ -23,6 +23,8 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 	required init(size: CGSize) {
 		super.init()
 		
+		self.screenSize = CGSize(width: size.width, height: size.height)
+		
 		self.background = SKSpriteNode(imageNamed: "ForestScenery_1")
 		self.background2 = SKSpriteNode(imageNamed: "ForestScenery_2")
 		self.background3 = SKSpriteNode(imageNamed: "ForestScenery_3")

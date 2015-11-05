@@ -9,8 +9,8 @@
 import UIKit
 
 class Dinak: Player {
-	required init(position: CGPoint) {
-		super.init(position: position)
+	required init(position: CGPoint, screenSize: CGSize) {
+		super.init(position: position, screenSize: screenSize)
 		
 		self.position = position
 		
@@ -19,6 +19,7 @@ class Dinak: Player {
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
 		self.movementSpeed = 2
 		self.jumpForce = 400
+		
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
