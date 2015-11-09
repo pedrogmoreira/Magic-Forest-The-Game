@@ -12,6 +12,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 	var player: Player?
 	var spawnPoints = NSMutableArray()
+	
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
@@ -19,22 +20,27 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	required init(size: CGSize) {
 		super.init()
 
-		spawnPointGenerator()
-		createPlayer(size)
+		self.spawnPointGenerator()
+		self.createPlayer(size)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
+	
 	func createPlayer(size: CGSize) {
 		var currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
+		
 		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
 			currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
 		}
+		
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
+		
 		self.player = Uhong(position: currentSpawnPoint.position, screenSize: size)
 		self.addChild(self.player!)
 	}
+	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
 		self.player?.update(currentTime)
@@ -57,7 +63,6 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
-		
 		self.setFlip(position)
 
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
@@ -81,8 +86,6 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 			spawnPoints.addObject(spawnPoint)
 			self.addChild(spawnPoint)
 		}
-	
 	}
-	
 	
 }

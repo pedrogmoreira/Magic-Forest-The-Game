@@ -10,6 +10,7 @@ import SpriteKit
 
 class Player: SKSpriteNode, GameObject {
 	
+	// Player properties
 	var life: CGFloat?
 	var energy: CGFloat?
 	var attackDamage: CGFloat?
@@ -20,21 +21,25 @@ class Player: SKSpriteNode, GameObject {
 	var defesa: CGFloat?
 	var jumpForce: CGFloat?
 	var getDownForce: CGFloat?
+	var regLife: CGFloat?
+	var regEnergy: CGFloat?
 	var state: PlayerState?
+	
+	// Player flags
 	var isAttacking: Bool = false
 	var isJumping: Bool = false
 	var isSpecialAttacking: Bool = false
 	var doubleJump: Bool = false
-	var regLife: CGFloat?
-	var regEnergy: CGFloat?
 	var isGetDown: Bool = false
 	
 	let scale = CGFloat(0.07)
 	
+	// Bitmask values, made for avoid code repetition
 	let BITMASK_BASE_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue
 	let BITMASK_FIRST_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue
 	let BITMASK_SECOND_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue
 	let BITMASK_THIRD_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
+	
 	/**
 	Initializes the player
 	- parameter position: The point where the player will apear
@@ -54,12 +59,13 @@ class Player: SKSpriteNode, GameObject {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
+	/**
+	Resizes the player to a screen proportion and scaled down to 7%
+	- parameter screenSize: The device screen size
+	*/
 	private func resize(screenSize: CGSize) {
-		
-		// Resize
 		let widthRatio =  screenSize.width / self.size.width
 		let spriteRatio =  self.size.width / self.size.height
-		
 		
 		let width = self.size.width * widthRatio * self.scale
 		let height = width / spriteRatio
@@ -85,21 +91,18 @@ class Player: SKSpriteNode, GameObject {
 		} else {
 			if velocityX != 0 && self.physicsBody?.velocity.dy == 0 && self.state != .Hit && !isAttacking {
 				self.changeState(PlayerState.Running)
-			} else if (isJumping && self.state != .Hit && !isAttacking) {
+			} else if (self.isJumping && self.state != .Hit && !self.isAttacking) {
 				self.changeState(PlayerState.Jump)
-				
-			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !isAttacking {
+			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !self.isAttacking {
 				self.changeState(PlayerState.Falling)
-				
-			} else if isAttacking {
+			} else if self.isAttacking {
 				self.changeState(PlayerState.Attack)
-			}else if isSpecialAttacking {
+			}else if self.isSpecialAttacking {
 				self.changeState(PlayerState.SpecialAttack)
 			} else {
 				self.changeState(PlayerState.Idle)
 			}
 		}
-		
 	}
 	
 	/**
@@ -117,9 +120,8 @@ class Player: SKSpriteNode, GameObject {
 		return animation
 	}
 	
-    
     /**
-     Generates basic attributes
+     Sets basic attributes
      */
     func setBasicAttributes() {
         self.physicsBody = self.generatePhysicsBody()
@@ -141,8 +143,8 @@ class Player: SKSpriteNode, GameObject {
 		// MARK: States Animation
 	func run () -> SKAction {
 		return SKAction()
-		
 	}
+	
 	func idle () -> SKAction {
 		return SKAction()
 	}
@@ -166,30 +168,36 @@ class Player: SKSpriteNode, GameObject {
 	func death () -> SKAction {
 		return SKAction()
 	}
+	
 	func specialAttack () -> SKAction {
 		return SKAction()
 	}
 	
+	/**
+	Changes player state to a given state
+	- parameter state: The new state
+	*/
 	func changeState(state: PlayerState) {
 		
-		if((self.actionForKey("attack")) != nil){
+		if ((self.actionForKey("attack")) != nil) {
 			self.isAttacking = true
-		}
-		else{
+		} else {
 			self.isAttacking = false
 		}
-		if((self.actionForKey("specialAttack")) != nil){
+		
+		if ((self.actionForKey("specialAttack")) != nil) {
 			self.isSpecialAttacking = true
-		}
-		else{
+		} else {
 			self.isSpecialAttacking = false
 		}
 		
 		if self.state != state {
 			self.state = state
+			
 			if self.state != PlayerState.Attack {
 				self.isAttacking = false
 			}
+			
 			switch (self.state!) {
 			case PlayerState.Running:
 				self.runAction(run())
@@ -199,9 +207,7 @@ class Player: SKSpriteNode, GameObject {
 				self.runAction(jump(), completion: { () -> Void in
 					self.isJumping = false
 				})
-				
 			case PlayerState.Falling:
-//				self.checkFloorLevel()
 				self.runAction(falling())
 			case PlayerState.Attack:
 				self.runAction(SKAction.sequence([attack(),SKAction.runBlock({ () -> Void in
@@ -219,6 +225,9 @@ class Player: SKSpriteNode, GameObject {
 		}
 	}
 	
+	/**
+	Make the player get down the current floor
+	*/
 	func getDownOneFloor() {
 		self.isGetDown = true
 		
@@ -243,6 +252,9 @@ class Player: SKSpriteNode, GameObject {
 		
 	}
 	
+	/**
+	Checks wheather the player can colide with floors
+	*/
 	func checkFloorLevel() {
 		let deadZoneFirstFloor = (BackgroundLayer.firstFloor?.position.y)! + ((BackgroundLayer.firstFloor?.size.height)! * 0.6) / 2
 		let deadZoneSecondFloor = (BackgroundLayer.secondFloor?.position.y)! + ((BackgroundLayer.secondFloor?.size.height)! * 0.6) / 2

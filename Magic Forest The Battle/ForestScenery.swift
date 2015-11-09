@@ -15,7 +15,6 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 	var background3: SKSpriteNode?
 	var background4: SKSpriteNode?
 	
-	
 	/**
 	Initializes the forest scenery
 	- parameter size: A reference to the device's screen size
@@ -170,6 +169,6 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		BackgroundLayer.firstFloor = firstFloorLPlatfom
 		BackgroundLayer.secondFloor = secondFLoorLPlatform
 		BackgroundLayer.thirdFloor = thirdFloorRPlatform
-		
 	}
+	
 }

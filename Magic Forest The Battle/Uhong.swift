@@ -30,7 +30,6 @@ class Uhong: Player {
 		self.regEnergy = 1
 		self.getDownForce = -50_000
 		
-//		self.changeState(PlayerState.Jump)
 		//initializeAnimations()
 	}
 
@@ -49,6 +48,7 @@ class Uhong: Player {
 		
 		return physicsBody
 	}
+	
 	// MARK: Animations
 	
 	func initializeAnimations () {
@@ -61,10 +61,7 @@ class Uhong: Player {
 	Fazer a animação do idle repetir para sempre
 	- returns: SKAction
 	*/
-	
-	
 	override func idle () -> SKAction {
-		
 		let repeateForever = SKAction.repeatActionForever(loadAnimation("idle", endIndex: 11, timePerFrame: 0.2))
 		return repeateForever
 	}
@@ -73,7 +70,6 @@ class Uhong: Player {
 	Fazer a animação run repetir para sempre
 	- returns: SKAction
 	*/
-	
 	override func run () -> SKAction {
 		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("corre",endIndex: 8, timePerFrame: 0.2))
 		return repeateForever
@@ -95,6 +91,7 @@ class Uhong: Player {
 		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5))
 		return self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5)
 	}
+	
 	/**
 	Fazer a animação falling
 	- returns: SKAction
@@ -102,6 +99,7 @@ class Uhong: Player {
 	override func falling () -> SKAction {
 		return self.loadAnimation("falling", endIndex: 3, timePerFrame: 0.3)
 	}
+	
 	/**
 	Fazer a animação attack
 	- returns: SKAction
@@ -109,6 +107,7 @@ class Uhong: Player {
 	override func attack () -> SKAction {
 		return self.loadAnimation("Attack", endIndex: 3, timePerFrame: 0.1)
 	}
+	
 	/**
 	Fazer a animação attack special
 	- returns: SKAction
@@ -116,6 +115,7 @@ class Uhong: Player {
 	override func specialAttack() -> SKAction {
 		return self.loadAnimation("SpecialAttack", endIndex: 2, timePerFrame: 0.3)
 	}
+	
 	/**
 	Fazer a animação death
 	- returns: SKAction
@@ -124,6 +124,4 @@ class Uhong: Player {
 		return self.loadAnimation("Death", endIndex: 3, timePerFrame: 0.5)
 	}
 
-	
 }
-

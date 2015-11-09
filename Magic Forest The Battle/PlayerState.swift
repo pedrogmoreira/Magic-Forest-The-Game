@@ -9,6 +9,7 @@
 import Foundation
 
 enum PlayerState {
+	
 	case Idle
 	case Running
 	case Jump
@@ -17,4 +18,5 @@ enum PlayerState {
 	case Falling
 	case Hit
 	case SpecialAttack
+	
 }

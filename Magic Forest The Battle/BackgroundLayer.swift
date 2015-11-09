@@ -21,6 +21,10 @@ class BackgroundLayer: SKNode {
 	
 	private let scale = CGFloat(0.15)
 	
+	/**
+	Generate a simple platform
+	- parameter categoryBitmask: The platform categty bitmask
+	*/
 	func generateSimplePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let right = left.copy() as! SKSpriteNode
@@ -54,6 +58,10 @@ class BackgroundLayer: SKNode {
 		return simplePlatform
 	}
 	
+	/**
+	Generate a single platform
+	- parameter categoryBitmask: The platform categty bitmask
+	*/
 	func generateSinglePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let center = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
@@ -90,6 +98,10 @@ class BackgroundLayer: SKNode {
 		return singlePlatform
 	}
 	
+	/**
+	Generate a double platform
+	- parameter categoryBitmask: The platform categty bitmask
+	*/
 	func generateDoublePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
@@ -131,6 +143,10 @@ class BackgroundLayer: SKNode {
 		return doublePlatform
 	}
 	
+	/**
+	Generate a triple platform
+	- parameter categoryBitmask: The platform categty bitmask
+	*/
 	func generateTriplePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
@@ -177,6 +193,10 @@ class BackgroundLayer: SKNode {
 		return triplePlatform
 	}
 	
+	/**
+	Generate a quadruple platform
+	- parameter categoryBitmask: The platform categty bitmask
+	*/
 	func generateQuadruplePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
@@ -228,8 +248,11 @@ class BackgroundLayer: SKNode {
 		return quadruplePlatform
 	}
 	
+	/**
+	Resizes the platform to a screen proportion and scaled down to 7%
+	- parameter screenSize: The device screen size
+	*/
 	private func resize(spriteNode: SKSpriteNode) -> CGSize {
-		
 		// Resize
 		let widthRatio =  self.screenSize!.width / spriteNode.size.width
 		let spriteRatio =  spriteNode.size.width / spriteNode.size.height
@@ -241,6 +264,11 @@ class BackgroundLayer: SKNode {
 		return CGSize(width: width, height: height)
 	}
 	
+	/**
+	Generates a physic body with same width and 60% of original height. Made for Platforms
+	- parameter size: The platform size
+	- parameter categoryBitmask: The platform category bitmask
+	*/
 	private func generatePhysicsBody(var size: CGSize, categoryBitmask: PhysicsCategory) -> SKPhysicsBody {
 		size = CGSize(width: size.width, height: size.height * 0.6)
 		

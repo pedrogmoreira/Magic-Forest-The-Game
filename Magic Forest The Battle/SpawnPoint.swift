@@ -15,12 +15,15 @@ class SpawnPoint: SKSpriteNode {
 	
 	init (position: CGPoint) {
 		super.init(texture: SKTexture(), color: UIColor.redColor(), size: CGSizeMake(5, 5))
+		
 		self.position = position
 		self.colorBlendFactor = 1
 	}
+	
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
+	
 	/**
 	Fechar Spawn Point
 	- parameter: duration: Duração que o spawn point estará fechado
@@ -28,13 +31,13 @@ class SpawnPoint: SKSpriteNode {
 	func closeSpawnPoint (duration: NSTimeInterval) {
 		let closeSpawnPoint = SKAction.runBlock { () -> Void in
 			self.isBeingUsed = true
-			
 		}
 		let waitForDuration = SKAction.waitForDuration(duration)
 		let openSpawnPoint = SKAction.runBlock { () -> Void in
 			self.isBeingUsed = false
 		}
 		let sequence = SKAction.sequence([closeSpawnPoint,waitForDuration,openSpawnPoint])
+		
 		runAction(sequence)
 	}
 
