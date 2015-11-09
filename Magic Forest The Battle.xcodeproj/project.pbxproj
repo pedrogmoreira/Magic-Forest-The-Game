@@ -7,6 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57190B411BF12BED00FFF38D /* 95.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B1F1BF12BED00FFF38D /* 95.png */; };
+		57190B421BF12BED00FFF38D /* 96.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B201BF12BED00FFF38D /* 96.png */; };
+		57190B431BF12BED00FFF38D /* 132.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B211BF12BED00FFF38D /* 132.png */; };
+		57190B441BF12BED00FFF38D /* 145.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B221BF12BED00FFF38D /* 145.png */; };
+		57190B451BF12BED00FFF38D /* 149.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B231BF12BED00FFF38D /* 149.png */; };
+		57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B241BF12BED00FFF38D /* NeithAttack1.png */; };
+		57190B471BF12BED00FFF38D /* NeithAttack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B251BF12BED00FFF38D /* NeithAttack2.png */; };
+		57190B481BF12BED00FFF38D /* NeithAttack3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B261BF12BED00FFF38D /* NeithAttack3.png */; };
+		57190B491BF12BED00FFF38D /* NeithAttack4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B271BF12BED00FFF38D /* NeithAttack4.png */; };
+		57190B4A1BF12BED00FFF38D /* NeithAttack5.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B281BF12BED00FFF38D /* NeithAttack5.png */; };
+		57190B4B1BF12BED00FFF38D /* NeithDeath1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B291BF12BED00FFF38D /* NeithDeath1.png */; };
+		57190B4C1BF12BED00FFF38D /* NeithDeath2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B2A1BF12BED00FFF38D /* NeithDeath2.png */; };
+		57190B4D1BF12BED00FFF38D /* NeithFalling1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B2B1BF12BED00FFF38D /* NeithFalling1.png */; };
+		57190B4E1BF12BED00FFF38D /* NeithFalling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B2C1BF12BED00FFF38D /* NeithFalling2.png */; };
+		57190B4F1BF12BED00FFF38D /* NeithFalling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B2D1BF12BED00FFF38D /* NeithFalling3.png */; };
+		57190B501BF12BED00FFF38D /* NeithHit1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B2E1BF12BED00FFF38D /* NeithHit1.png */; };
+		57190B511BF12BED00FFF38D /* NeithHit2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B2F1BF12BED00FFF38D /* NeithHit2.png */; };
+		57190B521BF12BED00FFF38D /* NeithHit3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B301BF12BED00FFF38D /* NeithHit3.png */; };
+		57190B531BF12BED00FFF38D /* NeithIdle1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B311BF12BED00FFF38D /* NeithIdle1.png */; };
+		57190B541BF12BED00FFF38D /* NeithIdle2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B321BF12BED00FFF38D /* NeithIdle2.png */; };
+		57190B551BF12BED00FFF38D /* NeithIdle3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B331BF12BED00FFF38D /* NeithIdle3.png */; };
+		57190B561BF12BED00FFF38D /* NeithIdle4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B341BF12BED00FFF38D /* NeithIdle4.png */; };
+		57190B571BF12BED00FFF38D /* NeithJump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B351BF12BED00FFF38D /* NeithJump1.png */; };
+		57190B581BF12BED00FFF38D /* NeithJump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B361BF12BED00FFF38D /* NeithJump2.png */; };
+		57190B591BF12BED00FFF38D /* NeithRun1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B371BF12BED00FFF38D /* NeithRun1.png */; };
+		57190B5A1BF12BED00FFF38D /* NeithRun2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B381BF12BED00FFF38D /* NeithRun2.png */; };
+		57190B5B1BF12BED00FFF38D /* NeithSpecialAttack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B391BF12BED00FFF38D /* NeithSpecialAttack1.png */; };
+		57190B5C1BF12BED00FFF38D /* NeithSpecialAttack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B3A1BF12BED00FFF38D /* NeithSpecialAttack2.png */; };
+		57190B5D1BF12BED00FFF38D /* NeithSpecialAttack3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B3B1BF12BED00FFF38D /* NeithSpecialAttack3.png */; };
+		57190B5E1BF12BED00FFF38D /* NeithSpecialAttack4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B3C1BF12BED00FFF38D /* NeithSpecialAttack4.png */; };
+		57190B5F1BF12BED00FFF38D /* NeithSpecialAttack5.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B3D1BF12BED00FFF38D /* NeithSpecialAttack5.png */; };
+		57190B601BF12BED00FFF38D /* NeithSpecialAttack6.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B3E1BF12BED00FFF38D /* NeithSpecialAttack6.png */; };
+		57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B3F1BF12BED00FFF38D /* NeithSpecialAttack7.png */; };
+		57190B621BF12BED00FFF38D /* NeithSpecialAttack8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B401BF12BED00FFF38D /* NeithSpecialAttack8.png */; };
 		576964E71BDFDCD000CBB81D /* corre1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964DF1BDFDCD000CBB81D /* corre1.png */; };
 		576964E81BDFDCD000CBB81D /* corre2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E01BDFDCD000CBB81D /* corre2.png */; };
 		576964E91BDFDCD000CBB81D /* corre3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E11BDFDCD000CBB81D /* corre3.png */; };
@@ -122,6 +156,40 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		57190B1F1BF12BED00FFF38D /* 95.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 95.png; path = "Magic Forest The Battle/95.png"; sourceTree = "<group>"; };
+		57190B201BF12BED00FFF38D /* 96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 96.png; path = "Magic Forest The Battle/96.png"; sourceTree = "<group>"; };
+		57190B211BF12BED00FFF38D /* 132.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 132.png; path = "Magic Forest The Battle/132.png"; sourceTree = "<group>"; };
+		57190B221BF12BED00FFF38D /* 145.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 145.png; path = "Magic Forest The Battle/145.png"; sourceTree = "<group>"; };
+		57190B231BF12BED00FFF38D /* 149.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 149.png; path = "Magic Forest The Battle/149.png"; sourceTree = "<group>"; };
+		57190B241BF12BED00FFF38D /* NeithAttack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithAttack1.png; path = "Magic Forest The Battle/NeithAttack1.png"; sourceTree = "<group>"; };
+		57190B251BF12BED00FFF38D /* NeithAttack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithAttack2.png; path = "Magic Forest The Battle/NeithAttack2.png"; sourceTree = "<group>"; };
+		57190B261BF12BED00FFF38D /* NeithAttack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithAttack3.png; path = "Magic Forest The Battle/NeithAttack3.png"; sourceTree = "<group>"; };
+		57190B271BF12BED00FFF38D /* NeithAttack4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithAttack4.png; path = "Magic Forest The Battle/NeithAttack4.png"; sourceTree = "<group>"; };
+		57190B281BF12BED00FFF38D /* NeithAttack5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithAttack5.png; path = "Magic Forest The Battle/NeithAttack5.png"; sourceTree = "<group>"; };
+		57190B291BF12BED00FFF38D /* NeithDeath1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithDeath1.png; path = "Magic Forest The Battle/NeithDeath1.png"; sourceTree = "<group>"; };
+		57190B2A1BF12BED00FFF38D /* NeithDeath2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithDeath2.png; path = "Magic Forest The Battle/NeithDeath2.png"; sourceTree = "<group>"; };
+		57190B2B1BF12BED00FFF38D /* NeithFalling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithFalling1.png; path = "Magic Forest The Battle/NeithFalling1.png"; sourceTree = "<group>"; };
+		57190B2C1BF12BED00FFF38D /* NeithFalling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithFalling2.png; path = "Magic Forest The Battle/NeithFalling2.png"; sourceTree = "<group>"; };
+		57190B2D1BF12BED00FFF38D /* NeithFalling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithFalling3.png; path = "Magic Forest The Battle/NeithFalling3.png"; sourceTree = "<group>"; };
+		57190B2E1BF12BED00FFF38D /* NeithHit1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithHit1.png; path = "Magic Forest The Battle/NeithHit1.png"; sourceTree = "<group>"; };
+		57190B2F1BF12BED00FFF38D /* NeithHit2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithHit2.png; path = "Magic Forest The Battle/NeithHit2.png"; sourceTree = "<group>"; };
+		57190B301BF12BED00FFF38D /* NeithHit3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithHit3.png; path = "Magic Forest The Battle/NeithHit3.png"; sourceTree = "<group>"; };
+		57190B311BF12BED00FFF38D /* NeithIdle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithIdle1.png; path = "Magic Forest The Battle/NeithIdle1.png"; sourceTree = "<group>"; };
+		57190B321BF12BED00FFF38D /* NeithIdle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithIdle2.png; path = "Magic Forest The Battle/NeithIdle2.png"; sourceTree = "<group>"; };
+		57190B331BF12BED00FFF38D /* NeithIdle3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithIdle3.png; path = "Magic Forest The Battle/NeithIdle3.png"; sourceTree = "<group>"; };
+		57190B341BF12BED00FFF38D /* NeithIdle4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithIdle4.png; path = "Magic Forest The Battle/NeithIdle4.png"; sourceTree = "<group>"; };
+		57190B351BF12BED00FFF38D /* NeithJump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithJump1.png; path = "Magic Forest The Battle/NeithJump1.png"; sourceTree = "<group>"; };
+		57190B361BF12BED00FFF38D /* NeithJump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithJump2.png; path = "Magic Forest The Battle/NeithJump2.png"; sourceTree = "<group>"; };
+		57190B371BF12BED00FFF38D /* NeithRun1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithRun1.png; path = "Magic Forest The Battle/NeithRun1.png"; sourceTree = "<group>"; };
+		57190B381BF12BED00FFF38D /* NeithRun2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithRun2.png; path = "Magic Forest The Battle/NeithRun2.png"; sourceTree = "<group>"; };
+		57190B391BF12BED00FFF38D /* NeithSpecialAttack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithSpecialAttack1.png; path = "Magic Forest The Battle/NeithSpecialAttack1.png"; sourceTree = "<group>"; };
+		57190B3A1BF12BED00FFF38D /* NeithSpecialAttack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithSpecialAttack2.png; path = "Magic Forest The Battle/NeithSpecialAttack2.png"; sourceTree = "<group>"; };
+		57190B3B1BF12BED00FFF38D /* NeithSpecialAttack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithSpecialAttack3.png; path = "Magic Forest The Battle/NeithSpecialAttack3.png"; sourceTree = "<group>"; };
+		57190B3C1BF12BED00FFF38D /* NeithSpecialAttack4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithSpecialAttack4.png; path = "Magic Forest The Battle/NeithSpecialAttack4.png"; sourceTree = "<group>"; };
+		57190B3D1BF12BED00FFF38D /* NeithSpecialAttack5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithSpecialAttack5.png; path = "Magic Forest The Battle/NeithSpecialAttack5.png"; sourceTree = "<group>"; };
+		57190B3E1BF12BED00FFF38D /* NeithSpecialAttack6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithSpecialAttack6.png; path = "Magic Forest The Battle/NeithSpecialAttack6.png"; sourceTree = "<group>"; };
+		57190B3F1BF12BED00FFF38D /* NeithSpecialAttack7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithSpecialAttack7.png; path = "Magic Forest The Battle/NeithSpecialAttack7.png"; sourceTree = "<group>"; };
+		57190B401BF12BED00FFF38D /* NeithSpecialAttack8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeithSpecialAttack8.png; path = "Magic Forest The Battle/NeithSpecialAttack8.png"; sourceTree = "<group>"; };
 		576964DF1BDFDCD000CBB81D /* corre1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre1.png; sourceTree = "<group>"; };
 		576964E01BDFDCD000CBB81D /* corre2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre2.png; sourceTree = "<group>"; };
 		576964E11BDFDCD000CBB81D /* corre3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre3.png; sourceTree = "<group>"; };
@@ -496,6 +564,40 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
+				57190B1F1BF12BED00FFF38D /* 95.png */,
+				57190B201BF12BED00FFF38D /* 96.png */,
+				57190B211BF12BED00FFF38D /* 132.png */,
+				57190B221BF12BED00FFF38D /* 145.png */,
+				57190B231BF12BED00FFF38D /* 149.png */,
+				57190B241BF12BED00FFF38D /* NeithAttack1.png */,
+				57190B251BF12BED00FFF38D /* NeithAttack2.png */,
+				57190B261BF12BED00FFF38D /* NeithAttack3.png */,
+				57190B271BF12BED00FFF38D /* NeithAttack4.png */,
+				57190B281BF12BED00FFF38D /* NeithAttack5.png */,
+				57190B291BF12BED00FFF38D /* NeithDeath1.png */,
+				57190B2A1BF12BED00FFF38D /* NeithDeath2.png */,
+				57190B2B1BF12BED00FFF38D /* NeithFalling1.png */,
+				57190B2C1BF12BED00FFF38D /* NeithFalling2.png */,
+				57190B2D1BF12BED00FFF38D /* NeithFalling3.png */,
+				57190B2E1BF12BED00FFF38D /* NeithHit1.png */,
+				57190B2F1BF12BED00FFF38D /* NeithHit2.png */,
+				57190B301BF12BED00FFF38D /* NeithHit3.png */,
+				57190B311BF12BED00FFF38D /* NeithIdle1.png */,
+				57190B321BF12BED00FFF38D /* NeithIdle2.png */,
+				57190B331BF12BED00FFF38D /* NeithIdle3.png */,
+				57190B341BF12BED00FFF38D /* NeithIdle4.png */,
+				57190B351BF12BED00FFF38D /* NeithJump1.png */,
+				57190B361BF12BED00FFF38D /* NeithJump2.png */,
+				57190B371BF12BED00FFF38D /* NeithRun1.png */,
+				57190B381BF12BED00FFF38D /* NeithRun2.png */,
+				57190B391BF12BED00FFF38D /* NeithSpecialAttack1.png */,
+				57190B3A1BF12BED00FFF38D /* NeithSpecialAttack2.png */,
+				57190B3B1BF12BED00FFF38D /* NeithSpecialAttack3.png */,
+				57190B3C1BF12BED00FFF38D /* NeithSpecialAttack4.png */,
+				57190B3D1BF12BED00FFF38D /* NeithSpecialAttack5.png */,
+				57190B3E1BF12BED00FFF38D /* NeithSpecialAttack6.png */,
+				57190B3F1BF12BED00FFF38D /* NeithSpecialAttack7.png */,
+				57190B401BF12BED00FFF38D /* NeithSpecialAttack8.png */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
 				EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */,
 				EB90577C1BD55CF300536AD1 /* Magic Forest The BattleUITests */,
@@ -700,9 +802,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57190B501BF12BED00FFF38D /* NeithHit1.png in Resources */,
+				57190B4A1BF12BED00FFF38D /* NeithAttack5.png in Resources */,
 				5769651E1BE2859F00CBB81D /* Attack2.png in Resources */,
 				576964F31BDFEEB500CBB81D /* jump1.png in Resources */,
 				576964EE1BDFDCD000CBB81D /* corre8.png in Resources */,
+				57190B4C1BF12BED00FFF38D /* NeithDeath2.png in Resources */,
+				57190B431BF12BED00FFF38D /* 132.png in Resources */,
+				57190B4D1BF12BED00FFF38D /* NeithFalling1.png in Resources */,
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
 				EB3E770A1BE1647300103DEC /* ForestScenery_3.png in Resources */,
@@ -718,11 +825,20 @@
 				EBD88B1B1BF02E43000353A5 /* SpecialAttack.png in Resources */,
 				576965231BE2859F00CBB81D /* Death3.png in Resources */,
 				576965201BE2859F00CBB81D /* Attack4.png in Resources */,
+				57190B491BF12BED00FFF38D /* NeithAttack4.png in Resources */,
+				57190B511BF12BED00FFF38D /* NeithHit2.png in Resources */,
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
+				57190B571BF12BED00FFF38D /* NeithJump1.png in Resources */,
+				57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */,
+				57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
 				EBD88B231BF02EE2000353A5 /* ForestSceneryPlatformRight.png in Resources */,
 				576965251BE2859F00CBB81D /* falling2.png in Resources */,
+				57190B5E1BF12BED00FFF38D /* NeithSpecialAttack4.png in Resources */,
+				57190B471BF12BED00FFF38D /* NeithAttack2.png in Resources */,
 				EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */,
+				57190B521BF12BED00FFF38D /* NeithHit3.png in Resources */,
+				57190B551BF12BED00FFF38D /* NeithIdle3.png in Resources */,
 				EB0EACB51BE3E15600D93287 /* ForestScenery_5.png in Resources */,
 				576964FC1BE018B400CBB81D /* hit3.png in Resources */,
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
@@ -731,22 +847,29 @@
 				57A5581E1BDEBB1C00A948DE /* idle8.png in Resources */,
 				EBD88B191BF02E43000353A5 /* Life.png in Resources */,
 				EBD88B161BF02E43000353A5 /* Attack.png in Resources */,
+				57190B591BF12BED00FFF38D /* NeithRun1.png in Resources */,
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
+				57190B5B1BF12BED00FFF38D /* NeithSpecialAttack1.png in Resources */,
 				576965211BE2859F00CBB81D /* Death1.png in Resources */,
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
+				57190B531BF12BED00FFF38D /* NeithIdle1.png in Resources */,
 				57A5581D1BDEBB1C00A948DE /* idle7.png in Resources */,
+				57190B481BF12BED00FFF38D /* NeithAttack3.png in Resources */,
 				EB0EACC11BE3E39F00D93287 /* playButton.gif in Resources */,
 				EB0EACB31BE3E0E900D93287 /* ForestScenery_4.png in Resources */,
 				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
 				57A5581B1BDEBB1C00A948DE /* idle5.png in Resources */,
 				EBD88B1A1BF02E43000353A5 /* Settings.png in Resources */,
+				57190B421BF12BED00FFF38D /* 96.png in Resources */,
 				576964EB1BDFDCD000CBB81D /* corre5.png in Resources */,
+				57190B411BF12BED00FFF38D /* 95.png in Resources */,
 				57A558191BDEBB1C00A948DE /* idle3.png in Resources */,
 				576964FB1BE018B400CBB81D /* hit2.png in Resources */,
 				EBD88B221BF02EE2000353A5 /* ForestSceneryPlatformLeft.png in Resources */,
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
+				57190B541BF12BED00FFF38D /* NeithIdle2.png in Resources */,
 				576965261BE2859F00CBB81D /* falling3.png in Resources */,
 				576965221BE2859F00CBB81D /* Death2.png in Resources */,
 				EBD88B171BF02E43000353A5 /* Clock.png in Resources */,
@@ -754,14 +877,27 @@
 				57A558181BDEBB1C00A948DE /* idle2.png in Resources */,
 				57A558211BDEBB1C00A948DE /* idle11.png in Resources */,
 				57A5581A1BDEBB1C00A948DE /* idle4.png in Resources */,
+				57190B5F1BF12BED00FFF38D /* NeithSpecialAttack5.png in Resources */,
+				57190B601BF12BED00FFF38D /* NeithSpecialAttack6.png in Resources */,
 				EB0EACAF1BE3DCD700D93287 /* SpecialButton.png in Resources */,
+				57190B4F1BF12BED00FFF38D /* NeithFalling3.png in Resources */,
 				EB0EACBE1BE3E39F00D93287 /* gameCenterButton.png in Resources */,
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
+				57190B5C1BF12BED00FFF38D /* NeithSpecialAttack2.png in Resources */,
+				57190B441BF12BED00FFF38D /* 145.png in Resources */,
+				57190B621BF12BED00FFF38D /* NeithSpecialAttack8.png in Resources */,
 				EB0EACB11BE3E06D00D93287 /* ForestScenery_2.png in Resources */,
+				57190B581BF12BED00FFF38D /* NeithJump2.png in Resources */,
+				57190B451BF12BED00FFF38D /* 149.png in Resources */,
+				57190B4B1BF12BED00FFF38D /* NeithDeath1.png in Resources */,
 				576965241BE2859F00CBB81D /* falling1.png in Resources */,
 				EB3E77081BE1647300103DEC /* ForestScenery_1.png in Resources */,
+				57190B5D1BF12BED00FFF38D /* NeithSpecialAttack3.png in Resources */,
 				EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */,
 				EB0EACC31BE3E39F00D93287 /* storeButton.jpg in Resources */,
+				57190B4E1BF12BED00FFF38D /* NeithFalling2.png in Resources */,
+				57190B561BF12BED00FFF38D /* NeithIdle4.png in Resources */,
+				57190B5A1BF12BED00FFF38D /* NeithRun2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
