@@ -18,22 +18,23 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	*/
 	required init(size: CGSize) {
 		super.init()
-		spawnPointGenerator()
-		createPlayer()
 
+		spawnPointGenerator()
+		createPlayer(size)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	func createPlayer () {
+	func createPlayer(size: CGSize) {
 		var currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
 		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
 			currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
 		}
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
-		self.player = Uhong(position: currentSpawnPoint.position)
+		self.player = Uhong(position: currentSpawnPoint.position, screenSize: size)
 		self.addChild(self.player!)
+		
 	}
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
@@ -51,6 +52,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		} else if command == MFCSCommandType.Jump {
 			self.player?.isJumping = true
 			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+		} else if command == MFCSCommandType.GetDown {
+			self.player?.getDownOneFloor()
 		}
 	}
 	

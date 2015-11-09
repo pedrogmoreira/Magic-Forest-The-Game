@@ -9,25 +9,25 @@
 import UIKit
 
 class Neith: Player {
-	required init(position: CGPoint) {
-		super.init(position: position)
+	required init(position: CGPoint, screenSize: CGSize) {
+		super.init(position: position, screenSize: screenSize)
 		
 		self.position = position
 		
-		self.life = 1000
+		self.life = 1_000
 		self.energy = 100
 		self.attackDamage = 110
 		self.specialDamage = 200
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
 		self.movementSpeed = 20
-		self.jumpForce = 100000
+		self.jumpForce = 100_000
 		self.defesa = 20 //defende 20% do dano
 		self.attackSpeed = 2
 		self.doubleJump = true
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
 		self.regEnergy = 1
-
+		self.getDownForce = -50_000
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

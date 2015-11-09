@@ -10,25 +10,27 @@ import UIKit
 import SpriteKit
 
 class Uhong: Player {
-	required init(position: CGPoint) {
-		super.init(position: position)
+	required init(position: CGPoint, screenSize: CGSize) {
+		super.init(position: position, screenSize: screenSize)
 		
 		self.position = position
 	
-		self.life = 1500
+		self.life = 1_500
 		self.energy = 100
 		self.attackDamage = 100
 		self.specialDamage = 200
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
 		self.movementSpeed = 10
-		self.jumpForce = 100000
+		self.jumpForce = 100_000
 		self.defesa = 30 //Defende 30% do dano
 		self.attackSpeed = 1
 		self.doubleJump = false
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
 		self.regEnergy = 1
-
+		self.getDownForce = -50_000
+		
+//		self.changeState(PlayerState.Jump)
 		//initializeAnimations()
 	}
 
@@ -39,7 +41,8 @@ class Uhong: Player {
 		let physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
-		physicsBody.contactTestBitMask = PhysicsCategory.Player.rawValue
+		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
+		physicsBody.contactTestBitMask = 0
 		physicsBody.mass = 100
 		physicsBody.affectedByGravity = true
 		physicsBody.allowsRotation = false

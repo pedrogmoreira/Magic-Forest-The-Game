@@ -93,6 +93,10 @@ class MFCSAnalog: UIView {
 			if relativePosition.y > 0.99 {
 				delegate?.recieveCommand(MFCSCommandType.Jump)
 			}
+			
+			if relativePosition.y < -0.99 {
+				delegate?.recieveCommand(MFCSCommandType.GetDown)
+			}
 		}
 		
 		delegate?.analogUpdate(relativePosition: relativePosition)
