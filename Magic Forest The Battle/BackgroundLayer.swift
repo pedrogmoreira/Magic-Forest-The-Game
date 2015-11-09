@@ -10,6 +10,10 @@ import SpriteKit
 
 class BackgroundLayer: SKNode {
 	
+	static var firstFloor: SKSpriteNode?
+	static var secondFloor: SKSpriteNode?
+	static var thirdFloor: SKSpriteNode?
+	
 	var background: SKSpriteNode?
     var lastBackground: SKSpriteNode?
 	
@@ -17,20 +21,7 @@ class BackgroundLayer: SKNode {
 	
 	private let scale = CGFloat(0.15)
 	
-	private func resize(spriteNode: SKSpriteNode) -> CGSize {
-		
-		// Resize
-		let widthRatio =  self.screenSize!.width / spriteNode.size.width
-		let spriteRatio =  spriteNode.size.width / spriteNode.size.height
-		
-		
-		let width = spriteNode.size.width * widthRatio * self.scale
-		let height = width / spriteRatio
-		
-		return CGSize(width: width, height: height)
-	}
-	
-	func generateSimplePlatform() -> SKSpriteNode {
+	func generateSimplePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let right = left.copy() as! SKSpriteNode
 		right.runAction(SKAction.scaleXBy(-1, y: 1, duration: 0))
@@ -56,14 +47,14 @@ class BackgroundLayer: SKNode {
 		let simplePlatform = SKSpriteNode(color: UIColor.clearColor(), size: size)
 		simplePlatform.addChild(left)
 		simplePlatform.addChild(right)
-		simplePlatform.physicsBody = self.generatePhysicsBody(simplePlatform.size)
+		simplePlatform.physicsBody = self.generatePhysicsBody(simplePlatform.size, categoryBitmask: categoryBitmask)
 		simplePlatform.zPosition = -10
 		
 		
 		return simplePlatform
 	}
 	
-	func generateSinglePlatform() -> SKSpriteNode {
+	func generateSinglePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let center = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
 		let right = SKSpriteNode(imageNamed: "ForestSceneryPlatformRight")
@@ -93,13 +84,13 @@ class BackgroundLayer: SKNode {
 		singlePlatform.addChild(left)
 		singlePlatform.addChild(center)
 		singlePlatform.addChild(right)
-		singlePlatform.physicsBody = self.generatePhysicsBody(singlePlatform.size)
+		singlePlatform.physicsBody = self.generatePhysicsBody(singlePlatform.size, categoryBitmask: categoryBitmask)
 		singlePlatform.zPosition = -10
 		
 		return singlePlatform
 	}
 	
-	func generateDoublePlatform() -> SKSpriteNode {
+	func generateDoublePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
 		let centerR = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
@@ -134,13 +125,13 @@ class BackgroundLayer: SKNode {
 		doublePlatform.addChild(centerL)
 		doublePlatform.addChild(centerR)
 		doublePlatform.addChild(right)
-		doublePlatform.physicsBody = self.generatePhysicsBody(doublePlatform.size)
+		doublePlatform.physicsBody = self.generatePhysicsBody(doublePlatform.size, categoryBitmask: categoryBitmask)
 		doublePlatform.zPosition = -10
 		
 		return doublePlatform
 	}
 	
-	func generateTriplePlatform() -> SKSpriteNode {
+	func generateTriplePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
 		let centerC = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
@@ -180,13 +171,13 @@ class BackgroundLayer: SKNode {
 		triplePlatform.addChild(centerC)
 		triplePlatform.addChild(centerR)
 		triplePlatform.addChild(right)
-		triplePlatform.physicsBody = self.generatePhysicsBody(triplePlatform.size)
+		triplePlatform.physicsBody = self.generatePhysicsBody(triplePlatform.size, categoryBitmask: categoryBitmask)
 		triplePlatform.zPosition = -10
 		
 		return triplePlatform
 	}
 	
-	func generateQuadruplePlatform() -> SKSpriteNode {
+	func generateQuadruplePlatform(categoryBitmask: PhysicsCategory) -> SKSpriteNode {
 		let left = SKSpriteNode(imageNamed: "ForestSceneryPlatformLeft")
 		let centerL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
 		let centerCL = SKSpriteNode(imageNamed: "ForestSceneryPlatformCenter")
@@ -231,16 +222,32 @@ class BackgroundLayer: SKNode {
 		quadruplePlatform.addChild(centerCR)
 		quadruplePlatform.addChild(centerR)
 		quadruplePlatform.addChild(right)
-		quadruplePlatform.physicsBody = self.generatePhysicsBody(quadruplePlatform.size)
+		quadruplePlatform.physicsBody = self.generatePhysicsBody(quadruplePlatform.size, categoryBitmask: categoryBitmask)
 		quadruplePlatform.zPosition = -10
 		
 		return quadruplePlatform
 	}
 	
-	func generatePhysicsBody(var size: CGSize) -> SKPhysicsBody {
+	private func resize(spriteNode: SKSpriteNode) -> CGSize {
+		
+		// Resize
+		let widthRatio =  self.screenSize!.width / spriteNode.size.width
+		let spriteRatio =  spriteNode.size.width / spriteNode.size.height
+		
+		
+		let width = spriteNode.size.width * widthRatio * self.scale
+		let height = width / spriteRatio
+		
+		return CGSize(width: width, height: height)
+	}
+	
+	private func generatePhysicsBody(var size: CGSize, categoryBitmask: PhysicsCategory) -> SKPhysicsBody {
 		size = CGSize(width: size.width, height: size.height * 0.6)
 		
 		let physicsBody = SKPhysicsBody(rectangleOfSize: size)
+		physicsBody.categoryBitMask = categoryBitmask.rawValue
+		physicsBody.collisionBitMask = 0
+		physicsBody.contactTestBitMask = 0
 		physicsBody.dynamic = false
 		
 		return physicsBody

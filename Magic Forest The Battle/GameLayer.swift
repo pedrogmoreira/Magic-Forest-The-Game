@@ -23,6 +23,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		self.player = Uhong(position: CGPoint(x: 0, y: 0), screenSize: size)
 
 		self.addChild(self.player!)
+		
+		GameState.sharedInstance().player = self.player!
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -42,6 +44,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		} else if command == MFCSCommandType.Jump {
 			self.player?.isJumping = true
 			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+		} else if command == MFCSCommandType.GetDown {
+			self.player?.getDownOneFloor()
 		}
 	}
 	

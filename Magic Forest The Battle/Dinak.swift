@@ -19,6 +19,7 @@ class Dinak: Player {
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
 		self.movementSpeed = 2
 		self.jumpForce = 400
+		self.getDownForce = -150
 		
 	}
 	

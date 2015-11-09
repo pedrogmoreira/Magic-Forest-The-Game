@@ -12,5 +12,6 @@ public enum MFCSCommandType: UInt32 {
 	
 	case Attack = 2
 	case Jump = 4
+	case GetDown = 8
 	
 }

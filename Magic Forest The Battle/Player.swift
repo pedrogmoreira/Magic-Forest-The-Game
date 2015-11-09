@@ -15,11 +15,19 @@ class Player: SKSpriteNode, GameObject {
 	var movementVelocity: CGVector?
 	var movementSpeed: CGFloat?
 	var jumpForce: CGFloat?
+	var getDownForce: CGFloat?
 	var state: PlayerState?
 	var isAttacking: Bool = false
 	var isJumping: Bool = false
+	var isGetDown: Bool = false
 	
 	let scale = CGFloat(0.07)
+	
+	private let BITMASK_BASE_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue
+	private let BITMASK_FIRST_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue
+	private let BITMASK_SECOND_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue
+	private let BITMASK_THIRD_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
+	
 	/**
 	Initializes the player
 	- parameter position: The point where the player will apear
@@ -59,6 +67,10 @@ class Player: SKSpriteNode, GameObject {
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
 		self.runAction(move)
 		
+		if !self.isGetDown {
+			self.checkFloorLevel()
+		}
+		
 		if self.life <= 0 {
 			print("to morto")
 			self.changeState(PlayerState.Death)
@@ -69,13 +81,13 @@ class Player: SKSpriteNode, GameObject {
 			} else if (isJumping && self.state != .Hit && !isAttacking) {
 				self.changeState(PlayerState.Jump)
 				
-			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !isAttacking{
+			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !isAttacking {
 				self.changeState(PlayerState.Falling)
 				
 			} else if isAttacking {
 				self.changeState(PlayerState.Attack)
 				
-			}else{
+			} else {
 				self.changeState(PlayerState.Idle)
 			}
 		}
@@ -119,6 +131,7 @@ class Player: SKSpriteNode, GameObject {
 		let physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
 		
         physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
+		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
 		physicsBody.contactTestBitMask = 0
 		physicsBody.mass = 100
 		physicsBody.affectedByGravity = true
@@ -189,6 +202,7 @@ class Player: SKSpriteNode, GameObject {
 //				})]), withKey: "jump")
 				
 			case PlayerState.Falling:
+//				self.checkFloorLevel()
 				self.runAction(falling())
 			case PlayerState.Attack:
 				self.runAction(SKAction.sequence([attack(),SKAction.runBlock({ () -> Void in
@@ -199,6 +213,48 @@ class Player: SKSpriteNode, GameObject {
 			default:
 				self.runAction(idle())
 			}
+		}
+	}
+	
+	func getDownOneFloor() {
+		self.isGetDown = true
+		
+		if self.physicsBody?.collisionBitMask == self.BITMASK_FIRST_FLOOR {
+			self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
+		} else if self.physicsBody?.collisionBitMask == self.BITMASK_SECOND_FLOOR {
+			self.physicsBody?.collisionBitMask = BITMASK_FIRST_FLOOR
+		} else if self.physicsBody?.collisionBitMask == self.BITMASK_THIRD_FLOOR {
+			self.physicsBody?.collisionBitMask = BITMASK_SECOND_FLOOR
+		} else {
+			self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
+		}
+		
+		let wait = SKAction.waitForDuration(0.2)
+		let getDownImpulse = SKAction.runBlock({
+			self.physicsBody?.applyImpulse(CGVector(dx: 0, dy: self.getDownForce!))
+		})
+		
+		self.runAction(SKAction.group([wait, getDownImpulse]), completion: {
+			self.isGetDown = false
+		})
+		
+	}
+	
+	private func checkFloorLevel() {
+		let deadZoneFirstFloor = (BackgroundLayer.firstFloor?.position.y)! + ((BackgroundLayer.firstFloor?.size.height)! * 0.6) / 2
+		let deadZoneSecondFloor = (BackgroundLayer.secondFloor?.position.y)! + ((BackgroundLayer.secondFloor?.size.height)! * 0.6) / 2
+		let deadZoneThridFloor = (BackgroundLayer.thirdFloor?.position.y)! + ((BackgroundLayer.thirdFloor?.size.height)! * 0.6) / 2
+		
+		let playerFoot = self.position.y - (self.size.height / 2) * 0.8
+		
+		if playerFoot >= deadZoneThridFloor {
+			self.physicsBody?.collisionBitMask = self.BITMASK_THIRD_FLOOR
+		} else if playerFoot >= deadZoneSecondFloor {
+			self.physicsBody?.collisionBitMask = self.BITMASK_SECOND_FLOOR
+		} else if playerFoot >= deadZoneFirstFloor {
+			self.physicsBody?.collisionBitMask = self.BITMASK_FIRST_FLOOR
+		} else {
+			self.physicsBody?.collisionBitMask = self.BITMASK_BASE_FLOOR
 		}
 	}
 	

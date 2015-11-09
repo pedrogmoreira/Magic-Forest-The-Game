@@ -47,6 +47,10 @@ class MFCSCommandView: UIView {
 			let swipeUp = UISwipeGestureRecognizer(target: self, action: "jump")
 			swipeUp.direction = UISwipeGestureRecognizerDirection.Up
 			self.addGestureRecognizer(swipeUp)
+			
+			let swipeDown = UISwipeGestureRecognizer(target: self, action: "getDown")
+			swipeDown.direction = UISwipeGestureRecognizerDirection.Down
+			self.addGestureRecognizer(swipeDown)
 		}
 	}
 	
@@ -82,6 +86,10 @@ class MFCSCommandView: UIView {
 	*/
 	func jump(){
 		delegate?.recieveCommand(MFCSCommandType.Jump)
+	}
+	
+	func getDown() {
+		delegate?.recieveCommand(MFCSCommandType.GetDown)
 	}
 	
 }

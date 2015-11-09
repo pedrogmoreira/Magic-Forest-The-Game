@@ -9,5 +9,13 @@
 import UIKit
 
 enum PhysicsCategory: UInt32 {
-    case Player
+	
+	case Nothing = 0
+    case Player = 2
+	case WorldBox = 4
+	case WorldBaseFloorPlatform = 8
+	case WorldFirstFloorPlatform = 16
+	case WorldSecondFloorPlatform = 32
+	case WorldThirdFloorPlatform = 64
+	
 }

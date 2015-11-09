@@ -47,7 +47,6 @@
 		57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558141BDEBB1C00A948DE /* idle9.png */; };
 		57A558201BDEBB1C00A948DE /* idle10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558151BDEBB1C00A948DE /* idle10.png */; };
 		57A558211BDEBB1C00A948DE /* idle11.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558161BDEBB1C00A948DE /* idle11.png */; };
-		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CF31BE1299000AF3B0E /* Ataque.png in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF11BE1299000AF3B0E /* Ataque.png */; };
 		67A74CF41BE1299000AF3B0E /* Pulo.png in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF21BE1299000AF3B0E /* Pulo.png */; };
 		67A74CFA1BE129CD00AF3B0E /* floresta.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF81BE129CD00AF3B0E /* floresta.jpg */; };
@@ -65,6 +64,7 @@
 		EB1214BA1BD95CB000D0552F /* MFCSControllerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */; };
 		EB1214BB1BD95CB000D0552F /* MFCSControlUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */; };
 		EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */; };
+		EB3873F71BED3A140012C720 /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3873F61BED3A140012C720 /* PhysicsCategory.swift */; };
 		EB3E77051BE1647300103DEC /* ForestSceneryPlatformLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E76FB1BE1647300103DEC /* ForestSceneryPlatformLeft.png */; };
 		EB3E77061BE1647300103DEC /* ForestSceneryPlatformCenter.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E76FC1BE1647300103DEC /* ForestSceneryPlatformCenter.png */; };
 		EB3E77071BE1647300103DEC /* ForestSceneryPlatformRight.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E76FD1BE1647300103DEC /* ForestSceneryPlatformRight.png */; };
@@ -88,6 +88,7 @@
 		EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A01BD5709800536AD1 /* GameObject.swift */; };
 		EB9057A31BD5712500536AD1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A21BD5712500536AD1 /* Player.swift */; };
 		EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A41BD573B700536AD1 /* GameLayer.swift */; };
+		EBD88B0D1BEFFC8D000353A5 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD88B0C1BEFFC8D000353A5 /* GameState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,7 +150,6 @@
 		57A558141BDEBB1C00A948DE /* idle9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle9.png; sourceTree = "<group>"; };
 		57A558151BDEBB1C00A948DE /* idle10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle10.png; sourceTree = "<group>"; };
 		57A558161BDEBB1C00A948DE /* idle11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle11.png; sourceTree = "<group>"; };
-		67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		67A74CF11BE1299000AF3B0E /* Ataque.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Ataque.png; path = MagicForestControlSystem/Assets/Ataque.png; sourceTree = "<group>"; };
 		67A74CF21BE1299000AF3B0E /* Pulo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Pulo.png; path = MagicForestControlSystem/Assets/Pulo.png; sourceTree = "<group>"; };
 		67A74CF81BE129CD00AF3B0E /* floresta.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = floresta.jpg; sourceTree = "<group>"; };
@@ -167,6 +167,7 @@
 		EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControllerMode.swift; sourceTree = "<group>"; };
 		EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControlUnit.swift; sourceTree = "<group>"; };
 		EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSMovementView.swift; sourceTree = "<group>"; };
+		EB3873F61BED3A140012C720 /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		EB3E76FB1BE1647300103DEC /* ForestSceneryPlatformLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestSceneryPlatformLeft.png; sourceTree = "<group>"; };
 		EB3E76FC1BE1647300103DEC /* ForestSceneryPlatformCenter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestSceneryPlatformCenter.png; sourceTree = "<group>"; };
 		EB3E76FD1BE1647300103DEC /* ForestSceneryPlatformRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestSceneryPlatformRight.png; sourceTree = "<group>"; };
@@ -196,6 +197,7 @@
 		EB9057A01BD5709800536AD1 /* GameObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		EB9057A21BD5712500536AD1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		EB9057A41BD573B700536AD1 /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
+		EBD88B0C1BEFFC8D000353A5 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,7 +238,7 @@
 		67A74CE71BE1283600AF3B0E /* Physics */ = {
 			isa = PBXGroup;
 			children = (
-				67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */,
+				EB3873F61BED3A140012C720 /* PhysicsCategory.swift */,
 			);
 			name = Physics;
 			sourceTree = "<group>";
@@ -424,6 +426,7 @@
 		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
 			isa = PBXGroup;
 			children = (
+				EBD88B0B1BEFFC60000353A5 /* Game Controllers */,
 				67A74CE71BE1283600AF3B0E /* Physics */,
 				57A558031BDEA76E00A948DE /* Resources */,
 				EB1214A01BD95CA700D0552F /* SKTUtils */,
@@ -493,6 +496,14 @@
 			name = Entity;
 			sourceTree = "<group>";
 		};
+		EBD88B0B1BEFFC60000353A5 /* Game Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EBD88B0C1BEFFC8D000353A5 /* GameState.swift */,
+			);
+			name = "Game Controllers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -555,6 +566,7 @@
 		EB90574E1BD55CF200536AD1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Team Magic Forest";
 				TargetAttributes = {
@@ -675,6 +687,7 @@
 				EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */,
 				57A558021BDEA4F600A948DE /* Uhong.swift in Sources */,
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
+				EB3873F71BED3A140012C720 /* PhysicsCategory.swift in Sources */,
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
@@ -684,7 +697,6 @@
 				EB1214B81BD95CB000D0552F /* MFCSCommandView.swift in Sources */,
 				EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */,
 				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
-				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
 				57A558091BDEA86000A948DE /* Neith.swift in Sources */,
 				57A558071BDEA85000A948DE /* Salamang.swift in Sources */,
@@ -693,6 +705,7 @@
 				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,
 				576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */,
 				EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */,
+				EBD88B0D1BEFFC8D000353A5 /* GameState.swift in Sources */,
 				EB1214A81BD95CA700D0552F /* Int+Extensions.swift in Sources */,
 				EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */,
 				EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */,
@@ -840,10 +853,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Magic Forest The Battle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-Battle";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -851,10 +867,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "Magic Forest The Battle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-Battle";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
 			};
 			name = Release;
 		};

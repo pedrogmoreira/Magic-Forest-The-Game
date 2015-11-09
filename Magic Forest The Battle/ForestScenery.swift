@@ -79,6 +79,9 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.addChild(self.lastBackground!)
         
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
+		self.physicsBody?.categoryBitMask = PhysicsCategory.WorldBox.rawValue
+		self.physicsBody?.collisionBitMask = 0
+		self.physicsBody?.contactTestBitMask = 0
 		
 		self.generatePlatforms()
 		
@@ -100,18 +103,18 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		let space = width / 8
 		
 		// Platforms instantiation
-		let baseLPlatform = self.generateQuadruplePlatform()
-		let baseCPlatform = self.generateTriplePlatform()
-		let baseRPlatform = self.generateQuadruplePlatform()
+		let baseLPlatform = self.generateQuadruplePlatform(PhysicsCategory.WorldBaseFloorPlatform)
+		let baseCPlatform = self.generateTriplePlatform(PhysicsCategory.WorldBaseFloorPlatform)
+		let baseRPlatform = self.generateQuadruplePlatform(PhysicsCategory.WorldBaseFloorPlatform)
 		
-		let firstFloorLPlatfom = self.generateSinglePlatform()
+		let firstFloorLPlatfom = self.generateSinglePlatform(PhysicsCategory.WorldFirstFloorPlatform)
 		
-		let secondFLoorLPlatform = self.generateDoublePlatform()
-		let secondFloorRPlatform = self.generateQuadruplePlatform()
+		let secondFLoorLPlatform = self.generateDoublePlatform(PhysicsCategory.WorldSecondFloorPlatform)
+		let secondFloorRPlatform = self.generateQuadruplePlatform(PhysicsCategory.WorldSecondFloorPlatform)
 		
-		let thirdFloorLPlatform = self.generateDoublePlatform()
-		let thirdFloorCPlatform = self.generateTriplePlatform()
-		let thirdFloorRPlatform = self.generateTriplePlatform()
+		let thirdFloorLPlatform = self.generateDoublePlatform(PhysicsCategory.WorldThirdFloorPlatform)
+		let thirdFloorCPlatform = self.generateTriplePlatform(PhysicsCategory.WorldThirdFloorPlatform)
+		let thirdFloorRPlatform = self.generateTriplePlatform(PhysicsCategory.WorldThirdFloorPlatform)
 		
 		
 		// Platforms configuration
@@ -162,5 +165,11 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.addChild(thirdFloorLPlatform)
 		self.addChild(thirdFloorCPlatform)
 		self.addChild(thirdFloorRPlatform)
+		
+		// Setting global variable for the lower platform of each floor
+		BackgroundLayer.firstFloor = firstFloorLPlatfom
+		BackgroundLayer.secondFloor = secondFLoorLPlatform
+		BackgroundLayer.thirdFloor = thirdFloorRPlatform
+		
 	}
 }
