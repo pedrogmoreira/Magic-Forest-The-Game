@@ -34,7 +34,6 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
 		self.player = Uhong(position: currentSpawnPoint.position, screenSize: size)
 		self.addChild(self.player!)
-		
 	}
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
