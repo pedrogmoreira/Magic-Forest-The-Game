@@ -54,6 +54,7 @@
 		6779A19D1BF114A6000C9D57 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6779A19C1BF114A6000C9D57 /* GameKit.framework */; };
 		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
+		67AA9CAE1BF3B5B900A86AA9 /* MultiplayerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67AA9CAD1BF3B5B900A86AA9 /* MultiplayerNetworking.swift */; };
 		EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */; };
 		EB0EACAF1BE3DCD700D93287 /* SpecialButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACAE1BE3DCD700D93287 /* SpecialButton.png */; };
 		EB0EACB11BE3E06D00D93287 /* ForestScenery_2.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACB01BE3E06D00D93287 /* ForestScenery_2.png */; };
@@ -171,6 +172,7 @@
 		6779A19C1BF114A6000C9D57 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		67A74CF91BE129CD00AF3B0E /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
+		67AA9CAD1BF3B5B900A86AA9 /* MultiplayerNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerNetworking.swift; sourceTree = "<group>"; };
 		EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AttackButton.png; sourceTree = "<group>"; };
 		EB0EACAE1BE3DCD700D93287 /* SpecialButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpecialButton.png; sourceTree = "<group>"; };
 		EB0EACB01BE3E06D00D93287 /* ForestScenery_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_2.png; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				673695441BF2509D00D932E3 /* GameKitHelper.swift */,
+				67AA9CAD1BF3B5B900A86AA9 /* MultiplayerNetworking.swift */,
 			);
 			name = GameKit;
 			sourceTree = "<group>";
@@ -821,6 +824,7 @@
 				EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */,
 				EB1214B81BD95CB000D0552F /* MFCSCommandView.swift in Sources */,
 				EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */,
+				67AA9CAE1BF3B5B900A86AA9 /* MultiplayerNetworking.swift in Sources */,
 				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
 				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,
 				673695451BF2509D00D932E3 /* GameKitHelper.swift in Sources */,
