@@ -38,7 +38,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
 
 		//self.player = Uhong(position: currentSpawnPoint.position)
-		self.player = Neith(position: currentSpawnPoint.position, screenSize:  size)
+		//self.player = Neith(position: currentSpawnPoint.position, screenSize:  size)
+		self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size)
 		self.addChild(self.player!)
 	}
 	
