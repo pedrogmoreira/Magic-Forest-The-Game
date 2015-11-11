@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameKit
 
 enum Screen {
     case middleScreen
@@ -14,12 +15,13 @@ enum Screen {
     case rightScreen
 }
 
-class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
+class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, GameKitHelperDelegate {
     private var size: CGSize?
     private var view: SKView?
     private var currentScreen: Screen?
     private var rightSwipe: UISwipeGestureRecognizer?
     private var leftSwipe: UISwipeGestureRecognizer?
+    
     
     var controlUnit: MFCSControlUnit?
     var controllerMode: MFCSControllerMode?
@@ -128,8 +130,10 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         let nodeName = nodeTouched.name
         
         if nodeName == "playButton" {
-            self.startGame()
-            self.removeGesturesFromLayer()
+//            self.startGame()
+//            self.removeGesturesFromLayer()
+            let viewController = self.scene?.view?.window?.rootViewController
+            GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController!, delegate: self)
         } else if nodeName == "configurationButton" {
             print("configurationButton touched")
         } else if nodeName == "practiceButton" {
@@ -198,5 +202,17 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             self.runAction(SKAction.moveByX(-self.size!.width, y: 0, duration: 0.5))
             self.currentScreen = Screen.rightScreen
         }
+    }
+    
+    func matchStarted() {
+        print("Match has started successfully")
+    }
+    
+    func matchEnded() {
+        print("Match has ended")
+    }
+    
+    func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: String) {
+        
     }
 }
