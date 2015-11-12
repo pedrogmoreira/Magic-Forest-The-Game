@@ -110,5 +110,13 @@ class Neith: Player {
 	override func death() -> SKAction {
 		return self.loadAnimation("NeithDeath", endIndex: 2, timePerFrame: 0.5)
 	}
+	/**
+	Criar Projétil de flecha
+	- returns: Projectile
+	*/
+	override func createProjectile() -> Projectile {
+		let arrow = Arrow(position: self.position)
+		return arrow
+	}
 
 }

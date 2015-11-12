@@ -31,6 +31,7 @@ class Player: SKSpriteNode, GameObject {
 	var isSpecialAttacking: Bool = false
 	var doubleJump: Bool = false
 	var isGetDown: Bool = false
+	var isLeft: Bool = false
 	
 	let scale = CGFloat(0.07)
 	
@@ -80,7 +81,6 @@ class Player: SKSpriteNode, GameObject {
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
 		
 		self.runAction(move)
-
 		if !self.isGetDown {
 			self.checkFloorLevel()
 		}
@@ -271,6 +271,16 @@ class Player: SKSpriteNode, GameObject {
 		} else {
 			self.physicsBody?.collisionBitMask = self.BITMASK_BASE_FLOOR
 		}
+	}
+	
+	/**
+	Criar Projétil
+	- returns: Projectile
+	*/
+	
+	func createProjectile () -> Projectile {
+		let projectile = Projectile(position: self.position)
+		return projectile
 	}
 	
 }
