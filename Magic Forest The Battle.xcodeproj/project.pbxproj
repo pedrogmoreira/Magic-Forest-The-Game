@@ -74,6 +74,9 @@
 		57190BCC1BF3A3B300FFF38D /* SalamangIdlee1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BC91BF3A3B300FFF38D /* SalamangIdlee1.png */; };
 		57190BCD1BF3A3B300FFF38D /* SalamangIdlee2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BCA1BF3A3B300FFF38D /* SalamangIdlee2.png */; };
 		57190BCE1BF3A3B300FFF38D /* SalamangIdlee3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BCB1BF3A3B300FFF38D /* SalamangIdlee3.png */; };
+		57190BD01BF3A7C500FFF38D /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190BCF1BF3A7C500FFF38D /* Projectile.swift */; };
+		57190BD21BF3A8CE00FFF38D /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190BD11BF3A8CE00FFF38D /* Arrow.swift */; };
+		57190BD71BF4C09100FFF38D /* Jujuba.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190BD61BF4C09100FFF38D /* Jujuba.swift */; };
 		576964E71BDFDCD000CBB81D /* corre1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964DF1BDFDCD000CBB81D /* corre1.png */; };
 		576964E81BDFDCD000CBB81D /* corre2.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E01BDFDCD000CBB81D /* corre2.png */; };
 		576964E91BDFDCD000CBB81D /* corre3.png in Resources */ = {isa = PBXBuildFile; fileRef = 576964E11BDFDCD000CBB81D /* corre3.png */; };
@@ -117,6 +120,8 @@
 		57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558141BDEBB1C00A948DE /* idle9.png */; };
 		57A558201BDEBB1C00A948DE /* idle10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558151BDEBB1C00A948DE /* idle10.png */; };
 		57A558211BDEBB1C00A948DE /* idle11.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558161BDEBB1C00A948DE /* idle11.png */; };
+		57C08DCB1BF4C56E003E4574 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DCA1BF4C56E003E4574 /* arrow.png */; };
+		57C08DCD1BF4CDEC003E4574 /* candy.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DCC1BF4CDEC003E4574 /* candy.png */; };
 		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
 		EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */; };
@@ -256,6 +261,9 @@
 		57190BC91BF3A3B300FFF38D /* SalamangIdlee1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangIdlee1.png; sourceTree = "<group>"; };
 		57190BCA1BF3A3B300FFF38D /* SalamangIdlee2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangIdlee2.png; sourceTree = "<group>"; };
 		57190BCB1BF3A3B300FFF38D /* SalamangIdlee3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangIdlee3.png; sourceTree = "<group>"; };
+		57190BCF1BF3A7C500FFF38D /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
+		57190BD11BF3A8CE00FFF38D /* Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
+		57190BD61BF4C09100FFF38D /* Jujuba.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jujuba.swift; sourceTree = "<group>"; };
 		576964DF1BDFDCD000CBB81D /* corre1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre1.png; sourceTree = "<group>"; };
 		576964E01BDFDCD000CBB81D /* corre2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre2.png; sourceTree = "<group>"; };
 		576964E11BDFDCD000CBB81D /* corre3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = corre3.png; sourceTree = "<group>"; };
@@ -299,6 +307,8 @@
 		57A558141BDEBB1C00A948DE /* idle9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle9.png; sourceTree = "<group>"; };
 		57A558151BDEBB1C00A948DE /* idle10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle10.png; sourceTree = "<group>"; };
 		57A558161BDEBB1C00A948DE /* idle11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle11.png; sourceTree = "<group>"; };
+		57C08DCA1BF4C56E003E4574 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		57C08DCC1BF4CDEC003E4574 /* candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy.png; sourceTree = "<group>"; };
 		67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		67A74CF91BE129CD00AF3B0E /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
 		EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AttackButton.png; sourceTree = "<group>"; };
@@ -563,6 +573,8 @@
 		57190BB01BF2689900FFF38D /* Projetil */ = {
 			isa = PBXGroup;
 			children = (
+				57C08DCC1BF4CDEC003E4574 /* candy.png */,
+				57C08DCA1BF4C56E003E4574 /* arrow.png */,
 				57190BB11BF2689900FFF38D /* 102.png */,
 				57190BB21BF2689900FFF38D /* 106.png */,
 			);
@@ -926,6 +938,9 @@
 				57A558061BDEA85000A948DE /* Salamang.swift */,
 				57A558081BDEA86000A948DE /* Neith.swift */,
 				576964EF1BDFEB4800CBB81D /* PlayerState.swift */,
+				57190BCF1BF3A7C500FFF38D /* Projectile.swift */,
+				57190BD11BF3A8CE00FFF38D /* Arrow.swift */,
+				57190BD61BF4C09100FFF38D /* Jujuba.swift */,
 			);
 			name = Entity;
 			sourceTree = "<group>";
@@ -1122,6 +1137,7 @@
 				57190B481BF12BED00FFF38D /* NeithAttack3.png in Resources */,
 				EB0EACC11BE3E39F00D93287 /* playButton.gif in Resources */,
 				EB0EACB31BE3E0E900D93287 /* ForestScenery_4.png in Resources */,
+				57C08DCD1BF4CDEC003E4574 /* candy.png in Resources */,
 				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
 				57A5581B1BDEBB1C00A948DE /* idle5.png in Resources */,
 				EBD88B1A1BF02E43000353A5 /* Settings.png in Resources */,
@@ -1134,6 +1150,7 @@
 				576964FB1BE018B400CBB81D /* hit2.png in Resources */,
 				EBD88B221BF02EE2000353A5 /* ForestSceneryPlatformLeft.png in Resources */,
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
+				57C08DCB1BF4C56E003E4574 /* arrow.png in Resources */,
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
 				57190B541BF12BED00FFF38D /* NeithIdle2.png in Resources */,
@@ -1215,6 +1232,7 @@
 				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
 				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
+				57190BD21BF3A8CE00FFF38D /* Arrow.swift in Sources */,
 				57A558091BDEA86000A948DE /* Neith.swift in Sources */,
 				57A558071BDEA85000A948DE /* Salamang.swift in Sources */,
 				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
@@ -1223,9 +1241,11 @@
 				576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */,
 				EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */,
 				EB1214A81BD95CA700D0552F /* Int+Extensions.swift in Sources */,
+				57190BD71BF4C09100FFF38D /* Jujuba.swift in Sources */,
 				579B805F1BE3FC030025B374 /* SpawnPoint.swift in Sources */,
 				EB1214A71BD95CA700D0552F /* CGVector+Extensions.swift in Sources */,
 				EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */,
+				57190BD01BF3A7C500FFF38D /* Projectile.swift in Sources */,
 				EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */,
 				EB1214BB1BD95CB000D0552F /* MFCSControlUnit.swift in Sources */,
 				EB1214BA1BD95CB000D0552F /* MFCSControllerMode.swift in Sources */,

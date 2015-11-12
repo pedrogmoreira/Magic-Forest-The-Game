@@ -17,5 +17,7 @@ enum PhysicsCategory: UInt32 {
 	case WorldFirstFloorPlatform = 16
 	case WorldSecondFloorPlatform = 32
 	case WorldThirdFloorPlatform = 64
+	case Projectile = 128
+	case OtherPlayer = 256
 	
 }

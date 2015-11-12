@@ -120,4 +120,9 @@ class Salamang: Player {
 	override func death() -> SKAction {
 		return self.loadAnimation("SalamangDeath", endIndex: 2, timePerFrame: 0.5)
 	}
+	
+	override func createProjectile() -> Projectile {
+		let jujuba = Jujuba(position: self.position)
+		return jujuba
+	}
 }

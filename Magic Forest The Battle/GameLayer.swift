@@ -52,7 +52,9 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
+			self.projectileToLayer((self.player?.createProjectile())!)
 			self.player?.isAttacking = true
+			
 		} else if command == MFCSCommandType.SpecialAttack {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
@@ -64,21 +66,42 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		}
 	}
 	
+	func projectileToLayer (projectile : Projectile) {
+		self.addChild(projectile)
+		
+		if (self.player?.isLeft == true){
+			//self.setFlip((self.player?.position)!,node: projectile)
+			projectile.xScale = -projectile.xScale
+			projectile.physicsBody?.applyImpulse(CGVectorMake(-2000, 100))
+		} else {
+			projectile.physicsBody?.applyImpulse(CGVectorMake(2000, 100))
+		}
+		projectile.runAction(projectile.removeProjectile())
+	}
+	
 	func analogUpdate(relativePosition position: CGPoint) {
-		self.setFlip(position)
+		self.setFlip(position,node: self.player!)
 
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
 	
 	
-	func setFlip (flipX : CGPoint) {
+	func setFlip (flipX : CGPoint, node : SKSpriteNode) {
 		if flipX.x == 0 {
 			return
 		}
 		if flipX.x < 0 {
-			self.player?.xScale = -fabs((self.player?.xScale)!)
+			node.xScale = -fabs(node.xScale)
+			//self.player?.xScale = -fabs((self.player?.xScale)!)
+			if node == self.player {
+				self.player?.isLeft = true
+			}
 		} else {
-			self.player?.xScale = fabs((self.player?.xScale)!)
+			//self.player?.xScale = fabs((self.player?.xScale)!)
+			node.xScale = fabs(node.xScale)
+			if node == self.player {
+				self.player?.isLeft = false
+			}
 		}
 	}
 	
