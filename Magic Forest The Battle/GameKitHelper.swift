@@ -150,6 +150,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
             print("Initial player state")
         }
     }
+    
 }
 
 extension GameKitHelper: GKGameCenterControllerDelegate {

@@ -8,9 +8,10 @@
 
 import SpriteKit
 
-class MenuScene: SKScene {
+class MenuScene: SKScene, MultiplayerProtocol {
     
     var mainMenu: MainMenuLayer?
+    var networkingEngine: MultiplayerNetworking?
     
     /**
      Initializes the game scene
@@ -27,26 +28,14 @@ class MenuScene: SKScene {
     override func didMoveToView(view: SKView) {
         self.mainMenu = MainMenuLayer(size: size, view: view)
         self.addChild(mainMenu!)
-        
-        // Authenticate local player in game center
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showAuthenticationViewController", name: PresentAuthenticationViewController, object: nil)
-        GameKitHelper.sharedInstance.authenticateLocalPlayer()
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.mainMenu?.touchesBegan(touches, withEvent: event)
     }
     
-    func showAuthenticationViewController() {
-        let gameKitHelper = GameKitHelper.sharedInstance
+    func matchEnded() {
         
-        if let authenticationViewController = gameKitHelper.authenticationViewController {
-            let viewController = self.scene?.view?.window?.rootViewController
-            viewController?.presentViewController(authenticationViewController, animated: true, completion: nil)
-        }
     }
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
 }

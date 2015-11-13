@@ -15,13 +15,14 @@ enum Screen {
     case rightScreen
 }
 
-class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, GameKitHelperDelegate {
+class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     private var size: CGSize?
     private var view: SKView?
     private var currentScreen: Screen?
     private var rightSwipe: UISwipeGestureRecognizer?
     private var leftSwipe: UISwipeGestureRecognizer?
     
+    var networkingEngine: MultiplayerNetworking?
     
     var controlUnit: MFCSControlUnit?
     var controllerMode: MFCSControllerMode?
@@ -128,18 +129,27 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, GameKitHel
         let nodeTouched = self.nodeAtPoint(touchLocation!)
         
         let nodeName = nodeTouched.name
+        let viewController = self.scene?.view?.window?.rootViewController
         
         if nodeName == "playButton" {
 //            self.startGame()
 //            self.removeGesturesFromLayer()
-            let viewController = self.scene?.view?.window?.rootViewController
-            GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController!, delegate: self)
+        
+            self.networkingEngine = MultiplayerNetworking()
+            
+            if let menuScene = self.scene as? MenuScene {
+                networkingEngine!.delegate = menuScene
+                menuScene.networkingEngine = networkingEngine
+            }
+            
+            GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController!, delegate: networkingEngine!)
+            
         } else if nodeName == "configurationButton" {
             print("configurationButton touched")
         } else if nodeName == "practiceButton" {
             print("practiceButton touched")
         } else if nodeName == "gameCenterButton" {
-            print("gameCenterButton touched")
+            GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
         } else if nodeName == "storeButton" {
             print("storeButton touched")
         } else if nodeName == "skinButton" {

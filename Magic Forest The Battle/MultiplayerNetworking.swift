@@ -137,6 +137,11 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     }
     
     func isLocalPlayer1() -> Bool {
+        let playerDetail = orderOfPlayers[0]
+        if playerDetail.playerId == GKLocalPlayer.localPlayer().playerID {
+            print("I'm player 1.. w00t :]")
+            return true
+        }
         return false
     }
     
@@ -145,10 +150,18 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     }
     
     func allRandomNumbersAreReceived() -> Bool {
-//        var receivedRandomNumbers = Set<UInt32>()
-//        
-//        for playerDetail
-//        
+        var receivedRandomNumbers = Set<UInt32>()
+        
+        for playerDetail in orderOfPlayers {
+            receivedRandomNumbers.insert(playerDetail.randomNumber)
+        }
+        
+        if let multiplayerMatch = GameKitHelper.sharedInstance.multiplayerMatch {
+            if receivedRandomNumbers.count == (multiplayerMatch.players.count + 1) {
+                return true
+            }
+        }
+        
         return false
     }
     
