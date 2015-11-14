@@ -64,6 +64,52 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        // Getting a node in the touch location
+        let touch = touches.first
+        let touchLocation = touch?.locationInNode(self)
+        let nodeTouched = self.nodeAtPoint(touchLocation!)
+        
+        let viewController = self.scene?.view?.window?.rootViewController
+        let nodeName = nodeTouched.name
+        
+        if nodeName == "playButton" {
+//            self.startGame()
+//            self.removeGesturesFromLayer()
+            
+            self.showMatchMakerViewController(presentingViewController: viewController!)
+            
+            
+        } else if nodeName == "configurationButton" {
+            print("configurationButton touched")
+        } else if nodeName == "practiceButton" {
+            print("practiceButton touched")
+        } else if nodeName == "gameCenterButton" {
+            GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
+        } else if nodeName == "storeButton" {
+            print("storeButton touched")
+        } else if nodeName == "skinButton" {
+            print("skinButton touched")
+        } else if nodeName == "statisticsButton" {
+            print("statisticsButton touched")
+        } else if nodeName == "historyButton" {
+            print("historyButton touched")
+        }
+    }
+    
+    // Show the match maker view controller
+    private func showMatchMakerViewController(presentingViewController viewController: UIViewController) {
+        
+        self.networkingEngine = MultiplayerNetworking()
+        
+        if let menuScene = self.scene as? MenuScene {
+            networkingEngine!.delegate = menuScene
+            menuScene.networkingEngine = networkingEngine
+        }
+
+        GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController, delegate: networkingEngine!)
+    }
+    
     // Add a button to the layer with a name and position
     private func addButton(button: SKSpriteNode, name: String, position: CGPoint) {
         button.name = name
@@ -122,45 +168,6 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        // Getting a node in the touch location
-        let touch = touches.first
-        let touchLocation = touch?.locationInNode(self)
-        let nodeTouched = self.nodeAtPoint(touchLocation!)
-        
-        let nodeName = nodeTouched.name
-        let viewController = self.scene?.view?.window?.rootViewController
-        
-        if nodeName == "playButton" {
-//            self.startGame()
-//            self.removeGesturesFromLayer()
-        
-            self.networkingEngine = MultiplayerNetworking()
-            
-            if let menuScene = self.scene as? MenuScene {
-                networkingEngine!.delegate = menuScene
-                menuScene.networkingEngine = networkingEngine
-            }
-            
-            GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController!, delegate: networkingEngine!)
-            
-        } else if nodeName == "configurationButton" {
-            print("configurationButton touched")
-        } else if nodeName == "practiceButton" {
-            print("practiceButton touched")
-        } else if nodeName == "gameCenterButton" {
-            GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
-        } else if nodeName == "storeButton" {
-            print("storeButton touched")
-        } else if nodeName == "skinButton" {
-            print("skinButton touched")
-        } else if nodeName == "statisticsButton" {
-            print("statisticsButton touched")
-        } else if nodeName == "historyButton" {
-            print("historyButton touched")
-        }
-    }
-    
     // TODO: Refactor star game method.
     private func startGame() {
         let gameScene = GameScene(size: self.size!)
@@ -212,17 +219,5 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             self.runAction(SKAction.moveByX(-self.size!.width, y: 0, duration: 0.5))
             self.currentScreen = Screen.rightScreen
         }
-    }
-    
-    func matchStarted() {
-        print("Match has started successfully")
-    }
-    
-    func matchEnded() {
-        print("Match has ended")
-    }
-    
-    func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: String) {
-        
     }
 }

@@ -14,10 +14,12 @@ protocol MultiplayerProtocol {
     func matchEnded()
 }
 
+// Define the states of the game
 enum GameState: Int {
     case WaintingForMatch, WaintingForRandomNumber, WaitingForStart, Playing, Done
 }
 
+// Define the types of menssages
 enum MessageType: Int {
     case RandomNumber, GameBegin, GameOver
 }
@@ -26,6 +28,11 @@ struct Message {
     let messageType: MessageType
 }
 
+struct MessageMove {
+    let message: Message
+    let dx: Float
+    let dy: Float
+}
 struct MessageRandomNumber {
     let message: Message
     let randomNumber: UInt32
@@ -45,7 +52,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     var gameState: GameState
     var isPlayer1: Bool
     var receivedAllRandomNumber: Bool
-    var orderOfPlayers: [RandomNumberDetails] = []
+    var orderOfPlayers: [RandomNumberDetails]
     
     override init() {
         ourRandomNumber = arc4random()
@@ -86,6 +93,10 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         
         sendRandomNumber()
         tryStartGame()
+    }
+    
+    func matchEnded() {
+        delegate?.matchEnded()
     }
     
     func sendData(data: NSData) {
@@ -145,10 +156,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         return false
     }
     
-    func matchEnded() {
-        delegate?.matchEnded()
-    }
-    
     func allRandomNumbersAreReceived() -> Bool {
         var receivedRandomNumbers = Set<UInt32>()
         
@@ -165,12 +172,12 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         return false
     }
     
-    func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: String) {
+    func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: GKPlayer) {
         let message = UnsafePointer<Message>(data.bytes).memory
         
         if message.messageType == MessageType.RandomNumber {
             let messageRandomNumber = UnsafePointer<MessageRandomNumber>(data.bytes).memory
-        
+            
             print("Received random number:\(messageRandomNumber.randomNumber)")
             
             var tie = false
@@ -195,7 +202,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
                 
                 sendRandomNumber()
             } else {
-                processReceivedRandomNumber(RandomNumberDetails(playerId: player, randomNumber: messageRandomNumber.randomNumber))
+                processReceivedRandomNumber(RandomNumberDetails(playerId: player.playerID!, randomNumber: messageRandomNumber.randomNumber))
             }
             
             if receivedAllRandomNumber {
@@ -209,7 +216,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
                 tryStartGame()
             }
         }
+
     }
-    
     
 }

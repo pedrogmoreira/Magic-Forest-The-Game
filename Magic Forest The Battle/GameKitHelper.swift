@@ -9,16 +9,14 @@
 import Foundation
 import GameKit
 
-protocol GameKitHelperDelegate {
-    func matchStarted()
-    func matchEnded()
-    func matchReceivedData(match: GKMatch, data: NSData,
-    fromPlayer player: GKPlayer)
-}
-
 let PresentAuthenticationViewController = "PresentAuthenticationViewController"
 let singleton = GameKitHelper()
 
+protocol GameKitHelperDelegate {
+    func matchStarted()
+    func matchEnded()
+    func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: GKPlayer)
+}
 
 class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelegate {
     var authenticationViewController: UIViewController?
@@ -139,6 +137,8 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
         
         if !multiplayerMatchStarted && multiplayerMatch?.expectedPlayerCount == 0 {
             print("Ready to start the match")
+            multiplayerMatchStarted = true
+            delegate?.matchStarted()
         }
     }
     
@@ -176,6 +176,8 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
             print("Player connected")
             if !multiplayerMatchStarted && multiplayerMatch?.expectedPlayerCount == 0 {
                 print("Ready to start the match")
+                multiplayerMatchStarted = true
+                delegate?.matchStarted()
             }
         case .StateDisconnected:
             print("Player disconnected")
