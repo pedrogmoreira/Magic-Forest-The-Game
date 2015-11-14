@@ -61,6 +61,6 @@ class GameViewController: UIViewController {
     }
     
     deinit {
-                NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 }
