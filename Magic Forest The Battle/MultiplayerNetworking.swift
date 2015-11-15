@@ -11,6 +11,9 @@ import GameKit
 
 
 protocol MultiplayerProtocol {
+//    func sendString1()
+//    func sendString2()
+    func setCurrentPlayerIndex(index: Int)
     func matchEnded()
 }
 
@@ -21,7 +24,7 @@ enum GameState: Int {
 
 // Define the types of menssages
 enum MessageType: Int {
-    case RandomNumber, GameBegin, GameOver
+    case RandomNumber, GameBegin, GameOver, Move
 }
 
 struct Message {
@@ -129,8 +132,28 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         if isPlayer1 && gameState == GameState.WaitingForStart {
             gameState = GameState.Playing
             sendBeginGame()
+            delegate?.setCurrentPlayerIndex(0)
         }
     }
+    
+    func indexForLocalPlayer() -> Int? {
+        return indexForPlayer(GKLocalPlayer.localPlayer().playerID!)
+    }
+    
+    func indexForPlayer(playerId: String) -> Int? {
+        var idx: Int?
+        
+        for (index, playerDetail) in orderOfPlayers.enumerate() {
+            let pId = playerDetail.playerId
+            
+            if pId == playerId {
+                idx = index
+                break
+            }
+        }
+        return idx!
+    }
+    
     
     func processReceivedRandomNumber(randomNumberDetails: RandomNumberDetails) {
         let multableArray = NSMutableArray(array: orderOfPlayers)
@@ -201,6 +224,17 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
                 }
                 
                 sendRandomNumber()
+            } else if message.messageType == MessageType.GameBegin {
+                
+                if let localPlayerIndex = indexForLocalPlayer() {
+                    delegate?.setCurrentPlayerIndex(localPlayerIndex)
+                }
+                
+                gameState = GameState.Playing
+            } else if message.messageType == MessageType.Move {
+                let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
+                
+                print("Dx: \(messageMove.dx) Dy: \(messageMove.dy)")
             } else {
                 processReceivedRandomNumber(RandomNumberDetails(playerId: player.playerID!, randomNumber: messageRandomNumber.randomNumber))
             }

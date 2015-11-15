@@ -8,10 +8,9 @@
 
 import SpriteKit
 
-class MenuScene: SKScene, MultiplayerProtocol {
+class MenuScene: SKScene {
     
     var mainMenu: MainMenuLayer?
-    var networkingEngine: MultiplayerNetworking?
     
     /**
      Initializes the game scene
@@ -32,10 +31,6 @@ class MenuScene: SKScene, MultiplayerProtocol {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.mainMenu?.touchesBegan(touches, withEvent: event)
-    }
-    
-    func matchEnded() {
-        
     }
     
 }

@@ -27,22 +27,10 @@ class GameViewController: UIViewController {
 		
 		/* Set the scale mode to scale to fit the window */
 		scene.scaleMode = .AspectFill
-        
-        // Authenticate local player in game center
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showAuthenticationViewController", name: PresentAuthenticationViewController, object: nil)
-        GameKitHelper.sharedInstance.authenticateLocalPlayer()
 		
 		skView.presentScene(scene)
     }
     
-    func showAuthenticationViewController() {
-        let gameKitHelper = GameKitHelper.sharedInstance
-        
-        if let authenticationViewController = gameKitHelper.authenticationViewController {
-            self.presentViewController(authenticationViewController, animated: true, completion: nil)
-        }
-    }
-
     override func shouldAutorotate() -> Bool {
         return true
     }
@@ -60,7 +48,4 @@ class GameViewController: UIViewController {
         return true
     }
     
-    deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
-    }
 }

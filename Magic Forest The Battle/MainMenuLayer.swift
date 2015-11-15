@@ -23,6 +23,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     private var leftSwipe: UISwipeGestureRecognizer?
     
     var networkingEngine: MultiplayerNetworking?
+    var gameScene: GameScene?
+
     
     var controlUnit: MFCSControlUnit?
     var controllerMode: MFCSControllerMode?
@@ -57,8 +59,23 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         
         self.addButtonsToLayer()
         self.addSwipeGestureToLayer()
-    }
+        
+        self.gameScene = GameScene(size: size)
+        
+        // Authenticate local player in game center
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showAuthenticationViewController", name: PresentAuthenticationViewController, object: nil)
+        GameKitHelper.sharedInstance.authenticateLocalPlayer()
 
+    }
+    
+    func showAuthenticationViewController() {
+        let gameKitHelper = GameKitHelper.sharedInstance
+        let viewController = self.scene?.view?.window?.rootViewController
+
+        if let authenticationViewController = gameKitHelper.authenticationViewController {
+            viewController!.presentViewController(authenticationViewController, animated: true, completion: nil)
+        }
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -74,11 +91,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         let nodeName = nodeTouched.name
         
         if nodeName == "playButton" {
-//            self.startGame()
-//            self.removeGesturesFromLayer()
-            
             self.showMatchMakerViewController(presentingViewController: viewController!)
-            
             
         } else if nodeName == "configurationButton" {
             print("configurationButton touched")
@@ -100,12 +113,14 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     // Show the match maker view controller
     private func showMatchMakerViewController(presentingViewController viewController: UIViewController) {
         
+        if !GKLocalPlayer.localPlayer().authenticated {
+            return
+        }
+        
         self.networkingEngine = MultiplayerNetworking()
         
-        if let menuScene = self.scene as? MenuScene {
-            networkingEngine!.delegate = menuScene
-            menuScene.networkingEngine = networkingEngine
-        }
+        networkingEngine!.delegate = gameScene
+        gameScene!.networkingEngine = networkingEngine
 
         GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController, delegate: networkingEngine!)
     }
@@ -170,12 +185,11 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     
     // TODO: Refactor star game method.
     private func startGame() {
-        let gameScene = GameScene(size: self.size!)
-        self.view?.presentScene(gameScene, transition: SKTransition.flipHorizontalWithDuration(2))
+        self.view?.presentScene(gameScene!, transition: SKTransition.flipHorizontalWithDuration(2))
         
         self.controllerMode = MFCSControllerMode.JoystickAndSwipe
         
-        self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
+        self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene!.gameLayer!, controllerMode: controllerMode!)
         
         self.view?.addSubview(self.controlUnit!)
     }
@@ -220,4 +234,9 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             self.currentScreen = Screen.rightScreen
         }
     }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
 }
