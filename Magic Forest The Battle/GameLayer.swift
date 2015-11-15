@@ -12,7 +12,6 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 	var player: Player?
 	var spawnPoints = NSMutableArray()
-	
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
@@ -21,7 +20,12 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		super.init()
 
 		self.spawnPointGenerator()
-		self.createPlayer(size)
+        
+        let playerCount = Int((GameKitHelper.sharedInstance.multiplayerMatch?.players.count)!)
+        
+        for _ in 1...playerCount {
+            self.createPlayer(size)
+        }
 	}
 
 	required init?(coder aDecoder: NSCoder) {

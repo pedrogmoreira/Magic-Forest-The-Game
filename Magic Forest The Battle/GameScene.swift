@@ -25,23 +25,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	override init(size: CGSize) {
 		super.init(size: size)
 		
-		self.gameLayer = GameLayer(size: size)
-		self.gameLayer?.zPosition = -5
-		
-		self.backgroundLayer = ForestScenery(size: size)
-		self.backgroundLayer?.zPosition = -10
-		
-		self.addChild(self.gameLayer!)
-		self.addChild(self.backgroundLayer!)
+	}
+    
+    override func didMoveToView(view: SKView) {
+        self.gameLayer = GameLayer(size: size)
+        self.gameLayer?.zPosition = -5
+        
+        self.backgroundLayer = ForestScenery(size: size)
+        self.backgroundLayer?.zPosition = -10
+        
+        self.addChild(self.gameLayer!)
+        self.addChild(self.backgroundLayer!)
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
         
         self.initializeCamera()
-	}
+    }
     
     // Called when the match has ended
     func matchEnded() {
+        
+    }
+    
+    func startGame() {
         
     }
     

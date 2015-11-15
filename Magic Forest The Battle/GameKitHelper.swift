@@ -36,6 +36,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     override init(){
         multiplayerMatchStarted = false
         gameCenterEnabled = true
+
         super.init()
     }
     

@@ -17,6 +17,10 @@ protocol MultiplayerProtocol {
     func matchEnded()
 }
 
+protocol StartGameProtocol {
+    func startGame()
+}
+
 // Define the states of the game
 enum GameState: Int {
     case WaintingForMatch, WaintingForRandomNumber, WaitingForStart, Playing, Done
@@ -51,6 +55,7 @@ struct MessageGameOver {
 
 class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     var delegate: MultiplayerProtocol?
+    var startGameDelegate: StartGameProtocol?
     var ourRandomNumber: UInt32 = 0
     var gameState: GameState
     var isPlayer1: Bool
@@ -133,6 +138,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             gameState = GameState.Playing
             sendBeginGame()
             delegate?.setCurrentPlayerIndex(0)
+            startGameDelegate?.startGame()
         }
     }
     
@@ -224,17 +230,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
                 }
                 
                 sendRandomNumber()
-            } else if message.messageType == MessageType.GameBegin {
-                
-                if let localPlayerIndex = indexForLocalPlayer() {
-                    delegate?.setCurrentPlayerIndex(localPlayerIndex)
-                }
-                
-                gameState = GameState.Playing
-            } else if message.messageType == MessageType.Move {
-                let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
-                
-                print("Dx: \(messageMove.dx) Dy: \(messageMove.dy)")
             } else {
                 processReceivedRandomNumber(RandomNumberDetails(playerId: player.playerID!, randomNumber: messageRandomNumber.randomNumber))
             }
@@ -249,8 +244,19 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
                 }
                 tryStartGame()
             }
+        } else if message.messageType == MessageType.GameBegin {
+            
+            if let localPlayerIndex = indexForLocalPlayer() {
+                delegate?.setCurrentPlayerIndex(localPlayerIndex)
+            }
+            
+            startGameDelegate?.startGame()
+            gameState = GameState.Playing
+        } else if message.messageType == MessageType.Move {
+            let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
+            
+            print("Dx: \(messageMove.dx) Dy: \(messageMove.dy)")
         }
-
     }
     
 }

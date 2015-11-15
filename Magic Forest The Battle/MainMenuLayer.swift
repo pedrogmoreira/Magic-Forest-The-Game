@@ -15,7 +15,7 @@ enum Screen {
     case rightScreen
 }
 
-class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
+class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameProtocol {
     private var size: CGSize?
     private var view: SKView?
     private var currentScreen: Screen?
@@ -24,10 +24,11 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     
     var networkingEngine: MultiplayerNetworking?
     var gameScene: GameScene?
-
     
     var controlUnit: MFCSControlUnit?
     var controllerMode: MFCSControllerMode?
+    
+    var numberOfPlayers: Int?
     
     private let configurationButton = SKSpriteNode(imageNamed: "configurationButton.png")
     private let gameCenterButton = SKSpriteNode(imageNamed: "gameCenterButton.png")
@@ -99,6 +100,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             print("practiceButton touched")
         } else if nodeName == "gameCenterButton" {
             GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
+            
         } else if nodeName == "storeButton" {
             print("storeButton touched")
         } else if nodeName == "skinButton" {
@@ -120,6 +122,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         self.networkingEngine = MultiplayerNetworking()
         
         networkingEngine!.delegate = gameScene
+        networkingEngine!.startGameDelegate = self
         gameScene!.networkingEngine = networkingEngine
 
         GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController, delegate: networkingEngine!)
@@ -184,7 +187,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
     }
     
     // TODO: Refactor star game method.
-    private func startGame() {
+    func startGame() {
         self.view?.presentScene(gameScene!, transition: SKTransition.flipHorizontalWithDuration(2))
         
         self.controllerMode = MFCSControllerMode.JoystickAndSwipe
@@ -192,6 +195,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene!.gameLayer!, controllerMode: controllerMode!)
         
         self.view?.addSubview(self.controlUnit!)
+        
+        self.removeGesturesFromLayer()
     }
     
     // Add swipe gestures to the layer
