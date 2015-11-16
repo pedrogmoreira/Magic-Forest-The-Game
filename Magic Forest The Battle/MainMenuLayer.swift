@@ -93,7 +93,6 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         
         if nodeName == "playButton" {
             self.showMatchMakerViewController(presentingViewController: viewController!)
-            
         } else if nodeName == "configurationButton" {
             print("configurationButton touched")
         } else if nodeName == "practiceButton" {
@@ -121,9 +120,9 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         
         self.networkingEngine = MultiplayerNetworking()
         
-        networkingEngine!.delegate = gameScene
+        networkingEngine!.delegate = gameScene?.gameLayer
         networkingEngine!.startGameDelegate = self
-        gameScene!.networkingEngine = networkingEngine
+        gameScene!.gameLayer!.networkingEngine = networkingEngine
 
         GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController, delegate: networkingEngine!)
     }

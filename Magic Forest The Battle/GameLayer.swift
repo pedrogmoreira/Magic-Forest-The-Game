@@ -8,10 +8,16 @@
 
 import SpriteKit
 
-class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
+class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate, MultiplayerProtocol {
 
 	var player: Player?
 	var spawnPoints = NSMutableArray()
+    
+    // Multiplayer variables
+    var networkingEngine: MultiplayerNetworking?
+    var currentIndex: Int?
+
+    
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
@@ -21,11 +27,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 		self.spawnPointGenerator()
         
-        let playerCount = Int((GameKitHelper.sharedInstance.multiplayerMatch?.players.count)!)
         
-        for _ in 1...playerCount {
-            self.createPlayer(size)
-        }
+        self.createPlayer(size)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -55,6 +58,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
 			self.player?.isAttacking = true
+            
 		} else if command == MFCSCommandType.SpecialAttack {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
@@ -92,4 +96,17 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		}
 	}
 	
+    // Called when the match has ended
+    func matchEnded() {
+        
+    }
+    
+    func startGame() {
+        
+    }
+    
+    // Set the player index
+    func setCurrentPlayerIndex(index: Int) {
+        currentIndex = index
+    }
 }

@@ -11,8 +11,6 @@ import GameKit
 
 
 protocol MultiplayerProtocol {
-//    func sendString1()
-//    func sendString2()
     func setCurrentPlayerIndex(index: Int)
     func matchEnded()
 }
@@ -29,16 +27,13 @@ enum GameState: Int {
 // Define the types of menssages
 // Each structure represents a type of message the game will send to the other device
 enum MessageType: Int {
-    case RandomNumber, GameBegin, GameOver, Move
+    case RandomNumber, GameBegin, GameOver, Move, String
 }
 
 struct Message {
     let messageType: MessageType
 }
 
-struct MessageCreatePlayers {
-    let message: Message
-}
 
 struct MessageMove {
     let message: Message
@@ -56,6 +51,12 @@ struct MessageGameBegin {
 
 struct MessageGameOver {
     let message: Message
+}
+
+
+struct MessageString {
+    let message: Message
+    let text: String
 }
 
 class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
@@ -190,24 +191,12 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
             
             print("Dx: \(messageMove.dx) Dy: \(messageMove.dy)")
+        } else if message.messageType == MessageType.String {
+            let messageString = UnsafePointer<MessageString>(data.bytes).memory
+            
+            print(messageString.text);
         }
     }
-    
-    // Send to all devices a message of type MessageRandomNumber
-    func sendRandomNumber() {
-        var message = MessageRandomNumber(message: Message(messageType: MessageType.RandomNumber), randomNumber: ourRandomNumber)
-        
-        let data = NSData(bytes: &message, length: sizeof(MessageRandomNumber))
-        sendData(data)
-    }
-    
-    // Send to all devices a message of type MessageGameBegin
-    func sendBeginGame() {
-        var message = MessageGameBegin(message: Message(messageType: MessageType.GameBegin))
-        let data = NSData(bytes: &message, length: sizeof(MessageGameBegin))
-        sendData(data)
-    }
-    
     
     func tryStartGame() {
         if isPlayer1 && gameState == GameState.WaitingForStart {
@@ -277,4 +266,26 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         return false
     }
     
+    // Send to all devices a message of type MessageRandomNumber
+    func sendRandomNumber() {
+        var message = MessageRandomNumber(message: Message(messageType: MessageType.RandomNumber), randomNumber: ourRandomNumber)
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageRandomNumber))
+        sendData(data)
+    }
+    
+    // Send to all devices a message of type MessageGameBegin
+    func sendBeginGame() {
+        var message = MessageGameBegin(message: Message(messageType: MessageType.GameBegin))
+        let data = NSData(bytes: &message, length: sizeof(MessageGameBegin))
+        sendData(data)
+    }
+
+    // Send to all devices a message of type MessageString
+    func sendString() {
+        var message = MessageString(message: Message(messageType: MessageType.String), text: "Oi cueio")
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageString))
+        sendData(data)
+    }
 }
