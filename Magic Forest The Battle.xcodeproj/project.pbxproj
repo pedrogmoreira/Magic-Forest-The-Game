@@ -122,6 +122,12 @@
 		57A558211BDEBB1C00A948DE /* idle11.png in Resources */ = {isa = PBXBuildFile; fileRef = 57A558161BDEBB1C00A948DE /* idle11.png */; };
 		57C08DCB1BF4C56E003E4574 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DCA1BF4C56E003E4574 /* arrow.png */; };
 		57C08DCD1BF4CDEC003E4574 /* candy.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DCC1BF4CDEC003E4574 /* candy.png */; };
+		57C08DCF1BF4FCEC003E4574 /* MenuSelectPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C08DCE1BF4FCEC003E4574 /* MenuSelectPlayer.swift */; };
+		57C08DD11BF5191A003E4574 /* MenuSelectPlayerScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C08DD01BF5191A003E4574 /* MenuSelectPlayerScene.swift */; };
+		57C08DD31BFA40BD003E4574 /* archercute.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DD21BFA40BD003E4574 /* archercute.png */; };
+		57C08DD51BFA40C9003E4574 /* monkey.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DD41BFA40C9003E4574 /* monkey.jpg */; };
+		57C08DD91BFA40E1003E4574 /* mushroom.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DD81BFA40E1003E4574 /* mushroom.png */; };
+		57C08DDB1BFA4591003E4574 /* wizardcute.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DDA1BFA4591003E4574 /* wizardcute.png */; };
 		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
 		EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */; };
@@ -309,6 +315,12 @@
 		57A558161BDEBB1C00A948DE /* idle11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = idle11.png; sourceTree = "<group>"; };
 		57C08DCA1BF4C56E003E4574 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		57C08DCC1BF4CDEC003E4574 /* candy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = candy.png; sourceTree = "<group>"; };
+		57C08DCE1BF4FCEC003E4574 /* MenuSelectPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSelectPlayer.swift; sourceTree = "<group>"; };
+		57C08DD01BF5191A003E4574 /* MenuSelectPlayerScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuSelectPlayerScene.swift; sourceTree = "<group>"; };
+		57C08DD21BFA40BD003E4574 /* archercute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = archercute.png; sourceTree = "<group>"; };
+		57C08DD41BFA40C9003E4574 /* monkey.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = monkey.jpg; sourceTree = "<group>"; };
+		57C08DD81BFA40E1003E4574 /* mushroom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mushroom.png; sourceTree = "<group>"; };
+		57C08DDA1BFA4591003E4574 /* wizardcute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wizardcute.png; sourceTree = "<group>"; };
 		67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		67A74CF91BE129CD00AF3B0E /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
 		EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AttackButton.png; sourceTree = "<group>"; };
@@ -603,6 +615,10 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57C08DD81BFA40E1003E4574 /* mushroom.png */,
+				57C08DDA1BFA4591003E4574 /* wizardcute.png */,
+				57C08DD41BFA40C9003E4574 /* monkey.jpg */,
+				57C08DD21BFA40BD003E4574 /* archercute.png */,
 				57190B721BF2620F00FFF38D /* 19.png */,
 				57190BC91BF3A3B300FFF38D /* SalamangIdlee1.png */,
 				57190BCA1BF3A3B300FFF38D /* SalamangIdlee2.png */,
@@ -726,6 +742,7 @@
 			isa = PBXGroup;
 			children = (
 				EB0EACB81BE3E39F00D93287 /* MainMenuLayer.swift */,
+				57C08DCE1BF4FCEC003E4574 /* MenuSelectPlayer.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -736,6 +753,7 @@
 				579B80601BE3FC150025B374 /* SpawnPointsLocation.swift */,
 				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
 				EB0EACB91BE3E39F00D93287 /* MenuScene.swift */,
+				57C08DD01BF5191A003E4574 /* MenuSelectPlayerScene.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1109,6 +1127,7 @@
 				57190B521BF12BED00FFF38D /* NeithHit3.png in Resources */,
 				57190BB91BF2689900FFF38D /* SalamangDeath1.png in Resources */,
 				57190B551BF12BED00FFF38D /* NeithIdle3.png in Resources */,
+				57C08DD51BFA40C9003E4574 /* monkey.jpg in Resources */,
 				EB0EACB51BE3E15600D93287 /* ForestScenery_5.png in Resources */,
 				576964FC1BE018B400CBB81D /* hit3.png in Resources */,
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
@@ -1117,6 +1136,7 @@
 				EB0EACBD1BE3E39F00D93287 /* configurationButton.png in Resources */,
 				57190B981BF2636D00FFF38D /* SalamangRun7.png in Resources */,
 				57190B7C1BF2620F00FFF38D /* 19.png in Resources */,
+				57C08DDB1BFA4591003E4574 /* wizardcute.png in Resources */,
 				57190BC71BF2689900FFF38D /* SalamangSpecialAttack2.png in Resources */,
 				57190BB71BF2689900FFF38D /* SalamangAttack1.png in Resources */,
 				57190B931BF2636D00FFF38D /* SalamangRun2.png in Resources */,
@@ -1149,8 +1169,10 @@
 				57190BBA1BF2689900FFF38D /* SalamangDeath2.png in Resources */,
 				576964FB1BE018B400CBB81D /* hit2.png in Resources */,
 				EBD88B221BF02EE2000353A5 /* ForestSceneryPlatformLeft.png in Resources */,
+				57C08DD91BFA40E1003E4574 /* mushroom.png in Resources */,
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
 				57C08DCB1BF4C56E003E4574 /* arrow.png in Resources */,
+				57C08DD31BFA40BD003E4574 /* archercute.png in Resources */,
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
 				57190B541BF12BED00FFF38D /* NeithIdle2.png in Resources */,
@@ -1223,11 +1245,13 @@
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
 				579B80611BE3FC150025B374 /* SpawnPointsLocation.swift in Sources */,
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
+				57C08DCF1BF4FCEC003E4574 /* MenuSelectPlayer.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
 				EB90579E1BD56F9000536AD1 /* VulcanScenery.swift in Sources */,
 				57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */,
 				EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */,
 				EB1214B81BD95CB000D0552F /* MFCSCommandView.swift in Sources */,
+				57C08DD11BF5191A003E4574 /* MenuSelectPlayerScene.swift in Sources */,
 				EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */,
 				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
 				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,

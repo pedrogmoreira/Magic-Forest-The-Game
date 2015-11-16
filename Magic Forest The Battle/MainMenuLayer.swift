@@ -128,7 +128,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         let nodeName = nodeTouched.name
         
         if nodeName == "playButton" {
-            self.startGame()
+			self.selectPlayer()
+           // self.startGame()
             self.removeGesturesFromLayer()
         } else if nodeName == "configurationButton" {
             print("configurationButton touched")
@@ -146,6 +147,10 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             print("historyButton touched")
         }
     }
+	private func selectPlayer () {
+		let sceneSelectPlayer = MenuSelectPlayerScene(size: size!)
+		self.view?.presentScene(sceneSelectPlayer)
+	}
     
     // TODO: Refactor star game method.
     private func startGame() {
