@@ -30,6 +30,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     override func didMoveToView(view: SKView) {
         self.gameLayer = GameLayer(size: size)
         self.gameLayer?.zPosition = -5
+        self.gameLayer?.networkingEngine = self.networkingEngine
         
         self.backgroundLayer = ForestScenery(size: size)
         self.backgroundLayer?.zPosition = -10

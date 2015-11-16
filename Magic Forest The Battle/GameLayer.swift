@@ -13,6 +13,9 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	var player: Player?
 	var spawnPoints = NSMutableArray()
     
+    // Multiplayer variables
+    var networkingEngine: MultiplayerNetworking?
+    
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size

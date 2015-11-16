@@ -56,7 +56,7 @@ struct MessageGameOver {
 
 struct MessageString {
     let message: Message
-    let text: String
+    let text: Int
 }
 
 class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
@@ -283,7 +283,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 
     // Send to all devices a message of type MessageString
     func sendString() {
-        var message = MessageString(message: Message(messageType: MessageType.String), text: "Oi cueio")
+        var message = MessageString(message: Message(messageType: MessageType.String), text: 2)
         
         let data = NSData(bytes: &message, length: sizeof(MessageString))
         sendData(data)
