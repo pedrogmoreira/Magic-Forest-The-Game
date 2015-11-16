@@ -29,6 +29,9 @@ class Uhong: Player {
 		self.regEnergy = 10
 		self.regEnergy = 1
 		self.getDownForce = -50_000
+		//self.anchorPoint = CGPointMake(self.anchorPoint.x, self.anchorPoint.y-0.25)
+		
+		self.setScale(4)
 		
 		//initializeAnimations()
 	}
@@ -37,7 +40,7 @@ class Uhong: Player {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	override func generatePhysicsBody() -> SKPhysicsBody {
-		let physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
+		let physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.size.width/2, self.size.height/2), center: CGPointMake(0, -self.size.height/4))
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
@@ -62,7 +65,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func idle () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(loadAnimation("idle", endIndex: 11, timePerFrame: 0.2))
+		let repeateForever = SKAction.repeatActionForever(loadAnimation("CogumeloParado", endIndex: 10, timePerFrame: 0.08))
 		return repeateForever
 	}
 	
@@ -71,7 +74,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func run () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("corre",endIndex: 8, timePerFrame: 0.2))
+		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("CogumeloAndando",endIndex: 10, timePerFrame: 0.08))
 		return repeateForever
 	}
 	
@@ -80,7 +83,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func hit () -> SKAction {
-		return self.loadAnimation("hit", endIndex: 3, timePerFrame: 0.2)
+		return self.loadAnimation("CogumeloHit", endIndex: 1, timePerFrame: 0.08)
 	}
 	
 	/**
@@ -89,7 +92,7 @@ class Uhong: Player {
 	*/
 	override func jump () -> SKAction {
 		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5))
-		return self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5)
+		return self.loadAnimation("CogumeloSubindo", endIndex: 1, timePerFrame: 0.08)
 	}
 	
 	/**
@@ -97,7 +100,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func falling () -> SKAction {
-		return self.loadAnimation("falling", endIndex: 3, timePerFrame: 0.3)
+		return self.loadAnimation("CogumeloSubindodescendo", endIndex: 2, timePerFrame: 0.08)
 	}
 	
 	/**
@@ -105,7 +108,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func attack () -> SKAction {
-		return self.loadAnimation("Attack", endIndex: 3, timePerFrame: 0.1)
+		return self.loadAnimation("CogumeloAtaque", endIndex: 10, timePerFrame: 0.03)
 	}
 	
 	/**
@@ -113,7 +116,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func specialAttack() -> SKAction {
-		return self.loadAnimation("SpecialAttack", endIndex: 2, timePerFrame: 0.3)
+		return self.loadAnimation("CogumeloEspecial", endIndex: 10, timePerFrame: 0.03)
 	}
 	
 	/**
@@ -121,7 +124,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func death() -> SKAction {
-		return self.loadAnimation("Death", endIndex: 3, timePerFrame: 0.5)
+		return self.loadAnimation("CogumeloHit", endIndex: 1, timePerFrame: 0.08)
 	}
 
 }
