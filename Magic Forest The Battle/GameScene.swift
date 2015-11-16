@@ -8,11 +8,15 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	
 	var backgroundLayer: BackgroundLayer?
 	var gameLayer: GameLayer?
     var playerCamera: SKCameraNode?
+    
+    // Multiplayer variables
+    var networkingEngine: MultiplayerNetworking?
+    var currentIndex: Int?
 	
 	/**
 	Initializes the game scene
@@ -100,5 +104,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didFinishUpdate() {
         self.cameraPositionYAxis()
         self.cameraPositionXAxis()
+    }
+    
+    // Called when the match has ended
+    func matchEnded() {
+        
+    }
+    
+    func startGame() {
+        
+    }
+    
+    // Set the player index
+    func setCurrentPlayerIndex(index: Int) {
+        currentIndex = index
     }
 }

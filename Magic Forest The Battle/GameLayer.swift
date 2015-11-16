@@ -8,15 +8,10 @@
 
 import SpriteKit
 
-class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate, MultiplayerProtocol {
+class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 	var player: Player?
 	var spawnPoints = NSMutableArray()
-    
-    // Multiplayer variables
-    var networkingEngine: MultiplayerNetworking?
-    var currentIndex: Int?
-
     
 	/**
 	Initializes the game layer
@@ -58,7 +53,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate, MultiplayerProtocol
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
 			self.player?.isAttacking = true
-            
+            networkingEngine?.sendString()
 		} else if command == MFCSCommandType.SpecialAttack {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
@@ -95,18 +90,4 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate, MultiplayerProtocol
 			self.addChild(spawnPoint)
 		}
 	}
-	
-    // Called when the match has ended
-    func matchEnded() {
-        
-    }
-    
-    func startGame() {
-        
-    }
-    
-    // Set the player index
-    func setCurrentPlayerIndex(index: Int) {
-        currentIndex = index
-    }
 }

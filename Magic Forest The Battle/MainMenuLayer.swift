@@ -120,9 +120,9 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         
         self.networkingEngine = MultiplayerNetworking()
         
-        networkingEngine!.delegate = gameScene?.gameLayer
+        networkingEngine!.delegate = gameScene
         networkingEngine!.startGameDelegate = self
-        gameScene!.gameLayer!.networkingEngine = networkingEngine
+        gameScene!.networkingEngine = networkingEngine
 
         GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController, delegate: networkingEngine!)
     }
