@@ -49,7 +49,7 @@ class Player: SKSpriteNode, GameObject {
 	required init(position: CGPoint, screenSize: CGSize) {
         let playerTexture = SKTexture(imageNamed: "sonic")
         
-		super.init(texture: playerTexture, color: UIColor.blackColor(), size: CGSize(width: 50, height: 100))
+		super.init(texture: playerTexture, color: UIColor.blackColor(), size: playerTexture.size())
 		
 		self.position = position
 		self.resize(screenSize)
