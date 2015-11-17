@@ -29,9 +29,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	}
     
     override func didMoveToView(view: SKView) {
-        self.gameLayer = GameLayer(size: size)
+        self.gameLayer = GameLayer(size: size, networkingEngine:  self.networkingEngine!)
         self.gameLayer?.zPosition = -5
-        self.gameLayer?.networkingEngine = self.networkingEngine
 //        self.networkingEngine?.createPlayers()
         
         self.backgroundLayer = ForestScenery(size: size)
@@ -105,8 +104,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     }
     
     override func didFinishUpdate() {
-        self.cameraPositionYAxis()
-        self.cameraPositionXAxis()
+		if self.gameLayer?.hasLoadedGame == true {
+			self.cameraPositionYAxis()
+			self.cameraPositionXAxis()
+		}
     }
     
     // Called when the match has ended
@@ -122,8 +123,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
         self.gameLayer?.attack()
     }
     
-    func createPlayer() {
-        self.players.append(self.gameLayer!.createPlayer())
+	func createPlayer(indexes: [Int]) {
+		print("create players")
+        self.gameLayer?.createPlayer(indexes)
     }
     
     

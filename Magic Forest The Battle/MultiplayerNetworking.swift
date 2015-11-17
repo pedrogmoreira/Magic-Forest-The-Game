@@ -14,8 +14,8 @@ protocol MultiplayerProtocol {
     func setCurrentPlayerIndex(index: Int)
     func matchEnded()
     func attack()
-//    func createPlayer()
-    
+	func createPlayer(indexes: [Int])
+	
 //    var gameLayer: GameLayer? {get set}
 //    var players: [Player] {get set}
 }
@@ -28,82 +28,6 @@ protocol StartGameProtocol {
 enum GameState: Int {
     case WaintingForMatch, WaintingForRandomNumber, WaitingForStart, Playing, Done
 }
-
-// Define the types of menssages
-// Each structure represents a type of message the game will send to the other device
-enum MessageType: Int {
-    case RandomNumber, GameBegin, GameOver, Move, String, Attack, Players
-}
-
-struct Message {
-    let messageType: MessageType
-}
-
-
-struct MessageMove {
-    let message: Message
-    let dx: Float
-    let dy: Float
-}
-struct MessageRandomNumber {
-    let message: Message
-    let randomNumber: UInt32
-}
-
-struct MessageGameBegin {
-    let message: Message
-}
-
-struct MessageGameOver {
-    let message: Message
-}
-
-
-struct MessageString {
-    let message = MessageType.String
-    let text: String
-    
-    struct ArchivedPacket {
-        let message = MessageType.String
-        var textLength: Int64
-    }
-    
-    func archive() -> NSData {
-        var archivedPacket = ArchivedPacket(textLength: Int64(self.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-        
-        let metadata = NSData(bytes: &archivedPacket, length: sizeof(ArchivedPacket))
-        let archivedData = NSMutableData(data: metadata)
-        archivedData.appendData(text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
-        return archivedData
-    }
-    
-    static func unarchive(data: NSData!) -> MessageString {
-        var archivedPacket = ArchivedPacket(textLength: 0)
-        let archivedStructLength = sizeof(ArchivedPacket)
-        
-        let archivedData = data.subdataWithRange(NSMakeRange(0, archivedStructLength))
-        archivedData.getBytes(&archivedPacket, length: archivedStructLength)
-        
-        let textRange = NSMakeRange(archivedStructLength, Int(archivedPacket.textLength))
-        let textData = data.subdataWithRange(textRange)
-        
-        let text = String(data: textData, encoding: NSUTF8StringEncoding)
-        
-        let messageString = MessageString(text: text!)
-        
-        return messageString
-    }
-}
-
-struct MessageAttack {
-    let message: Message
-}
-
-struct MessagePlayers {
-    let message: Message
-    var players: [Player]
-}
-
 
 class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     var delegate: MultiplayerProtocol?
@@ -226,7 +150,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
                 tryStartGame()
             }
         } else if message.messageType == MessageType.GameBegin {
-            
+			
             if let localPlayerIndex = indexForLocalPlayer() {
                 delegate?.setCurrentPlayerIndex(localPlayerIndex)
             }
@@ -243,7 +167,12 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             print(messageString.text)
         } else if message.messageType == MessageType.Attack && isPlayer1 {
             delegate?.attack()
-        }
+		} else if message.messageType == MessageType.StartGameProperties {
+			let messageStartGameProperties = MessageStartGameProperties.unarchive(data)
+			let indexes = NSKeyedUnarchiver.unarchiveObjectWithData(messageStartGameProperties.spawnPointsIndexes!) as! [Int]
+			delegate?.createPlayer(indexes)
+			print(indexes)
+		}
 //        } else if message.messageType == MessageType.Players {
 //            let messagePlayers = UnsafePointer<MessagePlayers>(data.bytes).memory
 //            
@@ -257,6 +186,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             sendBeginGame()
             delegate?.setCurrentPlayerIndex(0)
             startGameDelegate?.startGame()
+//			sendStartGameProperties()
         }
     }
     
@@ -349,6 +279,15 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageAttack))
         sendData(data)
     }
+	
+	func sendStartGameProperties(indexes: [Int]) {
+		let indexesData = NSKeyedArchiver.archivedDataWithRootObject(indexes)
+		
+		let msg = MessageStartGameProperties(spawnPointsIndexes: indexesData)
+		let msgData = msg.archive()
+		print("sending")
+		sendData(msgData)
+	}
     
 //    func createPlayers() {
 //        if isPlayer1 {

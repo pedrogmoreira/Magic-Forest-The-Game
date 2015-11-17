@@ -8,11 +8,14 @@
 
 import SpriteKit
 
-class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
+class GameLayer: SKNode, MFCSControllerDelegate {
 
 	var player: Player!
+	var players = [Player]()
+	var currentIndex: Int!
 	var spawnPoints = NSMutableArray()
     var size: CGSize?
+	var hasLoadedGame: Bool
     
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
@@ -21,13 +24,21 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
 	*/
-	required init(size: CGSize) {
+	required init(size: CGSize, networkingEngine: MultiplayerNetworking) {
+		self.hasLoadedGame = false
 		super.init()
+		
         self.size = size
+		self.networkingEngine = networkingEngine
 		self.spawnPointGenerator()
-        
-        self.player = self.createPlayer()
-        self.addChild(self.player)
+		self.currentIndex = networkingEngine.indexForLocalPlayer()
+		
+		if self.networkingEngine?.isPlayer1 == true {
+			print("sou player 1, gerar spawnpoints")
+			createPlayer()
+			addPLayers()
+			self.hasLoadedGame = true
+		}
         
 	}
 
@@ -35,22 +46,60 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func createPlayer() -> Player {
-		var currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
-		
-		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
-			currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
+	func createPlayer() {
+		let playersCount: Int = (GameKitHelper.sharedInstance.multiplayerMatch?.players.count)!
+		var spawnPointIndexes = [Int]()
+
+		for _ in 0...playersCount {
+			var index = Int.randomWithInt(0...8)
+			var currentSpawnPoint = spawnPoints.objectAtIndex(index)
+			
+			while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
+				index = Int.randomWithInt(0...8)
+				currentSpawnPoint = spawnPoints.objectAtIndex(index)
+			}
+			
+			(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
+			
+			let player = Uhong(position: currentSpawnPoint.position, screenSize: self.size!)
+			players.append(player)
+			spawnPointIndexes.append(index)
 		}
 		
-		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
+		print(spawnPointIndexes)
+		networkingEngine?.sendStartGameProperties(spawnPointIndexes)
 		
-		let player = Uhong(position: currentSpawnPoint.position, screenSize: self.size!)
-		return player
+	}
+	
+	func createPlayer(indexes: [Int]) {
+		for index in 0...indexes.count - 1 {
+			let currentSpawnPoint = spawnPoints.objectAtIndex(indexes[index])
+
+			(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
+			
+			let player = Uhong(position: currentSpawnPoint.position, screenSize: self.size!)
+			players.append(player)
+		}
+		
+		addPLayers()
+		self.hasLoadedGame = true
+	}
+	
+	func addPLayers() {
+		for index in 0...players.count - 1 {
+			if index == self.currentIndex {
+				self.player = self.players[index]
+			}
+			
+			self.addChild(players[index])
+		}
 	}
 	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
-		self.player?.update(currentTime)
+		for player in self.players {
+			player.update(currentTime)
+		}
 	}
 	
 	

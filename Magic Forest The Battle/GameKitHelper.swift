@@ -36,7 +36,6 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     override init(){
         multiplayerMatchStarted = false
         gameCenterEnabled = true
-
         super.init()
     }
     
@@ -134,6 +133,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     func matchmakerViewController(viewController: GKMatchmakerViewController, didFindMatch match: GKMatch) {
         presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
         multiplayerMatch = match
+		print("players: \(match.players), count: \(match.players.count)")
         multiplayerMatch!.delegate = self
         
         if !multiplayerMatchStarted && multiplayerMatch?.expectedPlayerCount == 0 {

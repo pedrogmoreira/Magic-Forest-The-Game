@@ -80,6 +80,7 @@
 		EB1214BA1BD95CB000D0552F /* MFCSControllerMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */; };
 		EB1214BB1BD95CB000D0552F /* MFCSControlUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */; };
 		EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */; };
+		EB3D52BF1BFB91BC0074CACF /* NetworkingStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D52BE1BFB91BC0074CACF /* NetworkingStructs.swift */; };
 		EB3E77081BE1647300103DEC /* ForestScenery_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77001BE1647300103DEC /* ForestScenery_1.png */; };
 		EB3E770A1BE1647300103DEC /* ForestScenery_3.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77021BE1647300103DEC /* ForestScenery_3.png */; };
 		EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057591BD55CF200536AD1 /* AppDelegate.swift */; };
@@ -198,6 +199,7 @@
 		EB1214B11BD95CB000D0552F /* MFCSControllerMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControllerMode.swift; sourceTree = "<group>"; };
 		EB1214B21BD95CB000D0552F /* MFCSControlUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSControlUnit.swift; sourceTree = "<group>"; };
 		EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSMovementView.swift; sourceTree = "<group>"; };
+		EB3D52BE1BFB91BC0074CACF /* NetworkingStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingStructs.swift; sourceTree = "<group>"; };
 		EB3E77001BE1647300103DEC /* ForestScenery_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_1.png; sourceTree = "<group>"; };
 		EB3E77021BE1647300103DEC /* ForestScenery_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_3.png; sourceTree = "<group>"; };
 		EB9057561BD55CF200536AD1 /* Magic Forest The Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Forest The Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,6 +284,7 @@
 			children = (
 				673695441BF2509D00D932E3 /* GameKitHelper.swift */,
 				67AA9CAD1BF3B5B900A86AA9 /* MultiplayerNetworking.swift */,
+				EB3D52BE1BFB91BC0074CACF /* NetworkingStructs.swift */,
 			);
 			name = GameKit;
 			sourceTree = "<group>";
@@ -810,6 +813,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB3D52BF1BFB91BC0074CACF /* NetworkingStructs.swift in Sources */,
 				EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */,
 				EB0EACC01BE3E39F00D93287 /* MenuScene.swift in Sources */,
 				EB0EACBF1BE3E39F00D93287 /* MainMenuLayer.swift in Sources */,

@@ -45,7 +45,7 @@ class Player: SKSpriteNode, GameObject {
 	- parameter position: The point where the player will apear
 	*/
 	required init(position: CGPoint, screenSize: CGSize) {
-        let playerTexture = SKTexture(imageNamed: "sonic")
+        let playerTexture = SKTexture(imageNamed: "idle1")
         
 		super.init(texture: playerTexture, color: UIColor.blackColor(), size: CGSize(width: 50, height: 100))
 		
