@@ -10,8 +10,9 @@ import SpriteKit
 
 class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
-	var player: Player?
+	var player: Player!
 	var spawnPoints = NSMutableArray()
+    var size: CGSize?
     
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
@@ -22,18 +23,19 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	*/
 	required init(size: CGSize) {
 		super.init()
-
+        self.size = size
 		self.spawnPointGenerator()
         
+        self.player = self.createPlayer()
+        self.addChild(self.player)
         
-        self.createPlayer(size)
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func createPlayer(size: CGSize) {
+	func createPlayer() -> Player {
 		var currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
 		
 		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
@@ -42,8 +44,8 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
 		
-		self.player = Uhong(position: currentSpawnPoint.position, screenSize: size)
-		self.addChild(self.player!)
+		let player = Uhong(position: currentSpawnPoint.position, screenSize: self.size!)
+		return player
 	}
 	
 	func update(currentTime: CFTimeInterval) {
@@ -93,4 +95,9 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 			self.addChild(spawnPoint)
 		}
 	}
+    
+    func attack() {
+        print("Ataque de outro device")
+        self.player?.isAttacking = true
+    }
 }

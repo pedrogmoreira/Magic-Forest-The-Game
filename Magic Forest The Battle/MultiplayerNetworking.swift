@@ -13,6 +13,11 @@ import GameKit
 protocol MultiplayerProtocol {
     func setCurrentPlayerIndex(index: Int)
     func matchEnded()
+    func attack()
+//    func createPlayer()
+    
+//    var gameLayer: GameLayer? {get set}
+//    var players: [Player] {get set}
 }
 
 protocol StartGameProtocol {
@@ -27,7 +32,7 @@ enum GameState: Int {
 // Define the types of menssages
 // Each structure represents a type of message the game will send to the other device
 enum MessageType: Int {
-    case RandomNumber, GameBegin, GameOver, Move, String
+    case RandomNumber, GameBegin, GameOver, Move, String, Attack, Players
 }
 
 struct Message {
@@ -55,9 +60,50 @@ struct MessageGameOver {
 
 
 struct MessageString {
-    let message: Message
-    let text: Int
+    let message = MessageType.String
+    let text: String
+    
+    struct ArchivedPacket {
+        let message = MessageType.String
+        var textLength: Int64
+    }
+    
+    func archive() -> NSData {
+        var archivedPacket = ArchivedPacket(textLength: Int64(self.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
+        
+        let metadata = NSData(bytes: &archivedPacket, length: sizeof(ArchivedPacket))
+        let archivedData = NSMutableData(data: metadata)
+        archivedData.appendData(text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
+        return archivedData
+    }
+    
+    static func unarchive(data: NSData!) -> MessageString {
+        var archivedPacket = ArchivedPacket(textLength: 0)
+        let archivedStructLength = sizeof(ArchivedPacket)
+        
+        let archivedData = data.subdataWithRange(NSMakeRange(0, archivedStructLength))
+        archivedData.getBytes(&archivedPacket, length: archivedStructLength)
+        
+        let textRange = NSMakeRange(archivedStructLength, Int(archivedPacket.textLength))
+        let textData = data.subdataWithRange(textRange)
+        
+        let text = String(data: textData, encoding: NSUTF8StringEncoding)
+        
+        let messageString = MessageString(text: text!)
+        
+        return messageString
+    }
 }
+
+struct MessageAttack {
+    let message: Message
+}
+
+struct MessagePlayers {
+    let message: Message
+    var players: [Player]
+}
+
 
 class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     var delegate: MultiplayerProtocol?
@@ -192,10 +238,17 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             
             print("Dx: \(messageMove.dx) Dy: \(messageMove.dy)")
         } else if message.messageType == MessageType.String {
-            let messageString = UnsafePointer<MessageString>(data.bytes).memory
+            let messageString = MessageString.unarchive(data)
             
-            print(messageString.text);
+            print(messageString.text)
+        } else if message.messageType == MessageType.Attack && isPlayer1 {
+            delegate?.attack()
         }
+//        } else if message.messageType == MessageType.Players {
+//            let messagePlayers = UnsafePointer<MessagePlayers>(data.bytes).memory
+//            
+//            delegate?.gameLayer?.player = messagePlayers.players.first!
+//        }
     }
     
     func tryStartGame() {
@@ -283,9 +336,34 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 
     // Send to all devices a message of type MessageString
     func sendString() {
-        var message = MessageString(message: Message(messageType: MessageType.String), text: 2)
+        let message = MessageString(text: "Oi cueio")
+        let messageStringData = message.archive()
         
-        let data = NSData(bytes: &message, length: sizeof(MessageString))
+        sendData(messageStringData)
+    }
+    
+    // Send to all devices a message of type MessageAttack
+    func sendAttack() {
+        var message = MessageAttack(message: Message(messageType: MessageType.Attack))
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageAttack))
         sendData(data)
     }
+    
+//    func createPlayers() {
+//        if isPlayer1 {
+//            self.delegate?.createPlayer()
+//            
+//            delegate?.gameLayer?.player = delegate?.players.first
+//            
+//            self.sendPlayers()
+//        }
+//    }
+//    
+//    func sendPlayers() {
+//        var message = MessagePlayers(message: Message(messageType: MessageType.Players), players: delegate!.players)
+//        
+//        let data = NSData(bytes: &message, length: sizeof(MessagePlayers))
+//        sendData(data)
+//    }
 }

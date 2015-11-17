@@ -17,6 +17,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
     var currentIndex: Int?
+    var players = [Player]()
 	
 	/**
 	Initializes the game scene
@@ -31,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
         self.gameLayer = GameLayer(size: size)
         self.gameLayer?.zPosition = -5
         self.gameLayer?.networkingEngine = self.networkingEngine
+//        self.networkingEngine?.createPlayers()
         
         self.backgroundLayer = ForestScenery(size: size)
         self.backgroundLayer?.zPosition = -10
@@ -115,6 +117,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     func startGame() {
         
     }
+    
+    func attack() {
+        self.gameLayer?.attack()
+    }
+    
+    func createPlayer() {
+        self.players.append(self.gameLayer!.createPlayer())
+    }
+    
     
     // Set the player index
     func setCurrentPlayerIndex(index: Int) {
