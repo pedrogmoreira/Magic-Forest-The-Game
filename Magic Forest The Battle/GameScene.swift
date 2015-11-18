@@ -11,6 +11,7 @@ import SpriteKit
 class GameScene: SKScene, SKPhysicsContactDelegate {
 	
 	var backgroundLayer: BackgroundLayer?
+	var hudLayer: HudLayer?
 	var gameLayer: GameLayer?
     var playerCamera: SKCameraNode?
 	
@@ -21,11 +22,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	override init(size: CGSize) {
 		super.init(size: size)
 		
+		self.hudLayer = HudLayer(size: size)
+		self.hudLayer?.zPosition = 1000
+		
 		self.gameLayer = GameLayer(size: size)
 		self.gameLayer?.zPosition = -5
 		
 		self.backgroundLayer = ForestScenery(size: size)
 		self.backgroundLayer?.zPosition = -10
+		
 		
 		self.addChild(self.gameLayer!)
 		self.addChild(self.backgroundLayer!)
@@ -34,8 +39,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
         
         self.initializeCamera()
+		
+		self.addChild(self.playerCamera!)
+		self.playerCamera?.addChild(hudLayer!)
 	}
-    
+	
     private func initializeCamera(){
         self.playerCamera = SKCameraNode()
 		

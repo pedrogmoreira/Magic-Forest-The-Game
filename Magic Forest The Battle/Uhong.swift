@@ -16,7 +16,9 @@ class Uhong: Player {
 		self.position = position
 	
 		self.life = 1_500
+		self.currentLife = 1_500
 		self.energy = 100
+		self.currentEnergy = 100
 		self.attackDamage = 100
 		self.specialDamage = 200
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
@@ -74,7 +76,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func run () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("CogumeloAndando",endIndex: 10, timePerFrame: 0.08))
+		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("CogumeloAndando",endIndex: 10, timePerFrame: 0.1))
 		return repeateForever
 	}
 	

@@ -12,7 +12,9 @@ class Player: SKSpriteNode, GameObject {
 	
 	// Player properties
 	var life: CGFloat?
+	var currentLife: CGFloat?
 	var energy: CGFloat?
+	var currentEnergy: CGFloat?
 	var attackDamage: CGFloat?
 	var specialDamage: CGFloat?
 	var movementVelocity: CGVector?
