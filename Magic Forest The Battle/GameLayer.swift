@@ -39,7 +39,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			addPLayers()
 			self.hasLoadedGame = true
 		}
-        
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -109,7 +108,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.player?.isAttacking = true
 		} else if command == MFCSCommandType.SpecialAttack {
 			self.player?.isSpecialAttacking = true
-				print("Special Attack")
+            self.networkingEngine?.sendSpecialAttack()
 		} else if command == MFCSCommandType.Jump {
             self.networkingEngine?.sendJump()
             self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
@@ -171,6 +170,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Perform get down with an specific player
     func performGetDownWithPlayer(player: Player) {
         player.getDownOneFloor()
+    }
+    
+    // Perform special attack with an specific player
+    func performSpecialWithPlayer(player: Player) {
+        player.isSpecialAttacking = true
     }
 }
 
