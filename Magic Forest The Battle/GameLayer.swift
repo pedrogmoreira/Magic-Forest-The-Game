@@ -115,6 +115,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 		} else if command == MFCSCommandType.GetDown {
 			self.player?.getDownOneFloor()
+            self.networkingEngine?.sendGetDown()
 		}
 	}
 	
@@ -165,6 +166,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Perform an attack with an specific player
     func performAttackWithPlayer(player: Player) {
         player.isAttacking = true
+    }
+    
+    // Perform get down with an specific player
+    func performGetDownWithPlayer(player: Player) {
+        player.getDownOneFloor()
     }
 }
 

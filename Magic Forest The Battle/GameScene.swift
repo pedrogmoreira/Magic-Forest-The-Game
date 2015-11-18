@@ -142,8 +142,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
         self.gameLayer?.performAttackWithPlayer(player)
     }
     
+    // Get down in all devices
+    func performGetDown(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performGetDownWithPlayer(player)
+    }
+    
     // Set the player index
     func setCurrentPlayerIndex(index: Int) {
         currentIndex = index
     }
+    
 }

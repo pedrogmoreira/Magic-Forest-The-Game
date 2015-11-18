@@ -14,7 +14,8 @@ protocol MultiplayerProtocol {
     func setCurrentPlayerIndex(index: Int)
     func matchEnded()
     func attack(indext: Int)
-    func performJump (index: Int)
+    func performJump(index: Int)
+    func performGetDown(index: Int)
 	func createPlayer(indexes: [Int])
     func movePlayer(index: Int, dx: Float, dy: Float)
 
@@ -180,6 +181,8 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         } else if message.messageType == MessageType.Jump {
             
             delegate?.performJump(indexForPlayer(player.playerID!)!)
+        } else if message.messageType == MessageType.GetDown {
+            delegate?.performGetDown(indexForPlayer(player.playerID!)!)
         }
     }
     
@@ -297,6 +300,14 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         var message = MessageMove(dx: dx, dy: dy)
         
         let data = NSData(bytes: &message, length: sizeof(MessageMove))
+        sendData(data)
+    }
+    
+    // Send to all devices a message of type MessageGetDown
+    func sendGetDown() {
+        var message = MessageGetDown()
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageGetDown))
         sendData(data)
     }
 
