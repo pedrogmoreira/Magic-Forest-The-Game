@@ -17,7 +17,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
     var currentIndex: Int?
-    var players = [Player]()
 	
 	/**
 	Initializes the game scene
@@ -119,15 +118,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
         
     }
     
-    func attack() {
-        self.gameLayer?.attack()
-    }
     
 	func createPlayer(indexes: [Int]) {
 		print("create players")
         self.gameLayer?.createPlayer(indexes)
     }
     
+    // Perform a jump in all devices
+    func performJump (index: Int) {
+        let player = gameLayer!.players[index] as Player
+        gameLayer?.performJumpWithPlayer(player)
+    }
+    
+    // Move the player in all devices
+    func movePlayer(index: Int, dx: Float, dy: Float) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.movePlayer(player, dx: dx, dy: dy)
+    }
+    
+    // Attack in all devices
+    func attack(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performAttackWithPlayer(player)
+    }
     
     // Set the player index
     func setCurrentPlayerIndex(index: Int) {

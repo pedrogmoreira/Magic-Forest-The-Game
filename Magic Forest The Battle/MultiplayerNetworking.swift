@@ -13,8 +13,11 @@ import GameKit
 protocol MultiplayerProtocol {
     func setCurrentPlayerIndex(index: Int)
     func matchEnded()
-    func attack()
+    func attack(indext: Int)
+    func performJump (index: Int)
 	func createPlayer(indexes: [Int])
+    func movePlayer(index: Int, dx: Float, dy: Float)
+
 	
 //    var gameLayer: GameLayer? {get set}
 //    var players: [Player] {get set}
@@ -158,26 +161,26 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             startGameDelegate?.startGame()
             gameState = GameState.Playing
         } else if message.messageType == MessageType.Move {
+            
             let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
-            
-            print("Dx: \(messageMove.dx) Dy: \(messageMove.dy)")
+            delegate?.movePlayer(indexForPlayer(player.playerID!)!, dx: messageMove.dx, dy: messageMove.dy)
         } else if message.messageType == MessageType.String {
-            let messageString = MessageString.unarchive(data)
             
+            let messageString = MessageString.unarchive(data)
             print(messageString.text)
-        } else if message.messageType == MessageType.Attack && isPlayer1 {
-            delegate?.attack()
+        } else if message.messageType == MessageType.Attack {
+            
+            delegate?.attack(indexForPlayer(player.playerID!)!)
 		} else if message.messageType == MessageType.StartGameProperties {
+            
 			let messageStartGameProperties = MessageStartGameProperties.unarchive(data)
 			let indexes = NSKeyedUnarchiver.unarchiveObjectWithData(messageStartGameProperties.spawnPointsIndexes!) as! [Int]
 			delegate?.createPlayer(indexes)
 			print(indexes)
-		}
-//        } else if message.messageType == MessageType.Players {
-//            let messagePlayers = UnsafePointer<MessagePlayers>(data.bytes).memory
-//            
-//            delegate?.gameLayer?.player = messagePlayers.players.first!
-//        }
+        } else if message.messageType == MessageType.Jump {
+            
+            delegate?.performJump(indexForPlayer(player.playerID!)!)
+        }
     }
     
     func tryStartGame() {
@@ -279,6 +282,24 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageAttack))
         sendData(data)
     }
+    
+    // Send to all devices a message of type MessageJump
+    func sendJump() {
+        var message = MessageJump()
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageJump))
+        sendData(data)
+    }
+    
+    // Send to all devices a message of type MessageMove
+    func sendMove(dx: Float, dy: Float) {
+        
+        var message = MessageMove(dx: dx, dy: dy)
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageMove))
+        sendData(data)
+    }
+
 	
 	func sendStartGameProperties(indexes: [Int]) {
 		let indexesData = NSKeyedArchiver.archivedDataWithRootObject(indexes)
@@ -289,20 +310,4 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 		sendData(msgData)
 	}
     
-//    func createPlayers() {
-//        if isPlayer1 {
-//            self.delegate?.createPlayer()
-//            
-//            delegate?.gameLayer?.player = delegate?.players.first
-//            
-//            self.sendPlayers()
-//        }
-//    }
-//    
-//    func sendPlayers() {
-//        var message = MessagePlayers(message: Message(messageType: MessageType.Players), players: delegate!.players)
-//        
-//        let data = NSData(bytes: &message, length: sizeof(MessagePlayers))
-//        sendData(data)
-//    }
 }

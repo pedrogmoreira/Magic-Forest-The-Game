@@ -68,7 +68,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		
 		print(spawnPointIndexes)
 		networkingEngine?.sendStartGameProperties(spawnPointIndexes)
-		
 	}
 	
 	func createPlayer(indexes: [Int]) {
@@ -106,14 +105,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
+            networkingEngine?.sendAttack()
 			self.player?.isAttacking = true
-            networkingEngine?.sendString()
 		} else if command == MFCSCommandType.SpecialAttack {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
 		} else if command == MFCSCommandType.Jump {
-			self.player?.isJumping = true
-			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+            self.networkingEngine?.sendJump()
+            self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 		} else if command == MFCSCommandType.GetDown {
 			self.player?.getDownOneFloor()
 		}
@@ -121,7 +120,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func analogUpdate(relativePosition position: CGPoint) {
 		self.setFlip(position)
-
+        
+        networkingEngine?.sendMove(Float(position.x), dy: Float(position.y))
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
 	
@@ -149,4 +149,22 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         print("Ataque de outro device")
         self.player?.isAttacking = true
     }
+
+    // Perform a jump with an specific player
+    func performJumpWithPlayer(player: Player) {
+        player.isJumping = true
+        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+    }
+    
+    // Move a specific player
+    func movePlayer(player: Player, dx: Float, dy: Float) {
+        let movementVelocity = CGVector(dx: CGFloat(dx), dy: CGFloat(dy))
+        player.movementVelocity = movementVelocity
+    }
+    
+    // Perform an attack with an specific player
+    func performAttackWithPlayer(player: Player) {
+        player.isAttacking = true
+    }
 }
+
