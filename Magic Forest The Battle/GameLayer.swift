@@ -12,6 +12,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 
 	var player: Player!
 	var players = [Player]()
+	var spawnPointIndexes = [Int]()
+	var chosenCharacters = [Int]()
 	var currentIndex: Int!
 	var spawnPoints = NSMutableArray()
     var size: CGSize?
@@ -24,22 +26,22 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
 	*/
-	required init(size: CGSize, networkingEngine: MultiplayerNetworking) {
+	required init(size: CGSize, networkingEngine: MultiplayerNetworking, chosenCharacters: [Int]) {
 		self.hasLoadedGame = false
 		super.init()
 		
         self.size = size
 		self.networkingEngine = networkingEngine
+		self.chosenCharacters = chosenCharacters
 		self.spawnPointGenerator()
 		self.currentIndex = networkingEngine.indexForLocalPlayer()
 		
 		if self.networkingEngine?.isPlayer1 == true {
-			print("sou player 1, gerar spawnpoints")
 			createPlayer()
 			addPLayers()
 			self.hasLoadedGame = true
 		}
-        
+		
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -48,36 +50,34 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func createPlayer() {
 		let playersCount: Int = (GameKitHelper.sharedInstance.multiplayerMatch?.players.count)!
-		var spawnPointIndexes = [Int]()
 
-		for _ in 0...playersCount {
-			var index = Int.randomWithInt(0...8)
-			var currentSpawnPoint = spawnPoints.objectAtIndex(index)
+		for index in 0...playersCount {
+			var spawnPointIndex = Int.randomWithInt(0...8)
+			var currentSpawnPoint = spawnPoints.objectAtIndex(spawnPointIndex)
 			
 			while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
-				index = Int.randomWithInt(0...8)
-				currentSpawnPoint = spawnPoints.objectAtIndex(index)
+				spawnPointIndex = Int.randomWithInt(0...8)
+				currentSpawnPoint = spawnPoints.objectAtIndex(spawnPointIndex)
 			}
 			
 			(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
-			
-			let player = Uhong(position: currentSpawnPoint.position, screenSize: self.size!)
+
+			let player = generatePlayer(currentSpawnPoint.position, chosenCharacter: self.chosenCharacters[index])
 			players.append(player)
-			spawnPointIndexes.append(index)
+			spawnPointIndexes.append(spawnPointIndex)
 		}
 		
-		print(spawnPointIndexes)
-		networkingEngine?.sendStartGameProperties(spawnPointIndexes)
-		
+		networkingEngine?.sendStartGameProperties(self.spawnPointIndexes, chosenCharacters: self.chosenCharacters)
 	}
 	
-	func createPlayer(indexes: [Int]) {
+	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
+		self.chosenCharacters = chosenCharacters
 		for index in 0...indexes.count - 1 {
 			let currentSpawnPoint = spawnPoints.objectAtIndex(indexes[index])
 
 			(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
 			
-			let player = Uhong(position: currentSpawnPoint.position, screenSize: self.size!)
+			let player = generatePlayer(currentSpawnPoint.position, chosenCharacter: self.chosenCharacters[index])
 			players.append(player)
 		}
 		
@@ -92,6 +92,26 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 			
 			self.addChild(players[index])
+		}
+	}
+	
+	private func generatePlayer(position: CGPoint, chosenCharacter: CharacterType.RawValue) -> Player {
+		switch chosenCharacter {
+		case CharacterType.Uhong.rawValue:
+			print("uhong")
+			return Uhong(position: position, screenSize: self.size!)
+		case CharacterType.Dinak.rawValue:
+			print("dinak")
+			return Dinak(position: position, screenSize: self.size!)
+		case CharacterType.Salamang.rawValue:
+			print("salamang")
+			return Salamang(position: position, screenSize: self.size!)
+		case CharacterType.Neith.rawValue:
+			print("neith")
+			return Neith(position: position, screenSize: self.size!)
+		default:
+			print("player")
+			return Player(position: position, screenSize: self.size!)
 		}
 	}
 	
@@ -146,7 +166,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	}
     
     func attack() {
-        print("Ataque de outro device")
         self.player?.isAttacking = true
     }
+	
+	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int) {
+		print("lets receive")
+	}
+	
 }

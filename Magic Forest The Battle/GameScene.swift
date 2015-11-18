@@ -18,6 +18,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     var networkingEngine: MultiplayerNetworking?
     var currentIndex: Int?
     var players = [Player]()
+	var chosenCharacters = [Int]()
+	var playersDetails = [PlayerDetails]()
 	
 	/**
 	Initializes the game scene
@@ -29,7 +31,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	}
     
     override func didMoveToView(view: SKView) {
-        self.gameLayer = GameLayer(size: size, networkingEngine:  self.networkingEngine!)
+        self.gameLayer = GameLayer(size: size, networkingEngine:  self.networkingEngine!, chosenCharacters: self.chosenCharacters)
         self.gameLayer?.zPosition = -5
 //        self.networkingEngine?.createPlayers()
         
@@ -122,12 +124,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     func attack() {
         self.gameLayer?.attack()
     }
-    
-	func createPlayer(indexes: [Int]) {
-		print("create players")
-        self.gameLayer?.createPlayer(indexes)
+	
+	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
+        self.gameLayer?.createPlayer(indexes, chosenCharacters: chosenCharacters)
     }
-    
+	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int) {
+//		self.gameLayer?.receiveChosenCharacter(chosenCharacter, playerIndex: playerIndex)
+		
+		self.playersDetails.append(PlayerDetails(character: chosenCharacter, index: playerIndex))
+		
+		print("\(self.playersDetails.count) :: \(GameKitHelper.sharedInstance.multiplayerMatch?.players.count) ")
+		
+		if self.playersDetails.count == ((GameKitHelper.sharedInstance.multiplayerMatch?.players.count)! + 1) {
+			
+			let multableArray = NSMutableArray(array: self.playersDetails)
+			let sortByIndex = NSSortDescriptor(key: "index", ascending: false)
+			let sortDescriptiors = [sortByIndex]
+			multableArray.sortUsingDescriptors(sortDescriptiors)
+			self.playersDetails = NSArray(array: multableArray) as! [PlayerDetails]
+			
+			for playerDetail in self.playersDetails {
+				self.chosenCharacters.append(playerDetail.character.rawValue)
+			}
+			
+			self.gameLayer?.createPlayer()
+			self.gameLayer?.addPLayers()
+			self.gameLayer?.hasLoadedGame = true
+			print("All players send character info to me, sending to all info to everyone")
+			networkingEngine?.tryStartGame()
+			
+		}
+	}
+	
+	class PlayerDetails: NSObject {
+		let character: CharacterType
+		let index: Int
+			
+		init(character: CharacterType, index: Int) {
+			self.character = character
+			self.index = index
+			super.init()
+		}
+	}
     
     // Set the player index
     func setCurrentPlayerIndex(index: Int) {
