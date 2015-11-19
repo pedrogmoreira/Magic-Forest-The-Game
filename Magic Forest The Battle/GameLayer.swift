@@ -37,9 +37,36 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
 
-		//self.player = Uhong(position: currentSpawnPoint.position)
-		//self.player = Neith(position: currentSpawnPoint.position, screenSize:  size)
-		self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size)
+		switch(playerSelected) {
+			case "Uhong":
+				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size)
+			break
+			case "Neith":
+				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size)
+			break
+			case "Salamang":
+				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size)
+			break
+			case "Dinak":
+			    self.player = Dinak(position: currentSpawnPoint.position, screenSize: size)
+		default:
+			//self.playerAleatorio
+			switch(Int.random(min: 1, max: 3)) {
+			case 1:
+				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size)
+				break
+			case 2:
+				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size)
+				break
+			case 3:
+				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size)
+				break
+			default:
+				self.player = Dinak(position: currentSpawnPoint.position, screenSize: size)
+			}
+			
+			
+		}
 		self.addChild(self.player!)
 	}
 	

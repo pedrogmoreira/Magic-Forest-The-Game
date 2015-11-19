@@ -24,6 +24,7 @@ class Player: SKSpriteNode, GameObject {
 	var regLife: CGFloat?
 	var regEnergy: CGFloat?
 	var state: PlayerState?
+	var jumpCount = 0
 	
 	// Player flags
 	var isAttacking: Bool = false
@@ -93,6 +94,7 @@ class Player: SKSpriteNode, GameObject {
 				self.changeState(PlayerState.Running)
 			} else if (self.isJumping && self.state != .Hit && !self.isAttacking) {
 				self.changeState(PlayerState.Jump)
+				
 			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !self.isAttacking {
 				self.changeState(PlayerState.Falling)
 			} else if self.isAttacking {
