@@ -185,6 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     
     // Move the player in all devices
     func movePlayer(index: Int, dx: Float, dy: Float) {
+        
         let player = gameLayer!.players[index] as Player
         self.gameLayer?.movePlayer(player, dx: dx, dy: dy)
     }

@@ -148,21 +148,21 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
-		self.setFlip(position)
+		self.setFlip(position, player: self.player)
         
         networkingEngine?.sendMove(Float(position.x), dy: Float(position.y))
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
 	
 	
-	func setFlip (flipX : CGPoint) {
+    func setFlip (flipX : CGPoint, player: Player) {
 		if flipX.x == 0 {
 			return
 		}
 		if flipX.x < 0 {
-			self.player?.xScale = -fabs((self.player?.xScale)!)
+			player.xScale = -fabs((self.player?.xScale)!)
 		} else {
-			self.player?.xScale = fabs((self.player?.xScale)!)
+			player.xScale = fabs((self.player?.xScale)!)
 		}
 	}
 	
@@ -187,6 +187,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Move a specific player
     func movePlayer(player: Player, dx: Float, dy: Float) {
         let movementVelocity = CGVector(dx: CGFloat(dx), dy: CGFloat(dy))
+        self.setFlip(CGPoint(vector: movementVelocity), player: player)
         player.movementVelocity = movementVelocity
     }
     
