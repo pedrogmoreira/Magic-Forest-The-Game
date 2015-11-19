@@ -9,13 +9,16 @@
 import Foundation
 import GameKit
 
-
 protocol MultiplayerProtocol {
     func setCurrentPlayerIndex(index: Int)
     func matchEnded()
-    func attack()
 	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue])
 	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int)
+    func attack(indext: Int)
+    func performJump(index: Int)
+    func performGetDown(index: Int)
+    func performSpecial(index: Int)
+    func movePlayer(index: Int, dx: Float, dy: Float)
 	
 //    var gameLayer: GameLayer? {get set}
 //    var players: [Player] {get set}
@@ -86,7 +89,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 	}
 	
 	func choseCharacter() {
-		switch Int.random(min: 0, max: 3) {
+		switch 0 {
 		case 0:
 			self.sendChosenCharacter(CharacterType.Uhong)
 		case 1:
@@ -116,22 +119,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             }
         }
     }
-	
-	func sendDataToHost(data: NSData) {
-		let gameKitHelper = GameKitHelper.sharedInstance
-		
-		if let multiplayerMatch = gameKitHelper.multiplayerMatch {
-			do {
-				// .Rekuabke means that the data you send is guaranteed to arrive at its destination
-				let host = self.getHostPlayer()
-				print("Host: \(host.alias!)")
-				try multiplayerMatch.sendData(data, toPlayers: [host], dataMode: .Reliable)
-			} catch let error as NSError {
-				print("Error:\(error.localizedDescription)")
-				matchEnded()
-			}
-		}
-	}
+
     // Process the received data from player
     func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: GKPlayer) {
         let message = UnsafePointer<Message>(data.bytes).memory
@@ -186,18 +174,21 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             startGameDelegate?.startGame()
             gameState = GameState.Playing
         } else if message.messageType == MessageType.Move {
+            
             let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
-            
-            print("Dx: \(messageMove.dx) Dy: \(messageMove.dy)")
+            delegate?.movePlayer(indexForPlayer(player.playerID!)!, dx: messageMove.dx, dy: messageMove.dy)
         } else if message.messageType == MessageType.String {
-            let messageString = MessageString.unarchive(data)
             
+            let messageString = MessageString.unarchive(data)
             print(messageString.text)
-        } else if message.messageType == MessageType.Attack && isPlayer1 {
-            delegate?.attack()
+        } else if message.messageType == MessageType.Attack {
+            
+            delegate?.attack(indexForPlayer(player.playerID!)!)
 		} else if message.messageType == MessageType.StartGameProperties {
+            
 			let messageStartGameProperties = MessageStartGameProperties.unarchive(data)
 			let indexes = NSKeyedUnarchiver.unarchiveObjectWithData(messageStartGameProperties.spawnPointsIndexes!) as! [Int]
+
 			let chosenCharacters = NSKeyedUnarchiver.unarchiveObjectWithData(messageStartGameProperties.chosenCharacters!) as! [CharacterType.RawValue]
 			
 			delegate?.createPlayer(indexes, chosenCharacters: chosenCharacters)
@@ -210,8 +201,14 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 				
 				delegate?.receiveChosenCharacter(messageChosenCharacter.character, playerIndex: self.indexForPlayer(player.playerID!)!)
 			}
-		}
-		
+        } else if message.messageType == MessageType.Jump {
+            
+            delegate?.performJump(indexForPlayer(player.playerID!)!)
+        } else if message.messageType == MessageType.GetDown {
+            delegate?.performGetDown(indexForPlayer(player.playerID!)!)
+        } else if message.messageType == MessageType.Special {
+            delegate?.performSpecial(indexForPlayer(player.playerID!)!)
+        }
     }
 	
 	// MARK: Index For Player
@@ -233,12 +230,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         }
         return idx!
     }
-	
-	func getHostPlayer() -> GKPlayer {
-		let hostDetails = orderOfPlayers.first! as RandomNumberDetails
-		let hostPlayer = hostDetails.player
-		return hostPlayer
-	}
 	
 	// MARK: Random Number Handling
 	
@@ -334,7 +325,41 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageAttack))
         sendData(data)
     }
-	
+    
+    // Send to all devices a message of type MessageJump
+    func sendJump() {
+        var message = MessageJump()
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageJump))
+        sendData(data)
+    }
+    
+    // Send to all devices a message of type MessageMove
+    func sendMove(dx: Float, dy: Float) {
+        
+        var message = MessageMove(dx: dx, dy: dy)
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageMove))
+        sendData(data)
+    }
+    
+    // Send to all devices a message of type MessageGetDown
+    func sendGetDown() {
+        var message = MessageGetDown()
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageGetDown))
+        sendData(data)
+    }
+    
+    // Send to all devices a message of type MessageSpecialAttack
+    func sendSpecialAttack() {
+        var message = MessageSpecialAttack()
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageSpecialAttack))
+        sendData(data)
+    }
+
+	// Send to all devices the necessary variables to set-up the game
 	func sendStartGameProperties(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
 		let indexesData = NSKeyedArchiver.archivedDataWithRootObject(indexes)
 		let chosenCharactersData = NSKeyedArchiver.archivedDataWithRootObject(chosenCharacters)
@@ -345,6 +370,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 		sendData(msgData)
 	}
 	
+	// Send to the host my character selection
 	func sendChosenCharacter(characterType: CharacterType) {
 		
 		if self.isPlayer1 == false {

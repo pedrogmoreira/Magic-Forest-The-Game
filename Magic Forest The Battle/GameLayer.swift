@@ -34,20 +34,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		self.networkingEngine = networkingEngine
 		self.chosenCharacters = chosenCharacters
 		self.spawnPointGenerator()
-		self.currentIndex = networkingEngine.indexForLocalPlayer()
+		self.currentIndex = self.networkingEngine!.indexForLocalPlayer()
 		
 		if self.networkingEngine?.isPlayer1 == true {
 			createPlayer()
 			addPLayers()
 			self.hasLoadedGame = true
 		}
-		
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// The host will sort a positio to every player and then send the positions and selections to everyone
 	func createPlayer() {
 		let playersCount: Int = (GameKitHelper.sharedInstance.multiplayerMatch?.players.count)!
 
@@ -70,6 +70,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		networkingEngine?.sendStartGameProperties(self.spawnPointIndexes, chosenCharacters: self.chosenCharacters)
 	}
 	
+	// Called when the host sorted the positions and sent all players character selection
 	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
 		self.chosenCharacters = chosenCharacters
 		for index in 0...indexes.count - 1 {
@@ -85,6 +86,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		self.hasLoadedGame = true
 	}
 	
+	// Adds all players to the game
 	func addPLayers() {
 		for index in 0...players.count - 1 {
 			if index == self.currentIndex {
@@ -95,6 +97,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		}
 	}
 	
+	/**
+	Generates a player on a position and with a chosen character class
+	-Parameter position: The position where the player will be created
+	-Parameter chosenCharacter: The character class type to be created from
+	*/
 	private func generatePlayer(position: CGPoint, chosenCharacter: CharacterType.RawValue) -> Player {
 		switch chosenCharacter {
 		case CharacterType.Uhong.rawValue:
@@ -126,22 +133,24 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
+            networkingEngine?.sendAttack()
 			self.player?.isAttacking = true
-            networkingEngine?.sendString()
 		} else if command == MFCSCommandType.SpecialAttack {
 			self.player?.isSpecialAttacking = true
-				print("Special Attack")
+            self.networkingEngine?.sendSpecialAttack()
 		} else if command == MFCSCommandType.Jump {
-			self.player?.isJumping = true
-			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+            self.networkingEngine?.sendJump()
+            self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 		} else if command == MFCSCommandType.GetDown {
 			self.player?.getDownOneFloor()
+            self.networkingEngine?.sendGetDown()
 		}
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
 		self.setFlip(position)
-
+        
+        networkingEngine?.sendMove(Float(position.x), dy: Float(position.y))
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
 	
@@ -168,9 +177,32 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     func attack() {
         self.player?.isAttacking = true
     }
-	
-	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int) {
-		print("lets receive")
-	}
-	
+
+    // Perform a jump with an specific player
+    func performJumpWithPlayer(player: Player) {
+        player.isJumping = true
+        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+    }
+    
+    // Move a specific player
+    func movePlayer(player: Player, dx: Float, dy: Float) {
+        let movementVelocity = CGVector(dx: CGFloat(dx), dy: CGFloat(dy))
+        player.movementVelocity = movementVelocity
+    }
+    
+    // Perform an attack with an specific player
+    func performAttackWithPlayer(player: Player) {
+        player.isAttacking = true
+    }
+    
+    // Perform get down with an specific player
+    func performGetDownWithPlayer(player: Player) {
+        player.getDownOneFloor()
+    }
+    
+    // Perform special attack with an specific player
+    func performSpecialWithPlayer(player: Player) {
+        player.isSpecialAttacking = true
+    }
 }
+

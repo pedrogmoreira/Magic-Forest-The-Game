@@ -17,7 +17,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
     var currentIndex: Int?
-    var players = [Player]()
 	var chosenCharacters = [Int]()
 	var playersDetails = [PlayerDetails]()
 	
@@ -120,17 +119,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     func startGame() {
         
     }
-    
+	
     func attack() {
         self.gameLayer?.attack()
     }
 	
+	// Called when my device receive the message to create the players
 	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
         self.gameLayer?.createPlayer(indexes, chosenCharacters: chosenCharacters)
     }
+	
+	// Called when a player send his selection
 	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int) {
-//		self.gameLayer?.receiveChosenCharacter(chosenCharacter, playerIndex: playerIndex)
-		
 		self.playersDetails.append(PlayerDetails(character: chosenCharacter, index: playerIndex))
 		
 		print("\(self.playersDetails.count) :: \(GameKitHelper.sharedInstance.multiplayerMatch?.players.count) ")
@@ -156,6 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 		}
 	}
 	
+	// Class to determine player character selection and index for ordering array of players selections
 	class PlayerDetails: NSObject {
 		let character: CharacterType
 		let index: Int
@@ -166,9 +167,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 			super.init()
 		}
 	}
+	
+    // Perform a jump in all devices
+    func performJump (index: Int) {
+        let player = gameLayer!.players[index] as Player
+        gameLayer?.performJumpWithPlayer(player)
+    }
+    
+    // Move the player in all devices
+    func movePlayer(index: Int, dx: Float, dy: Float) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.movePlayer(player, dx: dx, dy: dy)
+    }
+    
+    // Attack in all devices
+    func attack(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performAttackWithPlayer(player)
+    }
+    
+    // Get down in all devices
+    func performGetDown(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performGetDownWithPlayer(player)
+    }
+    
+    // Perform special in all devices
+    func performSpecial(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performSpecialWithPlayer(player)
+    }
     
     // Set the player index
     func setCurrentPlayerIndex(index: Int) {
         currentIndex = index
     }
+    
 }
