@@ -16,7 +16,9 @@ class Uhong: Player {
 		self.position = position
 	
 		self.life = 1_500
+		self.currentLife = 1_500
 		self.energy = 100
+		self.currentEnergy = 100
 		self.attackDamage = 100
 		self.specialDamage = 200
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
@@ -27,7 +29,7 @@ class Uhong: Player {
 		self.doubleJump = false
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
-		self.regEnergy = 1
+		self.regLife = 1
 		self.getDownForce = -50_000
 		//self.anchorPoint = CGPointMake(self.anchorPoint.x, self.anchorPoint.y-0.25)
 		
@@ -74,7 +76,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func run () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("CogumeloAndando",endIndex: 10, timePerFrame: 0.08))
+		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("CogumeloAndando",endIndex: 10, timePerFrame: 0.1))
 		return repeateForever
 	}
 	
@@ -91,8 +93,8 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func jump () -> SKAction {
-		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5))
-		return self.loadAnimation("CogumeloSubindo", endIndex: 1, timePerFrame: 0.08)
+		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.1))
+		return self.loadAnimation("CogumeloSubindo", endIndex: 1, timePerFrame: 0.25)
 	}
 	
 	/**
@@ -100,7 +102,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func falling () -> SKAction {
-		return self.loadAnimation("CogumeloSubindodescendo", endIndex: 2, timePerFrame: 0.08)
+		return self.loadAnimation("CogumeloSubindodescendo", endIndex: 2, timePerFrame: 0.25)
 	}
 	
 	/**
@@ -124,7 +126,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func death() -> SKAction {
-		return self.loadAnimation("CogumeloHit", endIndex: 1, timePerFrame: 0.08)
+		return self.loadAnimation("CogumeloHit", endIndex: 1, timePerFrame: 0.25)
 	}
 
 }

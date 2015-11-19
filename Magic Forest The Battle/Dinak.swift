@@ -16,7 +16,9 @@ class Dinak: Player {
 		self.position = position
 		
 		self.life = 1_000
+		self.currentLife = 1_000
 		self.energy = 100
+		self.currentEnergy = 100
 		self.attackDamage = 100
 		self.specialDamage = 200
 		self.movementVelocity = CGVector(dx: 0, dy: 0)
@@ -27,7 +29,7 @@ class Dinak: Player {
 		self.doubleJump = true
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
-		self.regEnergy = 1
+		self.regLife = 1
 		self.getDownForce = -50_000
 	}
 	
