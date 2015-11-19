@@ -22,6 +22,18 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 	private let timer = SKLabelNode(text: "")
 	
 	private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+	
+	//Fundo
+//	private let fundoLU = SKSpriteNode(imageNamed: "UI_WINDOW (8)")
+//	private let fundoRU = SKSpriteNode(imageNamed: "UI_WINDOW (7)")
+//	private let fundoLD = SKSpriteNode(imageNamed: "UI_WINDOW (2)")
+//	private let fundoRD = SKSpriteNode(imageNamed: "UI_WINDOW (4)")
+//	private let fundoUp = SKSpriteNode(imageNamed: "UI_WINDOW (9)")
+//	private let fundoDown = SKSpriteNode(imageNamed: "UI_WINDOW (3)")
+//	private let fundoML = SKSpriteNode(imageNamed: "UI_WINDOW (6)")
+//	private let fundoMR = SKSpriteNode(imageNamed: "UI_WINDOW (5)")
+//	private let fundoC = SKSpriteNode(imageNamed: "UI_WINDOW (1)")
+	
 	//Selecionar personagens
 	private let neithSelection = SKSpriteNode(imageNamed: "NeithIdle1")
 	private let uhongSelection = SKSpriteNode(imageNamed: "CogumeloParado1")
@@ -198,8 +210,11 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 	func timerSelecPlayer () {
 		var timer = 30
 		let timerLabel = SKLabelNode(text: "")
+//		let clock = SKSpriteNode(imageNamed: "Clock")
+//		self.addNode(clock, name: "clock", position: CGPoint(x: (self.size?.width)!/2.3, y: (self.size?.height)!/1.16))
 		self.addLabelNode(timerLabel, name: "timerLabel", position: CGPoint(x: (self.size?.width)!/2, y: (self.size?.height)!/1.2))
 		let counter = SKAction.waitForDuration(1)
+		
 		let sequence = SKAction.sequence([counter, SKAction.runBlock({ () -> Void in
 			timer--
 			timerLabel.text = String(timer)

@@ -26,7 +26,7 @@ class Salamang: Player {
 		self.doubleJump = false
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
-		self.regEnergy = 1
+		self.regLife = 1
 		self.getDownForce = -50_000
 	}
 	

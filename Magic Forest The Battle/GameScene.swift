@@ -27,6 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		
 		self.gameLayer = GameLayer(size: size)
 		self.gameLayer?.zPosition = -5
+		self.gameLayer?.hudLayer = self.hudLayer
 		
 		self.backgroundLayer = ForestScenery(size: size)
 		self.backgroundLayer?.zPosition = -10

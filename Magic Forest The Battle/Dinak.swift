@@ -27,7 +27,7 @@ class Dinak: Player {
 		self.doubleJump = true
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
-		self.regEnergy = 1
+		self.regLife = 1
 		self.getDownForce = -50_000
 	}
 	

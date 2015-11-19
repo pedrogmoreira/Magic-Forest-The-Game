@@ -88,18 +88,18 @@ class Player: SKSpriteNode, GameObject {
 			self.checkFloorLevel()
 		}
 		
-		if self.life <= 0 {
+		if self.currentLife <= 0 {
 			print("to morto")
 			self.changeState(PlayerState.Death)
 		} else {
-			if velocityX != 0 && self.physicsBody?.velocity.dy == 0 && self.state != .Hit && !isAttacking {
+			if velocityX != 0 && self.physicsBody?.velocity.dy == 0 && self.state != .Hit && !isAttacking && !isSpecialAttacking {
 				self.changeState(PlayerState.Running)
-			} else if (self.isJumping && self.state != .Hit && !self.isAttacking) {
+			} else if (self.isJumping && self.state != .Hit && !self.isAttacking && !isSpecialAttacking) {
 				self.changeState(PlayerState.Jump)
 				
-			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !self.isAttacking {
+			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !self.isAttacking && !isSpecialAttacking {
 				self.changeState(PlayerState.Falling)
-			} else if self.isAttacking {
+			} else if self.isAttacking && !isSpecialAttacking {
 				self.changeState(PlayerState.Attack)
 			}else if self.isSpecialAttacking {
 				self.changeState(PlayerState.SpecialAttack)
@@ -197,11 +197,9 @@ class Player: SKSpriteNode, GameObject {
 		
 		if self.state != state {
 			self.state = state
-			
 			if self.state != PlayerState.Attack {
 				self.isAttacking = false
 			}
-			
 			switch (self.state!) {
 			case PlayerState.Running:
 				self.runAction(run())
@@ -222,6 +220,7 @@ class Player: SKSpriteNode, GameObject {
 					self.isSpecialAttacking = false
 				})]), withKey: "specialAttack")
 			case PlayerState.Death:
+				self.removeAllActions()
 				self.runAction(death())
 			default:
 				self.runAction(idle())

@@ -11,6 +11,7 @@ import SpriteKit
 class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 	var player: Player?
+	var hudLayer : HudLayer?
 	var spawnPoints = NSMutableArray()
 	
 	/**
@@ -81,10 +82,14 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		if command == MFCSCommandType.Attack {
 			self.projectileToLayer((self.player?.createProjectile())!)
 			self.player?.isAttacking = true
+			self.player?.currentLife = (self.player?.currentLife)! - 100
+			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
 			
 		} else if command == MFCSCommandType.SpecialAttack {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
+			self.player?.currentEnergy = 0
+			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
 		} else if command == MFCSCommandType.Jump {
 			self.player?.isJumping = true
 			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))

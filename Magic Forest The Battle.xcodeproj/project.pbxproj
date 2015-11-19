@@ -181,6 +181,16 @@
 		57C08E451BFCE1B5003E4574 /* HudLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C08E441BFCE1B5003E4574 /* HudLayer.swift */; };
 		57C08E471BFD0C7A003E4574 /* UI_COLORBAR_GREEN.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E461BFD0C7A003E4574 /* UI_COLORBAR_GREEN.png */; };
 		57C08E491BFD0D83003E4574 /* UI_COLORBAR_BLUE.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E481BFD0D83003E4574 /* UI_COLORBAR_BLUE.png */; };
+		57C08E541BFE3B67003E4574 /* UI_WINDOW (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E4B1BFE3B67003E4574 /* UI_WINDOW (1).png */; };
+		57C08E551BFE3B67003E4574 /* UI_WINDOW (2).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E4C1BFE3B67003E4574 /* UI_WINDOW (2).png */; };
+		57C08E561BFE3B67003E4574 /* UI_WINDOW (3).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E4D1BFE3B67003E4574 /* UI_WINDOW (3).png */; };
+		57C08E571BFE3B67003E4574 /* UI_WINDOW (4).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E4E1BFE3B67003E4574 /* UI_WINDOW (4).png */; };
+		57C08E581BFE3B67003E4574 /* UI_WINDOW (5).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E4F1BFE3B67003E4574 /* UI_WINDOW (5).png */; };
+		57C08E591BFE3B67003E4574 /* UI_WINDOW (6).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E501BFE3B67003E4574 /* UI_WINDOW (6).png */; };
+		57C08E5A1BFE3B67003E4574 /* UI_WINDOW (7).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E511BFE3B67003E4574 /* UI_WINDOW (7).png */; };
+		57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */; };
+		57C08E5C1BFE3B67003E4574 /* UI_WINDOW (9).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */; };
+		57C08E5E1BFE3B70003E4574 /* UI_BARMARKINGS.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */; };
 		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
 		EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */; };
@@ -427,6 +437,16 @@
 		57C08E441BFCE1B5003E4574 /* HudLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HudLayer.swift; sourceTree = "<group>"; };
 		57C08E461BFD0C7A003E4574 /* UI_COLORBAR_GREEN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_COLORBAR_GREEN.png; sourceTree = "<group>"; };
 		57C08E481BFD0D83003E4574 /* UI_COLORBAR_BLUE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_COLORBAR_BLUE.png; sourceTree = "<group>"; };
+		57C08E4B1BFE3B67003E4574 /* UI_WINDOW (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (1).png"; sourceTree = "<group>"; };
+		57C08E4C1BFE3B67003E4574 /* UI_WINDOW (2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (2).png"; sourceTree = "<group>"; };
+		57C08E4D1BFE3B67003E4574 /* UI_WINDOW (3).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (3).png"; sourceTree = "<group>"; };
+		57C08E4E1BFE3B67003E4574 /* UI_WINDOW (4).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (4).png"; sourceTree = "<group>"; };
+		57C08E4F1BFE3B67003E4574 /* UI_WINDOW (5).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (5).png"; sourceTree = "<group>"; };
+		57C08E501BFE3B67003E4574 /* UI_WINDOW (6).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (6).png"; sourceTree = "<group>"; };
+		57C08E511BFE3B67003E4574 /* UI_WINDOW (7).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (7).png"; sourceTree = "<group>"; };
+		57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (8).png"; sourceTree = "<group>"; };
+		57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (9).png"; sourceTree = "<group>"; };
+		57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_BARMARKINGS.png; sourceTree = "<group>"; };
 		67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		67A74CF91BE129CD00AF3B0E /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
 		EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AttackButton.png; sourceTree = "<group>"; };
@@ -811,6 +831,7 @@
 		57C08E391BFCDF75003E4574 /* Bars */ = {
 			isa = PBXGroup;
 			children = (
+				57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */,
 				57C08E461BFD0C7A003E4574 /* UI_COLORBAR_GREEN.png */,
 				57C08E481BFD0D83003E4574 /* UI_COLORBAR_BLUE.png */,
 				57C08E401BFCE038003E4574 /* UI_COLORBAR_BLUE_FLASH.png */,
@@ -820,6 +841,22 @@
 				57C08E3A1BFCDF8F003E4574 /* UI_BOLT.png */,
 			);
 			name = Bars;
+			sourceTree = "<group>";
+		};
+		57C08E4A1BFE3B06003E4574 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				57C08E4B1BFE3B67003E4574 /* UI_WINDOW (1).png */,
+				57C08E4C1BFE3B67003E4574 /* UI_WINDOW (2).png */,
+				57C08E4D1BFE3B67003E4574 /* UI_WINDOW (3).png */,
+				57C08E4E1BFE3B67003E4574 /* UI_WINDOW (4).png */,
+				57C08E4F1BFE3B67003E4574 /* UI_WINDOW (5).png */,
+				57C08E501BFE3B67003E4574 /* UI_WINDOW (6).png */,
+				57C08E511BFE3B67003E4574 /* UI_WINDOW (7).png */,
+				57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */,
+				57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		67A74CE71BE1283600AF3B0E /* Physics */ = {
@@ -1140,6 +1177,7 @@
 		EBD88B1D1BF02E73000353A5 /* HUD */ = {
 			isa = PBXGroup;
 			children = (
+				57C08E4A1BFE3B06003E4574 /* UI */,
 				57C08E391BFCDF75003E4574 /* Bars */,
 				EBD88B101BF02E43000353A5 /* Attack.png */,
 				EBD88B111BF02E43000353A5 /* Clock.png */,
@@ -1262,7 +1300,9 @@
 				576964EE1BDFDCD000CBB81D /* corre8.png in Resources */,
 				57C08E2B1BFA47B0003E4574 /* CogumeloParado10.png in Resources */,
 				57190B4C1BF12BED00FFF38D /* NeithDeath2.png in Resources */,
+				57C08E571BFE3B67003E4574 /* UI_WINDOW (4).png in Resources */,
 				57190B431BF12BED00FFF38D /* 132.png in Resources */,
+				57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */,
 				57C08E0F1BFA47B0003E4574 /* CogumeloAndando5.png in Resources */,
 				57C08E231BFA47B0003E4574 /* CogumeloEspecial4.png in Resources */,
 				57C08E151BFA47B0003E4574 /* CogumeloAtaque10.png in Resources */,
@@ -1278,6 +1318,7 @@
 				67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */,
 				57C08E0B1BFA47B0003E4574 /* CogumeloAndando10.png in Resources */,
 				EBD88B211BF02EE2000353A5 /* ForestSceneryPlatformCenter.png in Resources */,
+				57C08E591BFE3B67003E4574 /* UI_WINDOW (6).png in Resources */,
 				EB9057651BD55CF300536AD1 /* Assets.xcassets in Resources */,
 				57C08E261BFA47B0003E4574 /* CogumeloEspecial7.png in Resources */,
 				57C08E201BFA47B0003E4574 /* CogumeloEspecial10.png in Resources */,
@@ -1288,6 +1329,7 @@
 				57190BB81BF2689900FFF38D /* SalamangAttack2.png in Resources */,
 				579B81191BE919F50025B374 /* SpecialAttack2.png in Resources */,
 				57C08E1D1BFA47B0003E4574 /* CogumeloAtaque9.png in Resources */,
+				57C08E5E1BFE3B70003E4574 /* UI_BARMARKINGS.png in Resources */,
 				57C08E3B1BFCDF8F003E4574 /* UI_BOLT.png in Resources */,
 				57C08E181BFA47B0003E4574 /* CogumeloAtaque4.png in Resources */,
 				EBD88B1B1BF02E43000353A5 /* SpecialAttack.png in Resources */,
@@ -1297,6 +1339,7 @@
 				576965231BE2859F00CBB81D /* Death3.png in Resources */,
 				57190BCC1BF3A3B300FFF38D /* SalamangIdlee1.png in Resources */,
 				576965201BE2859F00CBB81D /* Attack4.png in Resources */,
+				57C08E5C1BFE3B67003E4574 /* UI_WINDOW (9).png in Resources */,
 				57C08E311BFA47B0003E4574 /* CogumeloParado7.png in Resources */,
 				57C08E0E1BFA47B0003E4574 /* CogumeloAndando4.png in Resources */,
 				57C08E341BFA47B0003E4574 /* CogumeloSubindo1.png in Resources */,
@@ -1342,6 +1385,7 @@
 				57C08DDB1BFA4591003E4574 /* wizardcute.png in Resources */,
 				57C08E2F1BFA47B0003E4574 /* CogumeloParado5.png in Resources */,
 				57190BC71BF2689900FFF38D /* SalamangSpecialAttack2.png in Resources */,
+				57C08E551BFE3B67003E4574 /* UI_WINDOW (2).png in Resources */,
 				57190BB71BF2689900FFF38D /* SalamangAttack1.png in Resources */,
 				57190B931BF2636D00FFF38D /* SalamangRun2.png in Resources */,
 				57190B921BF2636D00FFF38D /* SalamangRun1.png in Resources */,
@@ -1391,7 +1435,9 @@
 				576965261BE2859F00CBB81D /* falling3.png in Resources */,
 				57C08E1A1BFA47B0003E4574 /* CogumeloAtaque6.png in Resources */,
 				576965221BE2859F00CBB81D /* Death2.png in Resources */,
+				57C08E5A1BFE3B67003E4574 /* UI_WINDOW (7).png in Resources */,
 				57C08E381BFA650A003E4574 /* monkey.png in Resources */,
+				57C08E541BFE3B67003E4574 /* UI_WINDOW (1).png in Resources */,
 				EBD88B171BF02E43000353A5 /* Clock.png in Resources */,
 				5769651D1BE2859F00CBB81D /* Attack1.png in Resources */,
 				57A558181BDEBB1C00A948DE /* idle2.png in Resources */,
@@ -1422,6 +1468,7 @@
 				57190B621BF12BED00FFF38D /* NeithSpecialAttack8.png in Resources */,
 				EB0EACB11BE3E06D00D93287 /* ForestScenery_2.png in Resources */,
 				57190B581BF12BED00FFF38D /* NeithJump2.png in Resources */,
+				57C08E561BFE3B67003E4574 /* UI_WINDOW (3).png in Resources */,
 				57190B9A1BF2636D00FFF38D /* SalamangRun10.png in Resources */,
 				57190B451BF12BED00FFF38D /* 149.png in Resources */,
 				57190B4B1BF12BED00FFF38D /* NeithDeath1.png in Resources */,
@@ -1440,6 +1487,7 @@
 				57190BC01BF2689900FFF38D /* SalamangHit2.png in Resources */,
 				57190B5A1BF12BED00FFF38D /* NeithRun2.png in Resources */,
 				57190BC61BF2689900FFF38D /* SalamangSpecialAttack1.png in Resources */,
+				57C08E581BFE3B67003E4574 /* UI_WINDOW (5).png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
