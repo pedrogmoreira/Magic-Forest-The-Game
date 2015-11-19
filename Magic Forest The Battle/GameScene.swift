@@ -8,6 +8,9 @@
 
 import SpriteKit
 
+let DEFAULT_WIDTH = CGFloat(667)
+let DEFAULT_HEIGHT = CGFloat(375)
+
 class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	
 	var backgroundLayer: BackgroundLayer?
@@ -48,10 +51,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     
     private func initializeCamera(){
         self.playerCamera = SKCameraNode()
-		
 		self.playerCamera?.setScale(1.3)
-		
+        
+        let scaleX = (DEFAULT_WIDTH * 1.3)/self.size.width
+        self.playerCamera?.xScale = scaleX
+        
+        let scaleY = (DEFAULT_HEIGHT * 1.3)/self.size.height
+        self.playerCamera?.yScale = scaleY
+
         self.camera = self.playerCamera
+        
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -72,7 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
         let playerYPosition = (self.gameLayer?.player?.position.y)!;
         self.playerCamera?.position.y = playerYPosition
         
-        let screenHeight = (self.view?.frame.size.height)!
+        let screenHeight = DEFAULT_HEIGHT
         let backgroundHeight = self.backgroundLayer?.background?.size.height
 //		backgroundHeight = backgroundHeight! * 0.8
         let cameraYPosition = self.playerCamera!.position.y
@@ -93,7 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
         
         let cameraXPosition = self.playerCamera!.position.x
         let backgroundWidth = self.backgroundLayer?.background?.size.width
-        let screenWidth = self.size.width
+        let screenWidth = DEFAULT_WIDTH
         
         //...but if player comes too close to an edge the camera stops to follow
         if cameraXPosition < (-(backgroundWidth!/2) + screenWidth/2) * 0.905 {

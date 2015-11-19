@@ -64,7 +64,7 @@ class Player: SKSpriteNode, GameObject {
 	- parameter screenSize: The device screen size
 	*/
 	private func resize(screenSize: CGSize) {
-		let widthRatio =  screenSize.width / self.size.width
+		let widthRatio =  DEFAULT_WIDTH / self.size.width
 		let spriteRatio =  self.size.width / self.size.height
 		
 		let width = self.size.width * widthRatio * self.scale
