@@ -82,30 +82,27 @@ class Player: SKSpriteNode, GameObject {
 		let velocityX = movementVelocity!.dx * movementSpeed!
 		let velocityY = movementVelocity!.dy * 0
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
-		
+		if self.currentLife <= 0 {
+			print("to morto")
+			self.changeState(PlayerState.Death)
+			return
+		}
 		self.runAction(move)
 		if !self.isGetDown {
 			self.checkFloorLevel()
 		}
-		
-		if self.currentLife <= 0 {
-			print("to morto")
-			self.changeState(PlayerState.Death)
+		if velocityX != 0 && self.physicsBody?.velocity.dy == 0 && self.state != .Hit && !isAttacking && !isSpecialAttacking {
+			self.changeState(PlayerState.Running)
+		} else if (self.isJumping && self.state != .Hit && !self.isAttacking && !isSpecialAttacking) {
+			self.changeState(PlayerState.Jump)
+		} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !self.isAttacking && !isSpecialAttacking {
+			self.changeState(PlayerState.Falling)
+		} else if self.isAttacking && !isSpecialAttacking {
+			self.changeState(PlayerState.Attack)
+		}else if self.isSpecialAttacking {
+			self.changeState(PlayerState.SpecialAttack)
 		} else {
-			if velocityX != 0 && self.physicsBody?.velocity.dy == 0 && self.state != .Hit && !isAttacking && !isSpecialAttacking {
-				self.changeState(PlayerState.Running)
-			} else if (self.isJumping && self.state != .Hit && !self.isAttacking && !isSpecialAttacking) {
-				self.changeState(PlayerState.Jump)
-				
-			} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !self.isAttacking && !isSpecialAttacking {
-				self.changeState(PlayerState.Falling)
-			} else if self.isAttacking && !isSpecialAttacking {
-				self.changeState(PlayerState.Attack)
-			}else if self.isSpecialAttacking {
-				self.changeState(PlayerState.SpecialAttack)
-			} else {
-				self.changeState(PlayerState.Idle)
-			}
+			self.changeState(PlayerState.Idle)
 		}
 	}
 	

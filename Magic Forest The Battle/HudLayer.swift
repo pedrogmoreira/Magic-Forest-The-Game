@@ -88,12 +88,12 @@ class HudLayer: SKNode, BasicLayer {
 		if (energyFrontBar.actionForKey("full") != nil) {
 			energyFrontBar.removeActionForKey("full")
 		}
-		let changeToNormal = SKAction(named: "UI_COLORBAR_BLUE")
-		let changeToFlash = SKAction(named: "UI_COLORBAR_BLUE_FLASH")
+		let changeToNormal = SKAction.setTexture(SKTexture(imageNamed:"UI_COLORBAR_BLUE"))
+		let changeToFlash = SKAction.setTexture(SKTexture(imageNamed: "UI_COLORBAR_BLUE_FLASH"))
 		let wait = SKAction.waitForDuration(0.15)
 		
-		let seq = SKAction.sequence([changeToFlash!,wait,changeToNormal!,wait])
-		energyFrontBar.runAction(SKAction.repeatActionForever(seq))
+		let seq = SKAction.sequence([changeToFlash,wait,changeToNormal,wait])
+		self.energyFrontBar.runAction(SKAction.repeatActionForever(seq),withKey: "full")
 	}
 
 

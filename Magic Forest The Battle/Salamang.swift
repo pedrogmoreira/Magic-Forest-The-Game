@@ -15,7 +15,9 @@ class Salamang: Player {
 		self.position = position
 		
 		self.life = 1_000
+		self.currentLife = 1_000
 		self.energy = 100
+		self.currentEnergy = 100
 		self.attackDamage = 150
 		self.specialDamage = 200
 		self.movementVelocity = CGVector(dx: 0, dy: 0)

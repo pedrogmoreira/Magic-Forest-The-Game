@@ -23,6 +23,14 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 
 		self.spawnPointGenerator()
 		self.createPlayer(size)
+		let wait = SKAction.waitForDuration(1)
+		let block = SKAction.runBlock { () -> Void in
+			self.upSpecialBar()
+		}
+		let seq = SKAction.sequence([wait,block])
+		let repeatAct = SKAction.repeatActionForever(seq)
+		self.runAction(repeatAct)
+		
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -76,19 +84,33 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		self.player?.update(currentTime)
 	}
 	
+	func upSpecialBar () {
+		if player?.currentEnergy < player?.energy {
+			let aux = ((player?.energy)! * (player?.regEnergy)!)/100
+			player?.currentEnergy = (player?.currentEnergy)! + aux
+			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
+			print(player?.currentEnergy)
+		} else {
+			self.hudLayer?.animateFullBar()
+			
+		}
+	}
 	
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
 			self.projectileToLayer((self.player?.createProjectile())!)
 			self.player?.isAttacking = true
-			self.player?.currentLife = (self.player?.currentLife)! - 100
+			if self.player?.currentLife > 0 {
+				self.player?.currentLife = (self.player?.currentLife)! - 100
+			}
 			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
 			
-		} else if command == MFCSCommandType.SpecialAttack {
+		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
 			self.player?.currentEnergy = 0
+			self.hudLayer?.energyFrontBar.removeAllActions()
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
 		} else if command == MFCSCommandType.Jump {
 			self.player?.isJumping = true
