@@ -31,36 +31,36 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.lastBackground = SKSpriteNode(imageNamed: "ForestScenery_5")
 		
 		// Background 1 Resize
-		var xRatio =  size.width / (self.background?.size.width)!
-		var yRatio =  size.height / (self.background?.size.height)!
+		var xRatio =  DEFAULT_WIDTH / (self.background?.size.width)!
+		var yRatio =  DEFAULT_HEIGHT / (self.background?.size.height)!
 		var scale = CGFloat(4.2)
 		
 		self.background?.size = CGSize(width: (self.background?.size.width)! * xRatio * scale, height: (self.background?.size.height)! * yRatio * scale)
 		
 		// Background 2 Resize
-		xRatio =  size.width / (self.background2?.size.width)!
-		yRatio =  size.height / (self.background2?.size.height)!
+		xRatio =  DEFAULT_WIDTH / (self.background2?.size.width)!
+		yRatio =  DEFAULT_HEIGHT / (self.background2?.size.height)!
 		scale = CGFloat(4.3)
 		
 		self.background2?.size = CGSize(width: (self.background2?.size.width)! * xRatio * scale, height: (self.background2?.size.height)! * yRatio * scale)
 		
 		// Background 3 Resize
-		xRatio =  size.width / (self.background3?.size.width)!
-		yRatio =  size.height / (self.background3?.size.height)!
+		xRatio =  DEFAULT_WIDTH / (self.background3?.size.width)!
+		yRatio =  DEFAULT_HEIGHT / (self.background3?.size.height)!
 		scale = CGFloat(4.4)
 		
 		self.background3?.size = CGSize(width: (self.background3?.size.width)! * xRatio * scale, height: (self.background3?.size.height)! * yRatio * scale)
 		
 		// Background 4 Resize
-		xRatio =  size.width / (self.background4?.size.width)!
-		yRatio =  size.height / (self.background4?.size.height)!
+		xRatio =  DEFAULT_WIDTH / (self.background4?.size.width)!
+		yRatio =  DEFAULT_HEIGHT / (self.background4?.size.height)!
 		scale = CGFloat(4.5)
 		
 		self.background4?.size = CGSize(width: (self.background4?.size.width)! * xRatio * scale, height: (self.background4?.size.height)! * yRatio * scale)
 		
 		// Background 5 Resize
-		xRatio =  size.width / (self.lastBackground?.size.width)!
-		yRatio =  size.height / (self.lastBackground?.size.height)!
+		xRatio =  DEFAULT_WIDTH / (self.lastBackground?.size.width)!
+		yRatio =  DEFAULT_HEIGHT / (self.lastBackground?.size.height)!
 		scale = CGFloat(4.6)
 		
 		self.lastBackground?.size = CGSize(width: (self.lastBackground?.size.width)! * xRatio * scale, height: (self.lastBackground?.size.height)! * yRatio * scale)
@@ -143,7 +143,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		thirdFloorLPlatform.position = CGPoint(x: firstFloorLPlatfom.position.x - space * 0.6, y: y)
 		
 		x = secondFLoorLPlatform.position.x + secondFLoorLPlatform.size.width / 2
-		y = secondFLoorLPlatform.position.y + space - thirdFloorCPlatform.size.height * 0.25
+		y = secondFLoorLPlatform.position.y + space - thirdFloorCPlatform.size.height * 0.35
 		
 		thirdFloorCPlatform.position = CGPoint(x: x, y: y)
 		

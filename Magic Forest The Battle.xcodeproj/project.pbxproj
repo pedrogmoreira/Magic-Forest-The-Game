@@ -191,6 +191,10 @@
 		57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */; };
 		57C08E5C1BFE3B67003E4574 /* UI_WINDOW (9).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */; };
 		57C08E5E1BFE3B70003E4574 /* UI_BARMARKINGS.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */; };
+		670914E81BFE58600007F2FF /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E51BFE58600007F2FF /* GameKitHelper.swift */; };
+		670914E91BFE58600007F2FF /* MultiplayerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */; };
+		670914EA1BFE58600007F2FF /* NetworkingStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E71BFE58600007F2FF /* NetworkingStructs.swift */; };
+		670914EC1BFE5D2C0007F2FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670914EB1BFE5D2C0007F2FF /* GameKit.framework */; };
 		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
 		EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */; };
@@ -447,6 +451,10 @@
 		57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (8).png"; sourceTree = "<group>"; };
 		57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (9).png"; sourceTree = "<group>"; };
 		57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_BARMARKINGS.png; sourceTree = "<group>"; };
+		670914E51BFE58600007F2FF /* GameKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
+		670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerNetworking.swift; sourceTree = "<group>"; };
+		670914E71BFE58600007F2FF /* NetworkingStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingStructs.swift; sourceTree = "<group>"; };
+		670914EB1BFE5D2C0007F2FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhysicsCategory.swift; sourceTree = "<group>"; };
 		67A74CF91BE129CD00AF3B0E /* vulcao.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vulcao.jpg; sourceTree = "<group>"; };
 		EB0EACAC1BE3DCCC00D93287 /* AttackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AttackButton.png; sourceTree = "<group>"; };
@@ -512,6 +520,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				670914EC1BFE5D2C0007F2FF /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,6 +868,16 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
+		670914E41BFE58480007F2FF /* Multiplayer */ = {
+			isa = PBXGroup;
+			children = (
+				670914E51BFE58600007F2FF /* GameKitHelper.swift */,
+				670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */,
+				670914E71BFE58600007F2FF /* NetworkingStructs.swift */,
+			);
+			name = Multiplayer;
+			sourceTree = "<group>";
+		};
 		67A74CE71BE1283600AF3B0E /* Physics */ = {
 			isa = PBXGroup;
 			children = (
@@ -1082,6 +1101,7 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
+				670914EB1BFE5D2C0007F2FF /* GameKit.framework */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
 				EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */,
 				EB90577C1BD55CF300536AD1 /* Magic Forest The BattleUITests */,
@@ -1102,6 +1122,7 @@
 		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
 			isa = PBXGroup;
 			children = (
+				670914E41BFE58480007F2FF /* Multiplayer */,
 				67A74CE71BE1283600AF3B0E /* Physics */,
 				57A558031BDEA76E00A948DE /* Resources */,
 				EB1214A01BD95CA700D0552F /* SKTUtils */,
@@ -1255,6 +1276,12 @@
 				TargetAttributes = {
 					EB9057551BD55CF200536AD1 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = 57RJBLV3QQ;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					EB90576D1BD55CF300536AD1 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -1517,6 +1544,7 @@
 				EB0EACBF1BE3E39F00D93287 /* MainMenuLayer.swift in Sources */,
 				57A558021BDEA4F600A948DE /* Uhong.swift in Sources */,
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
+				670914E91BFE58600007F2FF /* MultiplayerNetworking.swift in Sources */,
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
 				579B80611BE3FC150025B374 /* SpawnPointsLocation.swift in Sources */,
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
@@ -1529,7 +1557,9 @@
 				57C08E451BFCE1B5003E4574 /* HudLayer.swift in Sources */,
 				57C08DD11BF5191A003E4574 /* MenuSelectPlayerScene.swift in Sources */,
 				EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */,
+				670914EA1BFE58600007F2FF /* NetworkingStructs.swift in Sources */,
 				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
+				670914E81BFE58600007F2FF /* GameKitHelper.swift in Sources */,
 				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
 				57190BD21BF3A8CE00FFF38D /* Arrow.swift in Sources */,
@@ -1690,9 +1720,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Magic Forest The Battle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-Battle";
+				PRODUCT_BUNDLE_IDENTIFIER = tmf.magicforest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1701,9 +1732,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Magic Forest The Battle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.pedrogmoreria93.Magic-Forest-The-Battle";
+				PRODUCT_BUNDLE_IDENTIFIER = tmf.magicforest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

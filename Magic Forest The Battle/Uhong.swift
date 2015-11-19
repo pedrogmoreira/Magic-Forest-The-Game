@@ -33,7 +33,7 @@ class Uhong: Player {
 		self.getDownForce = -50_000
 		//self.anchorPoint = CGPointMake(self.anchorPoint.x, self.anchorPoint.y-0.25)
 		
-		self.setScale(4)
+		self.setScale(6)
 		
 		//initializeAnimations()
 	}

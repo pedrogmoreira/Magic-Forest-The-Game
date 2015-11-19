@@ -7,6 +7,7 @@
 //
 
 import SpriteKit
+import GameKit
 
 enum Screen {
     case middleScreen
@@ -14,15 +15,20 @@ enum Screen {
     case rightScreen
 }
 
-class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
+class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameProtocol {
     private var size: CGSize?
     private var view: SKView?
     private var currentScreen: Screen?
     private var rightSwipe: UISwipeGestureRecognizer?
     private var leftSwipe: UISwipeGestureRecognizer?
     
+    var networkingEngine: MultiplayerNetworking?
+    var gameScene: GameScene?
+    
     var controlUnit: MFCSControlUnit?
     var controllerMode: MFCSControllerMode?
+    
+    var numberOfPlayers: Int?
     
     private let configurationButton = SKSpriteNode(imageNamed: "configurationButton.png")
     private let gameCenterButton = SKSpriteNode(imageNamed: "gameCenterButton.png")
@@ -54,11 +60,72 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         
         self.addButtonsToLayer()
         self.addSwipeGestureToLayer()
-    }
+        
+        self.gameScene = GameScene(size: size)
+        
+        // Authenticate local player in game center
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "showAuthenticationViewController", name: PresentAuthenticationViewController, object: nil)
+        GameKitHelper.sharedInstance.authenticateLocalPlayer()
 
+    }
+    
+    func showAuthenticationViewController() {
+        let gameKitHelper = GameKitHelper.sharedInstance
+        let viewController = self.scene?.view?.window?.rootViewController
+
+        if let authenticationViewController = gameKitHelper.authenticationViewController {
+            viewController!.presentViewController(authenticationViewController, animated: true, completion: nil)
+        }
+    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        // Getting a node in the touch location
+        let touch = touches.first
+        let touchLocation = touch?.locationInNode(self)
+        let nodeTouched = self.nodeAtPoint(touchLocation!)
+        
+        let viewController = self.scene?.view?.window?.rootViewController
+        let nodeName = nodeTouched.name
+        
+        if nodeName == "playButton" {
+//            self.showMatchMakerViewController(presentingViewController: viewController!)
+            self.selectPlayer()
+        } else if nodeName == "configurationButton" {
+            print("configurationButton touched")
+        } else if nodeName == "practiceButton" {
+            print("practiceButton touched")
+        } else if nodeName == "gameCenterButton" {
+            GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
+            
+        } else if nodeName == "storeButton" {
+            print("storeButton touched")
+        } else if nodeName == "skinButton" {
+            print("skinButton touched")
+        } else if nodeName == "statisticsButton" {
+            print("statisticsButton touched")
+        } else if nodeName == "historyButton" {
+            print("historyButton touched")
+        }
+    }
+    
+    // Show the match maker view controller
+    private func showMatchMakerViewController(presentingViewController viewController: UIViewController) {
+        
+        if !GKLocalPlayer.localPlayer().authenticated {
+            return
+        }
+        
+        self.networkingEngine = MultiplayerNetworking()
+        
+        networkingEngine!.delegate = gameScene
+        networkingEngine!.startGameDelegate = self
+        gameScene!.networkingEngine = networkingEngine
+
+        GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController, delegate: networkingEngine!)
     }
     
     // Add a button to the layer with a name and position
@@ -119,49 +186,22 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
         
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        // Getting a node in the touch location
-        let touch = touches.first
-        let touchLocation = touch?.locationInNode(self)
-        let nodeTouched = self.nodeAtPoint(touchLocation!)
-        
-        let nodeName = nodeTouched.name
-        
-        if nodeName == "playButton" {
-			self.selectPlayer()
-           // self.startGame()
-            self.removeGesturesFromLayer()
-        } else if nodeName == "configurationButton" {
-            print("configurationButton touched")
-        } else if nodeName == "practiceButton" {
-            print("practiceButton touched")
-        } else if nodeName == "gameCenterButton" {
-            print("gameCenterButton touched")
-        } else if nodeName == "storeButton" {
-            print("storeButton touched")
-        } else if nodeName == "skinButton" {
-            print("skinButton touched")
-        } else if nodeName == "statisticsButton" {
-            print("statisticsButton touched")
-        } else if nodeName == "historyButton" {
-            print("historyButton touched")
-        }
+    private func selectPlayer () {
+        let sceneSelectPlayer = MenuSelectPlayerScene(size: size!)
+        self.view?.presentScene(sceneSelectPlayer)
     }
-	private func selectPlayer () {
-		let sceneSelectPlayer = MenuSelectPlayerScene(size: size!)
-		self.view?.presentScene(sceneSelectPlayer)
-	}
     
     // TODO: Refactor star game method.
-    private func startGame() {
-        let gameScene = GameScene(size: self.size!)
-        self.view?.presentScene(gameScene, transition: SKTransition.flipHorizontalWithDuration(2))
+    func startGame() {
+        self.view?.presentScene(gameScene!, transition: SKTransition.flipHorizontalWithDuration(2))
         
         self.controllerMode = MFCSControllerMode.JoystickAndSwipe
         
-        self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
+        self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene!.gameLayer!, controllerMode: controllerMode!)
         
         self.view?.addSubview(self.controlUnit!)
+        
+        self.removeGesturesFromLayer()
     }
     
     // Add swipe gestures to the layer
@@ -204,4 +244,9 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate {
             self.currentScreen = Screen.rightScreen
         }
     }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
 }

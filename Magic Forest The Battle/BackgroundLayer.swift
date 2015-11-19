@@ -254,7 +254,7 @@ class BackgroundLayer: SKNode {
 	*/
 	private func resize(spriteNode: SKSpriteNode) -> CGSize {
 		// Resize
-		let widthRatio =  self.screenSize!.width / spriteNode.size.width
+		let widthRatio =  DEFAULT_WIDTH / spriteNode.size.width
 		let spriteRatio =  spriteNode.size.width / spriteNode.size.height
 		
 		

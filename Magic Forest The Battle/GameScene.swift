@@ -8,12 +8,21 @@
 
 import SpriteKit
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+let DEFAULT_WIDTH = CGFloat(667)
+let DEFAULT_HEIGHT = CGFloat(375)
+
+class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	
 	var backgroundLayer: BackgroundLayer?
 	var hudLayer: HudLayer?
 	var gameLayer: GameLayer?
     var playerCamera: SKCameraNode?
+    
+    // Multiplayer variables
+    var networkingEngine: MultiplayerNetworking?
+    var currentIndex: Int?
+	var chosenCharacters = [Int]()
+	var playersDetails = [PlayerDetails]()
 	
 	/**
 	Initializes the game scene
@@ -21,20 +30,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	*/
 	override init(size: CGSize) {
 		super.init(size: size)
-		
-		self.hudLayer = HudLayer(size: size)
-		self.hudLayer?.zPosition = 1000
-		
-		self.gameLayer = GameLayer(size: size)
-		self.gameLayer?.zPosition = -5
-		self.gameLayer?.hudLayer = self.hudLayer
-		
-		self.backgroundLayer = ForestScenery(size: size)
-		self.backgroundLayer?.zPosition = -10
-		
-		
-		self.addChild(self.gameLayer!)
-		self.addChild(self.backgroundLayer!)
+	}
+    
+    override func didMoveToView(view: SKView) {
+        self.gameLayer = GameLayer(size: size, networkingEngine:  self.networkingEngine!, chosenCharacters: self.chosenCharacters)
+        self.gameLayer?.zPosition = -5
+//        self.networkingEngine?.createPlayers()
+        
+        self.backgroundLayer = ForestScenery(size: size)
+        self.backgroundLayer?.zPosition = -10
+        
+        self.hudLayer = HudLayer(size: size)
+        self.hudLayer?.zPosition = 1000
+        
+        self.gameLayer?.hudLayer = self.hudLayer
+        
+        self.addChild(self.gameLayer!)
+        self.addChild(self.backgroundLayer!)
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
@@ -43,14 +55,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		
 		self.addChild(self.playerCamera!)
 		self.playerCamera?.addChild(hudLayer!)
-	}
-	
+    }
+    
     private func initializeCamera(){
         self.playerCamera = SKCameraNode()
-		
 		self.playerCamera?.setScale(1.3)
-		
+        
+        let scaleX = (DEFAULT_WIDTH * 1.3)/self.size.width
+        self.playerCamera?.xScale = scaleX
+        
+        let scaleY = (DEFAULT_HEIGHT * 1.3)/self.size.height
+        self.playerCamera?.yScale = scaleY
+
         self.camera = self.playerCamera
+        
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -71,7 +89,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let playerYPosition = (self.gameLayer?.player?.position.y)!;
         self.playerCamera?.position.y = playerYPosition
         
-        let screenHeight = (self.view?.frame.size.height)!
+        let screenHeight = DEFAULT_HEIGHT
         let backgroundHeight = self.backgroundLayer?.background?.size.height
 //		backgroundHeight = backgroundHeight! * 0.8
         let cameraYPosition = self.playerCamera!.position.y
@@ -92,7 +110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let cameraXPosition = self.playerCamera!.position.x
         let backgroundWidth = self.backgroundLayer?.background?.size.width
-        let screenWidth = self.size.width
+        let screenWidth = DEFAULT_WIDTH
         
         //...but if player comes too close to an edge the camera stops to follow
         if cameraXPosition < (-(backgroundWidth!/2) + screenWidth/2) * 0.905 {
@@ -104,7 +122,103 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didFinishUpdate() {
-        self.cameraPositionYAxis()
-        self.cameraPositionXAxis()
+		if self.gameLayer?.hasLoadedGame == true {
+			self.cameraPositionYAxis()
+			self.cameraPositionXAxis()
+		}
     }
+    
+    // Called when the match has ended
+    func matchEnded() {
+        
+    }
+    
+    func startGame() {
+        
+    }
+	
+    func attack() {
+        self.gameLayer?.attack()
+    }
+	
+	// Called when my device receive the message to create the players
+	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
+        self.gameLayer?.createPlayer(indexes, chosenCharacters: chosenCharacters)
+    }
+	
+	// Called when a player send his selection
+	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int) {
+		self.playersDetails.append(PlayerDetails(character: chosenCharacter, index: playerIndex))
+		
+		print("\(self.playersDetails.count) :: \(GameKitHelper.sharedInstance.multiplayerMatch?.players.count) ")
+		
+		if self.playersDetails.count == ((GameKitHelper.sharedInstance.multiplayerMatch?.players.count)! + 1) {
+			
+			let multableArray = NSMutableArray(array: self.playersDetails)
+			let sortByIndex = NSSortDescriptor(key: "index", ascending: false)
+			let sortDescriptiors = [sortByIndex]
+			multableArray.sortUsingDescriptors(sortDescriptiors)
+			self.playersDetails = NSArray(array: multableArray) as! [PlayerDetails]
+			
+			for playerDetail in self.playersDetails {
+				self.chosenCharacters.append(playerDetail.character.rawValue)
+			}
+			
+			self.gameLayer?.createPlayer()
+			self.gameLayer?.addPLayers()
+			self.gameLayer?.hasLoadedGame = true
+			print("All players send character info to me, sending to all info to everyone")
+			networkingEngine?.tryStartGame()
+			
+		}
+	}
+	
+	// Class to determine player character selection and index for ordering array of players selections
+	class PlayerDetails: NSObject {
+		let character: CharacterType
+		let index: Int
+			
+		init(character: CharacterType, index: Int) {
+			self.character = character
+			self.index = index
+			super.init()
+		}
+	}
+	
+    // Perform a jump in all devices
+    func performJump (index: Int) {
+        let player = gameLayer!.players[index] as Player
+        gameLayer?.performJumpWithPlayer(player)
+    }
+    
+    // Move the player in all devices
+    func movePlayer(index: Int, dx: Float, dy: Float) {
+        
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.movePlayer(player, dx: dx, dy: dy)
+    }
+    
+    // Attack in all devices
+    func attack(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performAttackWithPlayer(player)
+    }
+    
+    // Get down in all devices
+    func performGetDown(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performGetDownWithPlayer(player)
+    }
+    
+    // Perform special in all devices
+    func performSpecial(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performSpecialWithPlayer(player)
+    }
+    
+    // Set the player index
+    func setCurrentPlayerIndex(index: Int) {
+        currentIndex = index
+    }
+    
 }

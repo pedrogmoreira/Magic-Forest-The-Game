@@ -49,12 +49,13 @@ class Player: SKSpriteNode, GameObject {
 	- parameter position: The point where the player will apear
 	*/
 	required init(position: CGPoint, screenSize: CGSize) {
-        let playerTexture = SKTexture(imageNamed: "sonic")
+        let playerTexture = SKTexture(imageNamed: "idle1")
         
 		super.init(texture: playerTexture, color: UIColor.blackColor(), size: playerTexture.size())
 		
 		self.position = position
-		self.resize(screenSize)
+//		self.resize(screenSize)
+//        self.setScale(0.4)
 		
         self.setBasicAttributes()
 	}
@@ -68,8 +69,8 @@ class Player: SKSpriteNode, GameObject {
 	- parameter screenSize: The device screen size
 	*/
 	private func resize(screenSize: CGSize) {
-		let widthRatio =  screenSize.width / self.size.width
-		let spriteRatio =  self.size.width / self.size.height
+		let widthRatio =  DEFAULT_WIDTH / self.size.width
+		let spriteRatio =  self.size.width / self.size.height / 0.5
 		
 		let width = self.size.width * widthRatio * self.scale
 		let height = width / spriteRatio
