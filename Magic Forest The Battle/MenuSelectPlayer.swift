@@ -22,10 +22,23 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 	private let timer = SKLabelNode(text: "")
 	
 	private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+	
+	//Fundo
+//	private let fundoLU = SKSpriteNode(imageNamed: "UI_WINDOW (8)")
+//	private let fundoRU = SKSpriteNode(imageNamed: "UI_WINDOW (7)")
+//	private let fundoLD = SKSpriteNode(imageNamed: "UI_WINDOW (2)")
+//	private let fundoRD = SKSpriteNode(imageNamed: "UI_WINDOW (4)")
+//	private let fundoUp = SKSpriteNode(imageNamed: "UI_WINDOW (9)")
+//	private let fundoDown = SKSpriteNode(imageNamed: "UI_WINDOW (3)")
+//	private let fundoML = SKSpriteNode(imageNamed: "UI_WINDOW (6)")
+//	private let fundoMR = SKSpriteNode(imageNamed: "UI_WINDOW (5)")
+//	private let fundoC = SKSpriteNode(imageNamed: "UI_WINDOW (1)")
+	
 	//Selecionar personagens
 	private let neithSelection = SKSpriteNode(imageNamed: "NeithIdle1")
-	private let uhongSelection = SKSpriteNode(imageNamed: "idle1")
+	private let uhongSelection = SKSpriteNode(imageNamed: "CogumeloParado1")
 	private let salamangSelction = SKSpriteNode(imageNamed: "SalamangIdlee1")
+	private let dinakSelection = SKSpriteNode(imageNamed: "idle1")
 	
 	//Imagem personagens
 	private let neithImage = SKSpriteNode(imageNamed: "archercute")
@@ -97,10 +110,12 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 	
 	}
 	func imageEdit () {
+		self.uhongSelection.setScale(0.3)
+		
 		self.neithImage.setScale(0.2)
 		self.uhongImage.setScale(0.2)
 		self.salamangImage.setScale(0.2)
-		self.dinakImage.setScale(0.2)
+		self.dinakImage.setScale(0.05)
 	}
 	private func addToLayer () {
 		// Adding play Button
@@ -115,9 +130,12 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 		addNode(uhongSelection, name: "uhongSelectionPosition", position: uhongSelectionPosition)
 		let salamangSelctionPosition = CGPoint(x: self.size!.width/2.5, y: self.size!.height/2.5)
 		addNode(salamangSelction, name: "salamangSelctionPosition", position: salamangSelctionPosition)
+		let dinakSelectionPosition = CGPoint(x: self.size!.width/2.5, y: self.size!.height/1.5)
+		addNode(dinakSelection, name: "dinakSelectionPosition", position: dinakSelectionPosition)
 	}
+	
 	// TODO: Refactor star game method.
-	private func startGame() {
+	 private func startGame() {
 		let gameScene = GameScene(size: self.size!)
 		self.view?.presentScene(gameScene, transition: SKTransition.flipHorizontalWithDuration(2))
 		
@@ -149,7 +167,7 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 		} else if nodeName == "uhongSelectionPosition" {
 			print(nodeName)
 			playerSelected = "Uhong"
-			self.selectPlayer(uhongSelection)
+			self.selectPlayer2(uhongSelection)
 			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addLabelNode(uhongLabelAbout, name: "uhongLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addNode(uhongImage, name: "uhongImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
@@ -160,7 +178,7 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addLabelNode(salamangLabelStatus, name: "salamangLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addNode(salamangImage, name: "salamangImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
-		} else if nodeName == "dinakSelecionPosition"{
+		} else if nodeName == "dinakSelectionPosition"{
 			self.addLabelNode(dinakLabelAbout, name: "dinakLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addLabelNode(dinakLabelSatus, name: "dinakLabelSatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addNode(dinakImage, name: "dinakImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
@@ -175,8 +193,15 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 	}
 	
 	func selectPlayer (node : SKSpriteNode) {
-		let normalScale = SKAction.scaleTo(1, duration: 0.5)
-		let bigScale = SKAction.scaleTo(1.5, duration: 0.5)
+		let normalScale = SKAction.scaleTo(1, duration: 0.3)
+		let bigScale = SKAction.scaleTo(1.5, duration: 0.3)
+		let sequence = SKAction.sequence([bigScale,normalScale])
+		let repeatSequence = SKAction.repeatActionForever(sequence)
+		node.runAction(repeatSequence)
+	}
+	func selectPlayer2 (node : SKSpriteNode) {
+		let normalScale = SKAction.scaleTo(0.3, duration: 0.3)
+		let bigScale = SKAction.scaleTo(0.5, duration: 0.3)
 		let sequence = SKAction.sequence([bigScale,normalScale])
 		let repeatSequence = SKAction.repeatActionForever(sequence)
 		node.runAction(repeatSequence)
@@ -185,8 +210,11 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 	func timerSelecPlayer () {
 		var timer = 30
 		let timerLabel = SKLabelNode(text: "")
+//		let clock = SKSpriteNode(imageNamed: "Clock")
+//		self.addNode(clock, name: "clock", position: CGPoint(x: (self.size?.width)!/2.3, y: (self.size?.height)!/1.16))
 		self.addLabelNode(timerLabel, name: "timerLabel", position: CGPoint(x: (self.size?.width)!/2, y: (self.size?.height)!/1.2))
 		let counter = SKAction.waitForDuration(1)
+		
 		let sequence = SKAction.sequence([counter, SKAction.runBlock({ () -> Void in
 			timer--
 			timerLabel.text = String(timer)
@@ -202,7 +230,7 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 		self.uhongSelection.removeAllActions()
 		self.salamangSelction.removeAllActions()
 		self.neithSelection.setScale(1)
-		self.uhongSelection.setScale(1)
+		self.uhongSelection.setScale(0.3)
 		self.salamangSelction.setScale(1)
 	}
 	func removeAllStatus () {
