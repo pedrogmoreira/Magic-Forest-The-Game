@@ -15,7 +15,7 @@ enum MessageType: Int {
 }
 
 enum CharacterType: Int {
-	case Uhong, Dinak, Salamang, Neith
+	case Uhong, Dinak, Salamang, Neith, Default
 }
 
 struct Message {

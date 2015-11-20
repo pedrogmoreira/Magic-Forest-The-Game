@@ -9,26 +9,49 @@
 import UIKit
 import SpriteKit
 
-class GameViewController: UIViewController {
+// TODO: SET IS ONLINE TO FALSE TO START A SINGLE GAME
+let IS_ONLINE = false
+
+protocol ScenesDelegate {
+	func showMenuSelectPlayerScene(menuSelectPlayerScene: MenuSelectPlayerScene)
+	func showGameOverScene()
+	func showGameScene(gameScene: GameScene)
+	
+	func removeMenuScene()
+	func removeMenuSelectPlayerScene()
+	func removeGameScene()
+	func removeGameOverScene()
+}
+
+class GameViewController: UIViewController, ScenesDelegate {
+	
+	var mainSKView: SKView?
+	var secondarySKView: SKView?
+	
+	var menuScene: MenuScene?
+	var gameScene: GameScene?
+	var menuSelectPlayerScene: MenuSelectPlayerScene?
+	
+	var controllerMode: MFCSControllerMode?
+	var controlUnit: MFCSControlUnit?
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		let scene = MenuScene(size: self.view.frame.size)
+		self.menuScene = MenuScene(size: self.view.frame.size)
+		self.menuScene!.scenesDelegate = self
         
 		// Configure the view.
-		let skView = self.view as! SKView
-		skView.showsFPS = true
-		skView.showsNodeCount = true
-        skView.showsPhysics = true
+		self.mainSKView = self.view as? SKView
+		self.mainSKView!.showsFPS = true
+		self.mainSKView!.showsNodeCount = true
+        self.mainSKView!.showsPhysics = true
 		
 		/* Sprite Kit applies additional optimizations to improve rendering performance */
-		skView.ignoresSiblingOrder = true
+		self.mainSKView!.ignoresSiblingOrder = true
 		
-		/* Set the scale mode to scale to fit the window */
-		scene.scaleMode = .AspectFill
+		self.mainSKView!.presentScene(self.menuScene!)
 		
-		skView.presentScene(scene)
     }
     
     override func shouldAutorotate() -> Bool {
@@ -47,5 +70,56 @@ class GameViewController: UIViewController {
     override func prefersStatusBarHidden() -> Bool {
         return true
     }
+	
+	func showMenuSelectPlayerScene(menuSelectPlayerScene: MenuSelectPlayerScene) {
+		print("Scene Delegate: show character selection")
+		menuSelectPlayerScene.scenesDelegate = self
+		self.menuSelectPlayerScene = menuSelectPlayerScene
+		
+		self.mainSKView!.presentScene(menuSelectPlayerScene)
+		
+		menuSelectPlayerScene.menu?.networkDelegate = self.menuScene?.mainMenu?.networkingEngine
+		
+		self.removeMenuScene()
+	}
+	
+	func showGameOverScene() {
+		
+	}
+	
+	func showGameScene(gameScene: GameScene) {
+		print("Scene Delegate: show game scene")
+		gameScene.scenesDelegate = self
+		self.gameScene = gameScene
+		
+        self.mainSKView!.presentScene(self.gameScene!, transition: SKTransition.flipHorizontalWithDuration(2))
+
+        self.controllerMode = MFCSControllerMode.JoystickAndSwipe
+
+		self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
+
+        self.view?.addSubview(controlUnit!)
+	}
+	
+	func removeMenuScene() {
+		self.menuScene?.mainMenu?.removeFromParent()
+		self.menuScene?.view?.removeFromSuperview()
+		self.menuScene?.removeFromParent()
+		self.menuScene = nil
+	}
+	
+	func removeMenuSelectPlayerScene() {
+		self.menuSelectPlayerScene?.view?.removeFromSuperview()
+		self.menuSelectPlayerScene?.removeFromParent()
+		self.menuSelectPlayerScene = nil
+	}
+	
+	func removeGameScene() {
+		self.controlUnit!.removeFromSuperview()
+	}
+	
+	func removeGameOverScene() {
+		
+	}
     
 }

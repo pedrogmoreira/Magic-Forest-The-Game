@@ -24,7 +24,9 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     
     var networkingEngine: MultiplayerNetworking?
     var gameScene: GameScene?
-    
+	
+	var scenesDelegate: ScenesDelegate?
+	
     var controlUnit: MFCSControlUnit?
     var controllerMode: MFCSControllerMode?
     
@@ -92,8 +94,12 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         let nodeName = nodeTouched.name
         
         if nodeName == "playButton" {
-//            self.showMatchMakerViewController(presentingViewController: viewController!)
-            self.selectPlayer()
+			if IS_ONLINE == true {
+				self.showMatchMakerViewController(presentingViewController: viewController!)
+			} else {
+				self.selectPlayer()
+			}
+			
         } else if nodeName == "configurationButton" {
             print("configurationButton touched")
         } else if nodeName == "practiceButton" {
@@ -118,9 +124,11 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         if !GKLocalPlayer.localPlayer().authenticated {
             return
         }
-        
+        print("init network")
         self.networkingEngine = MultiplayerNetworking()
-        
+		
+		gameScene?.scenesDelegate = self.scenesDelegate
+		networkingEngine?.size = self.size!
         networkingEngine!.delegate = gameScene
         networkingEngine!.startGameDelegate = self
         gameScene!.networkingEngine = networkingEngine
@@ -188,19 +196,23 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     
     private func selectPlayer () {
         let sceneSelectPlayer = MenuSelectPlayerScene(size: size!)
-        self.view?.presentScene(sceneSelectPlayer)
+		self.scenesDelegate?.showMenuSelectPlayerScene(sceneSelectPlayer)
+//        self.view?.presentScene(sceneSelectPlayer)
+//		self.removeGesturesFromLayer()
     }
     
     // TODO: Refactor star game method.
     func startGame() {
-        self.view?.presentScene(gameScene!, transition: SKTransition.flipHorizontalWithDuration(2))
-        
-        self.controllerMode = MFCSControllerMode.JoystickAndSwipe
-        
-        self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene!.gameLayer!, controllerMode: controllerMode!)
-        
-        self.view?.addSubview(self.controlUnit!)
-        
+		scenesDelegate?.showGameScene(gameScene!)
+		
+//        self.view?.presentScene(gameScene!, transition: SKTransition.flipHorizontalWithDuration(2))
+//        
+//        self.controllerMode = MFCSControllerMode.JoystickAndSwipe
+//        
+//        self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene!.gameLayer!, controllerMode: controllerMode!)
+//        
+//        self.view?.addSubview(self.controlUnit!)
+//		
         self.removeGesturesFromLayer()
     }
     
@@ -229,6 +241,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     
     // Handle the given swipe
     func handleSwipe(sender: UISwipeGestureRecognizer) {
+		print("handle swipe")
+		
         if sender.direction == .Right && self.currentScreen == Screen.rightScreen {
             self.runAction(SKAction.moveByX(self.size!.width, y: 0, duration: 0.5))
             self.currentScreen = Screen.middleScreen
@@ -247,6 +261,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
+		removeGesturesFromLayer()
     }
 
 }

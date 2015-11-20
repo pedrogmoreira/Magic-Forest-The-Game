@@ -11,6 +11,7 @@ import SpriteKit
 class MenuScene: SKScene {
     
     var mainMenu: MainMenuLayer?
+	var scenesDelegate: ScenesDelegate?
     
     /**
      Initializes the game scene
@@ -26,6 +27,7 @@ class MenuScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         self.mainMenu = MainMenuLayer(size: size, view: view)
+		self.mainMenu?.scenesDelegate = self.scenesDelegate
         self.addChild(mainMenu!)
     }
     

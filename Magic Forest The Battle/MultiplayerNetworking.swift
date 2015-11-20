@@ -19,6 +19,7 @@ protocol MultiplayerProtocol {
     func performGetDown(index: Int)
     func performSpecial(index: Int)
     func movePlayer(index: Int, dx: Float, dy: Float)
+	func chooseCharacter()
 	
 //    var gameLayer: GameLayer? {get set}
 //    var players: [Player] {get set}
@@ -45,8 +46,9 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     var isPlayer1: Bool
     var receivedAllRandomNumber: Bool
     var orderOfPlayers: [RandomNumberDetails]
-    
-    
+	var scenesDelegate: ScenesDelegate?
+	var size: CGSize!
+	
     override init() {
         ourRandomNumber = arc4random()
         gameState = GameState.WaintingForMatch
@@ -71,6 +73,9 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         }
         
         sendRandomNumber()
+		
+		let sceneSelectPlayer = MenuSelectPlayerScene(size: size!)
+		self.scenesDelegate?.showMenuSelectPlayerScene(sceneSelectPlayer)
     }
     
     func matchEnded() {
@@ -85,21 +90,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			delegate?.setCurrentPlayerIndex(0)
 			startGameDelegate?.startGame()
 			//			sendStartGameProperties()
-		}
-	}
-	
-	func choseCharacter() {
-		switch 0 {
-		case 0:
-			self.sendChosenCharacter(CharacterType.Uhong)
-		case 1:
-			self.sendChosenCharacter(CharacterType.Dinak)
-		case 2:
-			self.sendChosenCharacter(CharacterType.Salamang)
-		case 3:
-			self.sendChosenCharacter(CharacterType.Neith)
-		default:
-			print("CHOSE CHARACTER >> WRONG RANDOM CHARACTER")
 		}
 	}
 	
@@ -156,7 +146,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             
             if receivedAllRandomNumber {
                 isPlayer1 = isLocalPlayer1()
-				choseCharacter()
+				delegate?.chooseCharacter()
             }
             
             if !tie && receivedAllRandomNumber {
@@ -372,7 +362,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 	
 	// Send to the host my character selection
 	func sendChosenCharacter(characterType: CharacterType) {
-		
+		print("sending player")
 		if self.isPlayer1 == false {
 			
 			print("Im not the host, send him a message")

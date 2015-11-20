@@ -8,8 +8,10 @@
 
 import UIKit
 import SpriteKit
-	var playerSelected = ""
-class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
+
+var playerSelected = ""
+
+class MenuSelectPlayer: SKNode {
 
 	private var label = SKLabelNode()
 	private var size: CGSize?
@@ -18,10 +20,13 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 	
 	var controlUnit: MFCSControlUnit?
 	var controllerMode: MFCSControllerMode?
+	var networkDelegate: MultiplayerNetworking?
 	
 	private let timer = SKLabelNode(text: "")
 	
 	private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+	
+	var scenesDelegate: ScenesDelegate?
 	
 	//Fundo
 //	private let fundoLU = SKSpriteNode(imageNamed: "UI_WINDOW (8)")
@@ -135,15 +140,36 @@ class MenuSelectPlayer: SKNode, UIGestureRecognizerDelegate {
 	}
 	
 	// TODO: Refactor star game method.
-	 private func startGame() {
-		let gameScene = GameScene(size: self.size!)
-		self.view?.presentScene(gameScene, transition: SKTransition.flipHorizontalWithDuration(2))
-		
-		self.controllerMode = MFCSControllerMode.JoystickAndSwipe
-		
-		self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
-		
-		self.view?.addSubview(self.controlUnit!)
+	private func startGame() {
+		if IS_ONLINE == false {
+			let gameScene = GameScene(size: self.size!)
+			scenesDelegate?.showGameScene(gameScene)
+		} else {
+			print("sending player: \(self.selectedCharacter())")
+			networkDelegate?.sendChosenCharacter(self.selectedCharacter())
+		}
+//		self.view?.presentScene(gameScene, transition: SKTransition.flipHorizontalWithDuration(2))
+//		
+//		self.controllerMode = MFCSControllerMode.JoystickAndSwipe
+//		
+//		self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
+//		
+//		gameScene.view?.addSubview(self.controlUnit!)
+	}
+	
+	func selectedCharacter() -> CharacterType {
+		switch playerSelected {
+		case "Neith":
+			return CharacterType.Neith
+		case "Uhong":
+			return CharacterType.Uhong
+		case "Salamang":
+			return CharacterType.Salamang
+		case "Dinak":
+			return CharacterType.Dinak
+		default:
+			return CharacterType.Default
+		}
 	}
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

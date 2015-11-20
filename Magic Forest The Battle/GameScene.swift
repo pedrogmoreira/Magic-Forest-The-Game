@@ -24,6 +24,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	var chosenCharacters = [Int]()
 	var playersDetails = [PlayerDetails]()
 	
+	var scenesDelegate: ScenesDelegate?
+	
 	/**
 	Initializes the game scene
 	- parameter size: A reference to the device's screen size
@@ -33,7 +35,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	}
     
     override func didMoveToView(view: SKView) {
-        self.gameLayer = GameLayer(size: size, networkingEngine:  self.networkingEngine!, chosenCharacters: self.chosenCharacters)
+		if IS_ONLINE == true {
+			self.gameLayer = GameLayer(size: size, networkingEngine:  self.networkingEngine!, chosenCharacters: self.chosenCharacters)
+		} else {
+			self.gameLayer = GameLayer(size: size)
+		}
+		
         self.gameLayer?.zPosition = -5
 //        self.networkingEngine?.createPlayers()
         
@@ -172,6 +179,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 			
 		}
 	}
+	
+	func chooseCharacter() {
+		print("multiplayer select player")
+		let menuSelectPlayerScene = MenuSelectPlayerScene(size: self.size)
+		scenesDelegate?.showMenuSelectPlayerScene(menuSelectPlayerScene)
+	}
+	
 	
 	// Class to determine player character selection and index for ordering array of players selections
 	class PlayerDetails: NSObject {

@@ -23,6 +23,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
+	var scenesDelegate: ScenesDelegate?
     
 	/**
 	Initializes the game layer
@@ -53,9 +54,72 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.hasLoadedGame = true
 		}
 	}
+	
+	init(size: CGSize) {
+		self.hasLoadedGame = false
+		super.init()
+		
+		self.size = size
+		self.spawnPointGenerator()
+		
+		let wait = SKAction.waitForDuration(1)
+		let block = SKAction.runBlock { () -> Void in
+			self.upSpecialBar()
+		}
+		let seq = SKAction.sequence([wait,block])
+		let repeatAct = SKAction.repeatActionForever(seq)
+		self.runAction(repeatAct)
+		
+		singlePlayer()
+		self.hasLoadedGame = true
+	}
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	func singlePlayer() {
+		var spawnPointIndex = Int.randomWithInt(0...8)
+		var currentSpawnPoint = spawnPoints.objectAtIndex(spawnPointIndex)
+		
+		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
+			spawnPointIndex = Int.randomWithInt(0...8)
+			currentSpawnPoint = spawnPoints.objectAtIndex(spawnPointIndex)
+		}
+		
+		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
+		
+		switch(playerSelected) {
+			case "Uhong":
+				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size!)
+			break
+			case "Neith":
+				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size!)
+			break
+			case "Salamang":
+				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size!)
+			break
+			case "Dinak":
+				self.player = Dinak(position: currentSpawnPoint.position, screenSize: size!)
+		default:
+			//self.playerAleatorio
+			switch(Int.random(min: 1, max: 3)) {
+			case 1:
+				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size!)
+				break
+			case 2:
+				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size!)
+				break
+			case 3:
+				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size!)
+				break
+			default:
+				self.player = Dinak(position: currentSpawnPoint.position, screenSize: size!)
+			}
+			
+			
+		}
+		self.addChild(self.player!)
 	}
 	
 	// The host will sort a positio to every player and then send the positions and selections to everyone
@@ -81,38 +145,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		}
 		
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
-
-//		switch(playerSelected) {
-//			case "Uhong":
-//				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size!)
-//			break
-//			case "Neith":
-//				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size!)
-//			break
-//			case "Salamang":
-//				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size!)
-//			break
-//			case "Dinak":
-//			    self.player = Dinak(position: currentSpawnPoint.position, screenSize: size!)
-//		default:
-//			//self.playerAleatorio
-//			switch(Int.random(min: 1, max: 3)) {
-//			case 1:
-//				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size!)
-//				break
-//			case 2:
-//				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size!)
-//				break
-//			case 3:
-//				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size!)
-//				break
-//			default:
-//				self.player = Dinak(position: currentSpawnPoint.position, screenSize: size!)
-//			}
-//			
-//			
-//		}
-//		self.addChild(self.player!)
 
 		networkingEngine?.sendStartGameProperties(self.spawnPointIndexes, chosenCharacters: self.chosenCharacters)
 	}
@@ -174,8 +206,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
-		for player in self.players {
-			player.update(currentTime)
+		if IS_ONLINE == true {
+			for player in self.players {
+				player.update(currentTime)
+			}
+		} else {
+			self.player.update(currentTime)
 		}
 	}
 	
@@ -234,8 +270,9 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func analogUpdate(relativePosition position: CGPoint) {
 		self.setFlip(position, node: self.player)
-        
-        networkingEngine?.sendMove(Float(position.x), dy: Float(position.y))
+		if IS_ONLINE == true {
+			networkingEngine?.sendMove(Float(position.x), dy: Float(position.y))
+		}
 
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}

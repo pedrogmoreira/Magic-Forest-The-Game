@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 class MenuSelectPlayerScene: SKScene {
 	var menu: MenuSelectPlayer?
+	var scenesDelegate: ScenesDelegate?
 	
 	/**
 	Initializes the game scene
@@ -22,6 +23,7 @@ class MenuSelectPlayerScene: SKScene {
 	
 	override func didMoveToView(view: SKView) {
 		self.menu = MenuSelectPlayer(size: size, view: view)
+		menu?.scenesDelegate = self.scenesDelegate
 		self.addChild(menu!)
 	}
 	
