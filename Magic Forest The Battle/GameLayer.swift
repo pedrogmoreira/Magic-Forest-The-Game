@@ -13,14 +13,15 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	var player: Player?
 	var hudLayer : HudLayer?
 	var spawnPoints = NSMutableArray()
-	
+	var spawnPointsLocations : Array<CGPoint> = []
+
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
 	*/
 	required init(size: CGSize) {
 		super.init()
-
+		self.populateSpawnPoints(size)
 		self.spawnPointGenerator()
 		self.createPlayer(size)
 		let wait = SKAction.waitForDuration(1)
@@ -36,8 +37,53 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
+	func populateSpawnPoints (size : CGSize) {
+		self.spawnPointsLocations = [CGPoint(x: size.width/4, y: size.width/4),
+			CGPoint(x: size.width/2, y: size.height/2),
+			CGPoint(x: size.width*0.33, y: size.height*0.8),
+			CGPoint(x: size.width*0.6, y: size.height*0.8),
+			CGPoint(x: size.width*0.5, y: size.height*0.2),
+			CGPoint(x: size.width*0.5, y: size.height*0.7),
+			CGPoint(x: size.width*0.33, y: size.height*0.6),
+			CGPoint(x: size.width*0.2, y: size.height*0.8),
+			CGPoint(x: size.width*0.2, y: size.height*0.6)]
+	}
 	func createPlayer(size: CGSize) {
+		switch(playerSelected) {
+			case "Uhong":
+				self.player = Uhong(position: getRandomSpawnPoint().position, screenSize: size)
+			break
+			case "Neith":
+				self.player = Neith(position: getRandomSpawnPoint().position, screenSize:  size)
+			break
+			case "Salamang":
+				self.player = Salamang(position: getRandomSpawnPoint().position, screenSize:  size)
+			break
+			case "Dinak":
+			    self.player = Dinak(position: getRandomSpawnPoint().position, screenSize: size)
+		default:
+			//self.playerAleatorio
+			switch(Int.random(min: 1, max: 3)) {
+			case 1:
+				self.player = Uhong(position: getRandomSpawnPoint().position, screenSize: size)
+				break
+			case 2:
+				self.player = Neith(position: getRandomSpawnPoint().position, screenSize:  size)
+				break
+			case 3:
+				self.player = Salamang(position: getRandomSpawnPoint().position, screenSize:  size)
+				break
+			default:
+				self.player = Dinak(position: getRandomSpawnPoint().position, screenSize: size)
+			}
+		}
+		self.addChild(self.player!)
+	}
+	/**
+	Pegar um spawn point aleatorio e que não tenha sido usado nos ultimos 10s
+	- return: Spawn point
+	*/
+	func getRandomSpawnPoint () -> SpawnPoint {
 		var currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
 		
 		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
@@ -45,38 +91,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 		}
 		
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
-
-		switch(playerSelected) {
-			case "Uhong":
-				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size)
-			break
-			case "Neith":
-				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size)
-			break
-			case "Salamang":
-				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size)
-			break
-			case "Dinak":
-			    self.player = Dinak(position: currentSpawnPoint.position, screenSize: size)
-		default:
-			//self.playerAleatorio
-			switch(Int.random(min: 1, max: 3)) {
-			case 1:
-				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size)
-				break
-			case 2:
-				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size)
-				break
-			case 3:
-				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size)
-				break
-			default:
-				self.player = Dinak(position: currentSpawnPoint.position, screenSize: size)
-			}
-			
-			
-		}
-		self.addChild(self.player!)
+		return (currentSpawnPoint as! SpawnPoint)
 	}
 	
 	func update(currentTime: CFTimeInterval) {
@@ -106,13 +121,13 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 			}
 			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
 			
-		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy {
+		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy && player?.currentLife > 0 {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
 			self.player?.currentEnergy = 0
 			self.hudLayer?.energyFrontBar.removeAllActions()
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
-		} else if command == MFCSCommandType.Jump {
+		} else if command == MFCSCommandType.Jump && self.player?.currentLife > 0 {
 			self.player?.isJumping = true
 			self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 		} else if command == MFCSCommandType.GetDown {
@@ -141,7 +156,7 @@ class GameLayer: SKNode, BasicLayer, MFCSControllerDelegate {
 	
 	
 	func setFlip (flipX : CGPoint, node : SKSpriteNode) {
-		if flipX.x == 0 {
+		if flipX.x == 0 || self.player?.currentLife <= 0 {
 			return
 		}
 		if flipX.x < 0 {
