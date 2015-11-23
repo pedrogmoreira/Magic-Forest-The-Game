@@ -35,6 +35,7 @@ class Player: SKSpriteNode, GameObject {
 	var doubleJump: Bool = false
 	var isGetDown: Bool = false
 	var isLeft: Bool = false
+	var isDead: Bool = false
 	
 	let scale = CGFloat(0.07)
 	
@@ -86,6 +87,9 @@ class Player: SKSpriteNode, GameObject {
 		if self.currentLife <= 0 {
 			print("to morto")
 			self.changeState(PlayerState.Death)
+			if self.isDead == false {
+				self.rebirth()
+			}
 			return
 		}
 		self.runAction(move)
@@ -284,4 +288,19 @@ class Player: SKSpriteNode, GameObject {
 		return projectile
 	}
 	
+	/**
+	Reviver o personagem depois de 5 segundos
+	*/
+	func rebirth () {
+		self.isDead = true
+		let wait = SKAction.waitForDuration(5)
+		self.runAction(wait) { () -> Void in
+			self.currentLife = self.life
+			self.currentEnergy = self.energy
+			self.isDead = false
+			self.position = (self.parent as! GameLayer).getRandomSpawnPoint().position
+			
+		}
+		
+	}
 }

@@ -102,7 +102,6 @@
 		576965251BE2859F00CBB81D /* falling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651A1BE2859F00CBB81D /* falling2.png */; };
 		576965261BE2859F00CBB81D /* falling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651B1BE2859F00CBB81D /* falling3.png */; };
 		579B805F1BE3FC030025B374 /* SpawnPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B805E1BE3FC030025B374 /* SpawnPoint.swift */; };
-		579B80611BE3FC150025B374 /* SpawnPointsLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B80601BE3FC150025B374 /* SpawnPointsLocation.swift */; };
 		579B81181BE919F50025B374 /* SpecialAttack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 579B81161BE919F50025B374 /* SpecialAttack1.png */; };
 		579B81191BE919F50025B374 /* SpecialAttack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 579B81171BE919F50025B374 /* SpecialAttack2.png */; };
 		57A558021BDEA4F600A948DE /* Uhong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57A558011BDEA4F600A948DE /* Uhong.swift */; };
@@ -362,7 +361,6 @@
 		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling2.png; sourceTree = "<group>"; };
 		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling3.png; sourceTree = "<group>"; };
 		579B805E1BE3FC030025B374 /* SpawnPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpawnPoint.swift; sourceTree = "<group>"; };
-		579B80601BE3FC150025B374 /* SpawnPointsLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpawnPointsLocation.swift; sourceTree = "<group>"; };
 		579B81161BE919F50025B374 /* SpecialAttack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpecialAttack1.png; sourceTree = "<group>"; };
 		579B81171BE919F50025B374 /* SpecialAttack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpecialAttack2.png; sourceTree = "<group>"; };
 		57A558011BDEA4F600A948DE /* Uhong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Uhong.swift; sourceTree = "<group>"; };
@@ -980,7 +978,6 @@
 		67D98E041BE3F1C20045029A /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				579B80601BE3FC150025B374 /* SpawnPointsLocation.swift */,
 				EB90575D1BD55CF200536AD1 /* GameScene.swift */,
 				EB0EACB91BE3E39F00D93287 /* MenuScene.swift */,
 				57C08DD01BF5191A003E4574 /* MenuSelectPlayerScene.swift */,
@@ -1546,7 +1543,6 @@
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
 				670914E91BFE58600007F2FF /* MultiplayerNetworking.swift in Sources */,
 				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
-				579B80611BE3FC150025B374 /* SpawnPointsLocation.swift in Sources */,
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
 				57C08DCF1BF4FCEC003E4574 /* MenuSelectPlayer.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
