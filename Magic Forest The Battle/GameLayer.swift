@@ -20,7 +20,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	var spawnPoints = NSMutableArray()
     var size: CGSize?
 	var hasLoadedGame: Bool
-    
+        
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
 	var scenesDelegate: ScenesDelegate?
@@ -207,6 +207,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
 		if IS_ONLINE == true {
+            networkingEngine?.sendMove(Float(player.position.x), dy: Float(player.position.y))
 			for player in self.players {
 				player.update(currentTime)
 			}
@@ -270,9 +271,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func analogUpdate(relativePosition position: CGPoint) {
 		self.setFlip(position, node: self.player)
-		if IS_ONLINE == true {
-			networkingEngine?.sendMove(Float(position.x), dy: Float(position.y))
-		}
 
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
@@ -318,8 +316,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Move a specific player
     func movePlayer(player: Player, dx: Float, dy: Float) {
         let movementVelocity = CGVector(dx: CGFloat(dx), dy: CGFloat(dy))
-        self.setFlip(CGPoint(vector: movementVelocity), node: player)
-        player.movementVelocity = movementVelocity
+//        self.setFlip(CGPoint(vector: movementVelocity), node: player)
+//        player.movementVelocity = movementVelocity
+        if CGFloat(dx) > player.position.x {
+            performFlipWithPlayer(player, flip: false)
+        } else if CGFloat(dx) < player.position.x {
+            performFlipWithPlayer(player, flip: true)
+        }
+        player.position = CGPoint(vector: movementVelocity)
     }
     
     // Perform an attack with an specific player
@@ -335,6 +339,21 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Perform special attack with an specific player
     func performSpecialWithPlayer(player: Player) {
         player.isSpecialAttacking = true
+    }
+    
+    // Perform flip with an specific player
+    func performFlipWithPlayer(player: Player, flip: Bool) {
+//        if x == 0 {
+//            return
+//        }
+        
+        if flip {
+            player.xScale = -fabs(player.xScale)
+            player.isLeft = true
+        } else {
+            player.xScale = fabs(player.xScale)
+            player.isLeft = false
+        }
     }
 }
 

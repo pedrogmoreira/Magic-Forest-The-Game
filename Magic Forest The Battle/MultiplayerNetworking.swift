@@ -109,6 +109,20 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             }
         }
     }
+    
+    func sendUnreliableData(data: NSData) {
+        let gameKitHelper = GameKitHelper.sharedInstance
+        
+        if let multiplayerMatch = gameKitHelper.multiplayerMatch {
+            do {
+                // .Rekuabke means that the data you send is guaranteed to arrive at its destination
+                try multiplayerMatch.sendDataToAllPlayers(data, withDataMode: .Unreliable)
+            } catch let error as NSError {
+                print("Error:\(error.localizedDescription)")
+                matchEnded()
+            }
+        }
+    }
 
     // Process the received data from player
     func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: GKPlayer) {
@@ -326,11 +340,10 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     
     // Send to all devices a message of type MessageMove
     func sendMove(dx: Float, dy: Float) {
-        
         var message = MessageMove(dx: dx, dy: dy)
         
         let data = NSData(bytes: &message, length: sizeof(MessageMove))
-        sendData(data)
+        sendUnreliableData(data)
     }
     
     // Send to all devices a message of type MessageGetDown
@@ -340,7 +353,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageGetDown))
         sendData(data)
     }
-    
+
     // Send to all devices a message of type MessageSpecialAttack
     func sendSpecialAttack() {
         var message = MessageSpecialAttack()
@@ -376,4 +389,5 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			delegate?.receiveChosenCharacter(characterType, playerIndex: 0)
 		}
 	}
+
 }
