@@ -246,9 +246,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
             self.networkingEngine?.sendSpecialAttack()
 		} else if command == MFCSCommandType.Jump {
-            self.networkingEngine?.sendJump()
-            self.player.isJumping = true
-            self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+			if self.player.jumpCount < self.player.jumpLimit {
+				++self.player.jumpCount
+				self.networkingEngine?.sendJump()
+				self.player.isJumping = true
+				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+			}
 		} else if command == MFCSCommandType.GetDown {
 			self.player?.getDownOneFloor()
             self.networkingEngine?.sendGetDown()
@@ -336,5 +339,26 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     func performSpecialWithPlayer(player: Player) {
         player.isSpecialAttacking = true
     }
+	
+	// MARK: Physics Contact Delegate
+	
+	func didBeginContact(contact: SKPhysicsContact) {
+		print("begin")
+		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+		
+		switch(contactMask) {
+			
+		case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+			
+			if self.player.jumpCount != 0 {
+				self.player.jumpCount = 0
+			}
+		default:
+			print("collision not handled")
+		}
+	}
 }
 

@@ -26,7 +26,7 @@ class Uhong: Player {
 		self.jumpForce = 100_000
 		self.defesa = 30 //Defende 30% do dano
 		self.attackSpeed = 1
-		self.doubleJump = false
+		self.jumpLimit = 1
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
 		self.regLife = 1
@@ -46,7 +46,7 @@ class Uhong: Player {
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
-		physicsBody.contactTestBitMask = 0
+		physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR
 		physicsBody.mass = 100
 		physicsBody.affectedByGravity = true
 		physicsBody.allowsRotation = false
