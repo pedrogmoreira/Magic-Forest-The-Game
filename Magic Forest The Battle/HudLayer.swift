@@ -12,11 +12,13 @@ class HudLayer: SKNode, BasicLayer {
 	
 	var energyFrontBar = SKSpriteNode()
 	var lifeFrontBar = SKSpriteNode()
-	
+	var size = CGSize()
 	required init(size: CGSize) {
 		super.init()
 		//barra vida
 		//barra do fundo
+		self.size = size
+		timerGame()
 		let lifeBackBar = SKSpriteNode(texture: SKTexture(imageNamed: "UI_ETCBAR"))
 		lifeBackBar.position = CGPointMake(-size.width*0.48, size.height*0.45)
 		lifeBackBar.setScale(0.3)
@@ -95,6 +97,27 @@ class HudLayer: SKNode, BasicLayer {
 		let seq = SKAction.sequence([changeToFlash,wait,changeToNormal,wait])
 		self.energyFrontBar.runAction(SKAction.repeatActionForever(seq),withKey: "full")
 	}
-
+	
+	func timerGame () {
+		var timer = 60
+		let timerLabel = SKLabelNode(text: "")
+		//		let clock = SKSpriteNode(imageNamed: "Clock")
+		//		self.addNode(clock, name: "clock", position: CGPoint(x: (self.size?.width)!/2.3, y: (self.size?.height)!/1.16))
+		timerLabel.name = "timerLabel"
+		timerLabel.position =  CGPoint(x:0, y: self.size.height*0.4)
+		self.addChild(timerLabel)
+		let counter = SKAction.waitForDuration(1)
+		
+		let sequence = SKAction.sequence([counter, SKAction.runBlock({ () -> Void in
+			timer--
+			timerLabel.text = String(timer)
+			print(timer)
+			
+		})])
+		
+		let repeatAction = SKAction.repeatAction(sequence, count: 30)
+		self.runAction(repeatAction)
+		//pause game
+	}
 
 }

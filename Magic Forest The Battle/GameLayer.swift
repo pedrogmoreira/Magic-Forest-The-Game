@@ -231,6 +231,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		} else {
 			self.player.update(currentTime)
 		}
+		hudLayer?.animateBar(player.currentLife!, bar: player.life!, tipo: "life")
 	}
 	
 	func upSpecialBar () {
