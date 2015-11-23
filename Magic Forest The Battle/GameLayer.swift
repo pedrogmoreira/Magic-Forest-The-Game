@@ -20,6 +20,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	var spawnPoints = NSMutableArray()
     var size: CGSize?
 	var hasLoadedGame: Bool
+	var spawnPointsLocations : Array<CGPoint> = []
     
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
@@ -32,7 +33,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	required init(size: CGSize, networkingEngine: MultiplayerNetworking, chosenCharacters: [Int]) {
 		self.hasLoadedGame = false
 		super.init()
-		
+		self.populateSpawnPoints(size)
         self.size = size
 		self.networkingEngine = networkingEngine
 		self.chosenCharacters = chosenCharacters
@@ -55,10 +56,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		}
 	}
 	
+	
 	init(size: CGSize) {
 		self.hasLoadedGame = false
 		super.init()
-		
+		self.populateSpawnPoints(size)
 		self.size = size
 		self.spawnPointGenerator()
 		
@@ -73,53 +75,69 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		singlePlayer()
 		self.hasLoadedGame = true
 	}
+	
+	func populateSpawnPoints (size : CGSize) {
+		self.spawnPointsLocations = [CGPoint(x: size.width/4, y: size.width/4),
+			CGPoint(x: size.width/2, y: size.height/2),
+			CGPoint(x: size.width*0.33, y: size.height*0.8),
+			CGPoint(x: size.width*0.6, y: size.height*0.8),
+			CGPoint(x: size.width*0.5, y: size.height*0.2),
+			CGPoint(x: size.width*0.5, y: size.height*0.7),
+			CGPoint(x: size.width*0.33, y: size.height*0.6),
+			CGPoint(x: size.width*0.2, y: size.height*0.8),
+			CGPoint(x: size.width*0.2, y: size.height*0.6)]
+	}
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
 	func singlePlayer() {
-		var spawnPointIndex = Int.randomWithInt(0...8)
-		var currentSpawnPoint = spawnPoints.objectAtIndex(spawnPointIndex)
-		
-		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
-			spawnPointIndex = Int.randomWithInt(0...8)
-			currentSpawnPoint = spawnPoints.objectAtIndex(spawnPointIndex)
-		}
-		
-		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
-		
 		switch(playerSelected) {
 			case "Uhong":
-				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size!)
+				self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
 			break
 			case "Neith":
-				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size!)
+				self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
 			break
 			case "Salamang":
-				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size!)
+				self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
 			break
 			case "Dinak":
-				self.player = Dinak(position: currentSpawnPoint.position, screenSize: size!)
+				self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
 		default:
 			//self.playerAleatorio
 			switch(Int.random(min: 1, max: 3)) {
 			case 1:
-				self.player = Uhong(position: currentSpawnPoint.position, screenSize: size!)
+				self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
 				break
 			case 2:
-				self.player = Neith(position: currentSpawnPoint.position, screenSize:  size!)
+				self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
 				break
 			case 3:
-				self.player = Salamang(position: currentSpawnPoint.position, screenSize:  size!)
+				self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
 				break
 			default:
-				self.player = Dinak(position: currentSpawnPoint.position, screenSize: size!)
+				self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
 			}
 			
 			
 		}
 		self.addChild(self.player!)
+	}
+	/**
+	Pegar um spawn point aleatorio e que não tenha sido usado nos ultimos 10s
+	- return: Spawn point
+	*/
+	func getRandomSpawnPoint () -> SpawnPoint {
+		var currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
+		
+		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
+			currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
+		}
+		
+		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
+		return (currentSpawnPoint as! SpawnPoint)
 	}
 	
 	// The host will sort a positio to every player and then send the positions and selections to everyone
@@ -238,14 +256,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
 			
-		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy {
+		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy && player?.currentLife > 0 {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
 			self.player?.currentEnergy = 0
 			self.hudLayer?.energyFrontBar.removeAllActions()
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
             self.networkingEngine?.sendSpecialAttack()
-		} else if command == MFCSCommandType.Jump {
+		} else if command == MFCSCommandType.Jump && player?.currentLife > 0 {
             self.networkingEngine?.sendJump()
             self.player.isJumping = true
             self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
@@ -278,7 +296,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	}
 	
 	func setFlip (flipX : CGPoint, node : SKSpriteNode) {
-		if flipX.x == 0 {
+		if flipX.x == 0 || player?.currentLife <= 0{
 			return
 		}
         
