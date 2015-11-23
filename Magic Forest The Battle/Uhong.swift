@@ -65,7 +65,7 @@ class Uhong: Player {
 	}
 	
 	override func generatePhysicsBody() -> SKPhysicsBody {
-		let physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.size.width / 2, self.size.height / 2), center: CGPointMake(0, -self.size.height / 4))
+		let physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.size.width / 4, self.size.height / 2), center: CGPointMake(0, -self.size.height / 4))
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR

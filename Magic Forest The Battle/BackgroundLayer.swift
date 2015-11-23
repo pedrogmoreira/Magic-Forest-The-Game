@@ -265,12 +265,12 @@ class BackgroundLayer: SKNode {
 	}
 	
 	/**
-	Generates a physic body with same width and 60% of original height. Made for Platforms
+	Generates a physic body with 90% of original width and 40% of original height. Made for Platforms
 	- parameter size: The platform size
 	- parameter categoryBitmask: The platform category bitmask
 	*/
 	private func generatePhysicsBody(var size: CGSize, categoryBitmask: PhysicsCategory) -> SKPhysicsBody {
-		size = CGSize(width: size.width, height: size.height * 0.6)
+		size = CGSize(width: size.width * 0.8, height: size.height * 0.4)
 		
 		let physicsBody = SKPhysicsBody(rectangleOfSize: size)
 		physicsBody.categoryBitMask = categoryBitmask.rawValue
