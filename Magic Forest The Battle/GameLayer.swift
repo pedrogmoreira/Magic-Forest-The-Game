@@ -24,7 +24,9 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
 	var scenesDelegate: ScenesDelegate?
-    
+	
+	var collidedPlayerIndex: Int = 0
+	var isOnCollision: Bool = false
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
@@ -168,11 +170,13 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	// Adds all players to the game
 	func addPLayers() {
 		for index in 0...players.count - 1 {
-            let player = self.players[index]
+            var player = self.players[index]
             player.zPosition = -CGFloat(index)
 			if index == self.currentIndex {
 				self.player = player
                 self.player.zPosition = 1
+			} else {
+				player.physicsBody?.categoryBitMask = PhysicsCategory.OtherPlayer.rawValue
 			}
 			
 			self.addChild(players[index])
@@ -231,16 +235,18 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
 			self.projectileToLayer((self.player?.createProjectile())!)
+			self.checkAttack(0)
             networkingEngine?.sendAttack()
 			self.player?.isAttacking = true
-			if self.player?.currentLife > 0 {
-				self.player?.currentLife = (self.player?.currentLife)! - 100
-			}
-			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
+//			if self.player?.currentLife > 0 {
+//				self.player?.currentLife = (self.player?.currentLife)! - 100
+//			}
+//			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
 			
 		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
+			self.checkAttack(1)
 			self.player?.currentEnergy = 0
 			self.hudLayer?.energyFrontBar.removeAllActions()
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
@@ -258,6 +264,17 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		}
 	}
 	
+	func checkAttack(type: Int) {
+		if type == 0 { // if type is 0, the is normal attack
+			if self.isOnCollision == true {
+				print("deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.collidedPlayerIndex].player.alias)")
+			}
+		} else if type == 1 { // if type is 0, the is special attack
+			if self.isOnCollision == true {
+				print("deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.collidedPlayerIndex].player.alias)")
+			}
+		}
+	}
 	func projectileToLayer (projectile : Projectile) {
 		self.addChild(projectile)
 		
@@ -343,7 +360,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	// MARK: Physics Contact Delegate
 	
 	func didBeginContact(contact: SKPhysicsContact) {
-		print("begin")
 		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
 		switch(contactMask) {
@@ -352,12 +368,30 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-			
 			if self.player.jumpCount != 0 {
 				self.player.jumpCount = 0
 			}
+		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
+				self.collidedPlayerIndex = self.players.indexOf(contact.bodyB.node as! Player)!
+			} else {
+				self.collidedPlayerIndex = self.players.indexOf(contact.bodyA.node as! Player)!
+			}
+			self.isOnCollision = true
 		default:
 			print("collision not handled")
+		}
+	}
+	
+	func didEndContact(contact: SKPhysicsContact) {
+		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+		
+		switch(contactMask) {
+	
+		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			self.isOnCollision = false
+		default:
+			print("end collision not handled")
 		}
 	}
 }

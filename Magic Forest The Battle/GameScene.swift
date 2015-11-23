@@ -238,5 +238,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	func didBeginContact(contact: SKPhysicsContact) {
 		self.gameLayer?.didBeginContact(contact)
 	}
+	
+	func didEndContact(contact: SKPhysicsContact) {
+		self.gameLayer?.didEndContact(contact)
+	}
     
 }
