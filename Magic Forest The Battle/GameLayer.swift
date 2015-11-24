@@ -25,13 +25,18 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
 	var scenesDelegate: ScenesDelegate?
-    
+	
+	var normalAreaPlayersIndex: [Int] = [Int]()
+	var specialAreaPlayersIndex: [Int] = [Int]()
+	var isOnMeleeCollision: Bool = false
+	var isOnSpecialCollision: Bool = false
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
 	*/
 	required init(size: CGSize, networkingEngine: MultiplayerNetworking, chosenCharacters: [Int]) {
 		self.hasLoadedGame = false
+		specialAreaPlayersIndex.removeAll()
 		super.init()
 		self.populateSpawnPoints(size)
         self.size = size
@@ -191,6 +196,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			if index == self.currentIndex {
 				self.player = player
                 self.player.zPosition = 1
+			} else {
+				player.physicsBody?.categoryBitMask = PhysicsCategory.OtherPlayer.rawValue
 			}
 			
 			self.addChild(players[index])
@@ -249,31 +256,49 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
-			self.projectileToLayer((self.player?.createProjectile())!)
-            networkingEngine?.sendAttack()
-			self.player?.isAttacking = true
-			if self.player?.currentLife > 0 {
-				self.player?.currentLife = (self.player?.currentLife)! - 100
+			if self.player.isAttacking == false {
+				self.projectileToLayer((self.player?.createProjectile())!)
+				self.checkAttack(0)
+				networkingEngine?.sendAttack()
+				self.player?.isAttacking = true
 			}
-			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
+//			if self.player?.currentLife > 0 {
+//				self.player?.currentLife = (self.player?.currentLife)! - 100
+//			}
+//			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
 			
 		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy && player?.currentLife > 0 {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
+			self.checkAttack(1)
 			self.player?.currentEnergy = 0
 			self.hudLayer?.energyFrontBar.removeAllActions()
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
             self.networkingEngine?.sendSpecialAttack()
-		} else if command == MFCSCommandType.Jump && player?.currentLife > 0 {
-            self.networkingEngine?.sendJump()
-            self.player.isJumping = true
-            self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+		} else if command == MFCSCommandType.Jump {
+			if self.player.jumpCount < self.player.jumpLimit {
+				++self.player.jumpCount
+				self.networkingEngine?.sendJump()
+				self.player.isJumping = true
+				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
+			}
 		} else if command == MFCSCommandType.GetDown {
 			self.player?.getDownOneFloor()
             self.networkingEngine?.sendGetDown()
 		}
 	}
 	
+	func checkAttack(type: Int) {
+		if type == 0 { // if type is 0, the is normal attack
+			if self.isOnMeleeCollision == true {
+				print("deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+			}
+		} else if type == 1 { // if type is 0, the is special attack
+			if self.isOnSpecialCollision == true {
+				print("deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+			}
+		}
+	}
 	func projectileToLayer (projectile : Projectile) {
 		self.addChild(projectile)
 		
@@ -355,5 +380,98 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     func performSpecialWithPlayer(player: Player) {
         player.isSpecialAttacking = true
     }
+	
+	// MARK: Physics Contact Delegate
+	
+	func checkIndex(index: Int, atArray array: [Int]) -> Bool {
+		for collidedIndex in array {
+			if collidedIndex == index {
+				return true
+			}
+		}
+		
+		return false
+	}
+	
+	func didBeginContact(contact: SKPhysicsContact) {
+		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+		
+		switch(contactMask) {
+			
+		case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+			if self.player.jumpCount != 0 {
+				self.player.jumpCount = 0
+			}
+		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
+				let index = self.players.indexOf(contact.bodyB.node as! Player)!
+				
+				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
+					self.normalAreaPlayersIndex.append(index)
+				}
+			} else {
+				let index = self.players.indexOf(contact.bodyA.node as! Player)!
+				
+				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
+					self.normalAreaPlayersIndex.append(index)
+				}
+			}
+			self.isOnMeleeCollision = true
+		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
+				let index = self.players.indexOf(contact.bodyB.node as! Player)!
+				
+				if self.checkIndex(index, atArray: self.specialAreaPlayersIndex) == false {
+					self.specialAreaPlayersIndex.append(index)
+				}
+			} else {
+				let index = self.players.indexOf(contact.bodyA.node as! Player)!
+				
+				if self.checkIndex(index, atArray: self.specialAreaPlayersIndex) == false {
+					self.specialAreaPlayersIndex.append(index)
+				}
+			}
+			self.isOnSpecialCollision = true
+		default:
+			return
+		}
+	}
+	
+	func didEndContact(contact: SKPhysicsContact) {
+		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+		
+		switch(contactMask) {
+	
+		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			if self.normalAreaPlayersIndex.count > 0 {
+				if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
+					self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
+				} else {
+					self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
+				}
+				
+				if self.normalAreaPlayersIndex.count == 0 {
+					self.isOnMeleeCollision = false
+				}
+			}
+		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			if self.specialAreaPlayersIndex.count > 0 {
+				if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
+					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
+				} else {
+					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
+				}
+				
+				if self.specialAreaPlayersIndex.count == 0 {
+					self.isOnSpecialCollision = false
+				}
+			}
+		default:
+			return
+		}
+	}
 }
 

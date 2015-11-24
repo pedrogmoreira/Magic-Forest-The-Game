@@ -25,7 +25,7 @@ class Salamang: Player {
 		self.jumpForce = 100_000
 		self.defesa = 20 //Defende 20% do dano
 		self.attackSpeed = 1
-		self.doubleJump = false
+		self.jumpLimit = 1
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
 		self.regLife = 1

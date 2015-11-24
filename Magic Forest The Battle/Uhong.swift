@@ -10,6 +10,10 @@ import UIKit
 import SpriteKit
 
 class Uhong: Player {
+	
+	var meleeBox: SKSpriteNode?
+	var specialBox: SKSpriteNode?
+	
 	required init(position: CGPoint, screenSize: CGSize) {
 		super.init(position: position, screenSize: screenSize)
 		
@@ -26,32 +30,75 @@ class Uhong: Player {
 		self.jumpForce = 100_000
 		self.defesa = 30 //Defende 30% do dano
 		self.attackSpeed = 1
-		self.doubleJump = false
+		self.jumpLimit = 1
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
 		self.regLife = 1
 		self.getDownForce = -50_000
 		//self.anchorPoint = CGPointMake(self.anchorPoint.x, self.anchorPoint.y-0.25)
 		
-		self.setScale(6)
+		self.setScale(4)
 		
-		//initializeAnimations()
+		self.generateMeleeBox()
+		self.generateSpecialBox()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
+	
+	func generateMeleeBox() {
+		self.meleeBox = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: self.size.width / 16, height: self.size.height / 32))
+		self.meleeBox!.alpha = 0
+		
+		let physicsBody = SKPhysicsBody(rectangleOfSize: self.meleeBox!.size)
+		physicsBody.categoryBitMask = PhysicsCategory.MeleeBox.rawValue
+		physicsBody.collisionBitMask = 0
+		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue
+		physicsBody.mass = 0
+		physicsBody.affectedByGravity = false
+		physicsBody.allowsRotation = false
+		
+		self.meleeBox!.physicsBody = physicsBody
+		
+		self.addChild(self.meleeBox!)
+	}
+	
+	func generateSpecialBox() {
+		self.specialBox = SKSpriteNode(color: UIColor.blueColor(), size: CGSize(width: self.size.width / 5, height: self.size.height / 5))
+		self.specialBox!.alpha = 0
+		
+		let physicsBody = SKPhysicsBody(rectangleOfSize: self.specialBox!.size)
+		physicsBody.categoryBitMask = PhysicsCategory.SpecialBox.rawValue
+		physicsBody.collisionBitMask = 0
+		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue
+		physicsBody.mass = 0
+		physicsBody.affectedByGravity = false
+		physicsBody.allowsRotation = false
+		
+		self.specialBox!.physicsBody = physicsBody
+		
+		self.addChild(self.specialBox!)
+	}
+	
 	override func generatePhysicsBody() -> SKPhysicsBody {
-		let physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.size.width/2, self.size.height/2), center: CGPointMake(0, -self.size.height/4))
+		let physicsBody = SKPhysicsBody(rectangleOfSize: CGSizeMake(self.size.width / 4, self.size.height / 2), center: CGPointMake(0, -self.size.height / 4))
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
-		physicsBody.contactTestBitMask = 0
+		physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR
 		physicsBody.mass = 100
 		physicsBody.affectedByGravity = true
 		physicsBody.allowsRotation = false
 		
 		return physicsBody
+	}
+	
+	override func update(currentTime: CFTimeInterval) {
+		super.update(currentTime)
+		
+		self.meleeBox!.position = CGPoint(x: self.meleeBox!.size.width, y: -self.meleeBox!.size.height * 2.5)
+		self.specialBox!.position = CGPoint.zero
 	}
 	
 	// MARK: Animations

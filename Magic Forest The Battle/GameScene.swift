@@ -234,5 +234,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     func setCurrentPlayerIndex(index: Int) {
         currentIndex = index
     }
+	
+	func didBeginContact(contact: SKPhysicsContact) {
+		self.gameLayer?.didBeginContact(contact)
+	}
+	
+	func didEndContact(contact: SKPhysicsContact) {
+		self.gameLayer?.didEndContact(contact)
+	}
     
 }
