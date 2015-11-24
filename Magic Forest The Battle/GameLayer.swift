@@ -25,14 +25,17 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     var networkingEngine: MultiplayerNetworking?
 	var scenesDelegate: ScenesDelegate?
 	
-	var collidedPlayerIndex: Int = 0
-	var isOnCollision: Bool = false
+	var normalAreaPlayersIndex: [Int] = [Int]()
+	var specialAreaPlayersIndex: [Int] = [Int]()
+	var isOnMeleeCollision: Bool = false
+	var isOnSpecialCollision: Bool = false
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
 	*/
 	required init(size: CGSize, networkingEngine: MultiplayerNetworking, chosenCharacters: [Int]) {
 		self.hasLoadedGame = false
+		specialAreaPlayersIndex.removeAll()
 		super.init()
 		
         self.size = size
@@ -170,7 +173,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	// Adds all players to the game
 	func addPLayers() {
 		for index in 0...players.count - 1 {
-            var player = self.players[index]
+            let player = self.players[index]
             player.zPosition = -CGFloat(index)
 			if index == self.currentIndex {
 				self.player = player
@@ -234,10 +237,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
-			self.projectileToLayer((self.player?.createProjectile())!)
-			self.checkAttack(0)
-            networkingEngine?.sendAttack()
-			self.player?.isAttacking = true
+			if self.player.isAttacking == false {
+				self.projectileToLayer((self.player?.createProjectile())!)
+				self.checkAttack(0)
+				networkingEngine?.sendAttack()
+				self.player?.isAttacking = true
+			}
 //			if self.player?.currentLife > 0 {
 //				self.player?.currentLife = (self.player?.currentLife)! - 100
 //			}
@@ -266,12 +271,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func checkAttack(type: Int) {
 		if type == 0 { // if type is 0, the is normal attack
-			if self.isOnCollision == true {
-				print("deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.collidedPlayerIndex].player.alias)")
+			if self.isOnMeleeCollision == true {
+				print("deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 			}
 		} else if type == 1 { // if type is 0, the is special attack
-			if self.isOnCollision == true {
-				print("deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.collidedPlayerIndex].player.alias)")
+			if self.isOnSpecialCollision == true {
+				print("deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 			}
 		}
 	}
@@ -359,6 +364,16 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	// MARK: Physics Contact Delegate
 	
+	func checkIndex(index: Int, atArray array: [Int]) -> Bool {
+		for collidedIndex in array {
+			if collidedIndex == index {
+				return true
+			}
+		}
+		
+		return false
+	}
+	
 	func didBeginContact(contact: SKPhysicsContact) {
 		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
@@ -373,13 +388,36 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
-				self.collidedPlayerIndex = self.players.indexOf(contact.bodyB.node as! Player)!
+				let index = self.players.indexOf(contact.bodyB.node as! Player)!
+				
+				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
+					self.normalAreaPlayersIndex.append(index)
+				}
 			} else {
-				self.collidedPlayerIndex = self.players.indexOf(contact.bodyA.node as! Player)!
+				let index = self.players.indexOf(contact.bodyA.node as! Player)!
+				
+				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
+					self.normalAreaPlayersIndex.append(index)
+				}
 			}
-			self.isOnCollision = true
+			self.isOnMeleeCollision = true
+		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
+				let index = self.players.indexOf(contact.bodyB.node as! Player)!
+				
+				if self.checkIndex(index, atArray: self.specialAreaPlayersIndex) == false {
+					self.specialAreaPlayersIndex.append(index)
+				}
+			} else {
+				let index = self.players.indexOf(contact.bodyA.node as! Player)!
+				
+				if self.checkIndex(index, atArray: self.specialAreaPlayersIndex) == false {
+					self.specialAreaPlayersIndex.append(index)
+				}
+			}
+			self.isOnSpecialCollision = true
 		default:
-			print("collision not handled")
+			return
 		}
 	}
 	
@@ -389,9 +427,31 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		switch(contactMask) {
 	
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			self.isOnCollision = false
+			if self.normalAreaPlayersIndex.count > 0 {
+				if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
+					self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
+				} else {
+					self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
+				}
+				
+				if self.normalAreaPlayersIndex.count == 0 {
+					self.isOnMeleeCollision = false
+				}
+			}
+		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			if self.specialAreaPlayersIndex.count > 0 {
+				if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
+					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
+				} else {
+					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
+				}
+				
+				if self.specialAreaPlayersIndex.count == 0 {
+					self.isOnSpecialCollision = false
+				}
+			}
 		default:
-			print("end collision not handled")
+			return
 		}
 	}
 }

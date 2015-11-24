@@ -12,6 +12,7 @@ import SpriteKit
 class Uhong: Player {
 	
 	var meleeBox: SKSpriteNode?
+	var specialBox: SKSpriteNode?
 	
 	required init(position: CGPoint, screenSize: CGSize) {
 		super.init(position: position, screenSize: screenSize)
@@ -39,6 +40,7 @@ class Uhong: Player {
 		self.setScale(4)
 		
 		self.generateMeleeBox()
+		self.generateSpecialBox()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -47,7 +49,7 @@ class Uhong: Player {
 	
 	func generateMeleeBox() {
 		self.meleeBox = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: self.size.width / 16, height: self.size.height / 32))
-		self.meleeBox!.alpha = 0.6
+		self.meleeBox!.alpha = 0
 		
 		let physicsBody = SKPhysicsBody(rectangleOfSize: self.meleeBox!.size)
 		physicsBody.categoryBitMask = PhysicsCategory.MeleeBox.rawValue
@@ -60,8 +62,23 @@ class Uhong: Player {
 		self.meleeBox!.physicsBody = physicsBody
 		
 		self.addChild(self.meleeBox!)
+	}
+	
+	func generateSpecialBox() {
+		self.specialBox = SKSpriteNode(color: UIColor.blueColor(), size: CGSize(width: self.size.width / 5, height: self.size.height / 5))
+		self.specialBox!.alpha = 0
 		
-//		meleeBox = SKPhysicsBody()
+		let physicsBody = SKPhysicsBody(rectangleOfSize: self.specialBox!.size)
+		physicsBody.categoryBitMask = PhysicsCategory.SpecialBox.rawValue
+		physicsBody.collisionBitMask = 0
+		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue
+		physicsBody.mass = 0
+		physicsBody.affectedByGravity = false
+		physicsBody.allowsRotation = false
+		
+		self.specialBox!.physicsBody = physicsBody
+		
+		self.addChild(self.specialBox!)
 	}
 	
 	override func generatePhysicsBody() -> SKPhysicsBody {
@@ -81,6 +98,7 @@ class Uhong: Player {
 		super.update(currentTime)
 		
 		self.meleeBox!.position = CGPoint(x: self.meleeBox!.size.width, y: -self.meleeBox!.size.height * 2.5)
+		self.specialBox!.position = CGPoint.zero
 	}
 	
 	// MARK: Animations
