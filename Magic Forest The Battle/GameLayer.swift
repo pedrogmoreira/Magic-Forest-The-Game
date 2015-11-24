@@ -319,19 +319,22 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     func movePlayer(player: Player, dx: Float, dy: Float) {
         let newPosition = CGPoint(x: CGFloat(dx), y: CGFloat(dy))
         
+        // Adjusting player running animation. Refactor it :)
         if (self.playerPosition?.x != newPosition.x) && (self.playerPosition?.y == newPosition.y) {
             player.isRunning = true
         } else {
             player.isRunning = false
         }
+        
         self.playerPosition = newPosition
-//        self.setFlip(CGPoint(vector: movementVelocity), node: player)
-//        player.movementVelocity = movementVelocity
+
+        // Adjusting player flip. Refactor it :)
         if CGFloat(dx) > player.position.x {
             performFlipWithPlayer(player, flip: false)
         } else if CGFloat(dx) < player.position.x {
             performFlipWithPlayer(player, flip: true)
         }
+        
         player.position = playerPosition!
     }
     
