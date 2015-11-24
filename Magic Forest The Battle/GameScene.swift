@@ -229,7 +229,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
         let player = gameLayer!.players[index] as Player
         self.gameLayer?.performSpecialWithPlayer(player)
     }
-    
+	// Perform special in all devices
+	func performLoseLife(index: Int, currentLife: Float) {
+		let player = gameLayer!.players[index] as Player
+		self.gameLayer?.performLoseLifeWithPlayer(player, currentLife: currentLife)
+	}
+	
+	func performDeath(index: Int) {
+		let player = gameLayer!.players[index] as Player
+		self.gameLayer?.performDeathWithPlayer(player)
+	}
     // Set the player index
     func setCurrentPlayerIndex(index: Int) {
         currentIndex = index

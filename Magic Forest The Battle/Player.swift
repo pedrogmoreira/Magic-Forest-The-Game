@@ -39,6 +39,8 @@ class Player: SKSpriteNode, GameObject {
 	
 	let scale = CGFloat(0.07)
 	
+	var lifeBar = SKSpriteNode()
+	
 	// Bitmask values, made for avoid code repetition
 	let BITMASK_BASE_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue
 	let BITMASK_FIRST_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue
@@ -59,6 +61,7 @@ class Player: SKSpriteNode, GameObject {
 //        self.setScale(0.4)
 		
         self.setBasicAttributes()
+		self.createLifeBar()
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -132,8 +135,10 @@ class Player: SKSpriteNode, GameObject {
     func setBasicAttributes() {
         self.physicsBody = self.generatePhysicsBody()
         
-        self.life = 100
+        self.life = 1000
+		self.currentLife = 1000
         self.energy = 100
+		self.currentEnergy = 100
         self.movementVelocity = CGVector(dx: 0, dy: 0)
         self.movementSpeed = 90
         self.jumpForce = 900
@@ -235,7 +240,9 @@ class Player: SKSpriteNode, GameObject {
 	*/
 	func getDownOneFloor() {
 		self.isGetDown = true
-		
+		if self.currentLife <= 0 {
+			return
+		}
 		if self.physicsBody?.collisionBitMask == self.BITMASK_FIRST_FLOOR {
 			self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
 		} else if self.physicsBody?.collisionBitMask == self.BITMASK_SECOND_FLOOR {
@@ -303,4 +310,18 @@ class Player: SKSpriteNode, GameObject {
 		}
 		
 	}
+	func createLifeBar () {
+		self.lifeBar = SKSpriteNode(imageNamed: "UI_COLORBAR_RED")
+		//bar.yScale = 0.1
+		self.lifeBar.position = CGPointMake(-((size.height))*0.15, -((size.height))*0.6)
+		self.lifeBar.setScale(0.01)
+		self.lifeBar.yScale = 0.02
+		self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
+		lifeBar.zPosition = 0
+		self.addChild(self.lifeBar)
+		//self.lifeBar.xScale = 0.1
+	}
+//	let easeScale = SKAction.scaleXTo(((self.currentLife!*100/self.life!)/100), duration: 0.5)
+//	easeScale.timingMode = SKActionTimingMode.EaseInEaseOut
+//	self.lifeBar.runAction(easeScale)
 }

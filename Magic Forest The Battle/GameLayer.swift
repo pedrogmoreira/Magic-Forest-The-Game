@@ -38,7 +38,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		self.networkingEngine = networkingEngine
 		self.chosenCharacters = chosenCharacters
 		self.spawnPointGenerator()
-
+//		self.lifeBar()
 		let wait = SKAction.waitForDuration(1)
 		let block = SKAction.runBlock { () -> Void in
 			self.upSpecialBar()
@@ -54,6 +54,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			addPLayers()
 			self.hasLoadedGame = true
 		}
+		
 	}
 	
 	
@@ -63,7 +64,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		self.populateSpawnPoints(size)
 		self.size = size
 		self.spawnPointGenerator()
-		
+//		self.lifeBar()
 		let wait = SKAction.waitForDuration(1)
 		let block = SKAction.runBlock { () -> Void in
 			self.upSpecialBar()
@@ -231,14 +232,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		} else {
 			self.player.update(currentTime)
 		}
-		hudLayer?.animateBar(player.currentLife!, bar: player.life!, tipo: "life")
+
 	}
 	
 	func upSpecialBar () {
 		if player?.currentEnergy < player?.energy {
 			let aux = ((player?.energy)! * (player?.regEnergy)!)/100
 			player?.currentEnergy = (player?.currentEnergy)! + aux
-			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
+			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!,node: (hudLayer?.energyFrontBar)!, scale:  0.24)
 			print(player?.currentEnergy)
 		} else {
 			self.hudLayer?.animateFullBar()
@@ -249,20 +250,28 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack {
+			
 			self.projectileToLayer((self.player?.createProjectile())!)
             networkingEngine?.sendAttack()
 			self.player?.isAttacking = true
 			if self.player?.currentLife > 0 {
 				self.player?.currentLife = (self.player?.currentLife)! - 100
+			} else {
+				self.networkingEngine?.sendDeath()
 			}
-			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, tipo: "life")
+			
+			hudLayer?.animateBar(player.currentLife!, bar: player.life!,node: (hudLayer?.lifeFrontBar)!,scale: 0.24)
+			hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
+			self.networkingEngine?.sendLoseLife(player.currentLife!)
+			
+//			self.hudLayer?.animateBar((self.player?.currentLife)!, bar: (self.player?.life)!, node: (hudLayer?.lifeFrontBar)!, scale: 0.24)
 			
 		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy && player?.currentLife > 0 {
 			self.player?.isSpecialAttacking = true
 				print("Special Attack")
 			self.player?.currentEnergy = 0
 			self.hudLayer?.energyFrontBar.removeAllActions()
-			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, tipo: "energy")
+			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, node: (hudLayer?.energyFrontBar)!, scale:  0.24)
             self.networkingEngine?.sendSpecialAttack()
 		} else if command == MFCSCommandType.Jump && player?.currentLife > 0 {
             self.networkingEngine?.sendJump()
@@ -289,6 +298,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func analogUpdate(relativePosition position: CGPoint) {
 		self.setFlip(position, node: self.player)
+		setFlip(player.position, node: player.lifeBar)
 		if IS_ONLINE == true {
 			networkingEngine?.sendMove(Float(position.x), dy: Float(position.y))
 		}
@@ -306,12 +316,18 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			//self.player?.xScale = -fabs((self.player?.xScale)!)
 			if node == self.player {
 				self.player?.isLeft = true
+				self.player.lifeBar.xScale = fabs(self.player.lifeBar.xScale)
+				print(self.player.lifeBar.xScale)
+				
+				print(self.player.xScale)
 			}
 		} else {
 			//self.player?.xScale = fabs((self.player?.xScale)!)
 			node.xScale = fabs(node.xScale)
 			if node == self.player {
 				self.player?.isLeft = false
+				print(self.player.lifeBar.xScale)
+				print(self.player.xScale)
 			}
 		}
 	}
@@ -355,5 +371,15 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     func performSpecialWithPlayer(player: Player) {
         player.isSpecialAttacking = true
     }
+	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
+		player.currentLife = CGFloat(currentLife)
+		print("life: \(player.life)")
+		print("current life: \(player.currentLife)")
+		hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
+	}
+	func performDeathWithPlayer (player: Player) {
+		player.isDead = true
+	}
+
 }
 
