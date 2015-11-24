@@ -262,15 +262,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				self.checkAttack(0)
 				networkingEngine?.sendAttack()
 				self.player?.isAttacking = true
-				if self.player?.currentLife > 0 {
-					self.player?.currentLife = (self.player?.currentLife)! - 100
-				} else {
-					self.networkingEngine?.sendDeath()
-				}
-				
-				hudLayer?.animateBar(player.currentLife!, bar: player.life!,node: (hudLayer?.lifeFrontBar)!,scale: 0.24)
-				hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
-				self.networkingEngine?.sendLoseLife(player.currentLife!)
 			}
 			
 		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy && player?.currentLife > 0 {
@@ -298,6 +289,21 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		if type == 0 { // if type is 0, the is normal attack
 			if self.isOnMeleeCollision == true {
 				print("deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+				
+				let player = self.players[self.normalAreaPlayersIndex.first!]
+				let damage = CGFloat(100)
+				if player.currentLife! - 100 > 0 {
+					
+					player.currentLife = player.currentLife! - damage
+					
+					
+				} else {
+					player.currentLife = 0
+//					self.networkingEngine?.sendDeath(self.normalAreaPlayersIndex.first!)
+				}
+				
+				self.networkingEngine?.sendLoseLife(player.currentLife!, playerIndex: self.normalAreaPlayersIndex.first!)
+				hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
 			}
 		} else if type == 1 { // if type is 0, the is special attack
 			if self.isOnSpecialCollision == true {
