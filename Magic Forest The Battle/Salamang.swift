@@ -30,6 +30,7 @@ class Salamang: Player {
 		self.regEnergy = 10
 		self.regLife = 1
 		self.getDownForce = -50_000
+		self.setScale(4)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
@@ -56,12 +57,13 @@ class Salamang: Player {
 	}
 	
 	
+	
 	/**
 	Fazer a animação do idle repetir para sempre
 	- returns: SKAction
 	*/
 	override func idle () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(loadAnimation("SalamangIdlee", endIndex: 3, timePerFrame: 0.2))
+		let repeateForever = SKAction.repeatActionForever(loadAnimation("SalamangParado", endIndex: 10, timePerFrame: 0.08))
 		return repeateForever
 	}
 	
@@ -70,7 +72,7 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func run () -> SKAction {
-		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("SalamangRun",endIndex:11, timePerFrame: 0.1))
+		let repeateForever = SKAction.repeatActionForever(self.loadAnimation("SalamangAndando",endIndex: 10, timePerFrame: 0.1))
 		return repeateForever
 	}
 	
@@ -79,7 +81,7 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func hit () -> SKAction {
-		return self.loadAnimation("SalamangHit", endIndex: 2, timePerFrame: 0.2)
+		return self.loadAnimation("SalamangHit", endIndex: 1, timePerFrame: 0.08)
 	}
 	
 	/**
@@ -87,8 +89,8 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func jump () -> SKAction {
-		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.5))
-		return self.loadAnimation("SalamangJump", endIndex: 3, timePerFrame: 0.5)
+		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.1))
+		return self.loadAnimation("SalamangPulando", endIndex: 1, timePerFrame: 0.25)
 	}
 	
 	/**
@@ -96,7 +98,7 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func falling () -> SKAction {
-		return self.loadAnimation("SalamangFalling", endIndex: 4, timePerFrame: 0.3)
+		return self.loadAnimation("SalamangCaindo", endIndex: 3, timePerFrame: 0.25)
 	}
 	
 	/**
@@ -104,7 +106,7 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func attack () -> SKAction {
-		return self.loadAnimation("SalamangAttack", endIndex: 2, timePerFrame: 0.1)
+		return self.loadAnimation("SalamangAtacando", endIndex: 10, timePerFrame: 0.03)
 	}
 	
 	/**
@@ -112,7 +114,7 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func specialAttack() -> SKAction {
-		return self.loadAnimation("SalamangSpecialAttack", endIndex: 3, timePerFrame: 0.3)
+		return self.loadAnimation("SalamangEspecial", endIndex: 9, timePerFrame: 0.03)
 	}
 	
 	/**
@@ -120,7 +122,7 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func death() -> SKAction {
-		return self.loadAnimation("SalamangDeath", endIndex: 2, timePerFrame: 0.5)
+		return self.loadAnimation("SalamangHit", endIndex: 1, timePerFrame: 0.25)
 	}
 	
 	override func createProjectile() -> Projectile {

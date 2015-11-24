@@ -42,7 +42,7 @@ class MenuSelectPlayer: SKNode {
 	//Selecionar personagens
 	private let neithSelection = SKSpriteNode(imageNamed: "NeithIdle1")
 	private let uhongSelection = SKSpriteNode(imageNamed: "CogumeloParado1")
-	private let salamangSelction = SKSpriteNode(imageNamed: "SalamangIdlee1")
+	private let salamangSelction = SKSpriteNode(imageNamed: "SalamangParado1")
 	private let dinakSelection = SKSpriteNode(imageNamed: "idle1")
 	
 	//Imagem personagens
@@ -116,6 +116,7 @@ class MenuSelectPlayer: SKNode {
 	}
 	func imageEdit () {
 		self.uhongSelection.setScale(0.3)
+		self.salamangSelction.setScale(0.3)
 		
 		self.neithImage.setScale(0.2)
 		self.uhongImage.setScale(0.2)
@@ -185,7 +186,7 @@ class MenuSelectPlayer: SKNode {
 		self.removeAllAbout()
 		if nodeName == "neithSelectionPosition" {
 			playerSelected = "Neith"
-			self.selectPlayer(neithSelection)
+			self.selectPlayer(neithSelection,normalScale: 1, bigScale: 1.5)
 			self.addLabelNode(neithLabelStatus, name: "neithLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addLabelNode(neithLabelAbout, name: "neithLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addNode(neithImage, name: "neithImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
@@ -193,13 +194,13 @@ class MenuSelectPlayer: SKNode {
 		} else if nodeName == "uhongSelectionPosition" {
 			print(nodeName)
 			playerSelected = "Uhong"
-			self.selectPlayer2(uhongSelection)
+			self.selectPlayer(uhongSelection, normalScale: 0.3, bigScale: 0.5)
 			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addLabelNode(uhongLabelAbout, name: "uhongLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addNode(uhongImage, name: "uhongImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
 		} else if nodeName == "salamangSelctionPosition" {
 			print(nodeName)
-			self.selectPlayer(salamangSelction)
+			self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
 			playerSelected = "Salamang"
 			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addLabelNode(salamangLabelStatus, name: "salamangLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
@@ -218,21 +219,13 @@ class MenuSelectPlayer: SKNode {
 		}
 	}
 	
-	func selectPlayer (node : SKSpriteNode) {
-		let normalScale = SKAction.scaleTo(1, duration: 0.3)
-		let bigScale = SKAction.scaleTo(1.5, duration: 0.3)
+	func selectPlayer (node : SKSpriteNode, normalScale: CGFloat, bigScale: CGFloat) {
+		let normalScale = SKAction.scaleTo(normalScale, duration: 0.3)
+		let bigScale = SKAction.scaleTo(bigScale, duration: 0.3)
 		let sequence = SKAction.sequence([bigScale,normalScale])
 		let repeatSequence = SKAction.repeatActionForever(sequence)
 		node.runAction(repeatSequence)
 	}
-	func selectPlayer2 (node : SKSpriteNode) {
-		let normalScale = SKAction.scaleTo(0.3, duration: 0.3)
-		let bigScale = SKAction.scaleTo(0.5, duration: 0.3)
-		let sequence = SKAction.sequence([bigScale,normalScale])
-		let repeatSequence = SKAction.repeatActionForever(sequence)
-		node.runAction(repeatSequence)
-	}
-	
 	func timerSelecPlayer () {
 		var timer = 30
 		let timerLabel = SKLabelNode(text: "")
