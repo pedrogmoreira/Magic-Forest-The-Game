@@ -10,7 +10,6 @@ import SpriteKit
 
 class GameLayer: SKNode, MFCSControllerDelegate {
 
-
 	var hudLayer : HudLayer?
 	var player: Player!
 	var players = [Player]()
@@ -20,6 +19,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	var spawnPoints = NSMutableArray()
     var size: CGSize?
 	var hasLoadedGame: Bool
+    var playerPosition: CGPoint?
         
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
@@ -31,6 +31,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	*/
 	required init(size: CGSize, networkingEngine: MultiplayerNetworking, chosenCharacters: [Int]) {
 		self.hasLoadedGame = false
+        self.playerPosition = CGPointZero
+        
 		super.init()
 		
         self.size = size
@@ -271,7 +273,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func analogUpdate(relativePosition position: CGPoint) {
 		self.setFlip(position, node: self.player)
-
+        
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
 	
@@ -315,7 +317,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     
     // Move a specific player
     func movePlayer(player: Player, dx: Float, dy: Float) {
-        let movementVelocity = CGVector(dx: CGFloat(dx), dy: CGFloat(dy))
+        let newPosition = CGPoint(x: CGFloat(dx), y: CGFloat(dy))
+        
+        if (self.playerPosition?.x != newPosition.x) && (self.playerPosition?.y == newPosition.y) {
+            player.isRunning = true
+        } else {
+            player.isRunning = false
+        }
+        self.playerPosition = newPosition
 //        self.setFlip(CGPoint(vector: movementVelocity), node: player)
 //        player.movementVelocity = movementVelocity
         if CGFloat(dx) > player.position.x {
@@ -323,7 +332,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         } else if CGFloat(dx) < player.position.x {
             performFlipWithPlayer(player, flip: true)
         }
-        player.position = CGPoint(vector: movementVelocity)
+        player.position = playerPosition!
     }
     
     // Perform an attack with an specific player
@@ -343,10 +352,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     
     // Perform flip with an specific player
     func performFlipWithPlayer(player: Player, flip: Bool) {
-//        if x == 0 {
-//            return
-//        }
-        
         if flip {
             player.xScale = -fabs(player.xScale)
             player.isLeft = true

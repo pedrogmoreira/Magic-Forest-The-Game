@@ -35,6 +35,7 @@ class Player: SKSpriteNode, GameObject {
 	var doubleJump: Bool = false
 	var isGetDown: Bool = false
 	var isLeft: Bool = false
+    var isRunning: Bool = false
 	
 	let scale = CGFloat(0.07)
 	
@@ -92,7 +93,8 @@ class Player: SKSpriteNode, GameObject {
 		if !self.isGetDown {
 			self.checkFloorLevel()
 		}
-		if velocityX != 0 && self.physicsBody?.velocity.dy == 0 && self.state != .Hit && !isAttacking && !isSpecialAttacking {
+        
+		if (self.isRunning || velocityX != 0 && self.physicsBody?.velocity.dy == 0) && self.state != .Hit && !isAttacking && !isSpecialAttacking {
 			self.changeState(PlayerState.Running)
 		} else if (self.isJumping && self.state != .Hit && !self.isAttacking && !isSpecialAttacking) {
 			self.changeState(PlayerState.Jump)
