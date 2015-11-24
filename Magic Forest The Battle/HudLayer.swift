@@ -74,16 +74,11 @@ class HudLayer: SKNode, BasicLayer {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	
-	func animateBar (currentBar : CGFloat, bar : CGFloat, tipo : String) {
-		let easeScale = SKAction.scaleXTo(((currentBar*100/bar)/100)*0.24, duration: 0.5)
+	func animateBar (currentBar : CGFloat, bar : CGFloat, node : SKSpriteNode, scale : CGFloat) {
+		let easeScale = SKAction.scaleXTo(((currentBar*100/bar)/100)*scale, duration: 0.1)
 		easeScale.timingMode = SKActionTimingMode.EaseInEaseOut
-		self.lifeFrontBar.removeAllActions()
-		if tipo == "life" {
-			self.lifeFrontBar.runAction(easeScale)
-		} else {
-			self.energyFrontBar.runAction(easeScale)
-		}
-		
+		//self.lifeFrontBar.removeAllActions()
+		node.runAction(easeScale)
 	}
 	
 	func animateFullBar () {
@@ -99,7 +94,7 @@ class HudLayer: SKNode, BasicLayer {
 	}
 	
 	func timerGame () {
-		var timer = 60
+		var timer = 10
 		let timerLabel = SKLabelNode(text: "")
 		//		let clock = SKSpriteNode(imageNamed: "Clock")
 		//		self.addNode(clock, name: "clock", position: CGPoint(x: (self.size?.width)!/2.3, y: (self.size?.height)!/1.16))
@@ -115,8 +110,10 @@ class HudLayer: SKNode, BasicLayer {
 			
 		})])
 		
-		let repeatAction = SKAction.repeatAction(sequence, count: 30)
-		self.runAction(repeatAction)
+		let repeatAction = SKAction.repeatAction(sequence, count: 10)
+		self.runAction(repeatAction) { () -> Void in
+			print("pausou")
+		}
 		//pause game
 	}
 

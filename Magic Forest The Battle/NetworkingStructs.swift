@@ -11,7 +11,7 @@ import SpriteKit
 // Define the types of menssages
 // Each structure represents a type of message the game will send to the other device
 enum MessageType: Int {
-	case RandomNumber, GameBegin, GameOver, Move, String, Attack,Jump, GetDown, Special, Players, StartGameProperties, ChosenCharacter
+	case RandomNumber, GameBegin, GameOver, Move, String, Attack,Jump, GetDown, Special, Players, StartGameProperties, ChosenCharacter, LoseLife, Death
 }
 
 enum CharacterType: Int {
@@ -35,7 +35,13 @@ struct MessageRandomNumber {
 struct MessageGameBegin {
 	let message: Message
 }
-
+struct MessageLoseLife {
+	let message = MessageType.LoseLife
+	let currentLife: Float
+}
+struct MessageDeath {
+	let message = MessageType.Death
+}
 struct MessageSpecialAttack {
     let message = MessageType.Special
 }

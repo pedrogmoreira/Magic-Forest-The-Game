@@ -18,6 +18,8 @@ protocol MultiplayerProtocol {
     func performJump(index: Int)
     func performGetDown(index: Int)
     func performSpecial(index: Int)
+	func performLoseLife(index: Int, currentLife: Float)
+	func performDeath(index: Int)
     func movePlayer(index: Int, dx: Float, dy: Float)
 	func chooseCharacter()
 	
@@ -198,7 +200,14 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             delegate?.performGetDown(indexForPlayer(player.playerID!)!)
         } else if message.messageType == MessageType.Special {
             delegate?.performSpecial(indexForPlayer(player.playerID!)!)
-        }
+		} else if message.messageType == MessageType.LoseLife {
+			let messageLoseLife = UnsafePointer<MessageLoseLife>(data.bytes).memory
+			let currentLife = messageLoseLife.currentLife
+			
+			delegate?.performLoseLife(indexForPlayer(player.playerID!)!, currentLife: currentLife)
+		} else if message.messageType == MessageType.Death {
+			delegate?.performDeath(indexForPlayer(player.playerID!)!)
+		}
     }
 	
 	// MARK: Index For Player
@@ -348,6 +357,20 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageSpecialAttack))
         sendData(data)
     }
+	// Send to all devices a message of type MessageLoseLife
+	func sendLoseLife(currentLife: CGFloat) {
+		var message = MessageLoseLife(currentLife: Float(currentLife))
+		
+		let data = NSData(bytes: &message, length: sizeof(MessageLoseLife))
+		sendData(data)
+	}
+	// Send to all devices a message of type MessageDeath
+	func sendDeath() {
+		var message = MessageDeath()
+		
+		let data = NSData(bytes: &message, length: sizeof(MessageDeath))
+		sendData(data)
+	}
 
 	// Send to all devices the necessary variables to set-up the game
 	func sendStartGameProperties(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
