@@ -38,9 +38,11 @@ struct MessageGameBegin {
 struct MessageLoseLife {
 	let message = MessageType.LoseLife
 	let currentLife: Float
+	let playerIndex: Int
 }
 struct MessageDeath {
 	let message = MessageType.Death
+	let playerIndex: Int
 }
 struct MessageSpecialAttack {
     let message = MessageType.Special
