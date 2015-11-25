@@ -256,7 +256,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	// MARK: MFCSContrllerDelegate Methods
 	func recieveCommand(command: MFCSCommandType){
-		if command == MFCSCommandType.Attack {
+		if command == MFCSCommandType.Attack && player?.currentLife > 0 {
 			if self.player.isAttacking == false {
 				self.projectileToLayer((self.player?.createProjectile())!)
 				self.checkAttack(0)
@@ -272,14 +272,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.hudLayer?.energyFrontBar.removeAllActions()
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, node: (hudLayer?.energyFrontBar)!, scale:  0.24)
             self.networkingEngine?.sendSpecialAttack()
-		} else if command == MFCSCommandType.Jump {
+		} else if command == MFCSCommandType.Jump && player?.currentLife > 0 {
 			if self.player.jumpCount < self.player.jumpLimit {
 				++self.player.jumpCount
 				self.networkingEngine?.sendJump()
 				self.player.isJumping = true
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}
-		} else if command == MFCSCommandType.GetDown {
+		} else if command == MFCSCommandType.GetDown && player?.currentLife > 0 {
 			self.player?.getDownOneFloor()
             self.networkingEngine?.sendGetDown()
 		}
