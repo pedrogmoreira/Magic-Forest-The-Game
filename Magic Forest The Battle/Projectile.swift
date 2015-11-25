@@ -28,7 +28,7 @@ class Projectile: SKSpriteNode {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	func removeProjectile () -> SKAction {
-		return SKAction.sequence([SKAction.waitForDuration(3),SKAction.removeFromParent()])
+		return SKAction.sequence([SKAction.waitForDuration(2),SKAction.removeFromParent()])
 	}
 	
 	func hitSound () {

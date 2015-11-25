@@ -200,8 +200,8 @@ class MenuSelectPlayer: SKNode {
 			self.addNode(uhongImage, name: "uhongImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
 		} else if nodeName == "salamangSelctionPosition" {
 			print(nodeName)
-			self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
 			playerSelected = "Salamang"
+			self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
 			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addLabelNode(salamangLabelStatus, name: "salamangLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addNode(salamangImage, name: "salamangImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
@@ -250,7 +250,7 @@ class MenuSelectPlayer: SKNode {
 		self.salamangSelction.removeAllActions()
 		self.neithSelection.setScale(1)
 		self.uhongSelection.setScale(0.3)
-		self.salamangSelction.setScale(1)
+		self.salamangSelction.setScale(0.3)
 	}
 	func removeAllStatus () {
 		self.neithLabelStatus.removeFromParent()
