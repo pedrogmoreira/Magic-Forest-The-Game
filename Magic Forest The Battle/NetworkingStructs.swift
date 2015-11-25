@@ -11,7 +11,7 @@ import SpriteKit
 // Define the types of menssages
 // Each structure represents a type of message the game will send to the other device
 enum MessageType: Int {
-	case RandomNumber, GameBegin, GameOver, Move, String, Flip, Attack,Jump, GetDown, Special, Players, StartGameProperties, ChosenCharacter, LoseLife, Death
+	case RandomNumber, GameBegin, GameOver, Move, Flip, Attack,Jump, GetDown, Special, Players, StartGameProperties, ChosenCharacter, LoseLife, Death
 }
 
 enum CharacterType: Int {

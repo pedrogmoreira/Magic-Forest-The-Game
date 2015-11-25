@@ -183,10 +183,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             
             let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
             delegate?.movePlayer(indexForPlayer(player.playerID!)!, dx: messageMove.dx, dy: messageMove.dy)
-        } else if message.messageType == MessageType.String {
-            
-            let messageString = MessageString.unarchive(data)
-            print(messageString.text)
         } else if message.messageType == MessageType.Attack {
             
             delegate?.attack(indexForPlayer(player.playerID!)!)
@@ -324,14 +320,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         var message = MessageGameBegin(message: Message(messageType: MessageType.GameBegin))
         let data = NSData(bytes: &message, length: sizeof(MessageGameBegin))
         sendData(data)
-    }
-
-    // Send to all devices a message of type MessageString
-    func sendString() {
-        let message = MessageString(text: "Oi cueio")
-        let messageStringData = message.archive()
-        
-        sendData(messageStringData)
     }
     
     // Send to all devices a message of type MessageAttack
