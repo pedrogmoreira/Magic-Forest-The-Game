@@ -10,7 +10,6 @@ import SpriteKit
 
 class GameLayer: SKNode, MFCSControllerDelegate {
 
-
 	var hudLayer : HudLayer?
 	var player: Player!
 	var players = [Player]()
@@ -21,7 +20,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     var size: CGSize?
 	var hasLoadedGame: Bool
 	var spawnPointsLocations : Array<CGPoint> = []
-    
+    var playerPosition: CGPoint?
+        
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
 	var scenesDelegate: ScenesDelegate?
@@ -37,7 +37,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	required init(size: CGSize, networkingEngine: MultiplayerNetworking, chosenCharacters: [Int]) {
 		self.hasLoadedGame = false
 		specialAreaPlayersIndex.removeAll()
+        self.playerPosition = CGPointZero
+        
 		super.init()
+        
 		self.populateSpawnPoints(size)
         self.size = size
 		self.networkingEngine = networkingEngine
@@ -233,6 +236,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
 		if IS_ONLINE == true {
+            networkingEngine?.sendMove(Float(player.position.x), dy: Float(player.position.y))
 			for player in self.players {
 				player.update(currentTime)
 			}
@@ -326,10 +330,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func analogUpdate(relativePosition position: CGPoint) {
 		self.setFlip(position, node: self.player)
+        
 		setFlip(player.position, node: player.lifeBar)
-		if IS_ONLINE == true {
-			networkingEngine?.sendMove(Float(position.x), dy: Float(position.y))
-		}
 
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
@@ -380,9 +382,25 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     
     // Move a specific player
     func movePlayer(player: Player, dx: Float, dy: Float) {
-        let movementVelocity = CGVector(dx: CGFloat(dx), dy: CGFloat(dy))
-        self.setFlip(CGPoint(vector: movementVelocity), node: player)
-        player.movementVelocity = movementVelocity
+        let newPosition = CGPoint(x: CGFloat(dx), y: CGFloat(dy))
+        
+        // Adjusting player running animation. Refactor it :)
+        if (self.playerPosition?.x != newPosition.x) && (self.playerPosition?.y == newPosition.y) {
+            player.isRunning = true
+        } else {
+            player.isRunning = false
+        }
+        
+        self.playerPosition = newPosition
+
+        // Adjusting player flip. Refactor it :)
+        if CGFloat(dx) > player.position.x {
+            performFlipWithPlayer(player, flip: false)
+        } else if CGFloat(dx) < player.position.x {
+            performFlipWithPlayer(player, flip: true)
+        }
+        
+        player.position = playerPosition!
     }
     
     // Perform an attack with an specific player
@@ -502,6 +520,16 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			return
 		}
 	}
-
+    
+    // Perform flip with an specific player
+    func performFlipWithPlayer(player: Player, flip: Bool) {
+        if flip {
+            player.xScale = -fabs(player.xScale)
+            player.isLeft = true
+        } else {
+            player.xScale = fabs(player.xScale)
+            player.isLeft = false
+        }
+    }
 }
 

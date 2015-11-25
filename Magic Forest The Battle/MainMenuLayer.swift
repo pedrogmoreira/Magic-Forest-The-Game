@@ -15,7 +15,7 @@ enum Screen {
     case rightScreen
 }
 
-class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameProtocol {
+class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameProtocol, UIAlertViewDelegate {
     private var size: CGSize?
     private var view: SKView?
     private var currentScreen: Screen?
@@ -122,8 +122,10 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     private func showMatchMakerViewController(presentingViewController viewController: UIViewController) {
         
         if !GKLocalPlayer.localPlayer().authenticated {
+            self.playerIsNotAuthenticated()
             return
         }
+        
         print("init network")
         self.networkingEngine = MultiplayerNetworking()
 		
@@ -134,6 +136,30 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         gameScene!.networkingEngine = networkingEngine
 
         GameKitHelper.sharedInstance.findMatch(2, maxPlayers: 2, presentingViewController: viewController, delegate: networkingEngine!)
+    }
+    
+    private func playerIsNotAuthenticated() {
+        
+        let messageOne = NSLocalizedString("GameCenterNotAuthenticated", comment: "GameCenterNotAuthenticated")
+        
+        let alertController = UIAlertController(title: "Game Center", message: messageOne, preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default) { (alert: UIAlertAction!) -> Void in
+            alertController.dismissViewControllerAnimated(true, completion: nil)
+        }
+        alertController.addAction(okAction)
+
+        
+        let gameCenterAction = UIAlertAction(title: "Game Center", style: .Default) { (alert: UIAlertAction!) -> Void in
+            UIApplication.sharedApplication().openURL(NSURL(string: "gamecenter:")!)
+        }
+        
+        alertController.addAction(gameCenterAction)
+        
+        let viewController = self.scene?.view?.window?.rootViewController
+        
+        viewController?.presentViewController(alertController, animated: true, completion: nil)
+        
     }
     
     // Add a button to the layer with a name and position

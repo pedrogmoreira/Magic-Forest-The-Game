@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  Magic Forest The Battle
+
+  Created by Marcelo Cristiano Araujo Silva on 25/11/15.
+  Copyright © 2015 Team Magic Forest. All rights reserved.
+*/
+
+GameCenterNotAuthenticated = "Parece que você não está logado no Game Center. Tente esperar alguns segundos ou utilize o app do Game Center para logar-se :)";
