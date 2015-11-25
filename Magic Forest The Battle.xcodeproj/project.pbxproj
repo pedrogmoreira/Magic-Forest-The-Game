@@ -190,6 +190,50 @@
 		57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */; };
 		57C08E5C1BFE3B67003E4574 /* UI_WINDOW (9).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */; };
 		57C08E5E1BFE3B70003E4574 /* UI_BARMARKINGS.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */; };
+		57FECA311C04E6BB00E1A86C /* SalamangAndando1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA051C04E6BB00E1A86C /* SalamangAndando1.png */; };
+		57FECA321C04E6BB00E1A86C /* SalamangAndando10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA061C04E6BB00E1A86C /* SalamangAndando10.png */; };
+		57FECA331C04E6BB00E1A86C /* SalamangAndando2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA071C04E6BB00E1A86C /* SalamangAndando2.png */; };
+		57FECA341C04E6BB00E1A86C /* SalamangAndando3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA081C04E6BB00E1A86C /* SalamangAndando3.png */; };
+		57FECA351C04E6BB00E1A86C /* SalamangAndando4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA091C04E6BB00E1A86C /* SalamangAndando4.png */; };
+		57FECA361C04E6BB00E1A86C /* SalamangAndando5.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA0A1C04E6BB00E1A86C /* SalamangAndando5.png */; };
+		57FECA371C04E6BB00E1A86C /* SalamangAndando6.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA0B1C04E6BB00E1A86C /* SalamangAndando6.png */; };
+		57FECA381C04E6BB00E1A86C /* SalamangAndando7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA0C1C04E6BB00E1A86C /* SalamangAndando7.png */; };
+		57FECA391C04E6BB00E1A86C /* SalamangAndando8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA0D1C04E6BB00E1A86C /* SalamangAndando8.png */; };
+		57FECA3A1C04E6BB00E1A86C /* SalamangAndando9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA0E1C04E6BB00E1A86C /* SalamangAndando9.png */; };
+		57FECA3B1C04E6BB00E1A86C /* SalamangAtacando1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA0F1C04E6BB00E1A86C /* SalamangAtacando1.png */; };
+		57FECA3C1C04E6BB00E1A86C /* SalamangAtacando10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA101C04E6BB00E1A86C /* SalamangAtacando10.png */; };
+		57FECA3D1C04E6BB00E1A86C /* SalamangAtacando2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA111C04E6BB00E1A86C /* SalamangAtacando2.png */; };
+		57FECA3E1C04E6BB00E1A86C /* SalamangAtacando3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA121C04E6BB00E1A86C /* SalamangAtacando3.png */; };
+		57FECA3F1C04E6BB00E1A86C /* SalamangAtacando4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA131C04E6BB00E1A86C /* SalamangAtacando4.png */; };
+		57FECA401C04E6BB00E1A86C /* SalamangAtacando5.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA141C04E6BB00E1A86C /* SalamangAtacando5.png */; };
+		57FECA411C04E6BB00E1A86C /* SalamangAtacando6.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA151C04E6BB00E1A86C /* SalamangAtacando6.png */; };
+		57FECA421C04E6BB00E1A86C /* SalamangAtacando7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA161C04E6BB00E1A86C /* SalamangAtacando7.png */; };
+		57FECA431C04E6BB00E1A86C /* SalamangAtacando8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA171C04E6BB00E1A86C /* SalamangAtacando8.png */; };
+		57FECA441C04E6BB00E1A86C /* SalamangAtacando9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA181C04E6BB00E1A86C /* SalamangAtacando9.png */; };
+		57FECA451C04E6BB00E1A86C /* SalamangCaindo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA191C04E6BB00E1A86C /* SalamangCaindo1.png */; };
+		57FECA461C04E6BB00E1A86C /* SalamangCaindo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA1A1C04E6BB00E1A86C /* SalamangCaindo2.png */; };
+		57FECA471C04E6BB00E1A86C /* SalamangCaindo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA1B1C04E6BB00E1A86C /* SalamangCaindo3.png */; };
+		57FECA481C04E6BB00E1A86C /* SalamangEspecial1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA1C1C04E6BB00E1A86C /* SalamangEspecial1.png */; };
+		57FECA491C04E6BB00E1A86C /* SalamangEspecial2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA1D1C04E6BB00E1A86C /* SalamangEspecial2.png */; };
+		57FECA4A1C04E6BB00E1A86C /* SalamangEspecial3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA1E1C04E6BB00E1A86C /* SalamangEspecial3.png */; };
+		57FECA4B1C04E6BB00E1A86C /* SalamangEspecial4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA1F1C04E6BB00E1A86C /* SalamangEspecial4.png */; };
+		57FECA4C1C04E6BB00E1A86C /* SalamangEspecial5.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA201C04E6BB00E1A86C /* SalamangEspecial5.png */; };
+		57FECA4D1C04E6BB00E1A86C /* SalamangEspecial6.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA211C04E6BB00E1A86C /* SalamangEspecial6.png */; };
+		57FECA4E1C04E6BB00E1A86C /* SalamangEspecial7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA221C04E6BB00E1A86C /* SalamangEspecial7.png */; };
+		57FECA4F1C04E6BB00E1A86C /* SalamangEspecial8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA231C04E6BB00E1A86C /* SalamangEspecial8.png */; };
+		57FECA501C04E6BB00E1A86C /* SalamangEspecial9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA241C04E6BB00E1A86C /* SalamangEspecial9.png */; };
+		57FECA511C04E6BB00E1A86C /* SalamangHit1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA251C04E6BB00E1A86C /* SalamangHit1.png */; };
+		57FECA521C04E6BB00E1A86C /* SalamangParado1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA261C04E6BB00E1A86C /* SalamangParado1.png */; };
+		57FECA531C04E6BB00E1A86C /* SalamangParado10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA271C04E6BB00E1A86C /* SalamangParado10.png */; };
+		57FECA541C04E6BB00E1A86C /* SalamangParado2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA281C04E6BB00E1A86C /* SalamangParado2.png */; };
+		57FECA551C04E6BB00E1A86C /* SalamangParado3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA291C04E6BB00E1A86C /* SalamangParado3.png */; };
+		57FECA561C04E6BB00E1A86C /* SalamangParado4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA2A1C04E6BB00E1A86C /* SalamangParado4.png */; };
+		57FECA571C04E6BB00E1A86C /* SalamangParado5.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA2B1C04E6BB00E1A86C /* SalamangParado5.png */; };
+		57FECA581C04E6BB00E1A86C /* SalamangParado6.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA2C1C04E6BB00E1A86C /* SalamangParado6.png */; };
+		57FECA591C04E6BB00E1A86C /* SalamangParado7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA2D1C04E6BB00E1A86C /* SalamangParado7.png */; };
+		57FECA5A1C04E6BB00E1A86C /* SalamangParado8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA2E1C04E6BB00E1A86C /* SalamangParado8.png */; };
+		57FECA5B1C04E6BB00E1A86C /* SalamangParado9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA2F1C04E6BB00E1A86C /* SalamangParado9.png */; };
+		57FECA5C1C04E6BB00E1A86C /* SalamangPulando1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA301C04E6BB00E1A86C /* SalamangPulando1.png */; };
 		670914E81BFE58600007F2FF /* GameKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E51BFE58600007F2FF /* GameKitHelper.swift */; };
 		670914E91BFE58600007F2FF /* MultiplayerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */; };
 		670914EA1BFE58600007F2FF /* NetworkingStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E71BFE58600007F2FF /* NetworkingStructs.swift */; };
@@ -450,6 +494,50 @@
 		57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (8).png"; sourceTree = "<group>"; };
 		57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (9).png"; sourceTree = "<group>"; };
 		57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_BARMARKINGS.png; sourceTree = "<group>"; };
+		57FECA051C04E6BB00E1A86C /* SalamangAndando1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando1.png; sourceTree = "<group>"; };
+		57FECA061C04E6BB00E1A86C /* SalamangAndando10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando10.png; sourceTree = "<group>"; };
+		57FECA071C04E6BB00E1A86C /* SalamangAndando2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando2.png; sourceTree = "<group>"; };
+		57FECA081C04E6BB00E1A86C /* SalamangAndando3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando3.png; sourceTree = "<group>"; };
+		57FECA091C04E6BB00E1A86C /* SalamangAndando4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando4.png; sourceTree = "<group>"; };
+		57FECA0A1C04E6BB00E1A86C /* SalamangAndando5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando5.png; sourceTree = "<group>"; };
+		57FECA0B1C04E6BB00E1A86C /* SalamangAndando6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando6.png; sourceTree = "<group>"; };
+		57FECA0C1C04E6BB00E1A86C /* SalamangAndando7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando7.png; sourceTree = "<group>"; };
+		57FECA0D1C04E6BB00E1A86C /* SalamangAndando8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando8.png; sourceTree = "<group>"; };
+		57FECA0E1C04E6BB00E1A86C /* SalamangAndando9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando9.png; sourceTree = "<group>"; };
+		57FECA0F1C04E6BB00E1A86C /* SalamangAtacando1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando1.png; sourceTree = "<group>"; };
+		57FECA101C04E6BB00E1A86C /* SalamangAtacando10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando10.png; sourceTree = "<group>"; };
+		57FECA111C04E6BB00E1A86C /* SalamangAtacando2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando2.png; sourceTree = "<group>"; };
+		57FECA121C04E6BB00E1A86C /* SalamangAtacando3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando3.png; sourceTree = "<group>"; };
+		57FECA131C04E6BB00E1A86C /* SalamangAtacando4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando4.png; sourceTree = "<group>"; };
+		57FECA141C04E6BB00E1A86C /* SalamangAtacando5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando5.png; sourceTree = "<group>"; };
+		57FECA151C04E6BB00E1A86C /* SalamangAtacando6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando6.png; sourceTree = "<group>"; };
+		57FECA161C04E6BB00E1A86C /* SalamangAtacando7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando7.png; sourceTree = "<group>"; };
+		57FECA171C04E6BB00E1A86C /* SalamangAtacando8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando8.png; sourceTree = "<group>"; };
+		57FECA181C04E6BB00E1A86C /* SalamangAtacando9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAtacando9.png; sourceTree = "<group>"; };
+		57FECA191C04E6BB00E1A86C /* SalamangCaindo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangCaindo1.png; sourceTree = "<group>"; };
+		57FECA1A1C04E6BB00E1A86C /* SalamangCaindo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangCaindo2.png; sourceTree = "<group>"; };
+		57FECA1B1C04E6BB00E1A86C /* SalamangCaindo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangCaindo3.png; sourceTree = "<group>"; };
+		57FECA1C1C04E6BB00E1A86C /* SalamangEspecial1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial1.png; sourceTree = "<group>"; };
+		57FECA1D1C04E6BB00E1A86C /* SalamangEspecial2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial2.png; sourceTree = "<group>"; };
+		57FECA1E1C04E6BB00E1A86C /* SalamangEspecial3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial3.png; sourceTree = "<group>"; };
+		57FECA1F1C04E6BB00E1A86C /* SalamangEspecial4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial4.png; sourceTree = "<group>"; };
+		57FECA201C04E6BB00E1A86C /* SalamangEspecial5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial5.png; sourceTree = "<group>"; };
+		57FECA211C04E6BB00E1A86C /* SalamangEspecial6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial6.png; sourceTree = "<group>"; };
+		57FECA221C04E6BB00E1A86C /* SalamangEspecial7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial7.png; sourceTree = "<group>"; };
+		57FECA231C04E6BB00E1A86C /* SalamangEspecial8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial8.png; sourceTree = "<group>"; };
+		57FECA241C04E6BB00E1A86C /* SalamangEspecial9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangEspecial9.png; sourceTree = "<group>"; };
+		57FECA251C04E6BB00E1A86C /* SalamangHit1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangHit1.png; sourceTree = "<group>"; };
+		57FECA261C04E6BB00E1A86C /* SalamangParado1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado1.png; sourceTree = "<group>"; };
+		57FECA271C04E6BB00E1A86C /* SalamangParado10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado10.png; sourceTree = "<group>"; };
+		57FECA281C04E6BB00E1A86C /* SalamangParado2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado2.png; sourceTree = "<group>"; };
+		57FECA291C04E6BB00E1A86C /* SalamangParado3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado3.png; sourceTree = "<group>"; };
+		57FECA2A1C04E6BB00E1A86C /* SalamangParado4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado4.png; sourceTree = "<group>"; };
+		57FECA2B1C04E6BB00E1A86C /* SalamangParado5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado5.png; sourceTree = "<group>"; };
+		57FECA2C1C04E6BB00E1A86C /* SalamangParado6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado6.png; sourceTree = "<group>"; };
+		57FECA2D1C04E6BB00E1A86C /* SalamangParado7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado7.png; sourceTree = "<group>"; };
+		57FECA2E1C04E6BB00E1A86C /* SalamangParado8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado8.png; sourceTree = "<group>"; };
+		57FECA2F1C04E6BB00E1A86C /* SalamangParado9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangParado9.png; sourceTree = "<group>"; };
+		57FECA301C04E6BB00E1A86C /* SalamangPulando1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangPulando1.png; sourceTree = "<group>"; };
 		670914E51BFE58600007F2FF /* GameKitHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameKitHelper.swift; sourceTree = "<group>"; };
 		670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerNetworking.swift; sourceTree = "<group>"; };
 		670914E71BFE58600007F2FF /* NetworkingStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingStructs.swift; sourceTree = "<group>"; };
@@ -755,6 +843,7 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57FECA041C04E6BB00E1A86C /* Mago */,
 				57C08DDC1BFA47B0003E4574 /* Cogumelo */,
 				57C08DD81BFA40E1003E4574 /* mushroom.png */,
 				57C08E371BFA650A003E4574 /* monkey.png */,
@@ -871,6 +960,57 @@
 				57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		57FECA041C04E6BB00E1A86C /* Mago */ = {
+			isa = PBXGroup;
+			children = (
+				57FECA051C04E6BB00E1A86C /* SalamangAndando1.png */,
+				57FECA061C04E6BB00E1A86C /* SalamangAndando10.png */,
+				57FECA071C04E6BB00E1A86C /* SalamangAndando2.png */,
+				57FECA081C04E6BB00E1A86C /* SalamangAndando3.png */,
+				57FECA091C04E6BB00E1A86C /* SalamangAndando4.png */,
+				57FECA0A1C04E6BB00E1A86C /* SalamangAndando5.png */,
+				57FECA0B1C04E6BB00E1A86C /* SalamangAndando6.png */,
+				57FECA0C1C04E6BB00E1A86C /* SalamangAndando7.png */,
+				57FECA0D1C04E6BB00E1A86C /* SalamangAndando8.png */,
+				57FECA0E1C04E6BB00E1A86C /* SalamangAndando9.png */,
+				57FECA0F1C04E6BB00E1A86C /* SalamangAtacando1.png */,
+				57FECA101C04E6BB00E1A86C /* SalamangAtacando10.png */,
+				57FECA111C04E6BB00E1A86C /* SalamangAtacando2.png */,
+				57FECA121C04E6BB00E1A86C /* SalamangAtacando3.png */,
+				57FECA131C04E6BB00E1A86C /* SalamangAtacando4.png */,
+				57FECA141C04E6BB00E1A86C /* SalamangAtacando5.png */,
+				57FECA151C04E6BB00E1A86C /* SalamangAtacando6.png */,
+				57FECA161C04E6BB00E1A86C /* SalamangAtacando7.png */,
+				57FECA171C04E6BB00E1A86C /* SalamangAtacando8.png */,
+				57FECA181C04E6BB00E1A86C /* SalamangAtacando9.png */,
+				57FECA191C04E6BB00E1A86C /* SalamangCaindo1.png */,
+				57FECA1A1C04E6BB00E1A86C /* SalamangCaindo2.png */,
+				57FECA1B1C04E6BB00E1A86C /* SalamangCaindo3.png */,
+				57FECA1C1C04E6BB00E1A86C /* SalamangEspecial1.png */,
+				57FECA1D1C04E6BB00E1A86C /* SalamangEspecial2.png */,
+				57FECA1E1C04E6BB00E1A86C /* SalamangEspecial3.png */,
+				57FECA1F1C04E6BB00E1A86C /* SalamangEspecial4.png */,
+				57FECA201C04E6BB00E1A86C /* SalamangEspecial5.png */,
+				57FECA211C04E6BB00E1A86C /* SalamangEspecial6.png */,
+				57FECA221C04E6BB00E1A86C /* SalamangEspecial7.png */,
+				57FECA231C04E6BB00E1A86C /* SalamangEspecial8.png */,
+				57FECA241C04E6BB00E1A86C /* SalamangEspecial9.png */,
+				57FECA251C04E6BB00E1A86C /* SalamangHit1.png */,
+				57FECA261C04E6BB00E1A86C /* SalamangParado1.png */,
+				57FECA271C04E6BB00E1A86C /* SalamangParado10.png */,
+				57FECA281C04E6BB00E1A86C /* SalamangParado2.png */,
+				57FECA291C04E6BB00E1A86C /* SalamangParado3.png */,
+				57FECA2A1C04E6BB00E1A86C /* SalamangParado4.png */,
+				57FECA2B1C04E6BB00E1A86C /* SalamangParado5.png */,
+				57FECA2C1C04E6BB00E1A86C /* SalamangParado6.png */,
+				57FECA2D1C04E6BB00E1A86C /* SalamangParado7.png */,
+				57FECA2E1C04E6BB00E1A86C /* SalamangParado8.png */,
+				57FECA2F1C04E6BB00E1A86C /* SalamangParado9.png */,
+				57FECA301C04E6BB00E1A86C /* SalamangPulando1.png */,
+			);
+			path = Mago;
 			sourceTree = "<group>";
 		};
 		670914E41BFE58480007F2FF /* Multiplayer */ = {
@@ -1330,6 +1470,7 @@
 				576964F31BDFEEB500CBB81D /* jump1.png in Resources */,
 				57190BC81BF2689900FFF38D /* SalamangSpecialAttack3.png in Resources */,
 				576964EE1BDFDCD000CBB81D /* corre8.png in Resources */,
+				57FECA431C04E6BB00E1A86C /* SalamangAtacando8.png in Resources */,
 				57C08E2B1BFA47B0003E4574 /* CogumeloParado10.png in Resources */,
 				57190B4C1BF12BED00FFF38D /* NeithDeath2.png in Resources */,
 				57C08E571BFE3B67003E4574 /* UI_WINDOW (4).png in Resources */,
@@ -1338,15 +1479,19 @@
 				57C08E0F1BFA47B0003E4574 /* CogumeloAndando5.png in Resources */,
 				6784F4FC1C061D010026F1D7 /* Localizable.strings in Resources */,
 				57C08E231BFA47B0003E4574 /* CogumeloEspecial4.png in Resources */,
+				57FECA511C04E6BB00E1A86C /* SalamangHit1.png in Resources */,
 				57C08E151BFA47B0003E4574 /* CogumeloAtaque10.png in Resources */,
 				57190B4D1BF12BED00FFF38D /* NeithFalling1.png in Resources */,
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
+				57FECA3A1C04E6BB00E1A86C /* SalamangAndando9.png in Resources */,
 				EB3E770A1BE1647300103DEC /* ForestScenery_3.png in Resources */,
+				57FECA3E1C04E6BB00E1A86C /* SalamangAtacando3.png in Resources */,
 				57190BBD1BF2689900FFF38D /* SalamangFalling3.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				57C08E0C1BFA47B0003E4574 /* CogumeloAndando2.png in Resources */,
 				57C08E351BFA47B0003E4574 /* CogumeloSubindodescendo1.png in Resources */,
+				57FECA461C04E6BB00E1A86C /* SalamangCaindo2.png in Resources */,
 				5769651F1BE2859F00CBB81D /* Attack3.png in Resources */,
 				67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */,
 				57C08E0B1BFA47B0003E4574 /* CogumeloAndando10.png in Resources */,
@@ -1358,9 +1503,14 @@
 				576964F41BDFEEB500CBB81D /* jump2.png in Resources */,
 				57A558201BDEBB1C00A948DE /* idle10.png in Resources */,
 				EB0EACC21BE3E39F00D93287 /* practiceButton.png in Resources */,
+				57FECA4B1C04E6BB00E1A86C /* SalamangEspecial4.png in Resources */,
+				57FECA501C04E6BB00E1A86C /* SalamangEspecial9.png in Resources */,
+				57FECA391C04E6BB00E1A86C /* SalamangAndando8.png in Resources */,
+				57FECA571C04E6BB00E1A86C /* SalamangParado5.png in Resources */,
 				57C08E471BFD0C7A003E4574 /* UI_COLORBAR_GREEN.png in Resources */,
 				57190BB81BF2689900FFF38D /* SalamangAttack2.png in Resources */,
 				579B81191BE919F50025B374 /* SpecialAttack2.png in Resources */,
+				57FECA421C04E6BB00E1A86C /* SalamangAtacando7.png in Resources */,
 				57C08E1D1BFA47B0003E4574 /* CogumeloAtaque9.png in Resources */,
 				57C08E5E1BFE3B70003E4574 /* UI_BARMARKINGS.png in Resources */,
 				57C08E3B1BFCDF8F003E4574 /* UI_BOLT.png in Resources */,
@@ -1376,7 +1526,9 @@
 				57C08E311BFA47B0003E4574 /* CogumeloParado7.png in Resources */,
 				57C08E0E1BFA47B0003E4574 /* CogumeloAndando4.png in Resources */,
 				57C08E341BFA47B0003E4574 /* CogumeloSubindo1.png in Resources */,
+				57FECA4E1C04E6BB00E1A86C /* SalamangEspecial7.png in Resources */,
 				57190B491BF12BED00FFF38D /* NeithAttack4.png in Resources */,
+				57FECA3D1C04E6BB00E1A86C /* SalamangAtacando2.png in Resources */,
 				57190B511BF12BED00FFF38D /* NeithHit2.png in Resources */,
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
 				57190B571BF12BED00FFF38D /* NeithJump1.png in Resources */,
@@ -1386,6 +1538,7 @@
 				57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */,
 				57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */,
 				57190BC41BF2689900FFF38D /* 102.png in Resources */,
+				57FECA5B1C04E6BB00E1A86C /* SalamangParado9.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
 				EBD88B231BF02EE2000353A5 /* ForestSceneryPlatformRight.png in Resources */,
 				57C08E251BFA47B0003E4574 /* CogumeloEspecial6.png in Resources */,
@@ -1394,8 +1547,10 @@
 				576965251BE2859F00CBB81D /* falling2.png in Resources */,
 				57190B5E1BF12BED00FFF38D /* NeithSpecialAttack4.png in Resources */,
 				57C08E3D1BFCDFAC003E4574 /* UI_HEART.png in Resources */,
+				57FECA441C04E6BB00E1A86C /* SalamangAtacando9.png in Resources */,
 				57C08E421BFCE038003E4574 /* UI_COLORBAR_BLUE_FLASH.png in Resources */,
 				57C08E0D1BFA47B0003E4574 /* CogumeloAndando3.png in Resources */,
+				57FECA561C04E6BB00E1A86C /* SalamangParado4.png in Resources */,
 				57190B961BF2636D00FFF38D /* SalamangRun5.png in Resources */,
 				57C08E1C1BFA47B0003E4574 /* CogumeloAtaque8.png in Resources */,
 				57C08E2D1BFA47B0003E4574 /* CogumeloParado3.png in Resources */,
@@ -1411,42 +1566,58 @@
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
 				57190BC51BF2689900FFF38D /* 106.png in Resources */,
 				579B81181BE919F50025B374 /* SpecialAttack1.png in Resources */,
+				57FECA3F1C04E6BB00E1A86C /* SalamangAtacando4.png in Resources */,
+				57FECA4A1C04E6BB00E1A86C /* SalamangEspecial3.png in Resources */,
 				EB0EACBD1BE3E39F00D93287 /* configurationButton.png in Resources */,
+				57FECA471C04E6BB00E1A86C /* SalamangCaindo3.png in Resources */,
 				57190B981BF2636D00FFF38D /* SalamangRun7.png in Resources */,
 				57190B7C1BF2620F00FFF38D /* 19.png in Resources */,
 				57C08E271BFA47B0003E4574 /* CogumeloEspecial8.png in Resources */,
 				57C08DDB1BFA4591003E4574 /* wizardcute.png in Resources */,
+				57FECA351C04E6BB00E1A86C /* SalamangAndando4.png in Resources */,
 				57C08E2F1BFA47B0003E4574 /* CogumeloParado5.png in Resources */,
+				57FECA341C04E6BB00E1A86C /* SalamangAndando3.png in Resources */,
+				57FECA481C04E6BB00E1A86C /* SalamangEspecial1.png in Resources */,
+				57FECA401C04E6BB00E1A86C /* SalamangAtacando5.png in Resources */,
 				57190BC71BF2689900FFF38D /* SalamangSpecialAttack2.png in Resources */,
 				57C08E551BFE3B67003E4574 /* UI_WINDOW (2).png in Resources */,
 				57190BB71BF2689900FFF38D /* SalamangAttack1.png in Resources */,
 				57190B931BF2636D00FFF38D /* SalamangRun2.png in Resources */,
 				57190B921BF2636D00FFF38D /* SalamangRun1.png in Resources */,
+				57FECA4D1C04E6BB00E1A86C /* SalamangEspecial6.png in Resources */,
 				57190BC11BF2689900FFF38D /* SalamangJump1.png in Resources */,
+				57FECA411C04E6BB00E1A86C /* SalamangAtacando6.png in Resources */,
 				57C08E101BFA47B0003E4574 /* CogumeloAndando6.png in Resources */,
 				57C08E0A1BFA47B0003E4574 /* CogumeloAndando1.png in Resources */,
+				57FECA551C04E6BB00E1A86C /* SalamangParado3.png in Resources */,
 				57190BC21BF2689900FFF38D /* SalamangJump2.png in Resources */,
 				57A5581E1BDEBB1C00A948DE /* idle8.png in Resources */,
 				EBD88B191BF02E43000353A5 /* Life.png in Resources */,
 				EBD88B161BF02E43000353A5 /* Attack.png in Resources */,
 				57C08E171BFA47B0003E4574 /* CogumeloAtaque3.png in Resources */,
 				57190B591BF12BED00FFF38D /* NeithRun1.png in Resources */,
+				57FECA321C04E6BB00E1A86C /* SalamangAndando10.png in Resources */,
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
 				57190B5B1BF12BED00FFF38D /* NeithSpecialAttack1.png in Resources */,
 				57190BBF1BF2689900FFF38D /* SalamangHit1.png in Resources */,
 				576965211BE2859F00CBB81D /* Death1.png in Resources */,
+				57FECA371C04E6BB00E1A86C /* SalamangAndando6.png in Resources */,
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
 				57C08E491BFD0D83003E4574 /* UI_COLORBAR_BLUE.png in Resources */,
 				57190B531BF12BED00FFF38D /* NeithIdle1.png in Resources */,
 				57A5581D1BDEBB1C00A948DE /* idle7.png in Resources */,
 				57190B481BF12BED00FFF38D /* NeithAttack3.png in Resources */,
+				57FECA531C04E6BB00E1A86C /* SalamangParado10.png in Resources */,
 				57C08E331BFA47B0003E4574 /* CogumeloParado9.png in Resources */,
 				EB0EACC11BE3E39F00D93287 /* playButton.gif in Resources */,
 				EB0EACB31BE3E0E900D93287 /* ForestScenery_4.png in Resources */,
+				57FECA361C04E6BB00E1A86C /* SalamangAndando5.png in Resources */,
 				57C08DCD1BF4CDEC003E4574 /* candy.png in Resources */,
 				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
+				57FECA331C04E6BB00E1A86C /* SalamangAndando2.png in Resources */,
 				57A5581B1BDEBB1C00A948DE /* idle5.png in Resources */,
 				EBD88B1A1BF02E43000353A5 /* Settings.png in Resources */,
+				57FECA5C1C04E6BB00E1A86C /* SalamangPulando1.png in Resources */,
 				57190B421BF12BED00FFF38D /* 96.png in Resources */,
 				576964EB1BDFDCD000CBB81D /* corre5.png in Resources */,
 				57190B411BF12BED00FFF38D /* 95.png in Resources */,
@@ -1455,6 +1626,8 @@
 				57190BBA1BF2689900FFF38D /* SalamangDeath2.png in Resources */,
 				576964FB1BE018B400CBB81D /* hit2.png in Resources */,
 				EBD88B221BF02EE2000353A5 /* ForestSceneryPlatformLeft.png in Resources */,
+				57FECA4F1C04E6BB00E1A86C /* SalamangEspecial8.png in Resources */,
+				57FECA381C04E6BB00E1A86C /* SalamangAndando7.png in Resources */,
 				57C08DD91BFA40E1003E4574 /* mushroom.png in Resources */,
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
 				57C08DCB1BF4C56E003E4574 /* arrow.png in Resources */,
@@ -1463,6 +1636,7 @@
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,
 				57C08E1B1BFA47B0003E4574 /* CogumeloAtaque7.png in Resources */,
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
+				57FECA581C04E6BB00E1A86C /* SalamangParado6.png in Resources */,
 				57190B541BF12BED00FFF38D /* NeithIdle2.png in Resources */,
 				57C08E361BFA47B0003E4574 /* CogumeloSubindodescendo2.png in Resources */,
 				576965261BE2859F00CBB81D /* falling3.png in Resources */,
@@ -1476,6 +1650,8 @@
 				57A558181BDEBB1C00A948DE /* idle2.png in Resources */,
 				57C08E121BFA47B0003E4574 /* CogumeloAndando8.png in Resources */,
 				57A558211BDEBB1C00A948DE /* idle11.png in Resources */,
+				57FECA451C04E6BB00E1A86C /* SalamangCaindo1.png in Resources */,
+				57FECA4C1C04E6BB00E1A86C /* SalamangEspecial5.png in Resources */,
 				57C08E221BFA47B0003E4574 /* CogumeloEspecial3.png in Resources */,
 				57190B9B1BF2636D00FFF38D /* SalamangRun11.png in Resources */,
 				57C08E161BFA47B0003E4574 /* CogumeloAtaque2.png in Resources */,
@@ -1484,18 +1660,24 @@
 				57C08E291BFA47B0003E4574 /* CogumeloHit1.png in Resources */,
 				57190BC31BF2689900FFF38D /* SalamangJump3.png in Resources */,
 				57190B5F1BF12BED00FFF38D /* NeithSpecialAttack5.png in Resources */,
+				57FECA3C1C04E6BB00E1A86C /* SalamangAtacando10.png in Resources */,
 				57190B951BF2636D00FFF38D /* SalamangRun4.png in Resources */,
 				57C08E301BFA47B0003E4574 /* CogumeloParado6.png in Resources */,
+				57FECA491C04E6BB00E1A86C /* SalamangEspecial2.png in Resources */,
 				57C08E321BFA47B0003E4574 /* CogumeloParado8.png in Resources */,
 				57190B601BF12BED00FFF38D /* NeithSpecialAttack6.png in Resources */,
+				57FECA5A1C04E6BB00E1A86C /* SalamangParado8.png in Resources */,
 				EB0EACAF1BE3DCD700D93287 /* SpecialButton.png in Resources */,
 				57190B4F1BF12BED00FFF38D /* NeithFalling3.png in Resources */,
+				57FECA541C04E6BB00E1A86C /* SalamangParado2.png in Resources */,
 				57190BCD1BF3A3B300FFF38D /* SalamangIdlee2.png in Resources */,
+				57FECA591C04E6BB00E1A86C /* SalamangParado7.png in Resources */,
 				EB0EACBE1BE3E39F00D93287 /* gameCenterButton.png in Resources */,
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
 				57190B5C1BF12BED00FFF38D /* NeithSpecialAttack2.png in Resources */,
 				57C08E2A1BFA47B0003E4574 /* CogumeloParado1.png in Resources */,
 				57190BBB1BF2689900FFF38D /* SalamangFalling1.png in Resources */,
+				57FECA521C04E6BB00E1A86C /* SalamangParado1.png in Resources */,
 				57C08E131BFA47B0003E4574 /* CogumeloAndando9.png in Resources */,
 				57190B441BF12BED00FFF38D /* 145.png in Resources */,
 				57190B621BF12BED00FFF38D /* NeithSpecialAttack8.png in Resources */,
@@ -1513,7 +1695,9 @@
 				57190B5D1BF12BED00FFF38D /* NeithSpecialAttack3.png in Resources */,
 				EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */,
 				EB0EACC31BE3E39F00D93287 /* storeButton.jpg in Resources */,
+				57FECA311C04E6BB00E1A86C /* SalamangAndando1.png in Resources */,
 				57190BBE1BF2689900FFF38D /* SalamangFalling4.png in Resources */,
+				57FECA3B1C04E6BB00E1A86C /* SalamangAtacando1.png in Resources */,
 				57190B4E1BF12BED00FFF38D /* NeithFalling2.png in Resources */,
 				57190B561BF12BED00FFF38D /* NeithIdle4.png in Resources */,
 				57C08E211BFA47B0003E4574 /* CogumeloEspecial2.png in Resources */,
