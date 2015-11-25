@@ -149,7 +149,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		return (currentSpawnPoint as! SpawnPoint)
 	}
 	
-	// The host will sort a positio to every player and then send the positions and selections to everyone
+	// The host will sort a position to every player and then send the positions and selections to everyone
 	func createPlayer() {
 		let playersCount: Int = (GameKitHelper.sharedInstance.multiplayerMatch?.players.count)!
         
@@ -214,23 +214,27 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	-Parameter chosenCharacter: The character class type to be created from
 	*/
 	private func generatePlayer(position: CGPoint, chosenCharacter: CharacterType.RawValue) -> Player {
+        
+        var player = Player(position: position, screenSize: self.size!)
+        
 		switch chosenCharacter {
 		case CharacterType.Uhong.rawValue:
-			print("uhong")
-			return Uhong(position: position, screenSize: self.size!)
+			print("Generated uhong")
+			player = Uhong(position: position, screenSize: self.size!)
 		case CharacterType.Dinak.rawValue:
-			print("dinak")
-			return Dinak(position: position, screenSize: self.size!)
+			print("Generated dinak")
+			player = Dinak(position: position, screenSize: self.size!)
 		case CharacterType.Salamang.rawValue:
-			print("salamang")
-			return Salamang(position: position, screenSize: self.size!)
+			print("Generated salamang")
+			player =  Salamang(position: position, screenSize: self.size!)
 		case CharacterType.Neith.rawValue:
-			print("neith")
-			return Neith(position: position, screenSize: self.size!)
+			print("Generated neith")
+			player = Neith(position: position, screenSize: self.size!)
 		default:
-			print("player")
-			return Player(position: position, screenSize: self.size!)
+			print("Was not possible to create a player in GeneratePlayer-gameLayer method")
 		}
+        
+        return player
 	}
 	
 	func update(currentTime: CFTimeInterval) {

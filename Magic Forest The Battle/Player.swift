@@ -33,6 +33,7 @@ class Player: SKSpriteNode, GameObject {
 	var regEnergy: CGFloat?
 	var state: PlayerState?
 	var jumpCount = 0
+    var score = 0
 	
 	// Player flags
 	var isAttacking: Bool = false
