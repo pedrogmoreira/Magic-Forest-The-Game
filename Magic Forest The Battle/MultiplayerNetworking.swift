@@ -199,7 +199,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			
 			delegate?.createPlayer(indexes, chosenCharacters: chosenCharacters)
 		} else if message.messageType == MessageType.ChosenCharacter {
-			print("recebendo seleçao")
 			if self.isPlayer1 == true {
 				let messageChosenCharacter = UnsafePointer<MessageCharacterChosen>(data.bytes).memory
 				
@@ -402,7 +401,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 	
 	// Send to the host my character selection
 	func sendChosenCharacter(characterType: CharacterType) {
-		print("sending player")
+		print("Sending player")
 		if self.isPlayer1 == false {
 			
 			print("Im not the host, send him a message")

@@ -190,30 +190,30 @@ class MenuSelectPlayer: SKNode {
 			self.addLabelNode(neithLabelStatus, name: "neithLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addLabelNode(neithLabelAbout, name: "neithLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addNode(neithImage, name: "neithImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
-			print(nodeName)
+			print("Selected character: \(nodeName)")
 		} else if nodeName == "uhongSelectionPosition" {
-			print(nodeName)
 			playerSelected = "Uhong"
 			self.selectPlayer(uhongSelection, normalScale: 0.3, bigScale: 0.5)
 			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addLabelNode(uhongLabelAbout, name: "uhongLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addNode(uhongImage, name: "uhongImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
+            print("Selected character: \(nodeName)")
 		} else if nodeName == "salamangSelctionPosition" {
-			print(nodeName)
 			self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
 			playerSelected = "Salamang"
 			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addLabelNode(salamangLabelStatus, name: "salamangLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addNode(salamangImage, name: "salamangImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
+            print("Selected character: \(nodeName)")
 		} else if nodeName == "dinakSelectionPosition"{
 			self.addLabelNode(dinakLabelAbout, name: "dinakLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addLabelNode(dinakLabelSatus, name: "dinakLabelSatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addNode(dinakImage, name: "dinakImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
-			print(nodeName)
+			print("Selected character: \(nodeName)")
 			playerSelected = "Dinak"
 			
 		} else if nodeName == "playbutton" {
-			print("play")
+			print("Touched play button")
 			startGame()
 			
 		}

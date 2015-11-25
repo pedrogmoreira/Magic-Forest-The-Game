@@ -255,7 +255,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			let aux = ((player?.energy)! * (player?.regEnergy)!)/100
 			player?.currentEnergy = (player?.currentEnergy)! + aux
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!,node: (hudLayer?.energyFrontBar)!, scale:  0.24)
-			print(player?.currentEnergy)
+			print("Current energy: \(player?.currentEnergy)")
 		} else {
 			self.hudLayer?.animateFullBar()
 			
@@ -274,7 +274,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			
 		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy && player?.currentLife > 0 {
 			self.player?.isSpecialAttacking = true
-				print("Special Attack")
+				print("Player used Special Attack")
 			self.checkAttack(1)
 			self.player?.currentEnergy = 0
 			self.hudLayer?.energyFrontBar.removeAllActions()
@@ -296,7 +296,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func checkAttack(type: Int) {
 		if type == 0 { // if type is 0, the is normal attack
 			if self.isOnMeleeCollision == true {
-				print("deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+				print("Deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 				
 				let player = self.players[self.normalAreaPlayersIndex.first!]
 				let damage = CGFloat(100)
@@ -315,7 +315,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 		} else if type == 1 { // if type is 0, the is special attack
 			if self.isOnSpecialCollision == true {
-				print("deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+				print("Deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 			}
 		}
 	}
@@ -424,8 +424,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
 		player.currentLife = CGFloat(currentLife)
-		print("life: \(player.life)")
-		print("current life: \(player.currentLife)")
+		print("Life: \(player.life)")
+		print("Current life: \(player.currentLife)")
 		hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
 	}
 	func performDeathWithPlayer (player: Player) {

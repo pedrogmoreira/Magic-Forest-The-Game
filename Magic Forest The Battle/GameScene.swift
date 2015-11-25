@@ -156,9 +156,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	// Called when a player send his selection
 	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int) {
 		self.playersDetails.append(PlayerDetails(character: chosenCharacter, index: playerIndex))
-		
-		print("\(self.playersDetails.count) :: \(GameKitHelper.sharedInstance.multiplayerMatch?.players.count) ")
-		
+				
 		if self.playersDetails.count == ((GameKitHelper.sharedInstance.multiplayerMatch?.players.count)! + 1) {
 			
 			let multableArray = NSMutableArray(array: self.playersDetails)
@@ -181,7 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	}
 	
 	func chooseCharacter() {
-		print("multiplayer select player")
+		print("Multiplayer select player")
 		let menuSelectPlayerScene = MenuSelectPlayerScene(size: self.size)
 		scenesDelegate?.showMenuSelectPlayerScene(menuSelectPlayerScene)
 	}

@@ -101,20 +101,20 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 			}
 			
         } else if nodeName == "configurationButton" {
-            print("configurationButton touched")
+            print("ConfigurationButton touched")
         } else if nodeName == "practiceButton" {
-            print("practiceButton touched")
+            print("PracticeButton touched")
         } else if nodeName == "gameCenterButton" {
             GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
             
         } else if nodeName == "storeButton" {
-            print("storeButton touched")
+            print("StoreButton touched")
         } else if nodeName == "skinButton" {
-            print("skinButton touched")
+            print("SkinButton touched")
         } else if nodeName == "statisticsButton" {
-            print("statisticsButton touched")
+            print("StatisticsButton touched")
         } else if nodeName == "historyButton" {
-            print("historyButton touched")
+            print("HistoryButton touched")
         }
     }
     
@@ -126,7 +126,6 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
             return
         }
         
-        print("init network")
         self.networkingEngine = MultiplayerNetworking()
 		
 		gameScene?.scenesDelegate = self.scenesDelegate
@@ -266,9 +265,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     }
     
     // Handle the given swipe
-    func handleSwipe(sender: UISwipeGestureRecognizer) {
-		print("handle swipe")
-		
+    func handleSwipe(sender: UISwipeGestureRecognizer) {		
         if sender.direction == .Right && self.currentScreen == Screen.rightScreen {
             self.runAction(SKAction.moveByX(self.size!.width, y: 0, duration: 0.5))
             self.currentScreen = Screen.middleScreen
