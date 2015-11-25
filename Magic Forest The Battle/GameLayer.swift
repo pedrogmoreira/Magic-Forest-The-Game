@@ -283,7 +283,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		} else if command == MFCSCommandType.Jump {
 			if self.player.jumpCount < self.player.jumpLimit {
 				++self.player.jumpCount
-				self.networkingEngine?.sendJump()
+//				self.networkingEngine?.sendJump()
 				self.player.isJumping = true
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}

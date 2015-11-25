@@ -10,24 +10,25 @@ import Foundation
 import GameKit
 
 protocol MultiplayerProtocol {
+    // All messages we need to receive to in gameScene
     func setCurrentPlayerIndex(index: Int)
     func matchEnded()
 	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue])
 	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int)
     func attack(indext: Int)
-    func performJump(index: Int)
     func performGetDown(index: Int)
     func performSpecial(index: Int)
 	func performLoseLife(index: Int, currentLife: Float)
 	func performDeath(index: Int)
     func movePlayer(index: Int, dx: Float, dy: Float)
 	func chooseCharacter()
-	
-//    var gameLayer: GameLayer? {get set}
-//    var players: [Player] {get set}
+    
+//    func performJump(index: Int)
+
 }
 
 protocol StartGameProtocol {
+    // Message to start the game
     func startGame()
 }
 
@@ -202,9 +203,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 				
 				delegate?.receiveChosenCharacter(messageChosenCharacter.character, playerIndex: self.indexForPlayer(player.playerID!)!)
 			}
-        } else if message.messageType == MessageType.Jump {
-            
-            delegate?.performJump(indexForPlayer(player.playerID!)!)
         } else if message.messageType == MessageType.GetDown {
             delegate?.performGetDown(indexForPlayer(player.playerID!)!)
         } else if message.messageType == MessageType.Special {
@@ -221,6 +219,10 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			
 			delegate?.performDeath(playerIndex)
 		}
+        
+//        } else if message.messageType == MessageType.Jump {
+//            delegate?.performJump(indexForPlayer(player.playerID!)!)
+//        }
     }
 	
 	// MARK: Index For Player
@@ -331,12 +333,12 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     }
     
     // Send to all devices a message of type MessageJump
-    func sendJump() {
-        var message = MessageJump()
-        
-        let data = NSData(bytes: &message, length: sizeof(MessageJump))
-        sendData(data)
-    }
+//    func sendJump() {
+//        var message = MessageJump()
+//        
+//        let data = NSData(bytes: &message, length: sizeof(MessageJump))
+//        sendData(data)
+//    }
     
     // Send to all devices a message of type MessageMove
     func sendMove(dx: Float, dy: Float) {

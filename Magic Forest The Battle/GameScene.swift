@@ -198,10 +198,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	}
 	
     // Perform a jump in all devices
-    func performJump (index: Int) {
-        let player = gameLayer!.players[index] as Player
-        gameLayer?.performJumpWithPlayer(player)
-    }
+//    func performJump (index: Int) {
+//        let player = gameLayer!.players[index] as Player
+//        gameLayer?.performJumpWithPlayer(player)
+//    }
     
     // Move the player in all devices
     func movePlayer(index: Int, dx: Float, dy: Float) {
