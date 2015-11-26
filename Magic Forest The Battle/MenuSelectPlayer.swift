@@ -244,6 +244,7 @@ class MenuSelectPlayer: SKNode {
 			self.startGame()
 		}
 	}
+    
 	func removeActionsPlayers () {
 		self.neithSelection.removeAllActions()
 		self.uhongSelection.removeAllActions()
@@ -252,12 +253,14 @@ class MenuSelectPlayer: SKNode {
 		self.uhongSelection.setScale(0.3)
 		self.salamangSelction.setScale(1)
 	}
+    
 	func removeAllStatus () {
 		self.neithLabelStatus.removeFromParent()
 		self.salamangLabelStatus.removeFromParent()
 		self.uhongLabelStatus.removeFromParent()
 		self.dinakLabelSatus.removeFromParent()
 	}
+    
 	func removeAllImages () {
 		self.neithImage.removeFromParent()
 		self.salamangImage.removeFromParent()
@@ -272,6 +275,4 @@ class MenuSelectPlayer: SKNode {
 		self.salamangLabelAbout.removeFromParent()
 		self.dinakLabelAbout.removeFromParent()
 	}
-
-	
 }

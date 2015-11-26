@@ -157,10 +157,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int) {
 		self.playersDetails.append(PlayerDetails(character: chosenCharacter, index: playerIndex))
 				
-		if self.playersDetails.count == ((GameKitHelper.sharedInstance.multiplayerMatch?.players.count)! + 1) {
+		if self.playersDetails.count == (GameKitHelper.sharedInstance.multiplayerMatch!.players.count + 1) {
 			
 			let multableArray = NSMutableArray(array: self.playersDetails)
-			let sortByIndex = NSSortDescriptor(key: "index", ascending: false)
+			let sortByIndex = NSSortDescriptor(key: "index", ascending: true)
 			let sortDescriptiors = [sortByIndex]
 			multableArray.sortUsingDescriptors(sortDescriptiors)
 			self.playersDetails = NSArray(array: multableArray) as! [PlayerDetails]
