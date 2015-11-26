@@ -161,18 +161,23 @@ class MenuSelectPlayer: SKNode {
 	}
 	
 	func selectedCharacter() -> CharacterType {
+        
+        var selectedCharacterType = CharacterType.Uhong
+        
 		switch playerSelected {
 		case "Neith":
-			return CharacterType.Neith
+			selectedCharacterType = CharacterType.Neith
 		case "Uhong":
-			return CharacterType.Uhong
+			selectedCharacterType = CharacterType.Uhong
 		case "Salamang":
-			return CharacterType.Salamang
+			selectedCharacterType = CharacterType.Salamang
 		case "Dinak":
-			return CharacterType.Dinak
+			selectedCharacterType = CharacterType.Dinak
 		default:
-			return CharacterType.Default
+			print("Invalid selected character")
 		}
+        
+        return selectedCharacterType
 	}
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
