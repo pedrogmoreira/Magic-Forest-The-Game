@@ -239,12 +239,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
-		if IS_ONLINE == true {
+		if IS_ONLINE == true && self.hasLoadedGame == true {
             networkingEngine?.sendMove(Float(player.position.x), dy: Float(player.position.y))
 			for player in self.players {
 				player.update(currentTime)
 			}
-		} else {
+		} else if IS_ONLINE == false && self.hasLoadedGame == true {
 			self.player.update(currentTime)
 		}
 
@@ -307,7 +307,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 					
 				} else {
 					player.currentLife = 0
-//					self.networkingEngine?.sendDeath(self.normalAreaPlayersIndex.first!)
 				}
 				
 				self.networkingEngine?.sendLoseLife(player.currentLife!, playerIndex: self.normalAreaPlayersIndex.first!)
@@ -524,6 +523,13 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			return
 		}
 	}
+    
+    // Check if player is dead
+    private func isPlayerDead(player: Player) {
+        if player.currentLife <= 0 {
+            player.isDead = true
+        }
+    }
     
     // Perform flip with an specific player
     func performFlipWithPlayer(player: Player, flip: Bool) {

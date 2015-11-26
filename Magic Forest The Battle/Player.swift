@@ -102,7 +102,9 @@ class Player: SKSpriteNode, GameObject {
 			}
 			return
 		}
+        
 		self.runAction(move)
+        
 		if !self.isGetDown {
 			self.checkFloorLevel()
 		}

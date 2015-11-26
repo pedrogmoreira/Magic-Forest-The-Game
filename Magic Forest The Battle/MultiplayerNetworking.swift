@@ -213,16 +213,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			let playerIndex = messageLoseLife.playerIndex
 			
 			delegate?.performLoseLife(playerIndex, currentLife: currentLife)
-		} else if message.messageType == MessageType.Death {
-			let messageLoseLife = UnsafePointer<MessageDeath>(data.bytes).memory
-			let playerIndex = messageLoseLife.playerIndex
-			
-			delegate?.performDeath(playerIndex)
 		}
-        
-//        } else if message.messageType == MessageType.Jump {
-//            delegate?.performJump(indexForPlayer(player.playerID!)!)
-//        }
     }
 	
 	// MARK: Index For Player
@@ -332,14 +323,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         sendData(data)
     }
     
-    // Send to all devices a message of type MessageJump
-//    func sendJump() {
-//        var message = MessageJump()
-//        
-//        let data = NSData(bytes: &message, length: sizeof(MessageJump))
-//        sendData(data)
-//    }
-    
     // Send to all devices a message of type MessageMove
     func sendMove(dx: Float, dy: Float) {
         var message = MessageMove(dx: dx, dy: dy)
@@ -363,18 +346,12 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageSpecialAttack))
         sendData(data)
     }
+    
 	// Send to all devices a message of type MessageLoseLife
 	func sendLoseLife(currentLife: CGFloat, playerIndex: Int) {
 		var message = MessageLoseLife(currentLife: Float(currentLife), playerIndex: playerIndex)
 		
 		let data = NSData(bytes: &message, length: sizeof(MessageLoseLife))
-		sendData(data)
-	}
-	// Send to all devices a message of type MessageDeath
-	func sendDeath(playerIndex: Int) {
-		var message = MessageDeath(playerIndex: playerIndex)
-		
-		let data = NSData(bytes: &message, length: sizeof(MessageDeath))
 		sendData(data)
 	}
 
