@@ -17,7 +17,7 @@ class MenuSelectPlayer: SKNode {
 	private var size: CGSize?
 	private var view: SKView?
 	private var currentScreen: Screen?
-	
+
 	var controlUnit: MFCSControlUnit?
 	var controllerMode: MFCSControllerMode?
 	var networkDelegate: MultiplayerNetworking?
@@ -25,6 +25,7 @@ class MenuSelectPlayer: SKNode {
 	private let timer = SKLabelNode(text: "")
 	
 	private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+    private var isNotReady: Bool?
 	
 	var scenesDelegate: ScenesDelegate?
 	
@@ -71,6 +72,7 @@ class MenuSelectPlayer: SKNode {
 	- parameter view: A reference to the current view
 	*/
 	init(size: CGSize, view: SKView) {
+        self.isNotReady = true
 		super.init()
 		
 		self.size = size
@@ -175,6 +177,11 @@ class MenuSelectPlayer: SKNode {
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		// Getting a node in the touch location
+        
+        if self.isNotReady! == false {
+            return
+        }
+        
 		let touch = touches.first
 		let touchLocation = touch?.locationInNode(self)
 		let nodeTouched = self.nodeAtPoint(touchLocation!)
@@ -214,8 +221,8 @@ class MenuSelectPlayer: SKNode {
 			
 		} else if nodeName == "playbutton" {
 			print("Touched play button")
+            isNotReady = false
 			startGame()
-			
 		}
 	}
 	
