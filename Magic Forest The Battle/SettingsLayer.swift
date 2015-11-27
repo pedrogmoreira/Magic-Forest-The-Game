@@ -20,6 +20,9 @@ class SettingsLayer: SKNode, BasicLayer {
     var settingsMenu: SKSpriteNode?
     var delegate: SettingsProcotol?
     
+    var swipeMode: SKSpriteNode?
+    var buttonMode: SKSpriteNode?
+    
     /**
      Initializes the settings layer
      - parameter size: A reference to the device's screen size
@@ -32,6 +35,7 @@ class SettingsLayer: SKNode, BasicLayer {
         
         self.createBackgound()
         self.createBackButton()
+        self.createButtonsToChooseControlType()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +56,7 @@ class SettingsLayer: SKNode, BasicLayer {
     }
     
     // Create backButton
-    func createBackButton() {
+    private func createBackButton() {
         let backWidth = CGFloat(self.settingsMenu!.size.width/10)
         let backHeight = CGFloat(self.settingsMenu!.size.height/10)
         
@@ -68,6 +72,26 @@ class SettingsLayer: SKNode, BasicLayer {
         self.settingsMenu!.addChild(backButton)
     }
     
+    //Create the button to choose the control type
+    private func createButtonsToChooseControlType() {
+        let buttonsWidth = CGFloat(self.settingsMenu!.size.width/10)
+        let buttonsHeight = CGFloat(self.settingsMenu!.size.height/10)
+        
+        let buttonsSize = CGSize(width: buttonsWidth, height: buttonsHeight)
+        
+        self.swipeMode = SKSpriteNode(color: SKColor.greenColor(), size: buttonsSize)
+        self.buttonMode = SKSpriteNode(color: SKColor.redColor(), size: buttonsSize)
+        
+        swipeMode!.name = "swipeMode"
+        buttonMode!.name = "buttonMode"
+        
+        swipeMode!.position = CGPoint(x: -100, y: -200)
+        buttonMode!.position = CGPoint(x: 100, y: -200)
+        
+        self.settingsMenu!.addChild(swipeMode!)
+        self.settingsMenu!.addChild(buttonMode!)
+    }
+    
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
         let touchPosition = touch?.locationInNode(self)
@@ -76,7 +100,22 @@ class SettingsLayer: SKNode, BasicLayer {
         if node.name == "backButton" {
             self.removeFromParent()
             self.delegate?.isSetting = false
+        } else if node.name == "swipeMode" {
+            print("SwipeMode activated")
+            changeColor(node)
+        } else if node.name == "buttonMode" {
+            print("ButtonMode activated")
+            changeColor(node)
         }
     }
     
+    private func changeColor(node: SKNode) {
+        if node.name == "swipeMode" {
+            self.swipeMode?.color = SKColor.greenColor()
+            self.buttonMode?.color = SKColor.redColor()
+        } else {
+            self.swipeMode?.color = SKColor.redColor()
+            self.buttonMode?.color = SKColor.greenColor()
+        }
+    }
 }

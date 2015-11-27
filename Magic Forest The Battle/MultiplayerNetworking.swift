@@ -167,8 +167,8 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             }
             
             if !tie && receivedAllRandomNumber {
-                if gameState == GameState.WaintingForRandomNumber {
-                    gameState = GameState.WaitingForStart
+                if gameState == GameStates.WaintingForRandomNumber {
+                    gameState = GameStates.WaitingForStart
                 }
 //                tryStartGame()
             }
@@ -179,7 +179,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             }
             
             startGameDelegate?.startGame()
-            gameState = GameState.Playing
+            gameState = GameStates.Playing
         } else if message.messageType == MessageType.Move {
             
             let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
