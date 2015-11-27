@@ -15,7 +15,7 @@ enum Screen {
     case rightScreen
 }
 
-class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameProtocol, UIAlertViewDelegate {
+class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameProtocol, UIAlertViewDelegate, SettingsProcotol {
     private var size: CGSize?
     private var view: SKView?
     private var currentScreen: Screen?
@@ -31,6 +31,9 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     var controllerMode: MFCSControllerMode?
     
     var numberOfPlayers: Int?
+    
+    var isSetting: Bool?
+    var settingsMenu: SettingsLayer?
     
     private let configurationButton = SKSpriteNode(imageNamed: "configurationButton.png")
     private let gameCenterButton = SKSpriteNode(imageNamed: "gameCenterButton.png")
@@ -54,6 +57,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
      */
     init(size: CGSize, view: SKView) {
         super.init()
+        
+        self.isSetting = false
         
         self.size = size
         self.view = view
@@ -93,30 +98,42 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         let viewController = self.scene?.view?.window?.rootViewController
         let nodeName = nodeTouched.name
         
-        if nodeName == "playButton" {
-			if IS_ONLINE == true {
-				self.showMatchMakerViewController(presentingViewController: viewController!)
-			} else {
-				self.selectPlayer()
-			}
-			
-        } else if nodeName == "configurationButton" {
-            let settingsMenu = SettingsLayer(size: self.size!)
-            self.addChild(settingsMenu)
-        } else if nodeName == "practiceButton" {
-            print("PracticeButton touched")
-        } else if nodeName == "gameCenterButton" {
-            GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
-            
-        } else if nodeName == "storeButton" {
-            print("StoreButton touched")
-        } else if nodeName == "skinButton" {
-            print("SkinButton touched")
-        } else if nodeName == "statisticsButton" {
-            print("StatisticsButton touched")
-        } else if nodeName == "historyButton" {
-            print("HistoryButton touched")
+        if isSetting == false {
+            if nodeName == "playButton" {
+                if IS_ONLINE == true {
+                    self.showMatchMakerViewController(presentingViewController: viewController!)
+                } else {
+                    self.selectPlayer()
+                }
+            } else if nodeName == "configurationButton" {
+                self.creteSettingsMenu()
+            } else if nodeName == "practiceButton" {
+                print("PracticeButton touched")
+            } else if nodeName == "gameCenterButton" {
+                GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
+                
+            } else if nodeName == "storeButton" {
+                print("StoreButton touched")
+            } else if nodeName == "skinButton" {
+                print("SkinButton touched")
+            } else if nodeName == "statisticsButton" {
+                print("StatisticsButton touched")
+            } else if nodeName == "historyButton" {
+                print("HistoryButton touched")
+            }
+        } else {
+            self.settingsMenu?.touchesBegan(touches, withEvent: event)
         }
+    }
+    
+    // Create the SettingsMenu
+    private func creteSettingsMenu() {
+        self.settingsMenu = SettingsLayer(size: self.size!)
+        self.settingsMenu?.delegate = self
+        
+        self.addChild(self.settingsMenu!)
+        
+        self.isSetting = true
     }
     
     // Show the match maker view controller

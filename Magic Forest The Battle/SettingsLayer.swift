@@ -9,11 +9,16 @@
 import UIKit
 import SpriteKit
 
+protocol SettingsProcotol {
+    var isSetting: Bool? {get set}
+}
+
+
 class SettingsLayer: SKNode, BasicLayer {
     
     let size: CGSize!
     var settingsMenu: SKSpriteNode?
-    
+    var delegate: SettingsProcotol?
     
     /**
      Initializes the settings layer
@@ -58,8 +63,20 @@ class SettingsLayer: SKNode, BasicLayer {
         let leftOfSettingsMenu = -self.settingsMenu!.size.width/2 + backButton.size.width/2;
         let topOfSettingsMenu = self.settingsMenu!.size.height/2 - backButton.size.height/2;
         backButton.position = CGPoint(x: leftOfSettingsMenu, y: topOfSettingsMenu)
+        backButton.name = "backButton"
         
         self.settingsMenu!.addChild(backButton)
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first
+        let touchPosition = touch?.locationInNode(self)
+        let node = self.nodeAtPoint(touchPosition!)
+        
+        if node.name == "backButton" {
+            self.removeFromParent()
+            self.delegate?.isSetting = false
+        }
     }
     
 }
