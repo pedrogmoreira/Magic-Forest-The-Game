@@ -238,6 +238,7 @@
 		670914E91BFE58600007F2FF /* MultiplayerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */; };
 		670914EA1BFE58600007F2FF /* NetworkingStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E71BFE58600007F2FF /* NetworkingStructs.swift */; };
 		670914EC1BFE5D2C0007F2FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670914EB1BFE5D2C0007F2FF /* GameKit.framework */; };
+		673A34F01C08B93900494DD9 /* SettingsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A34EF1C08B93900494DD9 /* SettingsLayer.swift */; };
 		6784F4FC1C061D010026F1D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6784F4FE1C061D010026F1D7 /* Localizable.strings */; };
 		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
@@ -542,6 +543,7 @@
 		670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerNetworking.swift; sourceTree = "<group>"; };
 		670914E71BFE58600007F2FF /* NetworkingStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingStructs.swift; sourceTree = "<group>"; };
 		670914EB1BFE5D2C0007F2FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		673A34EF1C08B93900494DD9 /* SettingsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLayer.swift; sourceTree = "<group>"; };
 		6784F4F61C061C700026F1D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		6784F4F71C061C700026F1D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		6784F4F81C061C7B0026F1D7 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -1118,6 +1120,7 @@
 			children = (
 				EB0EACB81BE3E39F00D93287 /* MainMenuLayer.swift */,
 				57C08DCE1BF4FCEC003E4574 /* MenuSelectPlayer.swift */,
+				673A34EF1C08B93900494DD9 /* SettingsLayer.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1757,6 +1760,7 @@
 				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
 				EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */,
 				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,
+				673A34F01C08B93900494DD9 /* SettingsLayer.swift in Sources */,
 				576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */,
 				EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */,
 				EB1214A81BD95CA700D0552F /* Int+Extensions.swift in Sources */,

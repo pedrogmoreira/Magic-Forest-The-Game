@@ -350,17 +350,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			if node == self.player {
 				self.player?.isLeft = true
 				self.player.lifeBar.xScale = fabs(self.player.lifeBar.xScale)
-				print(self.player.lifeBar.xScale)
-				
-				print(self.player.xScale)
 			}
 		} else {
 			//self.player?.xScale = fabs((self.player?.xScale)!)
 			node.xScale = fabs(node.xScale)
 			if node == self.player {
 				self.player?.isLeft = false
-				print(self.player.lifeBar.xScale)
-				print(self.player.xScale)
 			}
 		}
 	}
@@ -423,7 +418,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
 		player.currentLife = CGFloat(currentLife)
-		print("Life: \(player.life)")
 		print("Current life: \(player.currentLife)")
 		hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
 	}

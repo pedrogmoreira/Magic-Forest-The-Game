@@ -101,7 +101,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 			}
 			
         } else if nodeName == "configurationButton" {
-            print("ConfigurationButton touched")
+            let settingsMenu = SettingsLayer(size: self.size!)
+            self.addChild(settingsMenu)
         } else if nodeName == "practiceButton" {
             print("PracticeButton touched")
         } else if nodeName == "gameCenterButton" {
