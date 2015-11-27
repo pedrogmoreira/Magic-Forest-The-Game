@@ -105,6 +105,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
                 } else {
                     self.selectPlayer()
                 }
+                self.removeGesturesFromLayer()
             } else if nodeName == "configurationButton" {
                 self.creteSettingsMenu()
             } else if nodeName == "practiceButton" {

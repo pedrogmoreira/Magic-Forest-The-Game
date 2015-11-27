@@ -85,8 +85,8 @@ class SettingsLayer: SKNode, BasicLayer {
         swipeMode!.name = "swipeMode"
         buttonMode!.name = "buttonMode"
         
-        swipeMode!.position = CGPoint(x: -100, y: -200)
-        buttonMode!.position = CGPoint(x: 100, y: -200)
+        swipeMode!.position = CGPoint(x: -100, y: -20)
+        buttonMode!.position = CGPoint(x: 100, y: -20)
         
         self.settingsMenu!.addChild(swipeMode!)
         self.settingsMenu!.addChild(buttonMode!)
@@ -103,9 +103,11 @@ class SettingsLayer: SKNode, BasicLayer {
         } else if node.name == "swipeMode" {
             print("SwipeMode activated")
             changeColor(node)
+            GameState.sharedInstance.controllerMode = MFCSControllerMode.JoystickAndSwipe
         } else if node.name == "buttonMode" {
             print("ButtonMode activated")
             changeColor(node)
+            GameState.sharedInstance.controllerMode = MFCSControllerMode.JoystickAndButton
         }
     }
     
@@ -118,4 +120,5 @@ class SettingsLayer: SKNode, BasicLayer {
             self.buttonMode?.color = SKColor.greenColor()
         }
     }
+    
 }
