@@ -146,7 +146,7 @@
 		57C08E1B1BFA47B0003E4574 /* CogumeloAtaque7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DEE1BFA47B0003E4574 /* CogumeloAtaque7.png */; };
 		57C08E1C1BFA47B0003E4574 /* CogumeloAtaque8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DEF1BFA47B0003E4574 /* CogumeloAtaque8.png */; };
 		57C08E1D1BFA47B0003E4574 /* CogumeloAtaque9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF01BFA47B0003E4574 /* CogumeloAtaque9.png */; };
-		57C08E1E1BFA47B0003E4574 /* CogumeloDescendo.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF11BFA47B0003E4574 /* CogumeloDescendo.png */; };
+		57C08E1E1BFA47B0003E4574 /* CogumeloDescendo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF11BFA47B0003E4574 /* CogumeloDescendo1.png */; };
 		57C08E1F1BFA47B0003E4574 /* CogumeloEspecial1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF21BFA47B0003E4574 /* CogumeloEspecial1.png */; };
 		57C08E201BFA47B0003E4574 /* CogumeloEspecial10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF31BFA47B0003E4574 /* CogumeloEspecial10.png */; };
 		57C08E211BFA47B0003E4574 /* CogumeloEspecial2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF41BFA47B0003E4574 /* CogumeloEspecial2.png */; };
@@ -169,8 +169,8 @@
 		57C08E321BFA47B0003E4574 /* CogumeloParado8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E051BFA47B0003E4574 /* CogumeloParado8.png */; };
 		57C08E331BFA47B0003E4574 /* CogumeloParado9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E061BFA47B0003E4574 /* CogumeloParado9.png */; };
 		57C08E341BFA47B0003E4574 /* CogumeloSubindo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E071BFA47B0003E4574 /* CogumeloSubindo1.png */; };
-		57C08E351BFA47B0003E4574 /* CogumeloSubindodescendo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E081BFA47B0003E4574 /* CogumeloSubindodescendo1.png */; };
-		57C08E361BFA47B0003E4574 /* CogumeloSubindodescendo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E091BFA47B0003E4574 /* CogumeloSubindodescendo2.png */; };
+		57C08E351BFA47B0003E4574 /* CogumeloDescendo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E081BFA47B0003E4574 /* CogumeloDescendo3.png */; };
+		57C08E361BFA47B0003E4574 /* CogumeloDescendo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E091BFA47B0003E4574 /* CogumeloDescendo2.png */; };
 		57C08E381BFA650A003E4574 /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E371BFA650A003E4574 /* monkey.png */; };
 		57C08E3B1BFCDF8F003E4574 /* UI_BOLT.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E3A1BFCDF8F003E4574 /* UI_BOLT.png */; };
 		57C08E3D1BFCDFAC003E4574 /* UI_HEART.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E3C1BFCDFAC003E4574 /* UI_HEART.png */; };
@@ -452,7 +452,7 @@
 		57C08DEE1BFA47B0003E4574 /* CogumeloAtaque7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloAtaque7.png; sourceTree = "<group>"; };
 		57C08DEF1BFA47B0003E4574 /* CogumeloAtaque8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloAtaque8.png; sourceTree = "<group>"; };
 		57C08DF01BFA47B0003E4574 /* CogumeloAtaque9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloAtaque9.png; sourceTree = "<group>"; };
-		57C08DF11BFA47B0003E4574 /* CogumeloDescendo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloDescendo.png; sourceTree = "<group>"; };
+		57C08DF11BFA47B0003E4574 /* CogumeloDescendo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloDescendo1.png; sourceTree = "<group>"; };
 		57C08DF21BFA47B0003E4574 /* CogumeloEspecial1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloEspecial1.png; sourceTree = "<group>"; };
 		57C08DF31BFA47B0003E4574 /* CogumeloEspecial10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloEspecial10.png; sourceTree = "<group>"; };
 		57C08DF41BFA47B0003E4574 /* CogumeloEspecial2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloEspecial2.png; sourceTree = "<group>"; };
@@ -475,8 +475,8 @@
 		57C08E051BFA47B0003E4574 /* CogumeloParado8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloParado8.png; sourceTree = "<group>"; };
 		57C08E061BFA47B0003E4574 /* CogumeloParado9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloParado9.png; sourceTree = "<group>"; };
 		57C08E071BFA47B0003E4574 /* CogumeloSubindo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloSubindo1.png; sourceTree = "<group>"; };
-		57C08E081BFA47B0003E4574 /* CogumeloSubindodescendo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloSubindodescendo1.png; sourceTree = "<group>"; };
-		57C08E091BFA47B0003E4574 /* CogumeloSubindodescendo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloSubindodescendo2.png; sourceTree = "<group>"; };
+		57C08E081BFA47B0003E4574 /* CogumeloDescendo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloDescendo3.png; sourceTree = "<group>"; };
+		57C08E091BFA47B0003E4574 /* CogumeloDescendo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloDescendo2.png; sourceTree = "<group>"; };
 		57C08E371BFA650A003E4574 /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
 		57C08E3A1BFCDF8F003E4574 /* UI_BOLT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_BOLT.png; sourceTree = "<group>"; };
 		57C08E3C1BFCDFAC003E4574 /* UI_HEART.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_HEART.png; sourceTree = "<group>"; };
@@ -887,7 +887,6 @@
 			isa = PBXGroup;
 			children = (
 				57C08DDD1BFA47B0003E4574 /* CogumeloAndando1.png */,
-				57C08DDE1BFA47B0003E4574 /* CogumeloAndando10.png */,
 				57C08DDF1BFA47B0003E4574 /* CogumeloAndando2.png */,
 				57C08DE01BFA47B0003E4574 /* CogumeloAndando3.png */,
 				57C08DE11BFA47B0003E4574 /* CogumeloAndando4.png */,
@@ -896,8 +895,8 @@
 				57C08DE41BFA47B0003E4574 /* CogumeloAndando7.png */,
 				57C08DE51BFA47B0003E4574 /* CogumeloAndando8.png */,
 				57C08DE61BFA47B0003E4574 /* CogumeloAndando9.png */,
+				57C08DDE1BFA47B0003E4574 /* CogumeloAndando10.png */,
 				57C08DE71BFA47B0003E4574 /* CogumeloAtaque1.png */,
-				57C08DE81BFA47B0003E4574 /* CogumeloAtaque10.png */,
 				57C08DE91BFA47B0003E4574 /* CogumeloAtaque2.png */,
 				57C08DEA1BFA47B0003E4574 /* CogumeloAtaque3.png */,
 				57C08DEB1BFA47B0003E4574 /* CogumeloAtaque4.png */,
@@ -906,9 +905,8 @@
 				57C08DEE1BFA47B0003E4574 /* CogumeloAtaque7.png */,
 				57C08DEF1BFA47B0003E4574 /* CogumeloAtaque8.png */,
 				57C08DF01BFA47B0003E4574 /* CogumeloAtaque9.png */,
-				57C08DF11BFA47B0003E4574 /* CogumeloDescendo.png */,
+				57C08DE81BFA47B0003E4574 /* CogumeloAtaque10.png */,
 				57C08DF21BFA47B0003E4574 /* CogumeloEspecial1.png */,
-				57C08DF31BFA47B0003E4574 /* CogumeloEspecial10.png */,
 				57C08DF41BFA47B0003E4574 /* CogumeloEspecial2.png */,
 				57C08DF51BFA47B0003E4574 /* CogumeloEspecial3.png */,
 				57C08DF61BFA47B0003E4574 /* CogumeloEspecial4.png */,
@@ -917,9 +915,9 @@
 				57C08DF91BFA47B0003E4574 /* CogumeloEspecial7.png */,
 				57C08DFA1BFA47B0003E4574 /* CogumeloEspecial8.png */,
 				57C08DFB1BFA47B0003E4574 /* CogumeloEspecial9.png */,
+				57C08DF31BFA47B0003E4574 /* CogumeloEspecial10.png */,
 				57C08DFC1BFA47B0003E4574 /* CogumeloHit1.png */,
 				57C08DFD1BFA47B0003E4574 /* CogumeloParado1.png */,
-				57C08DFE1BFA47B0003E4574 /* CogumeloParado10.png */,
 				57C08DFF1BFA47B0003E4574 /* CogumeloParado2.png */,
 				57C08E001BFA47B0003E4574 /* CogumeloParado3.png */,
 				57C08E011BFA47B0003E4574 /* CogumeloParado4.png */,
@@ -928,9 +926,11 @@
 				57C08E041BFA47B0003E4574 /* CogumeloParado7.png */,
 				57C08E051BFA47B0003E4574 /* CogumeloParado8.png */,
 				57C08E061BFA47B0003E4574 /* CogumeloParado9.png */,
+				57C08DFE1BFA47B0003E4574 /* CogumeloParado10.png */,
 				57C08E071BFA47B0003E4574 /* CogumeloSubindo1.png */,
-				57C08E081BFA47B0003E4574 /* CogumeloSubindodescendo1.png */,
-				57C08E091BFA47B0003E4574 /* CogumeloSubindodescendo2.png */,
+				57C08DF11BFA47B0003E4574 /* CogumeloDescendo1.png */,
+				57C08E091BFA47B0003E4574 /* CogumeloDescendo2.png */,
+				57C08E081BFA47B0003E4574 /* CogumeloDescendo3.png */,
 			);
 			path = Cogumelo;
 			sourceTree = "<group>";
@@ -1505,7 +1505,7 @@
 				57190BBD1BF2689900FFF38D /* SalamangFalling3.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				57C08E0C1BFA47B0003E4574 /* CogumeloAndando2.png in Resources */,
-				57C08E351BFA47B0003E4574 /* CogumeloSubindodescendo1.png in Resources */,
+				57C08E351BFA47B0003E4574 /* CogumeloDescendo3.png in Resources */,
 				57FECA461C04E6BB00E1A86C /* SalamangCaindo2.png in Resources */,
 				5769651F1BE2859F00CBB81D /* Attack3.png in Resources */,
 				67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */,
@@ -1549,7 +1549,7 @@
 				57190B571BF12BED00FFF38D /* NeithJump1.png in Resources */,
 				57C08E2C1BFA47B0003E4574 /* CogumeloParado2.png in Resources */,
 				57190BCE1BF3A3B300FFF38D /* SalamangIdlee3.png in Resources */,
-				57C08E1E1BFA47B0003E4574 /* CogumeloDescendo.png in Resources */,
+				57C08E1E1BFA47B0003E4574 /* CogumeloDescendo1.png in Resources */,
 				57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */,
 				57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */,
 				57190BC41BF2689900FFF38D /* 102.png in Resources */,
@@ -1653,7 +1653,7 @@
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
 				57FECA581C04E6BB00E1A86C /* SalamangParado6.png in Resources */,
 				57190B541BF12BED00FFF38D /* NeithIdle2.png in Resources */,
-				57C08E361BFA47B0003E4574 /* CogumeloSubindodescendo2.png in Resources */,
+				57C08E361BFA47B0003E4574 /* CogumeloDescendo2.png in Resources */,
 				576965261BE2859F00CBB81D /* falling3.png in Resources */,
 				57C08E1A1BFA47B0003E4574 /* CogumeloAtaque6.png in Resources */,
 				576965221BE2859F00CBB81D /* Death2.png in Resources */,

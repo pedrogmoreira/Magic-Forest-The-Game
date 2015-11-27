@@ -140,8 +140,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func jump () -> SKAction {
-		//return SKAction.repeatActionForever(self.loadAnimation("jump", endIndex: 2, timePerFrame: 0.1))
-		return self.loadAnimation("CogumeloSubindo", endIndex: 1, timePerFrame: 0.25)
+		return self.loadAnimation("CogumeloSubindo", endIndex: 1, timePerFrame: 0.54)
 	}
 	
 	/**
@@ -149,7 +148,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func falling () -> SKAction {
-		return self.loadAnimation("CogumeloSubindodescendo", endIndex: 2, timePerFrame: 0.25)
+		return self.loadAnimation("CogumeloDescendo", endIndex: 3, timePerFrame: 0.2)
 	}
 	
 	/**
