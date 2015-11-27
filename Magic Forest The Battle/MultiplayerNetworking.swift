@@ -33,7 +33,7 @@ protocol StartGameProtocol {
 }
 
 // Define the states of the game
-enum GameState: Int {
+enum GameStates: Int {
     case WaintingForMatch, WaintingForRandomNumber, WaitingForStart, Playing, Done
 }
 
@@ -45,7 +45,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         ones received from the other player(s)
         You’ll use these numbers to sort all of the players in the game and determine playing order */
     var ourRandomNumber: UInt32 = 0
-    var gameState: GameState
+    var gameState: GameStates
     var isPlayer1: Bool
     var receivedAllRandomNumber: Bool
     var orderOfPlayers: [RandomNumberDetails]
@@ -54,7 +54,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 	
     override init() {
         ourRandomNumber = arc4random()
-        gameState = GameState.WaintingForMatch
+        gameState = GameStates.WaintingForMatch
         isPlayer1 = false
         receivedAllRandomNumber = false
         
@@ -70,9 +70,9 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     func matchStarted() {
         print("Match has started successfuly")
         if receivedAllRandomNumber {
-            gameState = GameState.WaitingForStart
+            gameState = GameStates.WaitingForStart
         } else {
-            gameState = GameState.WaintingForRandomNumber
+            gameState = GameStates.WaintingForRandomNumber
         }
         
         sendRandomNumber()
@@ -86,9 +86,9 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     }
 	
 	func tryStartGame() {
-		if isPlayer1 && gameState == GameState.WaitingForStart {
+		if isPlayer1 && gameState == GameStates.WaitingForStart {
 			print("Im player 1 >> STARTING GAME")
-			gameState = GameState.Playing
+			gameState = GameStates.Playing
 			sendBeginGame()
 			delegate?.setCurrentPlayerIndex(0)
 			startGameDelegate?.startGame()
