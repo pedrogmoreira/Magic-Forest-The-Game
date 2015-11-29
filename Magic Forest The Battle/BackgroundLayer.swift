@@ -276,6 +276,7 @@ class BackgroundLayer: SKNode {
 		physicsBody.categoryBitMask = categoryBitmask.rawValue
 		physicsBody.collisionBitMask = 0
 		physicsBody.contactTestBitMask = 0
+        physicsBody.restitution = 0
 		physicsBody.dynamic = false
 		
 		return physicsBody

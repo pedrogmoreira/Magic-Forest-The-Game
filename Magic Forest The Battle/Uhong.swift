@@ -88,6 +88,7 @@ class Uhong: Player {
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
 		physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR
 		physicsBody.mass = 100
+        physicsBody.restitution = 0
 		physicsBody.affectedByGravity = true
 		physicsBody.allowsRotation = false
 		
@@ -140,7 +141,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func jump () -> SKAction {
-		return self.loadAnimation("CogumeloSubindo", endIndex: 1, timePerFrame: 0.54)
+		return self.loadAnimation("CogumeloSubindo", endIndex: 1, timePerFrame: 0.6)
 	}
 	
 	/**
