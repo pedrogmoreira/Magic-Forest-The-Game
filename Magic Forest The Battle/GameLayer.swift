@@ -30,6 +30,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	var specialAreaPlayersIndex: [Int] = [Int]()
 	var isOnMeleeCollision: Bool = false
 	var isOnSpecialCollision: Bool = false
+	
+	var score: Int = 0
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
@@ -235,12 +237,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
-		if IS_ONLINE == true {
+		if IS_ONLINE == true && self.hasLoadedGame == true {
             networkingEngine?.sendMove(Float(player.position.x), dy: Float(player.position.y))
 			for player in self.players {
 				player.update(currentTime)
 			}
-		} else {
+		} else if IS_ONLINE == false && self.hasLoadedGame == true {
 			self.player.update(currentTime)
 		}
 
@@ -295,15 +297,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				print("deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 				
 				let player = self.players[self.normalAreaPlayersIndex.first!]
-				let damage = CGFloat(100)
-				if player.currentLife! - 100 > 0 {
+				let damage = self.player.attackDamage
+				
+				if player.currentLife! - damage! > 0 {
 					
-					player.currentLife = player.currentLife! - damage
+					player.currentLife = player.currentLife! - damage!
 					
 					
 				} else {
 					player.currentLife = 0
-//					self.networkingEngine?.sendDeath(self.normalAreaPlayersIndex.first!)
+					
+					if player.isDead == false {
+						self.score++
+						self.hudLayer?.updateScoreLabel(withScore: self.score)
+					}
 				}
 				
 				self.networkingEngine?.sendLoseLife(player.currentLife!, playerIndex: self.normalAreaPlayersIndex.first!)
@@ -347,17 +354,17 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			if node == self.player {
 				self.player?.isLeft = true
 				self.player.lifeBar.xScale = fabs(self.player.lifeBar.xScale)
-				print(self.player.lifeBar.xScale)
-				
-				print(self.player.xScale)
+//				print(self.player.lifeBar.xScale)
+//				
+//				print(self.player.xScale)
 			}
 		} else {
 			//self.player?.xScale = fabs((self.player?.xScale)!)
 			node.xScale = fabs(node.xScale)
 			if node == self.player {
 				self.player?.isLeft = false
-				print(self.player.lifeBar.xScale)
-				print(self.player.xScale)
+//				print(self.player.lifeBar.xScale)
+//				print(self.player.xScale)
 			}
 		}
 	}
@@ -420,8 +427,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
 		player.currentLife = CGFloat(currentLife)
-		print("life: \(player.life)")
-		print("current life: \(player.currentLife)")
+		
+		if player.currentLife <= 0 {
+			if player.isDead == false {
+				self.score--
+				self.hudLayer?.updateScoreLabel(withScore: self.score)
+			}
+		}
+		
 		hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
 	}
 	func performDeathWithPlayer (player: Player) {
@@ -482,6 +495,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				}
 			}
 			self.isOnSpecialCollision = true
+		case PhysicsCategory.Player.rawValue | PhysicsCategory.DeathBox.rawValue:
+			self.player.currentLife = 0
+			if IS_ONLINE == true {
+				self.score--
+				self.hudLayer?.updateScoreLabel(withScore: self.score)
+			}
 		default:
 			return
 		}

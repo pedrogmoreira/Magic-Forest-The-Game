@@ -22,6 +22,9 @@ protocol MultiplayerProtocol {
 	func performDeath(index: Int)
     func movePlayer(index: Int, dx: Float, dy: Float)
 	func chooseCharacter()
+	func sendMyScore()
+	func receiveScore(score: Int, playerIndex: Int)
+	func receiveAllScores(scores: [Int])
 	
 //    var gameLayer: GameLayer? {get set}
 //    var players: [Player] {get set}
@@ -39,7 +42,8 @@ enum GameState: Int {
 class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     var delegate: MultiplayerProtocol?
     var startGameDelegate: StartGameProtocol?
-    
+	var matchEndDelegate: MatchEndDelegate?
+	
     /* These variables keep track of the random number for the local device and the
         ones received from the other player(s)
         You’ll use these numbers to sort all of the players in the game and determine playing order */
@@ -130,7 +134,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: GKPlayer) {
         let message = UnsafePointer<Message>(data.bytes).memory
         
-        if message.messageType == MessageType.RandomNumber {
+        if message.messageType == MessageType.RandomNumber { // MARK: Received Random Number
             let messageRandomNumber = UnsafePointer<MessageRandomNumber>(data.bytes).memory
             
             print("Received random number:\(messageRandomNumber.randomNumber)")
@@ -157,7 +161,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
                 
                 sendRandomNumber()
             } else {
-                processReceivedRandomNumber(RandomNumberDetails(playerId: player.playerID!, player: GKLocalPlayer.localPlayer(), randomNumber: messageRandomNumber.randomNumber))
+                processReceivedRandomNumber(RandomNumberDetails(playerId: player.playerID!, player: player, randomNumber: messageRandomNumber.randomNumber))
             }
             
             if receivedAllRandomNumber {
@@ -171,7 +175,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
                 }
 //                tryStartGame()
             }
-        } else if message.messageType == MessageType.GameBegin {
+        } else if message.messageType == MessageType.GameBegin {  // MARK: Received Game Begin
 			
             if let localPlayerIndex = indexForLocalPlayer() {
                 delegate?.setCurrentPlayerIndex(localPlayerIndex)
@@ -179,18 +183,20 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             
             startGameDelegate?.startGame()
             gameState = GameState.Playing
-        } else if message.messageType == MessageType.Move {
+		} else if message.messageType == MessageType.GameOver {  // MARK: Received Game Over
+			self.matchEndDelegate?.pauseGame()
+		} else if message.messageType == MessageType.Move { // MARK: Received Move
             
             let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
             delegate?.movePlayer(indexForPlayer(player.playerID!)!, dx: messageMove.dx, dy: messageMove.dy)
-        } else if message.messageType == MessageType.String {
+        } else if message.messageType == MessageType.String { // MARK: Received String
             
             let messageString = MessageString.unarchive(data)
             print(messageString.text)
-        } else if message.messageType == MessageType.Attack {
+        } else if message.messageType == MessageType.Attack { // MARK: Received Attack
             
             delegate?.attack(indexForPlayer(player.playerID!)!)
-		} else if message.messageType == MessageType.StartGameProperties {
+		} else if message.messageType == MessageType.StartGameProperties { // MARK: Received Start Game Properties
             
 			let messageStartGameProperties = MessageStartGameProperties.unarchive(data)
 			let indexes = NSKeyedUnarchiver.unarchiveObjectWithData(messageStartGameProperties.spawnPointsIndexes!) as! [Int]
@@ -198,7 +204,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			let chosenCharacters = NSKeyedUnarchiver.unarchiveObjectWithData(messageStartGameProperties.chosenCharacters!) as! [CharacterType.RawValue]
 			
 			delegate?.createPlayer(indexes, chosenCharacters: chosenCharacters)
-		} else if message.messageType == MessageType.ChosenCharacter {
+		} else if message.messageType == MessageType.ChosenCharacter { // MARK: Received Chosen Character
 			print("recebendo seleçao")
 			if self.isPlayer1 == true {
 				let messageChosenCharacter = UnsafePointer<MessageCharacterChosen>(data.bytes).memory
@@ -207,24 +213,36 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 				
 				delegate?.receiveChosenCharacter(messageChosenCharacter.character, playerIndex: self.indexForPlayer(player.playerID!)!)
 			}
-        } else if message.messageType == MessageType.Jump {
+        } else if message.messageType == MessageType.Jump { // MARK: Received Jump
             
             delegate?.performJump(indexForPlayer(player.playerID!)!)
-        } else if message.messageType == MessageType.GetDown {
+        } else if message.messageType == MessageType.GetDown { // MARK: Received Get Down
             delegate?.performGetDown(indexForPlayer(player.playerID!)!)
-        } else if message.messageType == MessageType.Special {
+        } else if message.messageType == MessageType.Special { // MARK: Received Special Attack
             delegate?.performSpecial(indexForPlayer(player.playerID!)!)
-		} else if message.messageType == MessageType.LoseLife {
+		} else if message.messageType == MessageType.LoseLife { // MARK: Received Lose Life
 			let messageLoseLife = UnsafePointer<MessageLoseLife>(data.bytes).memory
 			let currentLife = messageLoseLife.currentLife
 			let playerIndex = messageLoseLife.playerIndex
 			
 			delegate?.performLoseLife(playerIndex, currentLife: currentLife)
-		} else if message.messageType == MessageType.Death {
+		} else if message.messageType == MessageType.Death { // MARK: Received Death
 			let messageLoseLife = UnsafePointer<MessageDeath>(data.bytes).memory
 			let playerIndex = messageLoseLife.playerIndex
 			
 			delegate?.performDeath(playerIndex)
+		} else if message.messageType == MessageType.MyScore { // MARK: Received Score
+			if self.isPlayer1 == true {
+				let messageScore = UnsafePointer<MessageMyScore>(data.bytes).memory
+				let score = messageScore.score
+				
+				delegate?.receiveScore(score, playerIndex: self.indexForPlayer(player.playerID!)!)
+			}
+		} else if message.messageType == MessageType.Scores { // MARK: Received All Scores
+			let messageScores = MessageScores.unarchive(data)
+			let scores = NSKeyedUnarchiver.unarchiveObjectWithData(messageScores.scores!) as! [Int]
+
+			delegate?.receiveAllScores(scores)
 		}
     }
 	
@@ -326,7 +344,12 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageGameBegin))
         sendData(data)
     }
-
+	
+	func sendGameOver() {
+		var message = MessageGameOver(message: Message(messageType: MessageType.GameOver))
+		let data = NSData(bytes: &message, length: sizeof(MessageGameOver))
+		sendData(data)
+	}
     // Send to all devices a message of type MessageString
     func sendString() {
         let message = MessageString(text: "Oi cueio")
@@ -386,6 +409,23 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 		var message = MessageDeath(playerIndex: playerIndex)
 		
 		let data = NSData(bytes: &message, length: sizeof(MessageDeath))
+		sendData(data)
+	}
+	
+	// Send to all devices a message of type MessageScore
+	func sendMyScore(score: Int) {
+		var message = MessageMyScore(score: score)
+		
+		let data = NSData(bytes: &message, length: sizeof(MessageMyScore))
+		sendData(data)
+	}
+	
+	// Send to all devices a message of type MessageScore
+	func sendScores(scores: [Int]) {
+		let scoresData = NSKeyedArchiver.archivedDataWithRootObject(scores)
+		let message = MessageScores(scores: scoresData)
+		
+		let data = message.archive()
 		sendData(data)
 	}
 

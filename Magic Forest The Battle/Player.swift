@@ -95,7 +95,8 @@ class Player: SKSpriteNode, GameObject {
 		let velocityY = movementVelocity!.dy * 0
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
 		if self.currentLife <= 0 {
-			print("to morto")
+//			print("to morto")
+			
 			self.changeState(PlayerState.Death)
 			if self.isDead == false {
 				self.rebirth()

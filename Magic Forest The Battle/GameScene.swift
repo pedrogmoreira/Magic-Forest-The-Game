@@ -11,11 +11,13 @@ import SpriteKit
 let DEFAULT_WIDTH = CGFloat(667)
 let DEFAULT_HEIGHT = CGFloat(375)
 
-class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
+class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEndDelegate {
 	
 	var backgroundLayer: BackgroundLayer?
 	var hudLayer: HudLayer?
 	var gameLayer: GameLayer?
+	var gameOverLayer: GameOverLayer?
+	
     var playerCamera: SKCameraNode?
     
     // Multiplayer variables
@@ -23,8 +25,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
     var currentIndex: Int?
 	var chosenCharacters = [Int]()
 	var playersDetails = [PlayerDetails]()
-	
+	var playersScores = [PlayerScores]()
+	var finalScores = [Int]()
 	var scenesDelegate: ScenesDelegate?
+	var controlUnit: MFCSControlUnit?
+	var isGameOver: Bool = false
 	
 	/**
 	Initializes the game scene
@@ -48,7 +53,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
         self.backgroundLayer?.zPosition = -10
         
         self.hudLayer = HudLayer(size: size)
-        self.hudLayer?.zPosition = 1000
+        self.hudLayer?.zPosition = 1_000
+		self.hudLayer?.matchEndDelegate = self
+		self.hudLayer?.networkingEngine = self.networkingEngine
         
         self.gameLayer?.hudLayer = self.hudLayer
         
@@ -134,6 +141,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 			self.cameraPositionXAxis()
 		}
     }
+	
+	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		if self.isGameOver {
+			scenesDelegate?.showMenu()
+			scenesDelegate?.removeMenuSelectPlayerScene()
+			scenesDelegate?.removeGameScene()
+		}
+	}
     
     // Called when the match has ended
     func matchEnded() {
@@ -199,6 +214,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 		}
 	}
 	
+	class PlayerScores: NSObject {
+		let score: Int
+		let index: Int
+		
+		init(score: Int, index: Int) {
+			self.score = score
+			self.index = index
+			super.init()
+		}
+	}
+	
     // Perform a jump in all devices
     func performJump (index: Int) {
         let player = gameLayer!.players[index] as Player
@@ -250,5 +276,125 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	func didEndContact(contact: SKPhysicsContact) {
 		self.gameLayer?.didEndContact(contact)
 	}
-    
+	
+	func sendMyScore() {
+		self.networkingEngine?.sendMyScore((self.gameLayer?.score)!)
+	}
+	
+	// Called when a player send his score
+	func receiveScore(score: Int, playerIndex: Int) {
+		self.playersScores.append(PlayerScores(score: score, index: playerIndex))
+		
+		
+		if self.playersScores.count == ((GameKitHelper.sharedInstance.multiplayerMatch?.players.count)! + 1) {
+			
+			let multableArray = NSMutableArray(array: self.playersScores)
+			let sortByIndex = NSSortDescriptor(key: "index", ascending: true)
+			let sortDescriptiors = [sortByIndex]
+			multableArray.sortUsingDescriptors(sortDescriptiors)
+			self.playersScores = NSArray(array: multableArray) as! [PlayerScores]
+			
+			for playerScore in self.playersScores {
+				self.finalScores.append(playerScore.score)
+			}
+			
+			var aliases = [String]()
+			for index in 0...self.finalScores.count - 1 {
+				aliases.append((self.networkingEngine?.orderOfPlayers[index].player.alias)!)
+			}
+			
+			print("All players send their scores info to me, sending all info to everyone")
+			networkingEngine?.sendScores(self.finalScores)
+			
+			self.gameOverLayer?.removeLoad()
+			self.runAction(SKAction.waitForDuration(0.2), completion: {
+				self.gameOverLayer?.showTwoPlayerScores(self.finalScores, players: aliases)
+				self.isGameOver = true
+			})
+		}
+	}
+	
+	func addMyScore() {
+		self.playersScores.append(PlayerScores(score: (self.gameLayer?.score)!, index: self.currentIndex!))
+	}
+	
+	func receiveAllScores(scores: [Int]) {
+		self.finalScores = scores
+		var aliases = [String]()
+		for index in 0...self.finalScores.count - 1 {
+			aliases.append((self.networkingEngine?.orderOfPlayers[index].player.alias)!)
+			print("\nScores:\n\(aliases[index]): \(self.finalScores[index])")
+		}
+		
+		self.gameOverLayer?.removeLoad()
+		self.runAction(SKAction.waitForDuration(0.2), completion: {
+			self.gameOverLayer?.showTwoPlayerScores(self.finalScores, players: aliases)
+			self.isGameOver = true
+		})
+	}
+	
+	func pauseGame() {
+		self.controlUnit?.alpha = 0
+		
+		self.gameOverLayer = GameOverLayer(size: (self.view?.bounds.size)!)
+		self.gameOverLayer?.zPosition = 1_200
+		
+		self.hudLayer?.runAction(SKAction.fadeAlphaTo(0, duration: 0))
+		self.runAction(SKAction.waitForDuration(0.1), completion: {
+			
+			let bluredTexture = SKTexture(image: self.getBluredScreenShot())
+			
+			self.scenesDelegate?.deinitControllersSystem()
+			
+			let bluredScreenShot = SKSpriteNode(texture: bluredTexture)
+			bluredScreenShot.size = (self.view?.bounds.size)!
+			bluredScreenShot.zPosition = 1_100
+			bluredScreenShot.alpha = 0
+			self.playerCamera!.addChild(bluredScreenShot)
+			
+			let fadeOut = SKAction.fadeAlphaTo(0, duration: 0.25)
+			
+			self.gameLayer?.runAction(fadeOut, completion: {
+				self.gameLayer?.paused = true
+			})
+			self.backgroundLayer?.runAction(fadeOut, completion: {
+				self.backgroundLayer?.paused = true
+			})
+			
+			bluredScreenShot.runAction(SKAction.fadeAlphaTo(1, duration: 0.25))
+			
+			self.playerCamera?.addChild(self.gameOverLayer!)
+		})
+	}
+	
+	func sendScore() {
+		self.networkingEngine?.sendMyScore((self.gameLayer?.score)!)
+	}
+	
+	func getBluredScreenShot() -> UIImage {
+		UIGraphicsBeginImageContextWithOptions((self.view?.bounds.size)!, false, 1)
+		self.view?.drawViewHierarchyInRect((self.view?.frame)!, afterScreenUpdates: true)
+		let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+		UIGraphicsEndImageContext()
+		
+		let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur")
+		gaussianBlurFilter?.setDefaults()
+		gaussianBlurFilter?.setValue(CIImage(image: screenShot), forKey: kCIInputImageKey)
+		gaussianBlurFilter?.setValue(7, forKey: kCIInputRadiusKey)
+		
+		let outputImage = gaussianBlurFilter?.outputImage
+		let context = CIContext()
+		var rect = outputImage?.extent
+		rect?.origin.x += ((rect?.size.width)! - screenShot.size.width) / 2
+		rect?.origin.y += ((rect?.size.height)! - screenShot.size.height) / 2
+		rect?.size = (self.view?.bounds.size)!
+		let cgImage = context.createCGImage(outputImage!, fromRect: rect!)
+		let image = UIImage(CGImage: cgImage)
+		
+		return image
+	}
+	
+	deinit {
+		print("dealoc")
+	}
 }

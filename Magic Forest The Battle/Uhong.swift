@@ -86,7 +86,7 @@ class Uhong: Player {
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
-		physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR
+		physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR | PhysicsCategory.DeathBox.rawValue
 		physicsBody.mass = 100
 		physicsBody.affectedByGravity = true
 		physicsBody.allowsRotation = false

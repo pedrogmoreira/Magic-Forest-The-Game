@@ -83,6 +83,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.physicsBody?.contactTestBitMask = 0
 		
 		self.generatePlatforms()
+		self.createGroundDeathCollider()
 		
 	}
 	
@@ -169,6 +170,26 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		BackgroundLayer.firstFloor = firstFloorLPlatfom
 		BackgroundLayer.secondFloor = secondFLoorLPlatform
 		BackgroundLayer.thirdFloor = thirdFloorRPlatform
+	}
+	
+	func createGroundDeathCollider() {
+		
+		let size = CGSize(width: self.background!.size.width , height: self.background!.size.height * 0.02)
+		
+		let groundDeathCollider = SKSpriteNode(color: UIColor.purpleColor(), size: size)
+		groundDeathCollider.position = CGPoint(x: 0,y: -self.background!.size.height / 2 + size.height / 2)
+		
+		let physicsBody = SKPhysicsBody(rectangleOfSize: size)
+		physicsBody.categoryBitMask = PhysicsCategory.DeathBox.rawValue
+		physicsBody.collisionBitMask = 0
+		physicsBody.contactTestBitMask = PhysicsCategory.Player.rawValue
+		physicsBody.dynamic = false
+		
+		groundDeathCollider.physicsBody = physicsBody
+		
+		groundDeathCollider.alpha = 0
+		
+		self.addChild(groundDeathCollider)
 	}
 	
 }
