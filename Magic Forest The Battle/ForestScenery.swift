@@ -117,8 +117,6 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		
 		// Platforms configuration
 		firstFloorLPlatfom.zPosition = -15
-		thirdFloorLPlatform.runAction(SKAction.rotateByAngle(CGFloat(-3 * M_PI / 180), duration: 0))
-		thirdFloorLPlatform.runAction(SKAction.rotateByAngle(CGFloat(2.5 * M_PI / 180), duration: 0))
 		
 		// Platforms positioning
 		
