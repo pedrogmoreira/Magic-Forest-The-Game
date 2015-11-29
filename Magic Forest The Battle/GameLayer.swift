@@ -446,11 +446,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
             
-            // TODO: Traduzir comentario
-            // Ver se o player chegou no chão no estado de pulo, corrige os casos em que o player
-            // não consegue pular pq estava na animação de pulo quando chegou no chão
-            if self.player.state == PlayerState.Jump {
-                player.jumpCount = 0
+            if self.player.isJumping == false {
+                self.player.jumpCount = 0
             }
             
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:

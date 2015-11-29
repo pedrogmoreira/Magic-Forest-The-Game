@@ -106,7 +106,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		let baseRPlatform = self.generateQuadruplePlatform(PhysicsCategory.WorldBaseFloorPlatform)
 		
 		let firstFloorLPlatfom = self.generateSinglePlatform(PhysicsCategory.WorldFirstFloorPlatform)
-		
+        
 		let secondFLoorLPlatform = self.generateDoublePlatform(PhysicsCategory.WorldSecondFloorPlatform)
 		let secondFloorRPlatform = self.generateQuadruplePlatform(PhysicsCategory.WorldSecondFloorPlatform)
 		
