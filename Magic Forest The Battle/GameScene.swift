@@ -147,6 +147,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 			scenesDelegate?.showMenu()
 			scenesDelegate?.removeMenuSelectPlayerScene()
 			scenesDelegate?.removeGameScene()
+			
+			GameKitHelper.sharedInstance.multiplayerMatch?.disconnect()
 		}
 	}
     
