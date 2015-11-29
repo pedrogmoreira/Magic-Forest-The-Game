@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-//import Darwin
 
 class ForestScenery: BackgroundLayer, BasicLayer {
 	

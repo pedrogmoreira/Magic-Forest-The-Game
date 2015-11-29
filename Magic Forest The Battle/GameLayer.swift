@@ -247,7 +247,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		} else if IS_ONLINE == false && self.hasLoadedGame == true {
 			self.player.update(currentTime)
 		}
-
 	}
 	
 	func upSpecialBar () {
@@ -446,9 +445,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-			if self.player.jumpCount != 0 {
-				self.player.jumpCount = 0
-			}
+            
+            // TODO: Traduzir comentario
+            // Ver se o player chegou no chão no estado de pulo, corrige os casos em que o player
+            // não consegue pular pq estava na animação de pulo quando chegou no chão
+            if self.player.state == PlayerState.Jump {
+                player.jumpCount = 0
+            }
+            
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!

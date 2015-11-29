@@ -213,6 +213,20 @@ class Player: SKSpriteNode, GameObject {
 		}
 		
 		if self.state != state {
+            
+            // If when I changend the state and I was falling and my new state be Idle or Running
+            // so I'm in the ground and my jump count is 0
+            if self.state == PlayerState.Falling && (state == PlayerState.Idle || state == PlayerState.Running) {
+                self.jumpCount = 0
+            } else if self.state == PlayerState.Falling && (state == PlayerState.Attack || state == PlayerState.SpecialAttack) {
+                
+                // If I try to attack when I'm falling I'll wait 0.5 seconds to jump again
+                let wait = SKAction.waitForDuration(0.5)
+                runAction(wait, completion: { () -> Void in
+                    self.jumpCount = 0
+                })
+            }
+            
 			self.state = state
 			if self.state != PlayerState.Attack {
 				self.isAttacking = false
