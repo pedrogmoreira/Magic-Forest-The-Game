@@ -245,6 +245,17 @@
 		EB7FE7F81C0E15DB00FBBF3E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE7F51C0E15DB00FBBF3E /* Localizable.strings */; };
 		EB7FE7FB1C0E15EB00FBBF3E /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE7F91C0E15EB00FBBF3E /* PlayButton.png */; };
 		EB7FE7FE1C0E15F200FBBF3E /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE7FC1C0E15F200FBBF3E /* PlayButton.png */; };
+		EB7FE80B1C0E4AE400FBBF3E /* Icon-29.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8001C0E4AE400FBBF3E /* Icon-29.png */; };
+		EB7FE80C1C0E4AE400FBBF3E /* Icon-29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8011C0E4AE400FBBF3E /* Icon-29@2x.png */; };
+		EB7FE80D1C0E4AE400FBBF3E /* Icon-29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8021C0E4AE400FBBF3E /* Icon-29@3x.png */; };
+		EB7FE80E1C0E4AE400FBBF3E /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8031C0E4AE400FBBF3E /* Icon-40.png */; };
+		EB7FE80F1C0E4AE400FBBF3E /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8041C0E4AE400FBBF3E /* Icon-40@2x.png */; };
+		EB7FE8101C0E4AE400FBBF3E /* Icon-40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8051C0E4AE400FBBF3E /* Icon-40@3x.png */; };
+		EB7FE8111C0E4AE400FBBF3E /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8061C0E4AE400FBBF3E /* Icon-60@2x.png */; };
+		EB7FE8121C0E4AE400FBBF3E /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8071C0E4AE400FBBF3E /* Icon-60@3x.png */; };
+		EB7FE8131C0E4AE400FBBF3E /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8081C0E4AE400FBBF3E /* Icon-76.png */; };
+		EB7FE8141C0E4AE400FBBF3E /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE8091C0E4AE400FBBF3E /* Icon-76@2x.png */; };
+		EB7FE8151C0E4AE400FBBF3E /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EB7FE80A1C0E4AE400FBBF3E /* iTunesArtwork@2x.png */; };
 		EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057591BD55CF200536AD1 /* AppDelegate.swift */; };
 		EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575D1BD55CF200536AD1 /* GameScene.swift */; };
 		EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575F1BD55CF200536AD1 /* GameViewController.swift */; };
@@ -531,6 +542,17 @@
 		EB7FE7F61C0E15DB00FBBF3E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = Localizable.strings; sourceTree = "<group>"; };
 		EB7FE7FA1C0E15EB00FBBF3E /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = PlayButton.png; sourceTree = "<group>"; };
 		EB7FE7FD1C0E15F200FBBF3E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pt-BR"; path = PlayButton.png; sourceTree = "<group>"; };
+		EB7FE8001C0E4AE400FBBF3E /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
+		EB7FE8011C0E4AE400FBBF3E /* Icon-29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@2x.png"; sourceTree = "<group>"; };
+		EB7FE8021C0E4AE400FBBF3E /* Icon-29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29@3x.png"; sourceTree = "<group>"; };
+		EB7FE8031C0E4AE400FBBF3E /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		EB7FE8041C0E4AE400FBBF3E /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		EB7FE8051C0E4AE400FBBF3E /* Icon-40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@3x.png"; sourceTree = "<group>"; };
+		EB7FE8061C0E4AE400FBBF3E /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		EB7FE8071C0E4AE400FBBF3E /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@3x.png"; sourceTree = "<group>"; };
+		EB7FE8081C0E4AE400FBBF3E /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		EB7FE8091C0E4AE400FBBF3E /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		EB7FE80A1C0E4AE400FBBF3E /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		EB9057561BD55CF200536AD1 /* Magic Forest The Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Forest The Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9057591BD55CF200536AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB90575D1BD55CF200536AD1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -739,6 +761,7 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EB7FE7FF1C0E4AE400FBBF3E /* Icons */,
 				EB61DD021C08D99A00C78518 /* loading.png */,
 				57FECA041C04E6BB00E1A86C /* Mago */,
 				57C08DDC1BFA47B0003E4574 /* Cogumelo */,
@@ -1147,6 +1170,24 @@
 			path = "pt-BR.lproj";
 			sourceTree = "<group>";
 		};
+		EB7FE7FF1C0E4AE400FBBF3E /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				EB7FE8001C0E4AE400FBBF3E /* Icon-29.png */,
+				EB7FE8011C0E4AE400FBBF3E /* Icon-29@2x.png */,
+				EB7FE8021C0E4AE400FBBF3E /* Icon-29@3x.png */,
+				EB7FE8031C0E4AE400FBBF3E /* Icon-40.png */,
+				EB7FE8041C0E4AE400FBBF3E /* Icon-40@2x.png */,
+				EB7FE8051C0E4AE400FBBF3E /* Icon-40@3x.png */,
+				EB7FE8061C0E4AE400FBBF3E /* Icon-60@2x.png */,
+				EB7FE8071C0E4AE400FBBF3E /* Icon-60@3x.png */,
+				EB7FE8081C0E4AE400FBBF3E /* Icon-76.png */,
+				EB7FE8091C0E4AE400FBBF3E /* Icon-76@2x.png */,
+				EB7FE80A1C0E4AE400FBBF3E /* iTunesArtwork@2x.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
@@ -1386,6 +1427,7 @@
 				57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */,
 				57C08E0F1BFA47B0003E4574 /* CogumeloAndando5.png in Resources */,
 				6784F4FC1C061D010026F1D7 /* Localizable.strings in Resources */,
+				EB7FE80D1C0E4AE400FBBF3E /* Icon-29@3x.png in Resources */,
 				57C08E231BFA47B0003E4574 /* CogumeloEspecial4.png in Resources */,
 				57FECA511C04E6BB00E1A86C /* SalamangHit1.png in Resources */,
 				57C08E151BFA47B0003E4574 /* CogumeloAtaque10.png in Resources */,
@@ -1424,9 +1466,11 @@
 				EBD88B1B1BF02E43000353A5 /* SpecialAttack.png in Resources */,
 				EB7FE7FE1C0E15F200FBBF3E /* PlayButton.png in Resources */,
 				57C08E111BFA47B0003E4574 /* CogumeloAndando7.png in Resources */,
+				EB7FE8111C0E4AE400FBBF3E /* Icon-60@2x.png in Resources */,
 				57C08E191BFA47B0003E4574 /* CogumeloAtaque5.png in Resources */,
 				576965231BE2859F00CBB81D /* Death3.png in Resources */,
 				576965201BE2859F00CBB81D /* Attack4.png in Resources */,
+				EB7FE8151C0E4AE400FBBF3E /* iTunesArtwork@2x.png in Resources */,
 				57C08E5C1BFE3B67003E4574 /* UI_WINDOW (9).png in Resources */,
 				57C08E311BFA47B0003E4574 /* CogumeloParado7.png in Resources */,
 				57C08E0E1BFA47B0003E4574 /* CogumeloAndando4.png in Resources */,
@@ -1435,6 +1479,7 @@
 				57190B491BF12BED00FFF38D /* NeithAttack4.png in Resources */,
 				57FECA3D1C04E6BB00E1A86C /* SalamangAtacando2.png in Resources */,
 				57190B511BF12BED00FFF38D /* NeithHit2.png in Resources */,
+				EB7FE80E1C0E4AE400FBBF3E /* Icon-40.png in Resources */,
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
 				57190B571BF12BED00FFF38D /* NeithJump1.png in Resources */,
 				57C08E2C1BFA47B0003E4574 /* CogumeloParado2.png in Resources */,
@@ -1476,6 +1521,7 @@
 				57FECA351C04E6BB00E1A86C /* SalamangAndando4.png in Resources */,
 				57C08E2F1BFA47B0003E4574 /* CogumeloParado5.png in Resources */,
 				57FECA341C04E6BB00E1A86C /* SalamangAndando3.png in Resources */,
+				EB7FE8101C0E4AE400FBBF3E /* Icon-40@3x.png in Resources */,
 				57FECA481C04E6BB00E1A86C /* SalamangEspecial1.png in Resources */,
 				57FECA401C04E6BB00E1A86C /* SalamangAtacando5.png in Resources */,
 				57C08E551BFE3B67003E4574 /* UI_WINDOW (2).png in Resources */,
@@ -1498,6 +1544,7 @@
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
 				57C08E491BFD0D83003E4574 /* UI_COLORBAR_BLUE.png in Resources */,
 				57190B531BF12BED00FFF38D /* NeithIdle1.png in Resources */,
+				EB7FE80B1C0E4AE400FBBF3E /* Icon-29.png in Resources */,
 				57A5581D1BDEBB1C00A948DE /* idle7.png in Resources */,
 				57190B481BF12BED00FFF38D /* NeithAttack3.png in Resources */,
 				57FECA531C04E6BB00E1A86C /* SalamangParado10.png in Resources */,
@@ -1521,6 +1568,7 @@
 				57FECA381C04E6BB00E1A86C /* SalamangAndando7.png in Resources */,
 				57C08DD91BFA40E1003E4574 /* mushroom.png in Resources */,
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
+				EB7FE8141C0E4AE400FBBF3E /* Icon-76@2x.png in Resources */,
 				57C08DCB1BF4C56E003E4574 /* arrow.png in Resources */,
 				57C08DD31BFA40BD003E4574 /* archercute.png in Resources */,
 				57C08E141BFA47B0003E4574 /* CogumeloAtaque1.png in Resources */,
@@ -1535,6 +1583,7 @@
 				576965221BE2859F00CBB81D /* Death2.png in Resources */,
 				57C08E5A1BFE3B67003E4574 /* UI_WINDOW (7).png in Resources */,
 				57C08E381BFA650A003E4574 /* monkey.png in Resources */,
+				EB7FE80C1C0E4AE400FBBF3E /* Icon-29@2x.png in Resources */,
 				57C08E541BFE3B67003E4574 /* UI_WINDOW (1).png in Resources */,
 				EBD88B171BF02E43000353A5 /* Clock.png in Resources */,
 				5769651D1BE2859F00CBB81D /* Attack1.png in Resources */,
@@ -1563,15 +1612,18 @@
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
 				57190B5C1BF12BED00FFF38D /* NeithSpecialAttack2.png in Resources */,
 				57C08E2A1BFA47B0003E4574 /* CogumeloParado1.png in Resources */,
+				EB7FE8131C0E4AE400FBBF3E /* Icon-76.png in Resources */,
 				57FECA521C04E6BB00E1A86C /* SalamangParado1.png in Resources */,
 				57C08E131BFA47B0003E4574 /* CogumeloAndando9.png in Resources */,
 				57190B441BF12BED00FFF38D /* 145.png in Resources */,
+				EB7FE8121C0E4AE400FBBF3E /* Icon-60@3x.png in Resources */,
 				57190B621BF12BED00FFF38D /* NeithSpecialAttack8.png in Resources */,
 				EB0EACB11BE3E06D00D93287 /* ForestScenery_2.png in Resources */,
 				57190B581BF12BED00FFF38D /* NeithJump2.png in Resources */,
 				57C08E561BFE3B67003E4574 /* UI_WINDOW (3).png in Resources */,
 				57190B451BF12BED00FFF38D /* 149.png in Resources */,
 				57190B4B1BF12BED00FFF38D /* NeithDeath1.png in Resources */,
+				EB7FE80F1C0E4AE400FBBF3E /* Icon-40@2x.png in Resources */,
 				576965241BE2859F00CBB81D /* falling1.png in Resources */,
 				57C08E1F1BFA47B0003E4574 /* CogumeloEspecial1.png in Resources */,
 				57C08E2E1BFA47B0003E4574 /* CogumeloParado4.png in Resources */,
