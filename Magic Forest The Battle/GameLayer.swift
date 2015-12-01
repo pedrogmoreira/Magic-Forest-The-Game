@@ -269,7 +269,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack && player?.currentLife > 0 {
 			if self.player.isAttacking == false {
-				self.projectileToLayer((self.player?.createProjectile())!)
+				self.projectileToLayer((self.player?.createProjectile())!, player: self.player!)
 				self.checkAttack(0)
 				networkingEngine?.sendAttack()
 				self.player?.isAttacking = true
@@ -326,10 +326,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 		}
 	}
-	func projectileToLayer (projectile : Projectile) {
+	func projectileToLayer (projectile : Projectile, player: Player) {
 		self.addChild(projectile)
 		
-		if (self.player?.isLeft == true){
+		if (player.isLeft == true){
 			//self.setFlip((self.player?.position)!,node: projectile)
 			projectile.xScale = -projectile.xScale
 			projectile.physicsBody?.applyImpulse(CGVectorMake(-2000, 100))
@@ -412,6 +412,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Perform an attack with an specific player
     func performAttackWithPlayer(player: Player) {
         player.isAttacking = true
+		
+		let projectile = player.createProjectile()
+		projectile.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+		projectile.canDealDamage = false
+		
+		self.projectileToLayer(projectile, player: player)
     }
     
     // Perform get down with an specific player
@@ -490,8 +496,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 			
 			projectile?.canDealDamage = true
+			projectile?.removeFromParent()
+		case PhysicsCategory.OtherPlayerProjectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+			var projectile: Projectile?
 			
-			
+			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
+				projectile = (contact.bodyA.node as! Projectile)
+			} else {
+				projectile = (contact.bodyB.node as! Projectile)
+			}
+
+			projectile?.removeFromParent()
 		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			print("PROJECTILE DAMAGE")
 			var player: Player?
