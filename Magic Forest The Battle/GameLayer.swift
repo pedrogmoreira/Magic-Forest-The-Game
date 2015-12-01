@@ -107,34 +107,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
     func singlePlayer(playerSelected: String) {
 		switch(playerSelected) {
-			case "Uhong":
-				self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
+        case "Uhong":
+            self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
 			break
-			case "Neith":
-				self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
+        case "Neith":
+            self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
 			break
-			case "Salamang":
-				self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
+        case "Salamang":
+            self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
 			break
-			case "Dinak":
-				self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
+        case "Dinak":
+            self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
+            break
 		default:
-			//self.playerAleatorio
-			switch(Int.random(min: 1, max: 2)) {
-			case 1:
-				self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
-				break
-            case 2:
-				self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
-            default:
-                print("Selected character error")
-//			case 3:
-//                self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
-//			default:
-//				self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
-			}
-			
-			
+			print("Was not possible to create a player in singlePlayer mode")
 		}
 		self.addChild(self.player!)
 	}
