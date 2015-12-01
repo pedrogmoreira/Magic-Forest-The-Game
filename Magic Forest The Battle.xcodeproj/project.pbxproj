@@ -42,38 +42,8 @@
 		57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B3F1BF12BED00FFF38D /* NeithSpecialAttack7.png */; };
 		57190B621BF12BED00FFF38D /* NeithSpecialAttack8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B401BF12BED00FFF38D /* NeithSpecialAttack8.png */; };
 		57190B7C1BF2620F00FFF38D /* 19.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B721BF2620F00FFF38D /* 19.png */; };
-		57190B921BF2636D00FFF38D /* SalamangRun1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B881BF2636D00FFF38D /* SalamangRun1.png */; };
-		57190B931BF2636D00FFF38D /* SalamangRun2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B891BF2636D00FFF38D /* SalamangRun2.png */; };
-		57190B941BF2636D00FFF38D /* SalamangRun3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B8A1BF2636D00FFF38D /* SalamangRun3.png */; };
-		57190B951BF2636D00FFF38D /* SalamangRun4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B8B1BF2636D00FFF38D /* SalamangRun4.png */; };
-		57190B961BF2636D00FFF38D /* SalamangRun5.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B8C1BF2636D00FFF38D /* SalamangRun5.png */; };
-		57190B971BF2636D00FFF38D /* SalamangRun6.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B8D1BF2636D00FFF38D /* SalamangRun6.png */; };
-		57190B981BF2636D00FFF38D /* SalamangRun7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B8E1BF2636D00FFF38D /* SalamangRun7.png */; };
-		57190B991BF2636D00FFF38D /* SalamangRun9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B8F1BF2636D00FFF38D /* SalamangRun9.png */; };
-		57190B9A1BF2636D00FFF38D /* SalamangRun10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B901BF2636D00FFF38D /* SalamangRun10.png */; };
-		57190B9B1BF2636D00FFF38D /* SalamangRun11.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B911BF2636D00FFF38D /* SalamangRun11.png */; };
-		57190B9D1BF263A400FFF38D /* SalamangRun8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B9C1BF263A400FFF38D /* SalamangRun8.png */; };
-		57190BB71BF2689900FFF38D /* SalamangAttack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B9F1BF2689900FFF38D /* SalamangAttack1.png */; };
-		57190BB81BF2689900FFF38D /* SalamangAttack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BA01BF2689900FFF38D /* SalamangAttack2.png */; };
-		57190BB91BF2689900FFF38D /* SalamangDeath1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BA21BF2689900FFF38D /* SalamangDeath1.png */; };
-		57190BBA1BF2689900FFF38D /* SalamangDeath2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BA31BF2689900FFF38D /* SalamangDeath2.png */; };
-		57190BBB1BF2689900FFF38D /* SalamangFalling1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BA51BF2689900FFF38D /* SalamangFalling1.png */; };
-		57190BBC1BF2689900FFF38D /* SalamangFalling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BA61BF2689900FFF38D /* SalamangFalling2.png */; };
-		57190BBD1BF2689900FFF38D /* SalamangFalling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BA71BF2689900FFF38D /* SalamangFalling3.png */; };
-		57190BBE1BF2689900FFF38D /* SalamangFalling4.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BA81BF2689900FFF38D /* SalamangFalling4.png */; };
-		57190BBF1BF2689900FFF38D /* SalamangHit1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BAA1BF2689900FFF38D /* SalamangHit1.png */; };
-		57190BC01BF2689900FFF38D /* SalamangHit2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BAB1BF2689900FFF38D /* SalamangHit2.png */; };
-		57190BC11BF2689900FFF38D /* SalamangJump1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BAD1BF2689900FFF38D /* SalamangJump1.png */; };
-		57190BC21BF2689900FFF38D /* SalamangJump2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BAE1BF2689900FFF38D /* SalamangJump2.png */; };
-		57190BC31BF2689900FFF38D /* SalamangJump3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BAF1BF2689900FFF38D /* SalamangJump3.png */; };
 		57190BC41BF2689900FFF38D /* 102.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BB11BF2689900FFF38D /* 102.png */; };
 		57190BC51BF2689900FFF38D /* 106.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BB21BF2689900FFF38D /* 106.png */; };
-		57190BC61BF2689900FFF38D /* SalamangSpecialAttack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BB41BF2689900FFF38D /* SalamangSpecialAttack1.png */; };
-		57190BC71BF2689900FFF38D /* SalamangSpecialAttack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BB51BF2689900FFF38D /* SalamangSpecialAttack2.png */; };
-		57190BC81BF2689900FFF38D /* SalamangSpecialAttack3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BB61BF2689900FFF38D /* SalamangSpecialAttack3.png */; };
-		57190BCC1BF3A3B300FFF38D /* SalamangIdlee1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BC91BF3A3B300FFF38D /* SalamangIdlee1.png */; };
-		57190BCD1BF3A3B300FFF38D /* SalamangIdlee2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BCA1BF3A3B300FFF38D /* SalamangIdlee2.png */; };
-		57190BCE1BF3A3B300FFF38D /* SalamangIdlee3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190BCB1BF3A3B300FFF38D /* SalamangIdlee3.png */; };
 		57190BD01BF3A7C500FFF38D /* Projectile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190BCF1BF3A7C500FFF38D /* Projectile.swift */; };
 		57190BD21BF3A8CE00FFF38D /* Arrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190BD11BF3A8CE00FFF38D /* Arrow.swift */; };
 		57190BD71BF4C09100FFF38D /* Jujuba.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57190BD61BF4C09100FFF38D /* Jujuba.swift */; };
@@ -353,38 +323,8 @@
 		57190B3F1BF12BED00FFF38D /* NeithSpecialAttack7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NeithSpecialAttack7.png; sourceTree = "<group>"; };
 		57190B401BF12BED00FFF38D /* NeithSpecialAttack8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NeithSpecialAttack8.png; sourceTree = "<group>"; };
 		57190B721BF2620F00FFF38D /* 19.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 19.png; sourceTree = "<group>"; };
-		57190B881BF2636D00FFF38D /* SalamangRun1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun1.png; sourceTree = "<group>"; };
-		57190B891BF2636D00FFF38D /* SalamangRun2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun2.png; sourceTree = "<group>"; };
-		57190B8A1BF2636D00FFF38D /* SalamangRun3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun3.png; sourceTree = "<group>"; };
-		57190B8B1BF2636D00FFF38D /* SalamangRun4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun4.png; sourceTree = "<group>"; };
-		57190B8C1BF2636D00FFF38D /* SalamangRun5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun5.png; sourceTree = "<group>"; };
-		57190B8D1BF2636D00FFF38D /* SalamangRun6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun6.png; sourceTree = "<group>"; };
-		57190B8E1BF2636D00FFF38D /* SalamangRun7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun7.png; sourceTree = "<group>"; };
-		57190B8F1BF2636D00FFF38D /* SalamangRun9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun9.png; sourceTree = "<group>"; };
-		57190B901BF2636D00FFF38D /* SalamangRun10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun10.png; sourceTree = "<group>"; };
-		57190B911BF2636D00FFF38D /* SalamangRun11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun11.png; sourceTree = "<group>"; };
-		57190B9C1BF263A400FFF38D /* SalamangRun8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangRun8.png; sourceTree = "<group>"; };
-		57190B9F1BF2689900FFF38D /* SalamangAttack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAttack1.png; sourceTree = "<group>"; };
-		57190BA01BF2689900FFF38D /* SalamangAttack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAttack2.png; sourceTree = "<group>"; };
-		57190BA21BF2689900FFF38D /* SalamangDeath1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangDeath1.png; sourceTree = "<group>"; };
-		57190BA31BF2689900FFF38D /* SalamangDeath2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangDeath2.png; sourceTree = "<group>"; };
-		57190BA51BF2689900FFF38D /* SalamangFalling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangFalling1.png; sourceTree = "<group>"; };
-		57190BA61BF2689900FFF38D /* SalamangFalling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangFalling2.png; sourceTree = "<group>"; };
-		57190BA71BF2689900FFF38D /* SalamangFalling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangFalling3.png; sourceTree = "<group>"; };
-		57190BA81BF2689900FFF38D /* SalamangFalling4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangFalling4.png; sourceTree = "<group>"; };
-		57190BAA1BF2689900FFF38D /* SalamangHit1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangHit1.png; sourceTree = "<group>"; };
-		57190BAB1BF2689900FFF38D /* SalamangHit2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangHit2.png; sourceTree = "<group>"; };
-		57190BAD1BF2689900FFF38D /* SalamangJump1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangJump1.png; sourceTree = "<group>"; };
-		57190BAE1BF2689900FFF38D /* SalamangJump2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangJump2.png; sourceTree = "<group>"; };
-		57190BAF1BF2689900FFF38D /* SalamangJump3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangJump3.png; sourceTree = "<group>"; };
 		57190BB11BF2689900FFF38D /* 102.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 102.png; sourceTree = "<group>"; };
 		57190BB21BF2689900FFF38D /* 106.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 106.png; sourceTree = "<group>"; };
-		57190BB41BF2689900FFF38D /* SalamangSpecialAttack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangSpecialAttack1.png; sourceTree = "<group>"; };
-		57190BB51BF2689900FFF38D /* SalamangSpecialAttack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangSpecialAttack2.png; sourceTree = "<group>"; };
-		57190BB61BF2689900FFF38D /* SalamangSpecialAttack3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangSpecialAttack3.png; sourceTree = "<group>"; };
-		57190BC91BF3A3B300FFF38D /* SalamangIdlee1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangIdlee1.png; sourceTree = "<group>"; };
-		57190BCA1BF3A3B300FFF38D /* SalamangIdlee2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangIdlee2.png; sourceTree = "<group>"; };
-		57190BCB1BF3A3B300FFF38D /* SalamangIdlee3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangIdlee3.png; sourceTree = "<group>"; };
 		57190BCF1BF3A7C500FFF38D /* Projectile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projectile.swift; sourceTree = "<group>"; };
 		57190BD11BF3A8CE00FFF38D /* Arrow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arrow.swift; sourceTree = "<group>"; };
 		57190BD61BF4C09100FFF38D /* Jujuba.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Jujuba.swift; sourceTree = "<group>"; };
@@ -776,54 +716,6 @@
 			name = Projetil;
 			sourceTree = "<group>";
 		};
-		57190B9E1BF2689900FFF38D /* Attack */ = {
-			isa = PBXGroup;
-			children = (
-				57190B9F1BF2689900FFF38D /* SalamangAttack1.png */,
-				57190BA01BF2689900FFF38D /* SalamangAttack2.png */,
-			);
-			path = Attack;
-			sourceTree = "<group>";
-		};
-		57190BA11BF2689900FFF38D /* Death */ = {
-			isa = PBXGroup;
-			children = (
-				57190BA21BF2689900FFF38D /* SalamangDeath1.png */,
-				57190BA31BF2689900FFF38D /* SalamangDeath2.png */,
-			);
-			path = Death;
-			sourceTree = "<group>";
-		};
-		57190BA41BF2689900FFF38D /* Fall */ = {
-			isa = PBXGroup;
-			children = (
-				57190BA51BF2689900FFF38D /* SalamangFalling1.png */,
-				57190BA61BF2689900FFF38D /* SalamangFalling2.png */,
-				57190BA71BF2689900FFF38D /* SalamangFalling3.png */,
-				57190BA81BF2689900FFF38D /* SalamangFalling4.png */,
-			);
-			path = Fall;
-			sourceTree = "<group>";
-		};
-		57190BA91BF2689900FFF38D /* Hit */ = {
-			isa = PBXGroup;
-			children = (
-				57190BAA1BF2689900FFF38D /* SalamangHit1.png */,
-				57190BAB1BF2689900FFF38D /* SalamangHit2.png */,
-			);
-			path = Hit;
-			sourceTree = "<group>";
-		};
-		57190BAC1BF2689900FFF38D /* Jump */ = {
-			isa = PBXGroup;
-			children = (
-				57190BAD1BF2689900FFF38D /* SalamangJump1.png */,
-				57190BAE1BF2689900FFF38D /* SalamangJump2.png */,
-				57190BAF1BF2689900FFF38D /* SalamangJump3.png */,
-			);
-			path = Jump;
-			sourceTree = "<group>";
-		};
 		57190BB01BF2689900FFF38D /* Projetil */ = {
 			isa = PBXGroup;
 			children = (
@@ -833,16 +725,6 @@
 				57190BB21BF2689900FFF38D /* 106.png */,
 			);
 			path = Projetil;
-			sourceTree = "<group>";
-		};
-		57190BB31BF2689900FFF38D /* SpecialAttack */ = {
-			isa = PBXGroup;
-			children = (
-				57190BB41BF2689900FFF38D /* SalamangSpecialAttack1.png */,
-				57190BB51BF2689900FFF38D /* SalamangSpecialAttack2.png */,
-				57190BB61BF2689900FFF38D /* SalamangSpecialAttack3.png */,
-			);
-			path = SpecialAttack;
 			sourceTree = "<group>";
 		};
 		579B81151BE919E40025B374 /* SpecialAttack */ = {
@@ -865,27 +747,7 @@
 				57C08DDA1BFA4591003E4574 /* wizardcute.png */,
 				57C08DD21BFA40BD003E4574 /* archercute.png */,
 				57190B721BF2620F00FFF38D /* 19.png */,
-				57190BC91BF3A3B300FFF38D /* SalamangIdlee1.png */,
-				57190BCA1BF3A3B300FFF38D /* SalamangIdlee2.png */,
-				57190BCB1BF3A3B300FFF38D /* SalamangIdlee3.png */,
-				57190B881BF2636D00FFF38D /* SalamangRun1.png */,
-				57190B891BF2636D00FFF38D /* SalamangRun2.png */,
-				57190B8A1BF2636D00FFF38D /* SalamangRun3.png */,
-				57190B8B1BF2636D00FFF38D /* SalamangRun4.png */,
-				57190B8C1BF2636D00FFF38D /* SalamangRun5.png */,
-				57190B8D1BF2636D00FFF38D /* SalamangRun6.png */,
-				57190B8E1BF2636D00FFF38D /* SalamangRun7.png */,
-				57190B9C1BF263A400FFF38D /* SalamangRun8.png */,
-				57190B8F1BF2636D00FFF38D /* SalamangRun9.png */,
-				57190B901BF2636D00FFF38D /* SalamangRun10.png */,
-				57190B911BF2636D00FFF38D /* SalamangRun11.png */,
-				57190B9E1BF2689900FFF38D /* Attack */,
-				57190BA11BF2689900FFF38D /* Death */,
-				57190BA41BF2689900FFF38D /* Fall */,
-				57190BA91BF2689900FFF38D /* Hit */,
-				57190BAC1BF2689900FFF38D /* Jump */,
 				57190BB01BF2689900FFF38D /* Projetil */,
-				57190BB31BF2689900FFF38D /* SpecialAttack */,
 				EBD88B1D1BF02E73000353A5 /* HUD */,
 				EB0EACC41BE3E3AB00D93287 /* Buttons */,
 				67A74CFC1BE129D100AF3B0E /* Background */,
@@ -1513,9 +1375,7 @@
 				57190B501BF12BED00FFF38D /* NeithHit1.png in Resources */,
 				57190B4A1BF12BED00FFF38D /* NeithAttack5.png in Resources */,
 				5769651E1BE2859F00CBB81D /* Attack2.png in Resources */,
-				57190B991BF2636D00FFF38D /* SalamangRun9.png in Resources */,
 				576964F31BDFEEB500CBB81D /* jump1.png in Resources */,
-				57190BC81BF2689900FFF38D /* SalamangSpecialAttack3.png in Resources */,
 				576964EE1BDFDCD000CBB81D /* corre8.png in Resources */,
 				57FECA431C04E6BB00E1A86C /* SalamangAtacando8.png in Resources */,
 				57C08E2B1BFA47B0003E4574 /* CogumeloParado10.png in Resources */,
@@ -1535,7 +1395,6 @@
 				57FECA3A1C04E6BB00E1A86C /* SalamangAndando9.png in Resources */,
 				EB3E770A1BE1647300103DEC /* ForestScenery_3.png in Resources */,
 				57FECA3E1C04E6BB00E1A86C /* SalamangAtacando3.png in Resources */,
-				57190BBD1BF2689900FFF38D /* SalamangFalling3.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				57C08E0C1BFA47B0003E4574 /* CogumeloAndando2.png in Resources */,
 				57C08E351BFA47B0003E4574 /* CogumeloDescendo3.png in Resources */,
@@ -1556,7 +1415,6 @@
 				57FECA391C04E6BB00E1A86C /* SalamangAndando8.png in Resources */,
 				57FECA571C04E6BB00E1A86C /* SalamangParado5.png in Resources */,
 				57C08E471BFD0C7A003E4574 /* UI_COLORBAR_GREEN.png in Resources */,
-				57190BB81BF2689900FFF38D /* SalamangAttack2.png in Resources */,
 				579B81191BE919F50025B374 /* SpecialAttack2.png in Resources */,
 				57FECA421C04E6BB00E1A86C /* SalamangAtacando7.png in Resources */,
 				57C08E1D1BFA47B0003E4574 /* CogumeloAtaque9.png in Resources */,
@@ -1567,9 +1425,7 @@
 				EB7FE7FE1C0E15F200FBBF3E /* PlayButton.png in Resources */,
 				57C08E111BFA47B0003E4574 /* CogumeloAndando7.png in Resources */,
 				57C08E191BFA47B0003E4574 /* CogumeloAtaque5.png in Resources */,
-				57190B9D1BF263A400FFF38D /* SalamangRun8.png in Resources */,
 				576965231BE2859F00CBB81D /* Death3.png in Resources */,
-				57190BCC1BF3A3B300FFF38D /* SalamangIdlee1.png in Resources */,
 				576965201BE2859F00CBB81D /* Attack4.png in Resources */,
 				57C08E5C1BFE3B67003E4574 /* UI_WINDOW (9).png in Resources */,
 				57C08E311BFA47B0003E4574 /* CogumeloParado7.png in Resources */,
@@ -1582,7 +1438,6 @@
 				576964ED1BDFDCD000CBB81D /* corre7.png in Resources */,
 				57190B571BF12BED00FFF38D /* NeithJump1.png in Resources */,
 				57C08E2C1BFA47B0003E4574 /* CogumeloParado2.png in Resources */,
-				57190BCE1BF3A3B300FFF38D /* SalamangIdlee3.png in Resources */,
 				57C08E1E1BFA47B0003E4574 /* CogumeloDescendo1.png in Resources */,
 				57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */,
 				57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */,
@@ -1592,7 +1447,6 @@
 				EBD88B231BF02EE2000353A5 /* ForestSceneryPlatformRight.png in Resources */,
 				57C08E251BFA47B0003E4574 /* CogumeloEspecial6.png in Resources */,
 				57C08E431BFCE038003E4574 /* UI_COLORBAR_RED.png in Resources */,
-				57190BBC1BF2689900FFF38D /* SalamangFalling2.png in Resources */,
 				576965251BE2859F00CBB81D /* falling2.png in Resources */,
 				57190B5E1BF12BED00FFF38D /* NeithSpecialAttack4.png in Resources */,
 				57C08E3D1BFCDFAC003E4574 /* UI_HEART.png in Resources */,
@@ -1600,14 +1454,11 @@
 				57C08E421BFCE038003E4574 /* UI_COLORBAR_BLUE_FLASH.png in Resources */,
 				57C08E0D1BFA47B0003E4574 /* CogumeloAndando3.png in Resources */,
 				57FECA561C04E6BB00E1A86C /* SalamangParado4.png in Resources */,
-				57190B961BF2636D00FFF38D /* SalamangRun5.png in Resources */,
 				57C08E1C1BFA47B0003E4574 /* CogumeloAtaque8.png in Resources */,
 				57C08E2D1BFA47B0003E4574 /* CogumeloParado3.png in Resources */,
-				57190B941BF2636D00FFF38D /* SalamangRun3.png in Resources */,
 				57190B471BF12BED00FFF38D /* NeithAttack2.png in Resources */,
 				EB1214B41BD95CB000D0552F /* JoystickBase.png in Resources */,
 				57190B521BF12BED00FFF38D /* NeithHit3.png in Resources */,
-				57190BB91BF2689900FFF38D /* SalamangDeath1.png in Resources */,
 				57190B551BF12BED00FFF38D /* NeithIdle3.png in Resources */,
 				EB0EACB51BE3E15600D93287 /* ForestScenery_5.png in Resources */,
 				576964FC1BE018B400CBB81D /* hit3.png in Resources */,
@@ -1619,7 +1470,6 @@
 				57FECA4A1C04E6BB00E1A86C /* SalamangEspecial3.png in Resources */,
 				EB0EACBD1BE3E39F00D93287 /* configurationButton.png in Resources */,
 				57FECA471C04E6BB00E1A86C /* SalamangCaindo3.png in Resources */,
-				57190B981BF2636D00FFF38D /* SalamangRun7.png in Resources */,
 				57190B7C1BF2620F00FFF38D /* 19.png in Resources */,
 				57C08E271BFA47B0003E4574 /* CogumeloEspecial8.png in Resources */,
 				57C08DDB1BFA4591003E4574 /* wizardcute.png in Resources */,
@@ -1628,18 +1478,12 @@
 				57FECA341C04E6BB00E1A86C /* SalamangAndando3.png in Resources */,
 				57FECA481C04E6BB00E1A86C /* SalamangEspecial1.png in Resources */,
 				57FECA401C04E6BB00E1A86C /* SalamangAtacando5.png in Resources */,
-				57190BC71BF2689900FFF38D /* SalamangSpecialAttack2.png in Resources */,
 				57C08E551BFE3B67003E4574 /* UI_WINDOW (2).png in Resources */,
-				57190BB71BF2689900FFF38D /* SalamangAttack1.png in Resources */,
-				57190B931BF2636D00FFF38D /* SalamangRun2.png in Resources */,
-				57190B921BF2636D00FFF38D /* SalamangRun1.png in Resources */,
 				57FECA4D1C04E6BB00E1A86C /* SalamangEspecial6.png in Resources */,
-				57190BC11BF2689900FFF38D /* SalamangJump1.png in Resources */,
 				57FECA411C04E6BB00E1A86C /* SalamangAtacando6.png in Resources */,
 				57C08E101BFA47B0003E4574 /* CogumeloAndando6.png in Resources */,
 				57C08E0A1BFA47B0003E4574 /* CogumeloAndando1.png in Resources */,
 				57FECA551C04E6BB00E1A86C /* SalamangParado3.png in Resources */,
-				57190BC21BF2689900FFF38D /* SalamangJump2.png in Resources */,
 				57A5581E1BDEBB1C00A948DE /* idle8.png in Resources */,
 				EBD88B191BF02E43000353A5 /* Life.png in Resources */,
 				EBD88B161BF02E43000353A5 /* Attack.png in Resources */,
@@ -1648,7 +1492,6 @@
 				57FECA321C04E6BB00E1A86C /* SalamangAndando10.png in Resources */,
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
 				57190B5B1BF12BED00FFF38D /* NeithSpecialAttack1.png in Resources */,
-				57190BBF1BF2689900FFF38D /* SalamangHit1.png in Resources */,
 				EB61DD031C08D99A00C78518 /* loading.png in Resources */,
 				576965211BE2859F00CBB81D /* Death1.png in Resources */,
 				57FECA371C04E6BB00E1A86C /* SalamangAndando6.png in Resources */,
@@ -1671,9 +1514,7 @@
 				57190B421BF12BED00FFF38D /* 96.png in Resources */,
 				576964EB1BDFDCD000CBB81D /* corre5.png in Resources */,
 				57190B411BF12BED00FFF38D /* 95.png in Resources */,
-				57190B971BF2636D00FFF38D /* SalamangRun6.png in Resources */,
 				57A558191BDEBB1C00A948DE /* idle3.png in Resources */,
-				57190BBA1BF2689900FFF38D /* SalamangDeath2.png in Resources */,
 				576964FB1BE018B400CBB81D /* hit2.png in Resources */,
 				EBD88B221BF02EE2000353A5 /* ForestSceneryPlatformLeft.png in Resources */,
 				57FECA4F1C04E6BB00E1A86C /* SalamangEspecial8.png in Resources */,
@@ -1703,15 +1544,12 @@
 				57FECA451C04E6BB00E1A86C /* SalamangCaindo1.png in Resources */,
 				57FECA4C1C04E6BB00E1A86C /* SalamangEspecial5.png in Resources */,
 				57C08E221BFA47B0003E4574 /* CogumeloEspecial3.png in Resources */,
-				57190B9B1BF2636D00FFF38D /* SalamangRun11.png in Resources */,
 				57C08E161BFA47B0003E4574 /* CogumeloAtaque2.png in Resources */,
 				57C08E241BFA47B0003E4574 /* CogumeloEspecial5.png in Resources */,
 				57A5581A1BDEBB1C00A948DE /* idle4.png in Resources */,
 				57C08E291BFA47B0003E4574 /* CogumeloHit1.png in Resources */,
-				57190BC31BF2689900FFF38D /* SalamangJump3.png in Resources */,
 				57190B5F1BF12BED00FFF38D /* NeithSpecialAttack5.png in Resources */,
 				57FECA3C1C04E6BB00E1A86C /* SalamangAtacando10.png in Resources */,
-				57190B951BF2636D00FFF38D /* SalamangRun4.png in Resources */,
 				57C08E301BFA47B0003E4574 /* CogumeloParado6.png in Resources */,
 				57FECA491C04E6BB00E1A86C /* SalamangEspecial2.png in Resources */,
 				57C08E321BFA47B0003E4574 /* CogumeloParado8.png in Resources */,
@@ -1720,13 +1558,11 @@
 				EB0EACAF1BE3DCD700D93287 /* SpecialButton.png in Resources */,
 				57190B4F1BF12BED00FFF38D /* NeithFalling3.png in Resources */,
 				57FECA541C04E6BB00E1A86C /* SalamangParado2.png in Resources */,
-				57190BCD1BF3A3B300FFF38D /* SalamangIdlee2.png in Resources */,
 				57FECA591C04E6BB00E1A86C /* SalamangParado7.png in Resources */,
 				EB0EACBE1BE3E39F00D93287 /* gameCenterButton.png in Resources */,
 				57A5581F1BDEBB1C00A948DE /* idle9.png in Resources */,
 				57190B5C1BF12BED00FFF38D /* NeithSpecialAttack2.png in Resources */,
 				57C08E2A1BFA47B0003E4574 /* CogumeloParado1.png in Resources */,
-				57190BBB1BF2689900FFF38D /* SalamangFalling1.png in Resources */,
 				57FECA521C04E6BB00E1A86C /* SalamangParado1.png in Resources */,
 				57C08E131BFA47B0003E4574 /* CogumeloAndando9.png in Resources */,
 				57190B441BF12BED00FFF38D /* 145.png in Resources */,
@@ -1734,7 +1570,6 @@
 				EB0EACB11BE3E06D00D93287 /* ForestScenery_2.png in Resources */,
 				57190B581BF12BED00FFF38D /* NeithJump2.png in Resources */,
 				57C08E561BFE3B67003E4574 /* UI_WINDOW (3).png in Resources */,
-				57190B9A1BF2636D00FFF38D /* SalamangRun10.png in Resources */,
 				57190B451BF12BED00FFF38D /* 149.png in Resources */,
 				57190B4B1BF12BED00FFF38D /* NeithDeath1.png in Resources */,
 				576965241BE2859F00CBB81D /* falling1.png in Resources */,
@@ -1746,15 +1581,12 @@
 				EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */,
 				EB0EACC31BE3E39F00D93287 /* storeButton.jpg in Resources */,
 				57FECA311C04E6BB00E1A86C /* SalamangAndando1.png in Resources */,
-				57190BBE1BF2689900FFF38D /* SalamangFalling4.png in Resources */,
 				57FECA3B1C04E6BB00E1A86C /* SalamangAtacando1.png in Resources */,
 				57190B4E1BF12BED00FFF38D /* NeithFalling2.png in Resources */,
 				57190B561BF12BED00FFF38D /* NeithIdle4.png in Resources */,
 				57C08E211BFA47B0003E4574 /* CogumeloEspecial2.png in Resources */,
-				57190BC01BF2689900FFF38D /* SalamangHit2.png in Resources */,
 				57190B5A1BF12BED00FFF38D /* NeithRun2.png in Resources */,
 				EB7FE7FB1C0E15EB00FBBF3E /* PlayButton.png in Resources */,
-				57190BC61BF2689900FFF38D /* SalamangSpecialAttack1.png in Resources */,
 				57C08E581BFE3B67003E4574 /* UI_WINDOW (5).png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
