@@ -132,9 +132,9 @@ class MenuSelectPlayer: SKNode {
 		//Neith
 //		let neithSelectionPosition = CGPoint(x: self.size!.width/5, y: self.size!.height/2.5)
 //		addNode(neithSelection, name: "neithSelectionPosition", position: neithSelectionPosition)
-		let uhongSelectionPosition = CGPoint(x: self.size!.width/5, y: self.size!.height/1.5)
+		let uhongSelectionPosition = CGPoint(x: self.size!.width/4, y: self.size!.height/1.5)
 		addNode(uhongSelection, name: "uhongSelectionPosition", position: uhongSelectionPosition)
-		let salamangSelctionPosition = CGPoint(x: self.size!.width/2.5, y: self.size!.height/2.5)
+        let salamangSelctionPosition = CGPoint(x: 3*self.size!.width/4, y: self.size!.height/1.5)
 		addNode(salamangSelction, name: "salamangSelctionPosition", position: salamangSelctionPosition)
 //		let dinakSelectionPosition = CGPoint(x: self.size!.width/2.5, y: self.size!.height/1.5)
 //		addNode(dinakSelection, name: "dinakSelectionPosition", position: dinakSelectionPosition)

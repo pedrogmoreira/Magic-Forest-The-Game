@@ -196,7 +196,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 //        
         // Adding play Button
         self.playButton.setScale(0.5)
-        let playButtonPosition = CGPoint(x: self.size!.width/4 , y: self.size!.height/4)
+        let playButtonPosition = CGPoint(x: self.size!.width/2 , y: self.size!.height/2)
         addButton(self.playButton, name: "playButton", position: playButtonPosition)
 //
 //        // Adding practice Button
