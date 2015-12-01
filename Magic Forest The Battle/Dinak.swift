@@ -26,7 +26,6 @@ class Dinak: Player {
 		self.jumpForce = 100_000
 		self.defesa = 20 //defende 20% do dano
 		self.attackSpeed = 2
-		self.jumpLimit = 2
 		//Porcentagem 10% e 1%
 		self.regEnergy = 10
 		self.regLife = 1

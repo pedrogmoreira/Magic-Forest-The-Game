@@ -8,11 +8,24 @@
 
 import UIKit
 import SpriteKit
+
+protocol MatchEndDelegate {
+	func pauseGame()
+	func sendScore()
+	func addMyScore()
+}
+
 class HudLayer: SKNode, BasicLayer {
 	
 	var energyFrontBar = SKSpriteNode()
 	var lifeFrontBar = SKSpriteNode()
 	var size = CGSize()
+	
+	private var scoreLabel: SKLabelNode?
+	
+	var networkingEngine: MultiplayerNetworking?
+	var matchEndDelegate: MatchEndDelegate?
+	
 	required init(size: CGSize) {
 		super.init()
 		//barra vida
@@ -67,6 +80,9 @@ class HudLayer: SKNode, BasicLayer {
 		energyFrontBar.anchorPoint = CGPointMake(0, lifeFrontBar.anchorPoint.y)
 		energyBackBar.addChild(energyFrontBar)
 		
+		if IS_ONLINE == true {
+			self.createScoreLabel()
+		}
 		
 	}
 	
@@ -107,14 +123,35 @@ class HudLayer: SKNode, BasicLayer {
 			timer--
 			timerLabel.text = String(timer)
 			print("Timer: \(timer)")
-			
 		})])
 		
-		let repeatAction = SKAction.repeatAction(sequence, count: 10)
+		let repeatAction = SKAction.repeatAction(sequence, count: timer)
 		self.runAction(repeatAction) { () -> Void in
 			print("Pausou")
+
+			if self.networkingEngine?.isPlayer1 == false && IS_ONLINE == true {
+				self.matchEndDelegate?.sendScore()
+			} else if self.networkingEngine?.isPlayer1 == true && IS_ONLINE == true {
+				self.matchEndDelegate?.addMyScore()
+			}
+			
+			self.matchEndDelegate?.pauseGame()
 		}
 		//pause game
+	}
+	
+	func createScoreLabel () {
+		self.scoreLabel = SKLabelNode(text: "Score: 0")
+		self.scoreLabel!.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+
+		self.scoreLabel!.name = "scoreLabel"
+		self.scoreLabel!.position =  CGPoint(x:self.size.width / 2 - frame.width / 2 - 10, y: self.size.height*0.4)
+		self.addChild(self.scoreLabel!)
+	}
+	
+	func updateScoreLabel(withScore score: Int) {
+		self.scoreLabel?.text = "Score: \(score)"
+		self.scoreLabel!.position =  CGPoint(x:self.size.width / 2 - frame.width / 2 - 10, y: self.size.height*0.4)
 	}
 
 }

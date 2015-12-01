@@ -32,14 +32,12 @@ class Player: SKSpriteNode, GameObject {
 	var regLife: CGFloat?
 	var regEnergy: CGFloat?
 	var state: PlayerState?
-	var jumpCount = 0
     var score = 0
 	
 	// Player flags
 	var isAttacking: Bool = false
 	var isJumping: Bool = false
 	var isSpecialAttacking: Bool = false
-	var jumpLimit: Int
 	var isGetDown: Bool = false
 	var isLeft: Bool = false
 	var isDead: Bool = false
@@ -60,7 +58,6 @@ class Player: SKSpriteNode, GameObject {
 	*/
 	required init(position: CGPoint, screenSize: CGSize) {
         let playerTexture = SKTexture(imageNamed: "sonic")
-        self.jumpLimit = 0
 		
 		super.init(texture: playerTexture, color: UIColor.blackColor(), size: playerTexture.size())
 		
@@ -96,6 +93,7 @@ class Player: SKSpriteNode, GameObject {
 		let velocityY = movementVelocity!.dy * 0
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
 		if self.currentLife <= 0 {
+
 			self.changeState(PlayerState.Death)
 			if self.isDead == false {
 				self.rebirth()

@@ -270,6 +270,8 @@
 		EB1214BC1BD95CB000D0552F /* MFCSMovementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */; };
 		EB3E77081BE1647300103DEC /* ForestScenery_1.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77001BE1647300103DEC /* ForestScenery_1.png */; };
 		EB3E770A1BE1647300103DEC /* ForestScenery_3.png in Resources */ = {isa = PBXBuildFile; fileRef = EB3E77021BE1647300103DEC /* ForestScenery_3.png */; };
+		EB61DCFF1C08CB4000C78518 /* GameOverLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB61DCFE1C08CB4000C78518 /* GameOverLayer.swift */; };
+		EB61DD031C08D99A00C78518 /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = EB61DD021C08D99A00C78518 /* loading.png */; };
 		EB90575A1BD55CF200536AD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057591BD55CF200536AD1 /* AppDelegate.swift */; };
 		EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575D1BD55CF200536AD1 /* GameScene.swift */; };
 		EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90575F1BD55CF200536AD1 /* GameViewController.swift */; };
@@ -581,6 +583,8 @@
 		EB1214B31BD95CB000D0552F /* MFCSMovementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCSMovementView.swift; sourceTree = "<group>"; };
 		EB3E77001BE1647300103DEC /* ForestScenery_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_1.png; sourceTree = "<group>"; };
 		EB3E77021BE1647300103DEC /* ForestScenery_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestScenery_3.png; sourceTree = "<group>"; };
+		EB61DCFE1C08CB4000C78518 /* GameOverLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverLayer.swift; sourceTree = "<group>"; };
+		EB61DD021C08D99A00C78518 /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
 		EB9057561BD55CF200536AD1 /* Magic Forest The Battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Magic Forest The Battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9057591BD55CF200536AD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB90575D1BD55CF200536AD1 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -847,6 +851,7 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EB61DD021C08D99A00C78518 /* loading.png */,
 				57FECA041C04E6BB00E1A86C /* Mago */,
 				57C08DDC1BFA47B0003E4574 /* Cogumelo */,
 				57C08DD81BFA40E1003E4574 /* mushroom.png */,
@@ -1122,6 +1127,7 @@
 				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
 				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
 				57C08E441BFCE1B5003E4574 /* HudLayer.swift */,
+				EB61DCFE1C08CB4000C78518 /* GameOverLayer.swift */,
 			);
 			name = Game;
 			sourceTree = "<group>";
@@ -1615,6 +1621,7 @@
 				576964FA1BE018B400CBB81D /* hit1.png in Resources */,
 				57190B5B1BF12BED00FFF38D /* NeithSpecialAttack1.png in Resources */,
 				57190BBF1BF2689900FFF38D /* SalamangHit1.png in Resources */,
+				EB61DD031C08D99A00C78518 /* loading.png in Resources */,
 				576965211BE2859F00CBB81D /* Death1.png in Resources */,
 				57FECA371C04E6BB00E1A86C /* SalamangAndando6.png in Resources */,
 				576964E71BDFDCD000CBB81D /* corre1.png in Resources */,
@@ -1770,6 +1777,7 @@
 				673A34F71C08CD3800494DD9 /* GameState.swift in Sources */,
 				57A558091BDEA86000A948DE /* Neith.swift in Sources */,
 				57A558071BDEA85000A948DE /* Salamang.swift in Sources */,
+				EB61DCFF1C08CB4000C78518 /* GameOverLayer.swift in Sources */,
 				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
 				EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */,
 				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,

@@ -21,5 +21,6 @@ enum PhysicsCategory: UInt32 {
 	case OtherPlayer = 256
 	case MeleeBox = 512
 	case SpecialBox = 1024
+	case DeathBox = 2048
 	
 }

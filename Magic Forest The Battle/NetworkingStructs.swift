@@ -11,7 +11,7 @@ import SpriteKit
 // Define the types of menssages
 // Each structure represents a type of message the game will send to the other device
 enum MessageType: Int {
-	case RandomNumber, GameBegin, GameOver, Move, Flip, Attack, GetDown, Special, Players, StartGameProperties, ChosenCharacter, LoseLife
+	case RandomNumber, GameBegin, GameOver, Move, Flip, Attack, GetDown, Special, Players, StartGameProperties, ChosenCharacter, LoseLife, MyScore, Scores
 }
 
 enum CharacterType: Int {
@@ -112,4 +112,43 @@ struct MessageAttack {
 struct MessagePlayers {
 	let message: Message
 	var players: [Player]
+}
+
+struct MessageMyScore {
+	let message = MessageType.MyScore
+	let score: Int
+}
+
+struct MessageScores {
+	let message = MessageType.Scores
+	let scores: NSData?
+	
+	struct ArchivedPacket {
+		let message = MessageType.Scores
+		var scoresLength: Int64
+	}
+	
+	func archive() -> NSData {
+		var archivedPacket = ArchivedPacket(scoresLength: Int64(self.scores!.length))
+		
+		let metadata = NSData(bytes: &archivedPacket, length: sizeof(ArchivedPacket))
+		let archivedData = NSMutableData(data: metadata)
+		archivedData.appendData(self.scores!)
+		return archivedData
+	}
+	
+	static func unarchive(data: NSData!) -> MessageScores {
+		var archivedPacket = ArchivedPacket(scoresLength: 0)
+		let archivedStructLength = sizeof(ArchivedPacket)
+		
+		let archivedData = data.subdataWithRange(NSMakeRange(0, archivedStructLength))
+		archivedData.getBytes(&archivedPacket, length: archivedStructLength)
+		
+		let scoresRange = NSMakeRange(archivedStructLength, Int(archivedPacket.scoresLength))
+		let scoresData = data.subdataWithRange(scoresRange)
+		
+		let scores = MessageScores(scores: scoresData)
+		
+		return scores
+	}
 }

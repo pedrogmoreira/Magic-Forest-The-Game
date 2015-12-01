@@ -32,6 +32,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	var specialAreaPlayersIndex: [Int] = [Int]()
 	var isOnMeleeCollision: Bool = false
 	var isOnSpecialCollision: Bool = false
+	
+	var score: Int = 0
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
@@ -283,7 +285,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             self.networkingEngine?.sendSpecialAttack()
 		} else if command == MFCSCommandType.Jump && self.canPlayerJump == true {
 			if self.player.isJumping == false {
-				++self.player.jumpCount
 				self.player.isJumping = true
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}
@@ -300,14 +301,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				print("Deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 				
 				let player = self.players[self.normalAreaPlayersIndex.first!]
-				let damage = CGFloat(100)
-				if player.currentLife! - 100 > 0 {
+				let damage = self.player.attackDamage
+				
+				if player.currentLife! - damage! > 0 {
 					
-					player.currentLife = player.currentLife! - damage
+					player.currentLife = player.currentLife! - damage!
 					
 					
 				} else {
 					player.currentLife = 0
+					
+					if player.isDead == false {
+						self.score++
+						self.hudLayer?.updateScoreLabel(withScore: self.score)
+					}
 				}
 				
 				self.networkingEngine?.sendLoseLife(player.currentLife!, playerIndex: self.normalAreaPlayersIndex.first!)
@@ -419,7 +426,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
 		player.currentLife = CGFloat(currentLife)
-		print("Current life: \(player.currentLife)")
+        
+		if player.currentLife <= 0 {
+			if player.isDead == false {
+				self.score--
+				self.hudLayer?.updateScoreLabel(withScore: self.score)
+			}
+		}
+
 		hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
 	}
 	func performDeathWithPlayer (player: Player) {
@@ -478,6 +492,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				}
 			}
 			self.isOnSpecialCollision = true
+		case PhysicsCategory.Player.rawValue | PhysicsCategory.DeathBox.rawValue:
+			self.player.currentLife = 0
+			if IS_ONLINE == true {
+				self.score--
+				self.hudLayer?.updateScoreLabel(withScore: self.score)
+			}
 		default:
 			return
 		}
@@ -498,7 +518,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             //                self.player.jumpCount = 0
             //            }
             self.canPlayerJump = false
-            self.player.jumpCount = 0
 	
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if self.normalAreaPlayersIndex.count > 0 {

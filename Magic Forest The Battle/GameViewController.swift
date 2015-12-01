@@ -10,17 +10,18 @@ import UIKit
 import SpriteKit
 
 // TODO: SET IS ONLINE TO FALSE TO START A SINGLE GAME
-let IS_ONLINE = false
+let IS_ONLINE = true
 
 protocol ScenesDelegate {
+	func showMenu()
 	func showMenuSelectPlayerScene(menuSelectPlayerScene: MenuSelectPlayerScene)
-	func showGameOverScene()
 	func showGameScene(gameScene: GameScene)
+	
+	func deinitControllersSystem()
 	
 	func removeMenuScene()
 	func removeMenuSelectPlayerScene()
 	func removeGameScene()
-	func removeGameOverScene()
 }
 
 class GameViewController: UIViewController, ScenesDelegate {
@@ -38,19 +39,7 @@ class GameViewController: UIViewController, ScenesDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-		self.menuScene = MenuScene(size: self.view.frame.size)
-		self.menuScene!.scenesDelegate = self
-        
-		// Configure the view.
-		self.mainSKView = self.view as? SKView
-		self.mainSKView!.showsFPS = true
-		self.mainSKView!.showsNodeCount = true
-        self.mainSKView!.showsPhysics = true
-		
-		/* Sprite Kit applies additional optimizations to improve rendering performance */
-		self.mainSKView!.ignoresSiblingOrder = true
-		
-		self.mainSKView!.presentScene(self.menuScene!)
+		self.showMenu()
 		
     }
     
@@ -71,6 +60,22 @@ class GameViewController: UIViewController, ScenesDelegate {
         return true
     }
 	
+	func showMenu() {
+		self.menuScene = MenuScene(size: self.view.frame.size)
+		self.menuScene!.scenesDelegate = self
+		
+		// Configure the view.
+		self.mainSKView = self.view as? SKView
+		self.mainSKView!.showsFPS = true
+		self.mainSKView!.showsNodeCount = true
+		self.mainSKView!.showsPhysics = true
+		
+		/* Sprite Kit applies additional optimizations to improve rendering performance */
+		self.mainSKView!.ignoresSiblingOrder = true
+		
+		self.mainSKView!.presentScene(self.menuScene!)
+	}
+	
 	func showMenuSelectPlayerScene(menuSelectPlayerScene: MenuSelectPlayerScene) {
 		print("Scene Delegate: show character selection")
 		menuSelectPlayerScene.scenesDelegate = self
@@ -83,10 +88,6 @@ class GameViewController: UIViewController, ScenesDelegate {
 		self.removeMenuScene()
 	}
 	
-	func showGameOverScene() {
-		
-	}
-	
 	func showGameScene(gameScene: GameScene) {
 		print("Scene Delegate: show game scene")
 		gameScene.scenesDelegate = self
@@ -97,29 +98,29 @@ class GameViewController: UIViewController, ScenesDelegate {
         self.controllerMode = GameState.sharedInstance.controllerMode
 
 		self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
+		
+		self.gameScene!.controlUnit = self.controlUnit
 
         self.view?.addSubview(controlUnit!)
 	}
 	
+	func deinitControllersSystem() {
+		self.controlUnit?.removeFromSuperview()
+		self.controlUnit = nil
+	}
+	
 	func removeMenuScene() {
-		self.menuScene?.mainMenu?.removeFromParent()
-		self.menuScene?.view?.removeFromSuperview()
 		self.menuScene?.removeFromParent()
 		self.menuScene = nil
 	}
 	
 	func removeMenuSelectPlayerScene() {
-		self.menuSelectPlayerScene?.view?.removeFromSuperview()
 		self.menuSelectPlayerScene?.removeFromParent()
-		self.menuSelectPlayerScene = nil
 	}
 	
 	func removeGameScene() {
-		self.controlUnit!.removeFromSuperview()
+		self.gameScene?.removeFromParent()
+		self.gameScene = nil
 	}
-	
-	func removeGameOverScene() {
-		
-	}
-    
+
 }
