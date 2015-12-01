@@ -9,9 +9,9 @@
 import UIKit
 import SpriteKit
 
-var playerSelected = ""
-
 class MenuSelectPlayer: SKNode {
+    
+    var playerSelected = ""
 
 	private var label = SKLabelNode()
 	private var size: CGSize?
@@ -23,7 +23,7 @@ class MenuSelectPlayer: SKNode {
 	
 	private let timer = SKLabelNode(text: "")
 	
-	private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+	private let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
     private var isNotReady: Bool?
 	
 	var scenesDelegate: ScenesDelegate?
@@ -145,6 +145,7 @@ class MenuSelectPlayer: SKNode {
 	private func startGame() {
 		if IS_ONLINE == false {
 			let gameScene = GameScene(size: self.size!)
+            gameScene.playerSelected = self.playerSelected
 			scenesDelegate?.showGameScene(gameScene)
 		} else {
 			print("sending player: \(self.selectedCharacter())")
@@ -166,6 +167,7 @@ class MenuSelectPlayer: SKNode {
 		case "Dinak":
 			selectedCharacterType = CharacterType.Dinak
 		default:
+            
 			print("Invalid selected character")
 		}
         
@@ -231,6 +233,7 @@ class MenuSelectPlayer: SKNode {
 		let repeatSequence = SKAction.repeatActionForever(sequence)
 		node.runAction(repeatSequence)
 	}
+    
 	func timerSelecPlayer () {
 		var timer = 30
 		let timerLabel = SKLabelNode(text: "")
