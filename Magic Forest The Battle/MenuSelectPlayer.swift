@@ -16,7 +16,6 @@ class MenuSelectPlayer: SKNode {
 	private var label = SKLabelNode()
 	private var size: CGSize?
 	private var view: SKView?
-	private var currentScreen: Screen?
 
 	var controlUnit: MFCSControlUnit?
 	var controllerMode: MFCSControllerMode?
@@ -77,9 +76,7 @@ class MenuSelectPlayer: SKNode {
 		
 		self.size = size
 		self.view = view
-		
-		self.currentScreen = Screen.middleScreen
-		
+				
 		self.addToLayer()
 		self.timerSelecPlayer()
 		self.fontEdit()
