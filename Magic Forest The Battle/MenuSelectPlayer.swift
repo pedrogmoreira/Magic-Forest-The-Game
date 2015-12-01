@@ -80,7 +80,6 @@ class MenuSelectPlayer: SKNode {
 		self.timerSelecPlayer()
 		self.fontEdit()
 		self.imageEdit()
-
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -222,6 +221,10 @@ class MenuSelectPlayer: SKNode {
 		} else if nodeName == "playbutton" {
 			print("Touched play button")
             isNotReady = false
+            
+            if self.playerSelected == "" {
+                self.playerSelected = self.randomCharacter()
+            }
 			startGame()
 		}
 	}
@@ -283,4 +286,24 @@ class MenuSelectPlayer: SKNode {
 		self.salamangLabelAbout.removeFromParent()
 		self.dinakLabelAbout.removeFromParent()
 	}
+    
+    // Select a random character
+    func randomCharacter() -> String {
+        var randomCharacter = ""
+        let randomNumber = arc4random_uniform(2)
+        
+        switch (randomNumber) {
+        case 0:
+            randomCharacter = "Uhong"
+            break
+        case 1:
+            randomCharacter = "Salamang"
+        default:
+            print("Error generating a random character")
+        }
+        
+        print("Selected \(randomCharacter) randomly")
+        
+        return randomCharacter
+    }
 }
