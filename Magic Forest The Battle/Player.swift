@@ -33,6 +33,7 @@ class Player: SKSpriteNode, GameObject {
 	var regEnergy: CGFloat?
 	var state: PlayerState?
 	var jumpCount = 0
+    var score = 0
 	
 	// Player flags
 	var isAttacking: Bool = false
@@ -95,14 +96,15 @@ class Player: SKSpriteNode, GameObject {
 		let velocityY = movementVelocity!.dy * 0
 		let move = SKAction.moveByX(velocityX, y: velocityY, duration: 0)
 		if self.currentLife <= 0 {
-			print("to morto")
 			self.changeState(PlayerState.Death)
 			if self.isDead == false {
 				self.rebirth()
 			}
 			return
 		}
+        
 		self.runAction(move)
+        
 		if !self.isGetDown {
 			self.checkFloorLevel()
 		}
@@ -211,6 +213,7 @@ class Player: SKSpriteNode, GameObject {
 		}
 		
 		if self.state != state {
+            
 			self.state = state
 			if self.state != PlayerState.Attack {
 				self.isAttacking = false
@@ -225,7 +228,7 @@ class Player: SKSpriteNode, GameObject {
 					self.isJumping = false
 				})
 			case PlayerState.Falling:
-				self.runAction(falling())
+                self.runAction(falling())
 			case PlayerState.Attack:
 				self.runAction(SKAction.sequence([attack(),SKAction.runBlock({ () -> Void in
 					self.isAttacking = false

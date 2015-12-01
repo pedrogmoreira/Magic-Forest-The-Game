@@ -10,29 +10,30 @@ import Foundation
 import GameKit
 
 protocol MultiplayerProtocol {
+    // All messages we need to receive to in gameScene
     func setCurrentPlayerIndex(index: Int)
     func matchEnded()
 	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue])
 	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int)
     func attack(indext: Int)
-    func performJump(index: Int)
     func performGetDown(index: Int)
     func performSpecial(index: Int)
 	func performLoseLife(index: Int, currentLife: Float)
 	func performDeath(index: Int)
     func movePlayer(index: Int, dx: Float, dy: Float)
 	func chooseCharacter()
-	
-//    var gameLayer: GameLayer? {get set}
-//    var players: [Player] {get set}
+    
+//    func performJump(index: Int)
+
 }
 
 protocol StartGameProtocol {
+    // Message to start the game
     func startGame()
 }
 
 // Define the states of the game
-enum GameState: Int {
+enum GameStates: Int {
     case WaintingForMatch, WaintingForRandomNumber, WaitingForStart, Playing, Done
 }
 
@@ -44,7 +45,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         ones received from the other player(s)
         You’ll use these numbers to sort all of the players in the game and determine playing order */
     var ourRandomNumber: UInt32 = 0
-    var gameState: GameState
+    var gameState: GameStates
     var isPlayer1: Bool
     var receivedAllRandomNumber: Bool
     var orderOfPlayers: [RandomNumberDetails]
@@ -53,7 +54,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 	
     override init() {
         ourRandomNumber = arc4random()
-        gameState = GameState.WaintingForMatch
+        gameState = GameStates.WaintingForMatch
         isPlayer1 = false
         receivedAllRandomNumber = false
         
@@ -69,9 +70,9 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     func matchStarted() {
         print("Match has started successfuly")
         if receivedAllRandomNumber {
-            gameState = GameState.WaitingForStart
+            gameState = GameStates.WaitingForStart
         } else {
-            gameState = GameState.WaintingForRandomNumber
+            gameState = GameStates.WaintingForRandomNumber
         }
         
         sendRandomNumber()
@@ -85,9 +86,9 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
     }
 	
 	func tryStartGame() {
-		if isPlayer1 && gameState == GameState.WaitingForStart {
+		if isPlayer1 && gameState == GameStates.WaitingForStart {
 			print("Im player 1 >> STARTING GAME")
-			gameState = GameState.Playing
+			gameState = GameStates.Playing
 			sendBeginGame()
 			delegate?.setCurrentPlayerIndex(0)
 			startGameDelegate?.startGame()
@@ -166,8 +167,8 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             }
             
             if !tie && receivedAllRandomNumber {
-                if gameState == GameState.WaintingForRandomNumber {
-                    gameState = GameState.WaitingForStart
+                if gameState == GameStates.WaintingForRandomNumber {
+                    gameState = GameStates.WaitingForStart
                 }
 //                tryStartGame()
             }
@@ -178,15 +179,11 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
             }
             
             startGameDelegate?.startGame()
-            gameState = GameState.Playing
+            gameState = GameStates.Playing
         } else if message.messageType == MessageType.Move {
             
             let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
             delegate?.movePlayer(indexForPlayer(player.playerID!)!, dx: messageMove.dx, dy: messageMove.dy)
-        } else if message.messageType == MessageType.String {
-            
-            let messageString = MessageString.unarchive(data)
-            print(messageString.text)
         } else if message.messageType == MessageType.Attack {
             
             delegate?.attack(indexForPlayer(player.playerID!)!)
@@ -199,7 +196,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			
 			delegate?.createPlayer(indexes, chosenCharacters: chosenCharacters)
 		} else if message.messageType == MessageType.ChosenCharacter {
-			print("recebendo seleçao")
 			if self.isPlayer1 == true {
 				let messageChosenCharacter = UnsafePointer<MessageCharacterChosen>(data.bytes).memory
 				
@@ -207,9 +203,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 				
 				delegate?.receiveChosenCharacter(messageChosenCharacter.character, playerIndex: self.indexForPlayer(player.playerID!)!)
 			}
-        } else if message.messageType == MessageType.Jump {
-            
-            delegate?.performJump(indexForPlayer(player.playerID!)!)
         } else if message.messageType == MessageType.GetDown {
             delegate?.performGetDown(indexForPlayer(player.playerID!)!)
         } else if message.messageType == MessageType.Special {
@@ -220,11 +213,6 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			let playerIndex = messageLoseLife.playerIndex
 			
 			delegate?.performLoseLife(playerIndex, currentLife: currentLife)
-		} else if message.messageType == MessageType.Death {
-			let messageLoseLife = UnsafePointer<MessageDeath>(data.bytes).memory
-			let playerIndex = messageLoseLife.playerIndex
-			
-			delegate?.performDeath(playerIndex)
 		}
     }
 	
@@ -326,28 +314,12 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageGameBegin))
         sendData(data)
     }
-
-    // Send to all devices a message of type MessageString
-    func sendString() {
-        let message = MessageString(text: "Oi cueio")
-        let messageStringData = message.archive()
-        
-        sendData(messageStringData)
-    }
     
     // Send to all devices a message of type MessageAttack
     func sendAttack() {
         var message = MessageAttack(message: Message(messageType: MessageType.Attack))
         
         let data = NSData(bytes: &message, length: sizeof(MessageAttack))
-        sendData(data)
-    }
-    
-    // Send to all devices a message of type MessageJump
-    func sendJump() {
-        var message = MessageJump()
-        
-        let data = NSData(bytes: &message, length: sizeof(MessageJump))
         sendData(data)
     }
     
@@ -374,18 +346,12 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         let data = NSData(bytes: &message, length: sizeof(MessageSpecialAttack))
         sendData(data)
     }
+    
 	// Send to all devices a message of type MessageLoseLife
 	func sendLoseLife(currentLife: CGFloat, playerIndex: Int) {
 		var message = MessageLoseLife(currentLife: Float(currentLife), playerIndex: playerIndex)
 		
 		let data = NSData(bytes: &message, length: sizeof(MessageLoseLife))
-		sendData(data)
-	}
-	// Send to all devices a message of type MessageDeath
-	func sendDeath(playerIndex: Int) {
-		var message = MessageDeath(playerIndex: playerIndex)
-		
-		let data = NSData(bytes: &message, length: sizeof(MessageDeath))
 		sendData(data)
 	}
 
@@ -402,7 +368,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 	
 	// Send to the host my character selection
 	func sendChosenCharacter(characterType: CharacterType) {
-		print("sending player")
+		print("Sending player")
 		if self.isPlayer1 == false {
 			
 			print("Im not the host, send him a message")

@@ -146,7 +146,7 @@
 		57C08E1B1BFA47B0003E4574 /* CogumeloAtaque7.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DEE1BFA47B0003E4574 /* CogumeloAtaque7.png */; };
 		57C08E1C1BFA47B0003E4574 /* CogumeloAtaque8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DEF1BFA47B0003E4574 /* CogumeloAtaque8.png */; };
 		57C08E1D1BFA47B0003E4574 /* CogumeloAtaque9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF01BFA47B0003E4574 /* CogumeloAtaque9.png */; };
-		57C08E1E1BFA47B0003E4574 /* CogumeloDescendo.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF11BFA47B0003E4574 /* CogumeloDescendo.png */; };
+		57C08E1E1BFA47B0003E4574 /* CogumeloDescendo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF11BFA47B0003E4574 /* CogumeloDescendo1.png */; };
 		57C08E1F1BFA47B0003E4574 /* CogumeloEspecial1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF21BFA47B0003E4574 /* CogumeloEspecial1.png */; };
 		57C08E201BFA47B0003E4574 /* CogumeloEspecial10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF31BFA47B0003E4574 /* CogumeloEspecial10.png */; };
 		57C08E211BFA47B0003E4574 /* CogumeloEspecial2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08DF41BFA47B0003E4574 /* CogumeloEspecial2.png */; };
@@ -169,8 +169,8 @@
 		57C08E321BFA47B0003E4574 /* CogumeloParado8.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E051BFA47B0003E4574 /* CogumeloParado8.png */; };
 		57C08E331BFA47B0003E4574 /* CogumeloParado9.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E061BFA47B0003E4574 /* CogumeloParado9.png */; };
 		57C08E341BFA47B0003E4574 /* CogumeloSubindo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E071BFA47B0003E4574 /* CogumeloSubindo1.png */; };
-		57C08E351BFA47B0003E4574 /* CogumeloSubindodescendo1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E081BFA47B0003E4574 /* CogumeloSubindodescendo1.png */; };
-		57C08E361BFA47B0003E4574 /* CogumeloSubindodescendo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E091BFA47B0003E4574 /* CogumeloSubindodescendo2.png */; };
+		57C08E351BFA47B0003E4574 /* CogumeloDescendo3.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E081BFA47B0003E4574 /* CogumeloDescendo3.png */; };
+		57C08E361BFA47B0003E4574 /* CogumeloDescendo2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E091BFA47B0003E4574 /* CogumeloDescendo2.png */; };
 		57C08E381BFA650A003E4574 /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E371BFA650A003E4574 /* monkey.png */; };
 		57C08E3B1BFCDF8F003E4574 /* UI_BOLT.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E3A1BFCDF8F003E4574 /* UI_BOLT.png */; };
 		57C08E3D1BFCDFAC003E4574 /* UI_HEART.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E3C1BFCDFAC003E4574 /* UI_HEART.png */; };
@@ -238,6 +238,8 @@
 		670914E91BFE58600007F2FF /* MultiplayerNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */; };
 		670914EA1BFE58600007F2FF /* NetworkingStructs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670914E71BFE58600007F2FF /* NetworkingStructs.swift */; };
 		670914EC1BFE5D2C0007F2FF /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 670914EB1BFE5D2C0007F2FF /* GameKit.framework */; };
+		673A34F01C08B93900494DD9 /* SettingsLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A34EF1C08B93900494DD9 /* SettingsLayer.swift */; };
+		673A34F71C08CD3800494DD9 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673A34F61C08CD3800494DD9 /* GameState.swift */; };
 		6784F4FC1C061D010026F1D7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6784F4FE1C061D010026F1D7 /* Localizable.strings */; };
 		67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A74CE91BE128E500AF3B0E /* PhysicsCategory.swift */; };
 		67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 67A74CF91BE129CD00AF3B0E /* vulcao.jpg */; };
@@ -450,7 +452,7 @@
 		57C08DEE1BFA47B0003E4574 /* CogumeloAtaque7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloAtaque7.png; sourceTree = "<group>"; };
 		57C08DEF1BFA47B0003E4574 /* CogumeloAtaque8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloAtaque8.png; sourceTree = "<group>"; };
 		57C08DF01BFA47B0003E4574 /* CogumeloAtaque9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloAtaque9.png; sourceTree = "<group>"; };
-		57C08DF11BFA47B0003E4574 /* CogumeloDescendo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloDescendo.png; sourceTree = "<group>"; };
+		57C08DF11BFA47B0003E4574 /* CogumeloDescendo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloDescendo1.png; sourceTree = "<group>"; };
 		57C08DF21BFA47B0003E4574 /* CogumeloEspecial1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloEspecial1.png; sourceTree = "<group>"; };
 		57C08DF31BFA47B0003E4574 /* CogumeloEspecial10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloEspecial10.png; sourceTree = "<group>"; };
 		57C08DF41BFA47B0003E4574 /* CogumeloEspecial2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloEspecial2.png; sourceTree = "<group>"; };
@@ -473,8 +475,8 @@
 		57C08E051BFA47B0003E4574 /* CogumeloParado8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloParado8.png; sourceTree = "<group>"; };
 		57C08E061BFA47B0003E4574 /* CogumeloParado9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloParado9.png; sourceTree = "<group>"; };
 		57C08E071BFA47B0003E4574 /* CogumeloSubindo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloSubindo1.png; sourceTree = "<group>"; };
-		57C08E081BFA47B0003E4574 /* CogumeloSubindodescendo1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloSubindodescendo1.png; sourceTree = "<group>"; };
-		57C08E091BFA47B0003E4574 /* CogumeloSubindodescendo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloSubindodescendo2.png; sourceTree = "<group>"; };
+		57C08E081BFA47B0003E4574 /* CogumeloDescendo3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloDescendo3.png; sourceTree = "<group>"; };
+		57C08E091BFA47B0003E4574 /* CogumeloDescendo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CogumeloDescendo2.png; sourceTree = "<group>"; };
 		57C08E371BFA650A003E4574 /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
 		57C08E3A1BFCDF8F003E4574 /* UI_BOLT.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_BOLT.png; sourceTree = "<group>"; };
 		57C08E3C1BFCDFAC003E4574 /* UI_HEART.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_HEART.png; sourceTree = "<group>"; };
@@ -542,6 +544,8 @@
 		670914E61BFE58600007F2FF /* MultiplayerNetworking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MultiplayerNetworking.swift; sourceTree = "<group>"; };
 		670914E71BFE58600007F2FF /* NetworkingStructs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkingStructs.swift; sourceTree = "<group>"; };
 		670914EB1BFE5D2C0007F2FF /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		673A34EF1C08B93900494DD9 /* SettingsLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsLayer.swift; sourceTree = "<group>"; };
+		673A34F61C08CD3800494DD9 /* GameState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		6784F4F61C061C700026F1D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		6784F4F71C061C700026F1D7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		6784F4F81C061C7B0026F1D7 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -883,7 +887,6 @@
 			isa = PBXGroup;
 			children = (
 				57C08DDD1BFA47B0003E4574 /* CogumeloAndando1.png */,
-				57C08DDE1BFA47B0003E4574 /* CogumeloAndando10.png */,
 				57C08DDF1BFA47B0003E4574 /* CogumeloAndando2.png */,
 				57C08DE01BFA47B0003E4574 /* CogumeloAndando3.png */,
 				57C08DE11BFA47B0003E4574 /* CogumeloAndando4.png */,
@@ -892,8 +895,8 @@
 				57C08DE41BFA47B0003E4574 /* CogumeloAndando7.png */,
 				57C08DE51BFA47B0003E4574 /* CogumeloAndando8.png */,
 				57C08DE61BFA47B0003E4574 /* CogumeloAndando9.png */,
+				57C08DDE1BFA47B0003E4574 /* CogumeloAndando10.png */,
 				57C08DE71BFA47B0003E4574 /* CogumeloAtaque1.png */,
-				57C08DE81BFA47B0003E4574 /* CogumeloAtaque10.png */,
 				57C08DE91BFA47B0003E4574 /* CogumeloAtaque2.png */,
 				57C08DEA1BFA47B0003E4574 /* CogumeloAtaque3.png */,
 				57C08DEB1BFA47B0003E4574 /* CogumeloAtaque4.png */,
@@ -902,9 +905,8 @@
 				57C08DEE1BFA47B0003E4574 /* CogumeloAtaque7.png */,
 				57C08DEF1BFA47B0003E4574 /* CogumeloAtaque8.png */,
 				57C08DF01BFA47B0003E4574 /* CogumeloAtaque9.png */,
-				57C08DF11BFA47B0003E4574 /* CogumeloDescendo.png */,
+				57C08DE81BFA47B0003E4574 /* CogumeloAtaque10.png */,
 				57C08DF21BFA47B0003E4574 /* CogumeloEspecial1.png */,
-				57C08DF31BFA47B0003E4574 /* CogumeloEspecial10.png */,
 				57C08DF41BFA47B0003E4574 /* CogumeloEspecial2.png */,
 				57C08DF51BFA47B0003E4574 /* CogumeloEspecial3.png */,
 				57C08DF61BFA47B0003E4574 /* CogumeloEspecial4.png */,
@@ -913,9 +915,9 @@
 				57C08DF91BFA47B0003E4574 /* CogumeloEspecial7.png */,
 				57C08DFA1BFA47B0003E4574 /* CogumeloEspecial8.png */,
 				57C08DFB1BFA47B0003E4574 /* CogumeloEspecial9.png */,
+				57C08DF31BFA47B0003E4574 /* CogumeloEspecial10.png */,
 				57C08DFC1BFA47B0003E4574 /* CogumeloHit1.png */,
 				57C08DFD1BFA47B0003E4574 /* CogumeloParado1.png */,
-				57C08DFE1BFA47B0003E4574 /* CogumeloParado10.png */,
 				57C08DFF1BFA47B0003E4574 /* CogumeloParado2.png */,
 				57C08E001BFA47B0003E4574 /* CogumeloParado3.png */,
 				57C08E011BFA47B0003E4574 /* CogumeloParado4.png */,
@@ -924,9 +926,11 @@
 				57C08E041BFA47B0003E4574 /* CogumeloParado7.png */,
 				57C08E051BFA47B0003E4574 /* CogumeloParado8.png */,
 				57C08E061BFA47B0003E4574 /* CogumeloParado9.png */,
+				57C08DFE1BFA47B0003E4574 /* CogumeloParado10.png */,
 				57C08E071BFA47B0003E4574 /* CogumeloSubindo1.png */,
-				57C08E081BFA47B0003E4574 /* CogumeloSubindodescendo1.png */,
-				57C08E091BFA47B0003E4574 /* CogumeloSubindodescendo2.png */,
+				57C08DF11BFA47B0003E4574 /* CogumeloDescendo1.png */,
+				57C08E091BFA47B0003E4574 /* CogumeloDescendo2.png */,
+				57C08E081BFA47B0003E4574 /* CogumeloDescendo3.png */,
 			);
 			path = Cogumelo;
 			sourceTree = "<group>";
@@ -1021,6 +1025,15 @@
 				670914E71BFE58600007F2FF /* NetworkingStructs.swift */,
 			);
 			name = Multiplayer;
+			sourceTree = "<group>";
+		};
+		673A34F51C08CD2200494DD9 /* GameState */ = {
+			isa = PBXGroup;
+			children = (
+				673A34F61C08CD3800494DD9 /* GameState.swift */,
+			);
+			name = GameState;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		67A74CE71BE1283600AF3B0E /* Physics */ = {
@@ -1118,6 +1131,7 @@
 			children = (
 				EB0EACB81BE3E39F00D93287 /* MainMenuLayer.swift */,
 				57C08DCE1BF4FCEC003E4574 /* MenuSelectPlayer.swift */,
+				673A34EF1C08B93900494DD9 /* SettingsLayer.swift */,
 			);
 			name = Menu;
 			sourceTree = "<group>";
@@ -1266,6 +1280,7 @@
 		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
 			isa = PBXGroup;
 			children = (
+				673A34F51C08CD2200494DD9 /* GameState */,
 				6784F4FE1C061D010026F1D7 /* Localizable.strings */,
 				670914E41BFE58480007F2FF /* Multiplayer */,
 				67A74CE71BE1283600AF3B0E /* Physics */,
@@ -1490,7 +1505,7 @@
 				57190BBD1BF2689900FFF38D /* SalamangFalling3.png in Resources */,
 				EB9057681BD55CF300536AD1 /* LaunchScreen.storyboard in Resources */,
 				57C08E0C1BFA47B0003E4574 /* CogumeloAndando2.png in Resources */,
-				57C08E351BFA47B0003E4574 /* CogumeloSubindodescendo1.png in Resources */,
+				57C08E351BFA47B0003E4574 /* CogumeloDescendo3.png in Resources */,
 				57FECA461C04E6BB00E1A86C /* SalamangCaindo2.png in Resources */,
 				5769651F1BE2859F00CBB81D /* Attack3.png in Resources */,
 				67A74CFB1BE129CD00AF3B0E /* vulcao.jpg in Resources */,
@@ -1534,7 +1549,7 @@
 				57190B571BF12BED00FFF38D /* NeithJump1.png in Resources */,
 				57C08E2C1BFA47B0003E4574 /* CogumeloParado2.png in Resources */,
 				57190BCE1BF3A3B300FFF38D /* SalamangIdlee3.png in Resources */,
-				57C08E1E1BFA47B0003E4574 /* CogumeloDescendo.png in Resources */,
+				57C08E1E1BFA47B0003E4574 /* CogumeloDescendo1.png in Resources */,
 				57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */,
 				57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */,
 				57190BC41BF2689900FFF38D /* 102.png in Resources */,
@@ -1638,7 +1653,7 @@
 				57A558171BDEBB1C00A948DE /* idle1.png in Resources */,
 				57FECA581C04E6BB00E1A86C /* SalamangParado6.png in Resources */,
 				57190B541BF12BED00FFF38D /* NeithIdle2.png in Resources */,
-				57C08E361BFA47B0003E4574 /* CogumeloSubindodescendo2.png in Resources */,
+				57C08E361BFA47B0003E4574 /* CogumeloDescendo2.png in Resources */,
 				576965261BE2859F00CBB81D /* falling3.png in Resources */,
 				57C08E1A1BFA47B0003E4574 /* CogumeloAtaque6.png in Resources */,
 				576965221BE2859F00CBB81D /* Death2.png in Resources */,
@@ -1752,11 +1767,13 @@
 				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
 				57190BD21BF3A8CE00FFF38D /* Arrow.swift in Sources */,
+				673A34F71C08CD3800494DD9 /* GameState.swift in Sources */,
 				57A558091BDEA86000A948DE /* Neith.swift in Sources */,
 				57A558071BDEA85000A948DE /* Salamang.swift in Sources */,
 				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
 				EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */,
 				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,
+				673A34F01C08B93900494DD9 /* SettingsLayer.swift in Sources */,
 				576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */,
 				EB1214A61BD95CA700D0552F /* CGPoint+Extensions.swift in Sources */,
 				EB1214A81BD95CA700D0552F /* Int+Extensions.swift in Sources */,

@@ -156,13 +156,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	// Called when a player send his selection
 	func receiveChosenCharacter(chosenCharacter: CharacterType, playerIndex: Int) {
 		self.playersDetails.append(PlayerDetails(character: chosenCharacter, index: playerIndex))
-		
-		print("\(self.playersDetails.count) :: \(GameKitHelper.sharedInstance.multiplayerMatch?.players.count) ")
-		
-		if self.playersDetails.count == ((GameKitHelper.sharedInstance.multiplayerMatch?.players.count)! + 1) {
+				
+		if self.playersDetails.count == (GameKitHelper.sharedInstance.multiplayerMatch!.players.count + 1) {
 			
 			let multableArray = NSMutableArray(array: self.playersDetails)
-			let sortByIndex = NSSortDescriptor(key: "index", ascending: false)
+			let sortByIndex = NSSortDescriptor(key: "index", ascending: true)
 			let sortDescriptiors = [sortByIndex]
 			multableArray.sortUsingDescriptors(sortDescriptiors)
 			self.playersDetails = NSArray(array: multableArray) as! [PlayerDetails]
@@ -181,7 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 	}
 	
 	func chooseCharacter() {
-		print("multiplayer select player")
+		print("Multiplayer select player")
 		let menuSelectPlayerScene = MenuSelectPlayerScene(size: self.size)
 		scenesDelegate?.showMenuSelectPlayerScene(menuSelectPlayerScene)
 	}
@@ -198,12 +196,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol {
 			super.init()
 		}
 	}
-	
-    // Perform a jump in all devices
-    func performJump (index: Int) {
-        let player = gameLayer!.players[index] as Player
-        gameLayer?.performJumpWithPlayer(player)
-    }
     
     // Move the player in all devices
     func movePlayer(index: Int, dx: Float, dy: Float) {

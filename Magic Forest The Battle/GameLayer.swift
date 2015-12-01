@@ -21,6 +21,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	var hasLoadedGame: Bool
 	var spawnPointsLocations : Array<CGPoint> = []
     var playerPosition: CGPoint?
+    
+    var canPlayerJump: Bool = false
         
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
@@ -149,7 +151,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		return (currentSpawnPoint as! SpawnPoint)
 	}
 	
-	// The host will sort a positio to every player and then send the positions and selections to everyone
+	// The host will sort a position to every player and then send the positions and selections to everyone
 	func createPlayer() {
 		let playersCount: Int = (GameKitHelper.sharedInstance.multiplayerMatch?.players.count)!
         
@@ -214,36 +216,39 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	-Parameter chosenCharacter: The character class type to be created from
 	*/
 	private func generatePlayer(position: CGPoint, chosenCharacter: CharacterType.RawValue) -> Player {
+        
+        var player = Player(position: position, screenSize: self.size!)
+        
 		switch chosenCharacter {
 		case CharacterType.Uhong.rawValue:
-			print("uhong")
-			return Uhong(position: position, screenSize: self.size!)
+			print("Generated uhong")
+			player = Uhong(position: position, screenSize: self.size!)
 		case CharacterType.Dinak.rawValue:
-			print("dinak")
-			return Dinak(position: position, screenSize: self.size!)
+			print("Generated dinak")
+			player = Dinak(position: position, screenSize: self.size!)
 		case CharacterType.Salamang.rawValue:
-			print("salamang")
-			return Salamang(position: position, screenSize: self.size!)
+			print("Generated salamang")
+			player =  Salamang(position: position, screenSize: self.size!)
 		case CharacterType.Neith.rawValue:
-			print("neith")
-			return Neith(position: position, screenSize: self.size!)
+			print("Generated neith")
+			player = Neith(position: position, screenSize: self.size!)
 		default:
-			print("player")
-			return Player(position: position, screenSize: self.size!)
+			print("Was not possible to create a player in GeneratePlayer-gameLayer method")
 		}
+        
+        return player
 	}
 	
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
-		if IS_ONLINE == true {
+		if IS_ONLINE == true && self.hasLoadedGame == true {
             networkingEngine?.sendMove(Float(player.position.x), dy: Float(player.position.y))
 			for player in self.players {
 				player.update(currentTime)
 			}
-		} else {
+		} else if IS_ONLINE == false && self.hasLoadedGame == true {
 			self.player.update(currentTime)
 		}
-
 	}
 	
 	func upSpecialBar () {
@@ -251,7 +256,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			let aux = ((player?.energy)! * (player?.regEnergy)!)/100
 			player?.currentEnergy = (player?.currentEnergy)! + aux
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!,node: (hudLayer?.energyFrontBar)!, scale:  0.24)
-			print(player?.currentEnergy)
+			print("Current energy: \(player?.currentEnergy)")
 		} else {
 			self.hudLayer?.animateFullBar()
 			
@@ -270,20 +275,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			
 		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy && player?.currentLife > 0 {
 			self.player?.isSpecialAttacking = true
-				print("Special Attack")
+				print("Player used Special Attack")
 			self.checkAttack(1)
 			self.player?.currentEnergy = 0
 			self.hudLayer?.energyFrontBar.removeAllActions()
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, node: (hudLayer?.energyFrontBar)!, scale:  0.24)
             self.networkingEngine?.sendSpecialAttack()
-		} else if command == MFCSCommandType.Jump && player?.currentLife > 0 {
-			if self.player.jumpCount < self.player.jumpLimit {
+		} else if command == MFCSCommandType.Jump && self.canPlayerJump == true {
+			if self.player.isJumping == false {
 				++self.player.jumpCount
-				self.networkingEngine?.sendJump()
 				self.player.isJumping = true
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}
 		} else if command == MFCSCommandType.GetDown && player?.currentLife > 0 {
+            self.canPlayerJump = false
 			self.player?.getDownOneFloor()
             self.networkingEngine?.sendGetDown()
 		}
@@ -292,7 +297,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func checkAttack(type: Int) {
 		if type == 0 { // if type is 0, the is normal attack
 			if self.isOnMeleeCollision == true {
-				print("deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+				print("Deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 				
 				let player = self.players[self.normalAreaPlayersIndex.first!]
 				let damage = CGFloat(100)
@@ -303,7 +308,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 					
 				} else {
 					player.currentLife = 0
-//					self.networkingEngine?.sendDeath(self.normalAreaPlayersIndex.first!)
 				}
 				
 				self.networkingEngine?.sendLoseLife(player.currentLife!, playerIndex: self.normalAreaPlayersIndex.first!)
@@ -311,7 +315,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 		} else if type == 1 { // if type is 0, the is special attack
 			if self.isOnSpecialCollision == true {
-				print("deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+				print("Deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 			}
 		}
 	}
@@ -347,17 +351,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			if node == self.player {
 				self.player?.isLeft = true
 				self.player.lifeBar.xScale = fabs(self.player.lifeBar.xScale)
-				print(self.player.lifeBar.xScale)
-				
-				print(self.player.xScale)
 			}
 		} else {
 			//self.player?.xScale = fabs((self.player?.xScale)!)
 			node.xScale = fabs(node.xScale)
 			if node == self.player {
 				self.player?.isLeft = false
-				print(self.player.lifeBar.xScale)
-				print(self.player.xScale)
 			}
 		}
 	}
@@ -420,8 +419,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
 		player.currentLife = CGFloat(currentLife)
-		print("life: \(player.life)")
-		print("current life: \(player.currentLife)")
+		print("Current life: \(player.currentLife)")
 		hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
 	}
 	func performDeathWithPlayer (player: Player) {
@@ -449,9 +447,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-			if self.player.jumpCount != 0 {
-				self.player.jumpCount = 0
-			}
+            self.canPlayerJump = true
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
@@ -491,6 +487,18 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
 		switch(contactMask) {
+            
+        case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+            
+            // If player began the contact with floor and he is not jumping, he can jump again
+            //            if self.player.isJumping == false {
+            //                self.player.jumpCount = 0
+            //            }
+            self.canPlayerJump = false
+            self.player.jumpCount = 0
 	
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if self.normalAreaPlayersIndex.count > 0 {
@@ -520,6 +528,13 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			return
 		}
 	}
+    
+    // Check if player is dead
+    private func isPlayerDead(player: Player) {
+        if player.currentLife <= 0 {
+            player.isDead = true
+        }
+    }
     
     // Perform flip with an specific player
     func performFlipWithPlayer(player: Player, flip: Bool) {

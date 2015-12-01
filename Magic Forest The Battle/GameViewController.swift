@@ -94,7 +94,7 @@ class GameViewController: UIViewController, ScenesDelegate {
 		
         self.mainSKView!.presentScene(self.gameScene!, transition: SKTransition.flipHorizontalWithDuration(2))
 
-        self.controllerMode = MFCSControllerMode.JoystickAndSwipe
+        self.controllerMode = GameState.sharedInstance.controllerMode
 
 		self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
 

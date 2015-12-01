@@ -7,7 +7,6 @@
 //
 
 import SpriteKit
-//import Darwin
 
 class ForestScenery: BackgroundLayer, BasicLayer {
 	
@@ -107,7 +106,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		let baseRPlatform = self.generateQuadruplePlatform(PhysicsCategory.WorldBaseFloorPlatform)
 		
 		let firstFloorLPlatfom = self.generateSinglePlatform(PhysicsCategory.WorldFirstFloorPlatform)
-		
+        
 		let secondFLoorLPlatform = self.generateDoublePlatform(PhysicsCategory.WorldSecondFloorPlatform)
 		let secondFloorRPlatform = self.generateQuadruplePlatform(PhysicsCategory.WorldSecondFloorPlatform)
 		
@@ -118,8 +117,6 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		
 		// Platforms configuration
 		firstFloorLPlatfom.zPosition = -15
-		thirdFloorLPlatform.runAction(SKAction.rotateByAngle(CGFloat(-3 * M_PI / 180), duration: 0))
-		thirdFloorLPlatform.runAction(SKAction.rotateByAngle(CGFloat(2.5 * M_PI / 180), duration: 0))
 		
 		// Platforms positioning
 		

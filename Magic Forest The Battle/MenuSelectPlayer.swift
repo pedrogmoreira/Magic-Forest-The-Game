@@ -17,7 +17,7 @@ class MenuSelectPlayer: SKNode {
 	private var size: CGSize?
 	private var view: SKView?
 	private var currentScreen: Screen?
-	
+
 	var controlUnit: MFCSControlUnit?
 	var controllerMode: MFCSControllerMode?
 	var networkDelegate: MultiplayerNetworking?
@@ -25,6 +25,7 @@ class MenuSelectPlayer: SKNode {
 	private let timer = SKLabelNode(text: "")
 	
 	private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+    private var isNotReady: Bool?
 	
 	var scenesDelegate: ScenesDelegate?
 	
@@ -71,6 +72,7 @@ class MenuSelectPlayer: SKNode {
 	- parameter view: A reference to the current view
 	*/
 	init(size: CGSize, view: SKView) {
+        self.isNotReady = true
 		super.init()
 		
 		self.size = size
@@ -159,22 +161,32 @@ class MenuSelectPlayer: SKNode {
 	}
 	
 	func selectedCharacter() -> CharacterType {
+        
+        var selectedCharacterType = CharacterType.Uhong
+        
 		switch playerSelected {
 		case "Neith":
-			return CharacterType.Neith
+			selectedCharacterType = CharacterType.Neith
 		case "Uhong":
-			return CharacterType.Uhong
+			selectedCharacterType = CharacterType.Uhong
 		case "Salamang":
-			return CharacterType.Salamang
+			selectedCharacterType = CharacterType.Salamang
 		case "Dinak":
-			return CharacterType.Dinak
+			selectedCharacterType = CharacterType.Dinak
 		default:
-			return CharacterType.Default
+			print("Invalid selected character")
 		}
+        
+        return selectedCharacterType
 	}
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		// Getting a node in the touch location
+        
+        if self.isNotReady! == false {
+            return
+        }
+        
 		let touch = touches.first
 		let touchLocation = touch?.locationInNode(self)
 		let nodeTouched = self.nodeAtPoint(touchLocation!)
@@ -190,32 +202,33 @@ class MenuSelectPlayer: SKNode {
 			self.addLabelNode(neithLabelStatus, name: "neithLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addLabelNode(neithLabelAbout, name: "neithLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addNode(neithImage, name: "neithImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
-			print(nodeName)
+			print("Selected character: \(nodeName)")
 		} else if nodeName == "uhongSelectionPosition" {
-			print(nodeName)
 			playerSelected = "Uhong"
 			self.selectPlayer(uhongSelection, normalScale: 0.3, bigScale: 0.5)
 			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addLabelNode(uhongLabelAbout, name: "uhongLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addNode(uhongImage, name: "uhongImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
+            print("Selected character: \(nodeName)")
 		} else if nodeName == "salamangSelctionPosition" {
-			print(nodeName)
+			self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
 			playerSelected = "Salamang"
 			self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
 			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addLabelNode(salamangLabelStatus, name: "salamangLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addNode(salamangImage, name: "salamangImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
+            print("Selected character: \(nodeName)")
 		} else if nodeName == "dinakSelectionPosition"{
 			self.addLabelNode(dinakLabelAbout, name: "dinakLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 			self.addLabelNode(dinakLabelSatus, name: "dinakLabelSatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 			self.addNode(dinakImage, name: "dinakImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
-			print(nodeName)
+			print("Selected character: \(nodeName)")
 			playerSelected = "Dinak"
 			
 		} else if nodeName == "playbutton" {
-			print("play")
+			print("Touched play button")
+            isNotReady = false
 			startGame()
-			
 		}
 	}
 	
@@ -244,6 +257,7 @@ class MenuSelectPlayer: SKNode {
 			self.startGame()
 		}
 	}
+    
 	func removeActionsPlayers () {
 		self.neithSelection.removeAllActions()
 		self.uhongSelection.removeAllActions()
@@ -252,12 +266,14 @@ class MenuSelectPlayer: SKNode {
 		self.uhongSelection.setScale(0.3)
 		self.salamangSelction.setScale(0.3)
 	}
+    
 	func removeAllStatus () {
 		self.neithLabelStatus.removeFromParent()
 		self.salamangLabelStatus.removeFromParent()
 		self.uhongLabelStatus.removeFromParent()
 		self.dinakLabelSatus.removeFromParent()
 	}
+    
 	func removeAllImages () {
 		self.neithImage.removeFromParent()
 		self.salamangImage.removeFromParent()
@@ -272,6 +288,4 @@ class MenuSelectPlayer: SKNode {
 		self.salamangLabelAbout.removeFromParent()
 		self.dinakLabelAbout.removeFromParent()
 	}
-
-	
 }

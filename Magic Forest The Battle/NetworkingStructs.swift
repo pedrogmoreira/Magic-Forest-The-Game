@@ -11,11 +11,11 @@ import SpriteKit
 // Define the types of menssages
 // Each structure represents a type of message the game will send to the other device
 enum MessageType: Int {
-	case RandomNumber, GameBegin, GameOver, Move, String, Flip, Attack,Jump, GetDown, Special, Players, StartGameProperties, ChosenCharacter, LoseLife, Death
+	case RandomNumber, GameBegin, GameOver, Move, Flip, Attack, GetDown, Special, Players, StartGameProperties, ChosenCharacter, LoseLife
 }
 
 enum CharacterType: Int {
-	case Uhong, Dinak, Salamang, Neith, Default
+	case Uhong, Dinak, Salamang, Neith
 }
 
 struct Message {
@@ -41,15 +41,13 @@ struct MessageRandomNumber {
 struct MessageGameBegin {
 	let message: Message
 }
+
 struct MessageLoseLife {
 	let message = MessageType.LoseLife
 	let currentLife: Float
 	let playerIndex: Int
 }
-struct MessageDeath {
-	let message = MessageType.Death
-	let playerIndex: Int
-}
+
 struct MessageSpecialAttack {
     let message = MessageType.Special
 }
@@ -60,42 +58,6 @@ struct MessageGameOver {
 
 struct MessageGetDown {
     let message = MessageType.GetDown
-}
-
-struct MessageString {
-	let message = MessageType.String
-	let text: String
-	
-	struct ArchivedPacket {
-		let message = MessageType.String
-		var textLength: Int64
-	}
-	
-	func archive() -> NSData {
-		var archivedPacket = ArchivedPacket(textLength: Int64(self.text.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)))
-		
-		let metadata = NSData(bytes: &archivedPacket, length: sizeof(ArchivedPacket))
-		let archivedData = NSMutableData(data: metadata)
-		archivedData.appendData(text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!)
-		return archivedData
-	}
-	
-	static func unarchive(data: NSData!) -> MessageString {
-		var archivedPacket = ArchivedPacket(textLength: 0)
-		let archivedStructLength = sizeof(ArchivedPacket)
-		
-		let archivedData = data.subdataWithRange(NSMakeRange(0, archivedStructLength))
-		archivedData.getBytes(&archivedPacket, length: archivedStructLength)
-		
-		let textRange = NSMakeRange(archivedStructLength, Int(archivedPacket.textLength))
-		let textData = data.subdataWithRange(textRange)
-		
-		let text = String(data: textData, encoding: NSUTF8StringEncoding)
-		
-		let messageString = MessageString(text: text!)
-		
-		return messageString
-	}
 }
 
 struct MessageStartGameProperties {
@@ -150,8 +112,4 @@ struct MessageAttack {
 struct MessagePlayers {
 	let message: Message
 	var players: [Player]
-}
-
-struct MessageJump {
-    let message = MessageType.Jump
 }
