@@ -21,6 +21,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	var hasLoadedGame: Bool
 	var spawnPointsLocations : Array<CGPoint> = []
     var playerPosition: CGPoint?
+    
+    var canPlayerJump: Bool = false
         
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
@@ -279,14 +281,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.hudLayer?.energyFrontBar.removeAllActions()
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, node: (hudLayer?.energyFrontBar)!, scale:  0.24)
             self.networkingEngine?.sendSpecialAttack()
-		} else if command == MFCSCommandType.Jump {
-			if self.player.jumpCount < self.player.jumpLimit {
+		} else if command == MFCSCommandType.Jump && self.canPlayerJump == true {
+			if self.player.isJumping == false {
 				++self.player.jumpCount
-//				self.networkingEngine?.sendJump()
 				self.player.isJumping = true
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}
 		} else if command == MFCSCommandType.GetDown {
+            self.canPlayerJump = false
 			self.player?.getDownOneFloor()
             self.networkingEngine?.sendGetDown()
 		}
@@ -445,11 +447,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-            
-            if self.player.isJumping == false {
-                self.player.jumpCount = 0
-            }
-            
+            self.canPlayerJump = true
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
@@ -489,6 +487,18 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
 		switch(contactMask) {
+            
+        case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+            
+            // If player began the contact with floor and he is not jumping, he can jump again
+            //            if self.player.isJumping == false {
+            //                self.player.jumpCount = 0
+            //            }
+            self.canPlayerJump = false
+            self.player.jumpCount = 0
 	
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if self.normalAreaPlayersIndex.count > 0 {
