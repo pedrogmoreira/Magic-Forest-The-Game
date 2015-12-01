@@ -70,7 +70,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	}
 	
 	
-	init(size: CGSize) {
+    init(size: CGSize, playerSelected: String) {
 		self.hasLoadedGame = false
 		super.init()
 		self.populateSpawnPoints(size)
@@ -85,7 +85,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		let repeatAct = SKAction.repeatActionForever(seq)
 		self.runAction(repeatAct)
 		
-		singlePlayer()
+        singlePlayer(playerSelected)
 		self.hasLoadedGame = true
 	}
 	
@@ -105,36 +105,22 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func singlePlayer() {
+    func singlePlayer(playerSelected: String) {
 		switch(playerSelected) {
-			case "Uhong":
-				self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
+        case "Uhong":
+            self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
 			break
-			case "Neith":
-				self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
+        case "Neith":
+            self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
 			break
-			case "Salamang":
-				self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
+        case "Salamang":
+            self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
 			break
-			case "Dinak":
-				self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
+        case "Dinak":
+            self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
+            break
 		default:
-			//self.playerAleatorio
-			switch(Int.random(min: 1, max: 3)) {
-			case 1:
-				self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
-				break
-			case 2:
-				self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
-				break
-			case 3:
-				self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
-				break
-			default:
-				self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
-			}
-			
-			
+			print("Was not possible to create a player in singlePlayer mode")
 		}
 		self.addChild(self.player!)
 	}

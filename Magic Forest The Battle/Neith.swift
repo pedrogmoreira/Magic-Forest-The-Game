@@ -39,6 +39,7 @@ class Neith: Player {
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.contactTestBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.mass = 100
+        physicsBody.restitution = 0
 		physicsBody.affectedByGravity = true
 		physicsBody.allowsRotation = false
 		

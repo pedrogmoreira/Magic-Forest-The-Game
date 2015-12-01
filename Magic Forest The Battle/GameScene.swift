@@ -13,6 +13,8 @@ let DEFAULT_HEIGHT = CGFloat(375)
 
 class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEndDelegate {
 	
+    var playerSelected: String?
+    
 	var backgroundLayer: BackgroundLayer?
 	var hudLayer: HudLayer?
 	var gameLayer: GameLayer?
@@ -36,6 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	- parameter size: A reference to the device's screen size
 	*/
 	override init(size: CGSize) {
+        self.playerSelected = ""
 		super.init(size: size)
 	}
     
@@ -43,7 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 		if IS_ONLINE == true {
 			self.gameLayer = GameLayer(size: size, networkingEngine:  self.networkingEngine!, chosenCharacters: self.chosenCharacters)
 		} else {
-			self.gameLayer = GameLayer(size: size)
+			self.gameLayer = GameLayer(size: size, playerSelected: self.playerSelected!)
 		}
 		
         self.gameLayer?.zPosition = -5

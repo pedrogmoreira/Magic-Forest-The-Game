@@ -44,6 +44,7 @@ class Dinak: Player {
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
 		physicsBody.contactTestBitMask = 0
 		physicsBody.mass = 100
+        physicsBody.restitution = 0
 		physicsBody.affectedByGravity = true
 		physicsBody.allowsRotation = false
 		

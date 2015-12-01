@@ -123,7 +123,6 @@ class HudLayer: SKNode, BasicLayer {
 		let sequence = SKAction.sequence([counter, SKAction.runBlock({ () -> Void in
 			timer--
 			timerLabel.text = String(timer)
-			print("Timer: \(timer)")
 		})])
 		
 		let repeatAction = SKAction.repeatAction(sequence, count: timer)
