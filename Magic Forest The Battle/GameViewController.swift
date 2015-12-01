@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 // TODO: SET IS ONLINE TO FALSE TO START A SINGLE GAME
-let IS_ONLINE = true
+let IS_ONLINE = false
 
 protocol ScenesDelegate {
 	func showMenu()
