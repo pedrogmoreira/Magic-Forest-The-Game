@@ -16,7 +16,6 @@ class MenuSelectPlayer: SKNode {
 	private var label = SKLabelNode()
 	private var size: CGSize?
 	private var view: SKView?
-	private var currentScreen: Screen?
 
 	var controlUnit: MFCSControlUnit?
 	var controllerMode: MFCSControllerMode?
@@ -24,7 +23,7 @@ class MenuSelectPlayer: SKNode {
 	
 	private let timer = SKLabelNode(text: "")
 	
-	private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+	private let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
     private var isNotReady: Bool?
 	
 	var scenesDelegate: ScenesDelegate?
@@ -77,9 +76,7 @@ class MenuSelectPlayer: SKNode {
 		
 		self.size = size
 		self.view = view
-		
-		self.currentScreen = Screen.middleScreen
-		
+				
 		self.addToLayer()
 		self.timerSelecPlayer()
 		self.fontEdit()

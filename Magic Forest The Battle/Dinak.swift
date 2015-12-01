@@ -30,6 +30,8 @@ class Dinak: Player {
 		self.regEnergy = 10
 		self.regLife = 1
 		self.getDownForce = -50_000
+		
+		self.isRanged = false
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

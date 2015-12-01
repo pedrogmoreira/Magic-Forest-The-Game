@@ -31,7 +31,7 @@ class HudLayer: SKNode, BasicLayer {
 		//barra vida
 		//barra do fundo
 		self.size = size
-		timerGame()
+		
 		let lifeBackBar = SKSpriteNode(texture: SKTexture(imageNamed: "UI_ETCBAR"))
 		lifeBackBar.position = CGPointMake(-size.width*0.48, size.height*0.45)
 		lifeBackBar.setScale(0.3)
@@ -82,6 +82,7 @@ class HudLayer: SKNode, BasicLayer {
 		
 		if IS_ONLINE == true {
 			self.createScoreLabel()
+			self.timerGame()
 		}
 		
 	}
@@ -110,7 +111,7 @@ class HudLayer: SKNode, BasicLayer {
 	}
 	
 	func timerGame() {
-		var timer = 10
+		var timer = 90
 		let timerLabel = SKLabelNode(text: "")
 		//		let clock = SKSpriteNode(imageNamed: "Clock")
 		//		self.addNode(clock, name: "clock", position: CGPoint(x: (self.size?.width)!/2.3, y: (self.size?.height)!/1.16))

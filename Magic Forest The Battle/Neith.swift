@@ -30,6 +30,8 @@ class Neith: Player {
 		self.regEnergy = 10
 		self.regLife = 1
 		self.getDownForce = -50_000
+		
+		self.isRanged = true
 	}
 	override func generatePhysicsBody() -> SKPhysicsBody {
 		let physicsBody = SKPhysicsBody(rectangleOfSize: self.size)

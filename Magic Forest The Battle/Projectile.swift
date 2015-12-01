@@ -13,7 +13,7 @@ class Projectile: SKSpriteNode {
 	var isLeft : Bool = false
 	var damage : Double = 0.0
 	var speedProje : Double = 0.0
-
+	var canDealDamage: Bool = true
 	
 	init(position : CGPoint) {
 		let projectileTexture = SKTexture(imageNamed: "95")

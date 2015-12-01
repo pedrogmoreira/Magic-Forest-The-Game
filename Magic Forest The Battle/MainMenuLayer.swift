@@ -9,16 +9,9 @@
 import SpriteKit
 import GameKit
 
-enum Screen {
-    case middleScreen
-    case leftScreen
-    case rightScreen
-}
-
 class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameProtocol, UIAlertViewDelegate, SettingsProcotol {
     private var size: CGSize?
     private var view: SKView?
-    private var currentScreen: Screen?
     private var rightSwipe: UISwipeGestureRecognizer?
     private var leftSwipe: UISwipeGestureRecognizer?
     
@@ -40,7 +33,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     private let practiceButton = SKSpriteNode(imageNamed: "practiceButton.png")
     private let storeButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     private let skinButton = SKSpriteNode(imageNamed: "storeButton.jpg")
-    private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+    private let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
     private let historyButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     private let statisticsButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     
@@ -63,10 +56,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         self.size = size
         self.view = view
         
-        self.currentScreen = Screen.middleScreen
-        
         self.addButtonsToLayer()
-        self.addSwipeGestureToLayer()
         
         self.gameScene = GameScene(size: size)
         
@@ -105,7 +95,6 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
                 } else {
                     self.selectPlayer()
                 }
-                self.removeGesturesFromLayer()
             } else if nodeName == "configurationButton" {
                 self.creteSettingsMenu()
             } else if nodeName == "practiceButton" {
@@ -189,53 +178,52 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     
     // Add all buttons to the layer
     private func addButtonsToLayer() {
-        let padding = CGFloat(10)
-        
-        // Adding configuration Button
-        self.configurationButton.setScale(0.2)
-        let halfConfigurationButtonWidth = self.configurationButton.size.width/2
-        let halfConfigurationButtonHeight = self.configurationButton.size.height/2
-        let configurationButtonPosition = CGPoint(x: self.size!.width - padding - halfConfigurationButtonWidth, y: self.size!.height - padding - halfConfigurationButtonHeight)
-        addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
-        
-        // Adding gameCenter Button
-        self.gameCenterButton.setScale(0.2)
-        let halfGameCenterButtonWidth = self.gameCenterButton.size.width/2
-        let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
-        let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height - halfGameCenterButtonHeight - padding)
-        addButton(self.gameCenterButton, name: "gameCenterButton", position: gameCenterButtonPosition)
-        
+//        let padding = CGFloat(10)
+//        
+//        // Adding configuration Button
+//        self.configurationButton.setScale(0.2)
+//        let halfConfigurationButtonWidth = self.configurationButton.size.width/2
+//        let halfConfigurationButtonHeight = self.configurationButton.size.height/2
+//        let configurationButtonPosition = CGPoint(x: self.size!.width - padding - halfConfigurationButtonWidth, y: self.size!.height - padding - halfConfigurationButtonHeight)
+////        addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
+//        
+//        // Adding gameCenter Button
+//        self.gameCenterButton.setScale(0.2)
+//        let halfGameCenterButtonWidth = self.gameCenterButton.size.width/2
+//        let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
+//        let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height - halfGameCenterButtonHeight - padding)
+//        addButton(self.gameCenterButton, name: "gameCenterButton", position: gameCenterButtonPosition)
+//        
         // Adding play Button
         self.playButton.setScale(0.5)
         let playButtonPosition = CGPoint(x: self.size!.width/4 , y: self.size!.height/4)
         addButton(self.playButton, name: "playButton", position: playButtonPosition)
-        
-        // Adding practice Button
-        self.practiceButton.setScale(0.5)
-        let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: self.size!.height/4)
-        addButton(practiceButton, name: "practiceButton", position: practiceButtonPosition)
-        
-        // Add store Button
-        self.storeButton.setScale(0.3)
-        let storeButtonPosition = CGPoint(x: self.size!.width/4 + self.size!.width, y: self.size!.height/4)
-        addButton(self.storeButton, name: "storeButton", position: storeButtonPosition)
-        
-        // Add skins Button
-        self.skinButton.setScale(0.3)
-        let skinButtonPosition = CGPoint(x: 3*self.size!.width/4 + self.size!.width, y: self.size!.height/4)
-        addButton(self.skinButton, name: "skinButton", position: skinButtonPosition)
-        
-        // Add history Button
-        self.historyButton.setScale(0.3)
-        let historyButtonPosition = CGPoint(x: self.size!.width/4 - self.size!.width, y: self.size!.height/4)
-        addButton(self.historyButton, name: "historyButton", position: historyButtonPosition)
-        
-        // Add skins Button
-        self.statisticsButton.setScale(0.3)
-        let statisticsButtonPosition = CGPoint(x: 3*self.size!.width/4 - self.size!.width, y: self.size!.height/4)
-        addButton(self.statisticsButton, name: "statisticsButton", position: statisticsButtonPosition)
-        
-        
+//
+//        // Adding practice Button
+//        self.practiceButton.setScale(0.5)
+//        let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: self.size!.height/4)
+//        addButton(practiceButton, name: "practiceButton", position: practiceButtonPosition)
+//        
+//        // Add store Button
+//        self.storeButton.setScale(0.3)
+//        let storeButtonPosition = CGPoint(x: self.size!.width/4 + self.size!.width, y: self.size!.height/4)
+//        addButton(self.storeButton, name: "storeButton", position: storeButtonPosition)
+//        
+//        // Add skins Button
+//        self.skinButton.setScale(0.3)
+//        let skinButtonPosition = CGPoint(x: 3*self.size!.width/4 + self.size!.width, y: self.size!.height/4)
+//        addButton(self.skinButton, name: "skinButton", position: skinButtonPosition)
+//        
+//        // Add history Button
+//        self.historyButton.setScale(0.3)
+//        let historyButtonPosition = CGPoint(x: self.size!.width/4 - self.size!.width, y: self.size!.height/4)
+//        addButton(self.historyButton, name: "historyButton", position: historyButtonPosition)
+//        
+//        // Add skins Button
+//        self.statisticsButton.setScale(0.3)
+//        let statisticsButtonPosition = CGPoint(x: 3*self.size!.width/4 - self.size!.width, y: self.size!.height/4)
+//        addButton(self.statisticsButton, name: "statisticsButton", position: statisticsButtonPosition)
+//        
     }
     
     private func selectPlayer () {
@@ -257,53 +245,10 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 //        
 //        self.view?.addSubview(self.controlUnit!)
 //		
-        self.removeGesturesFromLayer()
-    }
-    
-    // Add swipe gestures to the layer
-    private func addSwipeGestureToLayer() {
-        // Configuring right swipe gesture
-        self.rightSwipe = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
-        self.rightSwipe!.delegate = self
-        self.rightSwipe!.direction = .Right
-        
-        // Configuring left swipe gesture
-        self.leftSwipe = UISwipeGestureRecognizer(target: self, action: "handleSwipe:")
-        self.leftSwipe!.delegate = self
-        self.leftSwipe!.direction = .Left
-        
-        // Adding gestures to the view
-        self.view?.addGestureRecognizer(rightSwipe!)
-        self.view?.addGestureRecognizer(leftSwipe!)
-    }
-    
-    // Remove swipe gestures from layer
-    private func removeGesturesFromLayer() {
-        self.view?.removeGestureRecognizer(self.rightSwipe!)
-        self.view?.removeGestureRecognizer(self.leftSwipe!)
-    }
-    
-    // Handle the given swipe
-    func handleSwipe(sender: UISwipeGestureRecognizer) {		
-        if sender.direction == .Right && self.currentScreen == Screen.rightScreen {
-            self.runAction(SKAction.moveByX(self.size!.width, y: 0, duration: 0.5))
-            self.currentScreen = Screen.middleScreen
-            
-        } else if sender.direction == .Right && self.currentScreen == Screen.middleScreen {
-            self.runAction(SKAction.moveByX(self.size!.width, y: 0, duration: 0.5))
-            self.currentScreen = Screen.leftScreen
-        } else if sender.direction == .Left && self.currentScreen == Screen.leftScreen {
-            self.runAction(SKAction.moveByX(-self.size!.width, y: 0, duration: 0.5))
-            self.currentScreen = Screen.middleScreen
-        } else if sender.direction == .Left && self.currentScreen == Screen.middleScreen {
-            self.runAction(SKAction.moveByX(-self.size!.width, y: 0, duration: 0.5))
-            self.currentScreen = Screen.rightScreen
-        }
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
-		removeGesturesFromLayer()
     }
 
 }

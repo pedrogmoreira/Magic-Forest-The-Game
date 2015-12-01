@@ -66,9 +66,9 @@ class GameViewController: UIViewController, ScenesDelegate {
 		
 		// Configure the view.
 		self.mainSKView = self.view as? SKView
-		self.mainSKView!.showsFPS = true
-		self.mainSKView!.showsNodeCount = true
-		self.mainSKView!.showsPhysics = true
+		self.mainSKView!.showsFPS = false
+		self.mainSKView!.showsNodeCount = false
+		self.mainSKView!.showsPhysics = false
 		
 		/* Sprite Kit applies additional optimizations to improve rendering performance */
 		self.mainSKView!.ignoresSiblingOrder = true
