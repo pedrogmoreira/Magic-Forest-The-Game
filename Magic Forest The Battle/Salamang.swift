@@ -30,13 +30,16 @@ class Salamang: Player {
 		self.regLife = 1
 		self.getDownForce = -50_000
 		self.setScale(4)
+		
+		self.isRanged = true
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	override func generatePhysicsBody() -> SKPhysicsBody {
-		let physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
+		let size = CGSize(width: self.size.width * 0.3, height: self.size.height * 0.45)
+		let physicsBody = SKPhysicsBody(rectangleOfSize: size, center: CGPointMake(0, -size.height / 3))
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR

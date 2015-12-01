@@ -297,7 +297,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func checkAttack(type: Int) {
 		if type == 0 { // if type is 0, the is normal attack
-			if self.isOnMeleeCollision == true {
+			if self.isOnMeleeCollision == true && self.player.isRanged == false {
 				print("Deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 				
 				let player = self.players[self.normalAreaPlayersIndex.first!]
@@ -336,7 +336,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		} else {
 			projectile.physicsBody?.applyImpulse(CGVectorMake(2000, 100))
 		}
-		projectile.runAction(projectile.removeProjectile())
+//		projectile.runAction(projectile.removeProjectile())
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
@@ -477,6 +477,61 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				}
 			}
 			self.isOnMeleeCollision = true
+		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+			var projectile: Projectile?
+			
+			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
+				projectile = (contact.bodyA.node as! Projectile)
+			} else {
+				projectile = (contact.bodyB.node as! Projectile)
+			}
+			
+			projectile?.canDealDamage = true
+			
+			
+		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			print("PROJECTILE DAMAGE")
+			var player: Player?
+			var projectile: Projectile?
+			if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
+				player = (contact.bodyA.node as! Player)
+				
+				if let body = (contact.bodyB.node as? Arrow) {
+					projectile = body
+				} else {
+					projectile = (contact.bodyB.node as? Jujuba)
+				}
+			} else {
+				player = (contact.bodyB.node as! Player)
+				projectile = (contact.bodyA.node as! Projectile)
+			}
+			
+			if projectile?.canDealDamage == true {
+				projectile?.canDealDamage = false
+				projectile?.hitSound()
+				projectile?.removeFromParent()
+				
+				let damage = self.player.attackDamage
+				
+				if player!.currentLife! - damage! > 0 {
+					
+					player!.currentLife = player!.currentLife! - damage!
+					
+				} else {
+					player!.currentLife = 0
+					
+					if player!.isDead == false {
+						self.score++
+						self.hudLayer?.updateScoreLabel(withScore: self.score)
+					}
+				}
+				
+				self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
+				hudLayer?.animateBar(player!.currentLife!, bar: player!.life!, node: player!.lifeBar, scale: 0.01)
+			}
 		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
@@ -518,7 +573,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             //                self.player.jumpCount = 0
             //            }
             self.canPlayerJump = false
-	
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if self.normalAreaPlayersIndex.count > 0 {
 				if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {

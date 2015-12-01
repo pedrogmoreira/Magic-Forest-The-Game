@@ -25,8 +25,8 @@ class Jujuba: Projectile {
 		let physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Projectile.rawValue
-		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
-		physicsBody.collisionBitMask = PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
+		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue | BITMASK_THIRD_FLOOR
+		physicsBody.collisionBitMask = PhysicsCategory.WorldBaseFloorPlatform.rawValue | BITMASK_THIRD_FLOOR 
 		physicsBody.mass = 1
 		physicsBody.affectedByGravity = true
 		physicsBody.allowsRotation = true

@@ -33,6 +33,7 @@ class Player: SKSpriteNode, GameObject {
 	var regEnergy: CGFloat?
 	var state: PlayerState?
     var score = 0
+	var isRanged: Bool = false
 	
 	// Player flags
 	var isAttacking: Bool = false

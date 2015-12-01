@@ -23,7 +23,7 @@ class MenuSelectPlayer: SKNode {
 	
 	private let timer = SKLabelNode(text: "")
 	
-	private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+	private let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
     private var isNotReady: Bool?
 	
 	var scenesDelegate: ScenesDelegate?
