@@ -33,7 +33,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     private let practiceButton = SKSpriteNode(imageNamed: "practiceButton.png")
     private let storeButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     private let skinButton = SKSpriteNode(imageNamed: "storeButton.jpg")
-    private let playButton = SKSpriteNode(imageNamed: "playButton.gif")
+    private let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
     private let historyButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     private let statisticsButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     
