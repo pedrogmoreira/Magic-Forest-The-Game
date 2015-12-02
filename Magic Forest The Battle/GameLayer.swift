@@ -90,15 +90,15 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	}
 	
 	func populateSpawnPoints (size : CGSize) {
-		self.spawnPointsLocations = [CGPoint(x: size.width/4, y: size.width/4),
-			CGPoint(x: size.width/2, y: size.height/2),
-			CGPoint(x: size.width*0.33, y: size.height*0.8),
-			CGPoint(x: size.width*0.6, y: size.height*0.8),
-			CGPoint(x: size.width*0.5, y: size.height*0.2),
-			CGPoint(x: size.width*0.5, y: size.height*0.7),
-			CGPoint(x: size.width*0.33, y: size.height*0.6),
-			CGPoint(x: size.width*0.2, y: size.height*0.8),
-			CGPoint(x: size.width*0.2, y: size.height*0.6)]
+		self.spawnPointsLocations = [
+			CGPoint(x: size.width*0.7, y: size.height*0.8),
+			CGPoint(x: -size.width*1.4, y: size.height*1.6), //ok
+			CGPoint(x: -size.width*0.6, y: size.height*0.9),  //ok
+			CGPoint(x: -size.width*1.1, y: -size.height*0.4), //ok
+			CGPoint(x: size.width*0.01, y: -size.height*0.08), //ok
+			CGPoint(x: size.width*1.2, y: size.height*1.4), //ok
+			CGPoint(x: -size.width*0.2, y: size.height*1.2),//ok
+			CGPoint(x: size.width*1.2, y: -size.height*0.01)] //ok
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -129,10 +129,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	- return: Spawn point
 	*/
 	func getRandomSpawnPoint () -> SpawnPoint {
-		var currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
+		var currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...7))
 		
 		while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
-			currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...8))
+			currentSpawnPoint = spawnPoints.objectAtIndex(Int.randomWithInt(0...7))
 		}
 		
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
@@ -146,11 +146,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         var currentSpawnPoint = spawnPoints.objectAtIndex(0)
         
 		for index in 0...playersCount {
-			var spawnPointIndex = Int.randomWithInt(0...8)
+			var spawnPointIndex = Int.randomWithInt(0...7)
             currentSpawnPoint = spawnPoints.objectAtIndex(spawnPointIndex)
 			
 			while (currentSpawnPoint as! SpawnPoint).isBeingUsed {
-				spawnPointIndex = Int.randomWithInt(0...8)
+				spawnPointIndex = Int.randomWithInt(0...7)
 				currentSpawnPoint = spawnPoints.objectAtIndex(spawnPointIndex)
 			}
 			
