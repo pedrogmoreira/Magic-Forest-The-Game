@@ -191,6 +191,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				self.player = player
                 self.player.zPosition = 1
 			} else {
+                player.createLifeBar()
 				player.physicsBody?.categoryBitMask = PhysicsCategory.OtherPlayer.rawValue
 			}
 			
@@ -453,7 +454,9 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+            
             self.canPlayerJump = true
+            
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
@@ -476,13 +479,13 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			var projectile: Projectile?
 			
 			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
-				projectile = (contact.bodyA.node as! Projectile)
+				projectile = (contact.bodyA.node as? Projectile)
 			} else {
-				projectile = (contact.bodyB.node as! Projectile)
+				projectile = (contact.bodyB.node as? Projectile)
 			}
 			
 			projectile?.canDealDamage = true
-			projectile?.removeFromParent()
+			projectile?.removeProjectile()
 		case PhysicsCategory.OtherPlayerProjectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
