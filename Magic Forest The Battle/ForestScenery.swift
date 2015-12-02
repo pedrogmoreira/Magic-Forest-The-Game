@@ -166,7 +166,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		// Setting global variable for the lower platform of each floor
 		BackgroundLayer.firstFloor = firstFloorLPlatfom
 		BackgroundLayer.secondFloor = secondFLoorLPlatform
-		BackgroundLayer.thirdFloor = thirdFloorCPlatform
+		BackgroundLayer.thirdFloor = thirdFloorRPlatform
 	}
 	
 	func createGroundDeathCollider() {

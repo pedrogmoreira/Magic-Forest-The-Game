@@ -276,7 +276,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}
 		} else if command == MFCSCommandType.GetDown && player?.currentLife > 0 {
-            self.canPlayerJump = false
 			self.player?.getDownOneFloor()
             self.networkingEngine?.sendGetDown()
 		}
