@@ -201,5 +201,10 @@ class Uhong: Player {
 	override func death() -> SKAction {
 		return self.loadAnimation("CogumeloHit", endIndex: 1, timePerFrame: 0.25)
 	}
+    
+    override func createProjectile() -> Projectile {
+        let projectile = Projectile()
+        return projectile
+    }
 
 }

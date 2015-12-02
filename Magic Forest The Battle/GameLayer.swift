@@ -256,7 +256,9 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack && player?.currentLife > 0 {
 			if self.player.isAttacking == false {
-				self.projectileToLayer((self.player?.createProjectile())!, player: self.player!)
+                if self.player.isKindOfClass(Salamang) || self.player.isKindOfClass(Neith) {
+                    self.projectileToLayer((self.player?.createProjectile())!, player: self.player!)
+                }
 				self.checkAttack(0)
 				networkingEngine?.sendAttack()
 				self.player?.isAttacking = true
