@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		570A7D291C0F2AC800F687BD /* DMTSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 570A7D281C0F2AC800F687BD /* DMTSoundEffect.m */; };
+		570A7D2C1C0F2AD900F687BD /* DMTSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 570A7D2B1C0F2AD900F687BD /* DMTSoundPlayer.m */; };
+		570A7D2E1C0F2C9D00F687BD /* MenuPrincipal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D2D1C0F2C9D00F687BD /* MenuPrincipal.mp3 */; };
+		570A7D301C0F2CF100F687BD /* Brave Solders.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */; };
+		570A7D321C0F2D8900F687BD /* UhongAttack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D311C0F2D8900F687BD /* UhongAttack.wav */; };
+		570A7D341C0F2E0100F687BD /* SalamangAttack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */; };
 		57190B411BF12BED00FFF38D /* 95.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B1F1BF12BED00FFF38D /* 95.png */; };
 		57190B421BF12BED00FFF38D /* 96.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B201BF12BED00FFF38D /* 96.png */; };
 		57190B431BF12BED00FFF38D /* 132.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B211BF12BED00FFF38D /* 132.png */; };
@@ -299,6 +305,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		570A7D261C0F2AC800F687BD /* Magic Forest The Battle-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Magic Forest The Battle-Bridging-Header.h"; sourceTree = "<group>"; };
+		570A7D271C0F2AC800F687BD /* DMTSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTSoundEffect.h; sourceTree = "<group>"; };
+		570A7D281C0F2AC800F687BD /* DMTSoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTSoundEffect.m; sourceTree = "<group>"; };
+		570A7D2A1C0F2AD900F687BD /* DMTSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTSoundPlayer.h; sourceTree = "<group>"; };
+		570A7D2B1C0F2AD900F687BD /* DMTSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTSoundPlayer.m; sourceTree = "<group>"; };
+		570A7D2D1C0F2C9D00F687BD /* MenuPrincipal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuPrincipal.mp3; sourceTree = "<group>"; };
+		570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Brave Solders.mp3"; sourceTree = "<group>"; };
+		570A7D311C0F2D8900F687BD /* UhongAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = UhongAttack.wav; sourceTree = "<group>"; };
+		570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SalamangAttack.mp3; sourceTree = "<group>"; };
 		57190B1F1BF12BED00FFF38D /* 95.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 95.png; sourceTree = "<group>"; };
 		57190B201BF12BED00FFF38D /* 96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 96.png; sourceTree = "<group>"; };
 		57190B211BF12BED00FFF38D /* 132.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 132.png; sourceTree = "<group>"; };
@@ -610,6 +625,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		570A7D251C0F2AB200F687BD /* OpenAL */ = {
+			isa = PBXGroup;
+			children = (
+				570A7D271C0F2AC800F687BD /* DMTSoundEffect.h */,
+				570A7D281C0F2AC800F687BD /* DMTSoundEffect.m */,
+				570A7D261C0F2AC800F687BD /* Magic Forest The Battle-Bridging-Header.h */,
+				570A7D2A1C0F2AD900F687BD /* DMTSoundPlayer.h */,
+				570A7D2B1C0F2AD900F687BD /* DMTSoundPlayer.m */,
+			);
+			name = OpenAL;
+			sourceTree = "<group>";
+		};
 		57190B671BF25B0900FFF38D /* Neith */ = {
 			isa = PBXGroup;
 			children = (
@@ -761,6 +788,10 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */,
+				570A7D311C0F2D8900F687BD /* UhongAttack.wav */,
+				570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */,
+				570A7D2D1C0F2C9D00F687BD /* MenuPrincipal.mp3 */,
 				EB7FE7FF1C0E4AE400FBBF3E /* Icons */,
 				EB61DD021C08D99A00C78518 /* loading.png */,
 				57FECA041C04E6BB00E1A86C /* Mago */,
@@ -1214,6 +1245,7 @@
 		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
 			isa = PBXGroup;
 			children = (
+				570A7D251C0F2AB200F687BD /* OpenAL */,
 				673A34F51C08CD2200494DD9 /* GameState */,
 				6784F4FE1C061D010026F1D7 /* Localizable.strings */,
 				670914E41BFE58480007F2FF /* Multiplayer */,
@@ -1365,6 +1397,7 @@
 		EB90574E1BD55CF200536AD1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Team Magic Forest";
 				TargetAttributes = {
@@ -1425,12 +1458,14 @@
 				57C08E571BFE3B67003E4574 /* UI_WINDOW (4).png in Resources */,
 				57190B431BF12BED00FFF38D /* 132.png in Resources */,
 				57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */,
+				570A7D341C0F2E0100F687BD /* SalamangAttack.mp3 in Resources */,
 				57C08E0F1BFA47B0003E4574 /* CogumeloAndando5.png in Resources */,
 				6784F4FC1C061D010026F1D7 /* Localizable.strings in Resources */,
 				EB7FE80D1C0E4AE400FBBF3E /* Icon-29@3x.png in Resources */,
 				57C08E231BFA47B0003E4574 /* CogumeloEspecial4.png in Resources */,
 				57FECA511C04E6BB00E1A86C /* SalamangHit1.png in Resources */,
 				57C08E151BFA47B0003E4574 /* CogumeloAtaque10.png in Resources */,
+				570A7D301C0F2CF100F687BD /* Brave Solders.mp3 in Resources */,
 				57190B4D1BF12BED00FFF38D /* NeithFalling1.png in Resources */,
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
@@ -1487,6 +1522,7 @@
 				57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */,
 				57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */,
 				57190BC41BF2689900FFF38D /* 102.png in Resources */,
+				570A7D2E1C0F2C9D00F687BD /* MenuPrincipal.mp3 in Resources */,
 				57FECA5B1C04E6BB00E1A86C /* SalamangParado9.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
 				EBD88B231BF02EE2000353A5 /* ForestSceneryPlatformRight.png in Resources */,
@@ -1579,6 +1615,7 @@
 				57190B541BF12BED00FFF38D /* NeithIdle2.png in Resources */,
 				57C08E361BFA47B0003E4574 /* CogumeloDescendo2.png in Resources */,
 				576965261BE2859F00CBB81D /* falling3.png in Resources */,
+				570A7D321C0F2D8900F687BD /* UhongAttack.wav in Resources */,
 				57C08E1A1BFA47B0003E4574 /* CogumeloAtaque6.png in Resources */,
 				576965221BE2859F00CBB81D /* Death2.png in Resources */,
 				57C08E5A1BFE3B67003E4574 /* UI_WINDOW (7).png in Resources */,
@@ -1674,6 +1711,7 @@
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
 				57C08DCF1BF4FCEC003E4574 /* MenuSelectPlayer.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
+				570A7D2C1C0F2AD900F687BD /* DMTSoundPlayer.m in Sources */,
 				EB90579E1BD56F9000536AD1 /* VulcanScenery.swift in Sources */,
 				57A558051BDEA7FC00A948DE /* Dinak.swift in Sources */,
 				EB9057601BD55CF200536AD1 /* GameViewController.swift in Sources */,
@@ -1691,6 +1729,7 @@
 				57A558091BDEA86000A948DE /* Neith.swift in Sources */,
 				57A558071BDEA85000A948DE /* Salamang.swift in Sources */,
 				EB61DCFF1C08CB4000C78518 /* GameOverLayer.swift in Sources */,
+				570A7D291C0F2AC800F687BD /* DMTSoundEffect.m in Sources */,
 				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
 				EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */,
 				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,
@@ -1893,11 +1932,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Magic Forest The Battle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tmf.magicforest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Magic Forest The Battle/Magic Forest The Battle-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1905,11 +1947,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Magic Forest The Battle/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = tmf.magicforest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Magic Forest The Battle/Magic Forest The Battle-Bridging-Header.h";
 			};
 			name = Release;
 		};
