@@ -14,7 +14,7 @@ class SpawnPoint: SKSpriteNode {
 	var isBeingUsed = false
 	
 	init (position: CGPoint) {
-		super.init(texture: SKTexture(), color: UIColor.redColor(), size: CGSizeMake(5, 5))
+		super.init(texture: SKTexture(), color: UIColor.clearColor(), size: CGSizeMake(5, 5))
 		
 		self.position = position
 		self.colorBlendFactor = 1
