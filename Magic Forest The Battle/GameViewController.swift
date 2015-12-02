@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 // TODO: SET IS ONLINE TO FALSE TO START A SINGLE GAME
-let IS_ONLINE = true
+let IS_ONLINE = false
 
 protocol ScenesDelegate {
 	func showMenu()
@@ -66,14 +66,19 @@ class GameViewController: UIViewController, ScenesDelegate {
 		
 		// Configure the view.
 		self.mainSKView = self.view as? SKView
-		self.mainSKView!.showsFPS = false
-		self.mainSKView!.showsNodeCount = false
+		self.mainSKView!.showsFPS = true
+		self.mainSKView!.showsNodeCount = true
 		self.mainSKView!.showsPhysics = false
 		
 		/* Sprite Kit applies additional optimizations to improve rendering performance */
 		self.mainSKView!.ignoresSiblingOrder = true
 		
 		self.mainSKView!.presentScene(self.menuScene!)
+		
+		//Musica
+		DMTSoundPlayer.sharedPlayer().playSongIndexed(0, loops: true)
+		//SFX
+		//DMTSoundPlayer.sharedPlayer().playSoundEffect(DMTSoundPlayer.sharedPlayer().sounds[0])
 	}
 	
 	func showMenuSelectPlayerScene(menuSelectPlayerScene: MenuSelectPlayerScene) {
@@ -86,6 +91,8 @@ class GameViewController: UIViewController, ScenesDelegate {
 		menuSelectPlayerScene.menu?.networkDelegate = self.menuScene?.mainMenu?.networkingEngine
 		
 		self.removeMenuScene()
+		//Musica
+		DMTSoundPlayer.sharedPlayer().playSongIndexed(1, loops: true)
 	}
 	
 	func showGameScene(gameScene: GameScene) {
@@ -102,6 +109,8 @@ class GameViewController: UIViewController, ScenesDelegate {
 		self.gameScene!.controlUnit = self.controlUnit
 
         self.view?.addSubview(controlUnit!)
+		//Musica
+		DMTSoundPlayer.sharedPlayer().playSongIndexed(2, loops: true)
 	}
 	
 	func deinitControllersSystem() {

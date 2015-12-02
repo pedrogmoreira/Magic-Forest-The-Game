@@ -42,7 +42,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         
         assert(false, "Dont initialize main menu with size. Use init with size and view instend")
     }
-    
+	
     /**
      Initializes the main menu layer
      - parameter size: A reference to the device's screen size
@@ -65,7 +65,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         GameKitHelper.sharedInstance.authenticateLocalPlayer()
 
     }
-    
+	
     func showAuthenticationViewController() {
         let gameKitHelper = GameKitHelper.sharedInstance
         let viewController = self.scene?.view?.window?.rootViewController

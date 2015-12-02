@@ -158,6 +158,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func attack () -> SKAction {
+		DMTSoundPlayer.sharedPlayer().playSoundEffect(DMTSoundPlayer.sharedPlayer().sounds[1])
 		return self.loadAnimation("CogumeloAtaque", endIndex: 10, timePerFrame: 0.03)
 	}
 	

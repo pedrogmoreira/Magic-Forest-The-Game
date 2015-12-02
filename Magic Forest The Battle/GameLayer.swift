@@ -322,7 +322,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		} else {
 			projectile.physicsBody?.applyImpulse(CGVectorMake(2000, 100))
 		}
-//		projectile.runAction(projectile.removeProjectile())
+		projectile.runAction(projectile.removeProjectile())
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
@@ -469,33 +469,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				}
 			}
 			self.isOnMeleeCollision = true
-		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBox.rawValue,
+		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
 			var projectile: Projectile?
 			
 			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
-				projectile = (contact.bodyA.node as! Projectile)
+				projectile = (contact.bodyA.node as? Projectile)
 			} else {
-				projectile = (contact.bodyB.node as! Projectile)
+				projectile = (contact.bodyB.node as? Projectile)
 			}
 			
 			projectile?.canDealDamage = true
-			projectile?.removeFromParent()
-		case PhysicsCategory.OtherPlayerProjectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-			var projectile: Projectile?
-			
-			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
-				projectile = (contact.bodyA.node as! Projectile)
-			} else {
-				projectile = (contact.bodyB.node as! Projectile)
-			}
-
-			projectile?.removeFromParent()
 		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			print("PROJECTILE DAMAGE")
 			var player: Player?

@@ -84,6 +84,7 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func hit () -> SKAction {
+		
 		return self.loadAnimation("SalamangHit", endIndex: 1, timePerFrame: 0.08)
 	}
 	
@@ -109,6 +110,7 @@ class Salamang: Player {
 	- returns: SKAction
 	*/
 	override func attack () -> SKAction {
+		DMTSoundPlayer.sharedPlayer().playSoundEffect(DMTSoundPlayer.sharedPlayer().sounds[0])
 		return self.loadAnimation("SalamangAtacando", endIndex: 10, timePerFrame: 0.03)
 	}
 	
