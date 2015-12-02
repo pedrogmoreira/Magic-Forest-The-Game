@@ -13,6 +13,9 @@
 		570A7D301C0F2CF100F687BD /* Brave Solders.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */; };
 		570A7D321C0F2D8900F687BD /* UhongAttack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D311C0F2D8900F687BD /* UhongAttack.wav */; };
 		570A7D341C0F2E0100F687BD /* SalamangAttack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */; };
+		570A7D381C0F603100F687BD /* Brave Solders.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D351C0F603100F687BD /* Brave Solders.wav */; };
+		570A7D391C0F603100F687BD /* MenuPrincipal.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D361C0F603100F687BD /* MenuPrincipal.wav */; };
+		570A7D3A1C0F603100F687BD /* SalamangAttack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D371C0F603100F687BD /* SalamangAttack.wav */; };
 		57190B411BF12BED00FFF38D /* 95.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B1F1BF12BED00FFF38D /* 95.png */; };
 		57190B421BF12BED00FFF38D /* 96.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B201BF12BED00FFF38D /* 96.png */; };
 		57190B431BF12BED00FFF38D /* 132.png in Resources */ = {isa = PBXBuildFile; fileRef = 57190B211BF12BED00FFF38D /* 132.png */; };
@@ -166,6 +169,7 @@
 		57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */; };
 		57C08E5C1BFE3B67003E4574 /* UI_WINDOW (9).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */; };
 		57C08E5E1BFE3B70003E4574 /* UI_BARMARKINGS.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */; };
+		57EBECE31C0F6A860078EF31 /* SelectPlayer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 57EBECE21C0F6A860078EF31 /* SelectPlayer.wav */; };
 		57FECA311C04E6BB00E1A86C /* SalamangAndando1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA051C04E6BB00E1A86C /* SalamangAndando1.png */; };
 		57FECA321C04E6BB00E1A86C /* SalamangAndando10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA061C04E6BB00E1A86C /* SalamangAndando10.png */; };
 		57FECA331C04E6BB00E1A86C /* SalamangAndando2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA071C04E6BB00E1A86C /* SalamangAndando2.png */; };
@@ -314,6 +318,9 @@
 		570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Brave Solders.mp3"; sourceTree = "<group>"; };
 		570A7D311C0F2D8900F687BD /* UhongAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = UhongAttack.wav; sourceTree = "<group>"; };
 		570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SalamangAttack.mp3; sourceTree = "<group>"; };
+		570A7D351C0F603100F687BD /* Brave Solders.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Brave Solders.wav"; sourceTree = "<group>"; };
+		570A7D361C0F603100F687BD /* MenuPrincipal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MenuPrincipal.wav; sourceTree = "<group>"; };
+		570A7D371C0F603100F687BD /* SalamangAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SalamangAttack.wav; sourceTree = "<group>"; };
 		57190B1F1BF12BED00FFF38D /* 95.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 95.png; sourceTree = "<group>"; };
 		57190B201BF12BED00FFF38D /* 96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 96.png; sourceTree = "<group>"; };
 		57190B211BF12BED00FFF38D /* 132.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 132.png; sourceTree = "<group>"; };
@@ -467,6 +474,7 @@
 		57C08E521BFE3B67003E4574 /* UI_WINDOW (8).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (8).png"; sourceTree = "<group>"; };
 		57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (9).png"; sourceTree = "<group>"; };
 		57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_BARMARKINGS.png; sourceTree = "<group>"; };
+		57EBECE21C0F6A860078EF31 /* SelectPlayer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SelectPlayer.wav; sourceTree = "<group>"; };
 		57FECA051C04E6BB00E1A86C /* SalamangAndando1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando1.png; sourceTree = "<group>"; };
 		57FECA061C04E6BB00E1A86C /* SalamangAndando10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando10.png; sourceTree = "<group>"; };
 		57FECA071C04E6BB00E1A86C /* SalamangAndando2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando2.png; sourceTree = "<group>"; };
@@ -788,6 +796,10 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57EBECE21C0F6A860078EF31 /* SelectPlayer.wav */,
+				570A7D351C0F603100F687BD /* Brave Solders.wav */,
+				570A7D361C0F603100F687BD /* MenuPrincipal.wav */,
+				570A7D371C0F603100F687BD /* SalamangAttack.wav */,
 				570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */,
 				570A7D311C0F2D8900F687BD /* UhongAttack.wav */,
 				570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */,
@@ -1455,6 +1467,7 @@
 				57C08E2B1BFA47B0003E4574 /* CogumeloParado10.png in Resources */,
 				57190B4C1BF12BED00FFF38D /* NeithDeath2.png in Resources */,
 				EB7FE7F81C0E15DB00FBBF3E /* Localizable.strings in Resources */,
+				570A7D381C0F603100F687BD /* Brave Solders.wav in Resources */,
 				57C08E571BFE3B67003E4574 /* UI_WINDOW (4).png in Resources */,
 				57190B431BF12BED00FFF38D /* 132.png in Resources */,
 				57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */,
@@ -1493,6 +1506,7 @@
 				57FECA571C04E6BB00E1A86C /* SalamangParado5.png in Resources */,
 				57C08E471BFD0C7A003E4574 /* UI_COLORBAR_GREEN.png in Resources */,
 				579B81191BE919F50025B374 /* SpecialAttack2.png in Resources */,
+				570A7D391C0F603100F687BD /* MenuPrincipal.wav in Resources */,
 				57FECA421C04E6BB00E1A86C /* SalamangAtacando7.png in Resources */,
 				57C08E1D1BFA47B0003E4574 /* CogumeloAtaque9.png in Resources */,
 				57C08E5E1BFE3B70003E4574 /* UI_BARMARKINGS.png in Resources */,
@@ -1543,6 +1557,7 @@
 				57190B551BF12BED00FFF38D /* NeithIdle3.png in Resources */,
 				EB0EACB51BE3E15600D93287 /* ForestScenery_5.png in Resources */,
 				576964FC1BE018B400CBB81D /* hit3.png in Resources */,
+				57EBECE31C0F6A860078EF31 /* SelectPlayer.wav in Resources */,
 				57C08E281BFA47B0003E4574 /* CogumeloEspecial9.png in Resources */,
 				EB1214B51BD95CB000D0552F /* JoystickKnob.png in Resources */,
 				57190BC51BF2689900FFF38D /* 106.png in Resources */,
@@ -1606,6 +1621,7 @@
 				576964E91BDFDCD000CBB81D /* corre3.png in Resources */,
 				EB7FE8141C0E4AE400FBBF3E /* Icon-76@2x.png in Resources */,
 				57C08DCB1BF4C56E003E4574 /* arrow.png in Resources */,
+				570A7D3A1C0F603100F687BD /* SalamangAttack.wav in Resources */,
 				57C08DD31BFA40BD003E4574 /* archercute.png in Resources */,
 				57C08E141BFA47B0003E4574 /* CogumeloAtaque1.png in Resources */,
 				576964E81BDFDCD000CBB81D /* corre2.png in Resources */,

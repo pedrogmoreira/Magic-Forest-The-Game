@@ -91,7 +91,7 @@ class MenuSelectPlayer: SKNode {
 		node.name = name
 		self.addChild(node)
 	}
-    
+	
 	private func addLabelNode(node: SKLabelNode, name: String, position: CGPoint) {
 		node.position = position
 		node.name = name

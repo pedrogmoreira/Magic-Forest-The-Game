@@ -6,7 +6,7 @@
 //  Copyright © 2015 André Rodrigues. All rights reserved.
 //
 
-#import "DMTSoundFileNames.h"
+
 #import "DMTSoundPlayer.h"
 #import <AVFoundation/AVFoundation.h>
 
@@ -83,13 +83,13 @@ static bool isFirstAccess = YES;
 	NSMutableArray *array;
 	array = [NSMutableArray array];
 	
-	[array addObject:[DMTSoundEffect soundEffectWithFileName:DMTSoundFileNameExample1 andFileType:DMTSoundFileNameExample1Type loops:false]];
+	[array addObject:[DMTSoundEffect soundEffectWithFileName:@"SalamangAttack" andFileType:@"wav" loops:false]];
 	
-	[array addObject:[DMTSoundEffect soundEffectWithFileName:DMTSoundFileNameExample2 andFileType:DMTSoundFileNameExample2Type loops:false]];
+	[array addObject:[DMTSoundEffect soundEffectWithFileName:@"UhongAttack"  andFileType:@"wav"  loops:false]];
 	
-	[array addObject:[DMTSoundEffect soundEffectWithFileName:DMTSoundFileNameExample3 andFileType:DMTSoundFileNameExample3Type loops:true]];
-	
-	[array addObject:[DMTSoundEffect soundEffectWithFileName:DMTSoundFileNameExample4 andFileType:DMTSoundFileNameExample4Type loops:false]];
+//	[array addObject:[DMTSoundEffect soundEffectWithFileName:@""  andFileType:@""  loops:false]];
+//	
+//	[array addObject:[DMTSoundEffect soundEffectWithFileName:@""  andFileType:@""  loops:false]];
 	
 	_sounds = [NSArray arrayWithArray:array];
 	
@@ -99,10 +99,12 @@ static bool isFirstAccess = YES;
 	NSBundle *bundle;
 	bundle = [NSBundle mainBundle];
 	
-	_songNames = @[DMTSoundFileNameSongExample1,
-				   DMTSoundFileNameSongExample2];
-	NSArray *extensions = @[DMTSoundFileNameSongExample1Type,
-							DMTSoundFileNameSongExample2Type];
+	_songNames = @[@"MenuPrincipal" ,
+				   @"SelectPlayer",
+				   @"Brave Solders" ];
+	NSArray *extensions = @[@"wav" ,
+							@"wav",
+							@"wav" ];
 	NSMutableArray *array;
 	AVAudioPlayer *player;
 	NSMutableDictionary *dict;
@@ -213,7 +215,13 @@ static bool isFirstAccess = YES;
 			[_currentSong setCurrentTime:0];
 			_currentSong = player;
 			_currentSong.volume = self.musicVolume;
+			if (loops) {
+				_currentSong.numberOfLoops = -1;
+			}  else {
+				_currentSong.numberOfLoops = 1;
+			}
 			[_currentSong play];
+			
 		}
 	}
 }
