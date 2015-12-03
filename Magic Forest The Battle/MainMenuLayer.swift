@@ -36,9 +36,12 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     private let playButton = SKSpriteNode(imageNamed: "PlacaJogar.png")
     //private let historyButton = SKSpriteNode(imageNamed: "storeButton.jpg")
     //private let statisticsButton = SKSpriteNode(imageNamed: "storeButton.jpg")
+	private let fundo = SKSpriteNode(imageNamed: "FundoMenu.png")
+	
     private let title = SKSpriteNode(imageNamed: "TituloJogo.png")
-	private let jogarLabel = SKLabelNode(text: "Jogar")
-	private let praticarLabel = SKLabelNode(text: "Praticar")
+	private let jogarLabel = SKLabelNode(fontNamed: "SnapHand")
+	private let praticarLabel = SKLabelNode(fontNamed: "SnapHand")
+	
 	
 	
     required init(size: CGSize) {
@@ -195,29 +198,51 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         // Adding gameCenter Button
         self.gameCenterButton.setScale(2.5)
         let halfGameCenterButtonWidth = self.gameCenterButton.size.width/2
-        let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
-        let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height - halfGameCenterButtonHeight - configurationButtonPosition.x - configurationButtonPosition.x)
+        //let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
+        let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height/1.4)
         addButton(self.gameCenterButton, name: "gameCenterButton", position: gameCenterButtonPosition)
         
         // Adding play Button
         self.playButton.setScale(2.5)
+		self.playButton.zPosition = 0
         let playButtonPosition = CGPoint(x: self.size!.width*0.25 , y: self.size!.height/5)
         addButton(self.playButton, name: "playButton", position: playButtonPosition)
 
-		self.jogarLabel.fontName = "Hiruko Black Alternate"
-		self.jogarLabel.position = CGPointMake(self.size!.width*0.5, self.size!.width*0.5)
+		self.jogarLabel.text = "JOGAR"
+		self.jogarLabel.position = CGPointMake(0, 0)
 		self.jogarLabel.fontColor = SKColor.whiteColor()
-		self.jogarLabel.fontSize = 48
+		self.jogarLabel.fontSize = 22
+		self.jogarLabel.zPosition = 1
+		self.jogarLabel.alpha = 0.8
 		self.playButton.addChild(jogarLabel)
+		
+		
         // Adding practice Button
         self.practiceButton.setScale(2.5)
+		self.practiceButton.zPosition = 0
         let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: self.size!.height/5)
         addButton(practiceButton, name: "practiceButton", position: practiceButtonPosition)
 		
+		self.praticarLabel.text = "PRATICAR"
+		self.praticarLabel.position = CGPointMake(0,0)
+		self.praticarLabel.fontColor = SKColor.whiteColor()
+		self.praticarLabel.fontSize = 16
+		self.praticarLabel.zPosition = 1
+		self.praticarLabel.alpha = 0.8
+		self.practiceButton.addChild(praticarLabel)
+		
+		
 		//Adding title
-		self.title.setScale(3)
-		self.title.position = CGPoint(x: (self.size?.width)!/2, y: (self.size?.height)!/1.3)
+		self.title.setScale(1.9)
+		self.title.zPosition = 1
+		self.title.position = CGPoint(x: (self.size?.width)!/2, y: (self.size?.height)!/1.4)
 		self.addChild(self.title)
+		
+		//Adding fundo
+		self.fundo.zPosition = -100
+		self.fundo.setScale(2)
+		self.fundo.position = CGPointMake((self.size?.width)!/2, (self.size?.height)!/2)
+		self.addChild(fundo)
 		
         // Add store Button
 //        self.storeButton.setScale(0.3)
