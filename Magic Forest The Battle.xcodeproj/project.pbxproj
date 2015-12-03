@@ -170,6 +170,7 @@
 		57C08E5C1BFE3B67003E4574 /* UI_WINDOW (9).png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */; };
 		57C08E5E1BFE3B70003E4574 /* UI_BARMARKINGS.png in Resources */ = {isa = PBXBuildFile; fileRef = 57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */; };
 		57EBECE31C0F6A860078EF31 /* SelectPlayer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 57EBECE21C0F6A860078EF31 /* SelectPlayer.wav */; };
+		57EBECE61C10A6930078EF31 /* HirukoBlackAlternate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 57EBECE51C10A66B0078EF31 /* HirukoBlackAlternate.ttf */; };
 		57FECA311C04E6BB00E1A86C /* SalamangAndando1.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA051C04E6BB00E1A86C /* SalamangAndando1.png */; };
 		57FECA321C04E6BB00E1A86C /* SalamangAndando10.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA061C04E6BB00E1A86C /* SalamangAndando10.png */; };
 		57FECA331C04E6BB00E1A86C /* SalamangAndando2.png in Resources */ = {isa = PBXBuildFile; fileRef = 57FECA071C04E6BB00E1A86C /* SalamangAndando2.png */; };
@@ -475,6 +476,7 @@
 		57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "UI_WINDOW (9).png"; sourceTree = "<group>"; };
 		57C08E5D1BFE3B70003E4574 /* UI_BARMARKINGS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = UI_BARMARKINGS.png; sourceTree = "<group>"; };
 		57EBECE21C0F6A860078EF31 /* SelectPlayer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SelectPlayer.wav; sourceTree = "<group>"; };
+		57EBECE51C10A66B0078EF31 /* HirukoBlackAlternate.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = HirukoBlackAlternate.ttf; sourceTree = "<group>"; };
 		57FECA051C04E6BB00E1A86C /* SalamangAndando1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando1.png; sourceTree = "<group>"; };
 		57FECA061C04E6BB00E1A86C /* SalamangAndando10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando10.png; sourceTree = "<group>"; };
 		57FECA071C04E6BB00E1A86C /* SalamangAndando2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SalamangAndando2.png; sourceTree = "<group>"; };
@@ -796,6 +798,7 @@
 		57A558031BDEA76E00A948DE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				57EBECE41C10A65B0078EF31 /* Font */,
 				57EBECE21C0F6A860078EF31 /* SelectPlayer.wav */,
 				570A7D351C0F603100F687BD /* Brave Solders.wav */,
 				570A7D361C0F603100F687BD /* MenuPrincipal.wav */,
@@ -903,6 +906,14 @@
 				57C08E531BFE3B67003E4574 /* UI_WINDOW (9).png */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		57EBECE41C10A65B0078EF31 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				57EBECE51C10A66B0078EF31 /* HirukoBlackAlternate.ttf */,
+			);
+			name = Font;
 			sourceTree = "<group>";
 		};
 		57FECA041C04E6BB00E1A86C /* Mago */ = {
@@ -1686,6 +1697,7 @@
 				EB0EACAD1BE3DCCC00D93287 /* AttackButton.png in Resources */,
 				EB0EACC31BE3E39F00D93287 /* storeButton.jpg in Resources */,
 				57FECA311C04E6BB00E1A86C /* SalamangAndando1.png in Resources */,
+				57EBECE61C10A6930078EF31 /* HirukoBlackAlternate.ttf in Resources */,
 				57FECA3B1C04E6BB00E1A86C /* SalamangAtacando1.png in Resources */,
 				57190B4E1BF12BED00FFF38D /* NeithFalling2.png in Resources */,
 				57190B561BF12BED00FFF38D /* NeithIdle4.png in Resources */,

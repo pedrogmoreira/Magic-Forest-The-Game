@@ -28,15 +28,19 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     var isSetting: Bool?
     var settingsMenu: SettingsLayer?
     
-    private let configurationButton = SKSpriteNode(imageNamed: "configurationButton.png")
-    private let gameCenterButton = SKSpriteNode(imageNamed: "gameCenterButton.png")
-    private let practiceButton = SKSpriteNode(imageNamed: "practiceButton.png")
-    private let storeButton = SKSpriteNode(imageNamed: "storeButton.jpg")
-    private let skinButton = SKSpriteNode(imageNamed: "storeButton.jpg")
-    private let playButton = SKSpriteNode(imageNamed: "PlayButton.png")
-    private let historyButton = SKSpriteNode(imageNamed: "storeButton.jpg")
-    private let statisticsButton = SKSpriteNode(imageNamed: "storeButton.jpg")
-    
+    private let configurationButton = SKSpriteNode(imageNamed: "SettingsButton.png")
+    private let gameCenterButton = SKSpriteNode(imageNamed: "GameCenterButton.png")
+    private let practiceButton = SKSpriteNode(imageNamed: "PlacaPraticar.png")
+    //private let storeButton = SKSpriteNode(imageNamed: "storeButton.jpg")
+    //private let skinButton = SKSpriteNode(imageNamed: "storeButton.jpg")
+    private let playButton = SKSpriteNode(imageNamed: "PlacaJogar.png")
+    //private let historyButton = SKSpriteNode(imageNamed: "storeButton.jpg")
+    //private let statisticsButton = SKSpriteNode(imageNamed: "storeButton.jpg")
+    private let title = SKSpriteNode(imageNamed: "TituloJogo.png")
+	private let jogarLabel = SKLabelNode(text: "Jogar")
+	private let praticarLabel = SKLabelNode(text: "Praticar")
+	
+	
     required init(size: CGSize) {
         super.init()
         
@@ -55,7 +59,6 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         
         self.size = size
         self.view = view
-        
         self.addButtonsToLayer()
         
         self.gameScene = GameScene(size: size)
@@ -178,33 +181,45 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     
     // Add all buttons to the layer
     private func addButtonsToLayer() {
-//        let padding = CGFloat(10)
-//        
-//        // Adding configuration Button
-//        self.configurationButton.setScale(0.2)
-//        let halfConfigurationButtonWidth = self.configurationButton.size.width/2
-//        let halfConfigurationButtonHeight = self.configurationButton.size.height/2
+        let padding = CGFloat(10)
+        
+        // Adding configuration Button
+        self.configurationButton.setScale(2.5)
+        let halfConfigurationButtonWidth = self.configurationButton.size.width/2
+        let halfConfigurationButtonHeight = self.configurationButton.size.height/2
 //        let configurationButtonPosition = CGPoint(x: self.size!.width - padding - halfConfigurationButtonWidth, y: self.size!.height - padding - halfConfigurationButtonHeight)
-////        addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
-//        
-//        // Adding gameCenter Button
-//        self.gameCenterButton.setScale(0.2)
-//        let halfGameCenterButtonWidth = self.gameCenterButton.size.width/2
-//        let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
-//        let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height - halfGameCenterButtonHeight - padding)
-//        addButton(self.gameCenterButton, name: "gameCenterButton", position: gameCenterButtonPosition)
-//        
+//        addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
+		
+		let configurationButtonPosition = CGPoint(x: 0 + halfConfigurationButtonWidth + padding, y: self.size!.height - padding - halfConfigurationButtonHeight)
+		addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
+        // Adding gameCenter Button
+        self.gameCenterButton.setScale(2.5)
+        let halfGameCenterButtonWidth = self.gameCenterButton.size.width/2
+        let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
+        let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height - halfGameCenterButtonHeight - configurationButtonPosition.x - configurationButtonPosition.x)
+        addButton(self.gameCenterButton, name: "gameCenterButton", position: gameCenterButtonPosition)
+        
         // Adding play Button
-        self.playButton.setScale(0.5)
-        let playButtonPosition = CGPoint(x: self.size!.width/2 , y: self.size!.height/2)
+        self.playButton.setScale(2.5)
+        let playButtonPosition = CGPoint(x: self.size!.width*0.25 , y: self.size!.height/5)
         addButton(self.playButton, name: "playButton", position: playButtonPosition)
-//
-//        // Adding practice Button
-//        self.practiceButton.setScale(0.5)
-//        let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: self.size!.height/4)
-//        addButton(practiceButton, name: "practiceButton", position: practiceButtonPosition)
-//        
-//        // Add store Button
+
+		self.jogarLabel.fontName = "Hiruko Black Alternate"
+		self.jogarLabel.position = CGPointMake(self.size!.width*0.5, self.size!.width*0.5)
+		self.jogarLabel.fontColor = SKColor.whiteColor()
+		self.jogarLabel.fontSize = 48
+		self.playButton.addChild(jogarLabel)
+        // Adding practice Button
+        self.practiceButton.setScale(2.5)
+        let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: self.size!.height/5)
+        addButton(practiceButton, name: "practiceButton", position: practiceButtonPosition)
+		
+		//Adding title
+		self.title.setScale(3)
+		self.title.position = CGPoint(x: (self.size?.width)!/2, y: (self.size?.height)!/1.3)
+		self.addChild(self.title)
+		
+        // Add store Button
 //        self.storeButton.setScale(0.3)
 //        let storeButtonPosition = CGPoint(x: self.size!.width/4 + self.size!.width, y: self.size!.height/4)
 //        addButton(self.storeButton, name: "storeButton", position: storeButtonPosition)
@@ -223,7 +238,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 //        self.statisticsButton.setScale(0.3)
 //        let statisticsButtonPosition = CGPoint(x: 3*self.size!.width/4 - self.size!.width, y: self.size!.height/4)
 //        addButton(self.statisticsButton, name: "statisticsButton", position: statisticsButtonPosition)
-//        
+//
     }
     
     private func selectPlayer () {
