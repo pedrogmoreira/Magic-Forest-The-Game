@@ -187,7 +187,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         let padding = CGFloat(10)
         
         // Adding configuration Button
-        self.configurationButton.setScale(2.5)
+        self.configurationButton.setScale(1.5)
         let halfConfigurationButtonWidth = self.configurationButton.size.width/2
         let halfConfigurationButtonHeight = self.configurationButton.size.height/2
 //        let configurationButtonPosition = CGPoint(x: self.size!.width - padding - halfConfigurationButtonWidth, y: self.size!.height - padding - halfConfigurationButtonHeight)
@@ -196,7 +196,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 		let configurationButtonPosition = CGPoint(x: 0 + halfConfigurationButtonWidth + padding, y: self.size!.height - padding - halfConfigurationButtonHeight)
 		addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
         // Adding gameCenter Button
-        self.gameCenterButton.setScale(2.5)
+        self.gameCenterButton.setScale(1.5)
         let halfGameCenterButtonWidth = self.gameCenterButton.size.width/2
         //let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
         let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height/1.4)
