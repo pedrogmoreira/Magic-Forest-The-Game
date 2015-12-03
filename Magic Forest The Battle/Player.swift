@@ -16,6 +16,8 @@ let BITMASK_THIRD_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.Wo
 
 class Player: SKSpriteNode, GameObject {
 	
+	var isMyPlayer: Bool = false
+	
 	// Player properties
 	var life: CGFloat?
 	var currentLife: CGFloat?
@@ -289,18 +291,34 @@ class Player: SKSpriteNode, GameObject {
 		
 		let playerFoot = self.position.y - (self.size.height / 2) * 0.8
 		
-		if playerFoot >= deadZoneThridFloor {
-			self.physicsBody?.collisionBitMask = BITMASK_THIRD_FLOOR
-			self.physicsBody?.contactTestBitMask = BITMASK_THIRD_FLOOR
-		} else if playerFoot >= deadZoneSecondFloor {
-			self.physicsBody?.collisionBitMask = BITMASK_SECOND_FLOOR
-			self.physicsBody?.contactTestBitMask = BITMASK_SECOND_FLOOR
-		} else if playerFoot >= deadZoneFirstFloor {
-			self.physicsBody?.collisionBitMask = BITMASK_FIRST_FLOOR
-			self.physicsBody?.contactTestBitMask = BITMASK_FIRST_FLOOR
+		if self.isMyPlayer {
+			if playerFoot >= deadZoneThridFloor {
+				self.physicsBody?.collisionBitMask = BITMASK_THIRD_FLOOR
+				self.physicsBody?.contactTestBitMask = BITMASK_THIRD_FLOOR
+			} else if playerFoot >= deadZoneSecondFloor {
+				self.physicsBody?.collisionBitMask = BITMASK_SECOND_FLOOR
+				self.physicsBody?.contactTestBitMask = BITMASK_SECOND_FLOOR
+			} else if playerFoot >= deadZoneFirstFloor {
+				self.physicsBody?.collisionBitMask = BITMASK_FIRST_FLOOR
+				self.physicsBody?.contactTestBitMask = BITMASK_FIRST_FLOOR
+			} else {
+				self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
+				self.physicsBody?.contactTestBitMask = BITMASK_BASE_FLOOR
+			}
 		} else {
-			self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
-			self.physicsBody?.contactTestBitMask = BITMASK_BASE_FLOOR
+			if playerFoot >= deadZoneThridFloor {
+				self.physicsBody?.collisionBitMask = BITMASK_THIRD_FLOOR
+				self.physicsBody?.contactTestBitMask = BITMASK_THIRD_FLOOR | PhysicsCategory.MeleeBox.rawValue
+			} else if playerFoot >= deadZoneSecondFloor {
+				self.physicsBody?.collisionBitMask = BITMASK_SECOND_FLOOR
+				self.physicsBody?.contactTestBitMask = BITMASK_SECOND_FLOOR | PhysicsCategory.MeleeBox.rawValue
+			} else if playerFoot >= deadZoneFirstFloor {
+				self.physicsBody?.collisionBitMask = BITMASK_FIRST_FLOOR
+				self.physicsBody?.contactTestBitMask = BITMASK_FIRST_FLOOR | PhysicsCategory.MeleeBox.rawValue
+			} else {
+				self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
+				self.physicsBody?.contactTestBitMask = BITMASK_BASE_FLOOR | PhysicsCategory.MeleeBox.rawValue
+			}
 		}
 	}
 	
