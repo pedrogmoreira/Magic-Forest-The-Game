@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 
 // TODO: SET IS ONLINE TO FALSE TO START A SINGLE GAME
-let IS_ONLINE = false
+let IS_ONLINE = true
 
 protocol ScenesDelegate {
 	func showMenu()
@@ -68,7 +68,7 @@ class GameViewController: UIViewController, ScenesDelegate {
 		self.mainSKView = self.view as? SKView
 		self.mainSKView!.showsFPS = false
 		self.mainSKView!.showsNodeCount = true
-		self.mainSKView!.showsPhysics = true
+		self.mainSKView!.showsPhysics = false
 		
 		/* Sprite Kit applies additional optimizations to improve rendering performance */
 		self.mainSKView!.ignoresSiblingOrder = true

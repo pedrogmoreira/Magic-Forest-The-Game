@@ -235,6 +235,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			for player in self.players {
 				player.update(currentTime)
 			}
+            hudLayer!.animateBar(self.player.currentLife!, bar: self.player.life!, node: hudLayer!.lifeFrontBar, scale: 0.24)
 		} else if IS_ONLINE == false && self.hasLoadedGame == true {
 			self.player.update(currentTime)
 		}
@@ -260,6 +261,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
                     self.projectileToLayer((self.player?.createProjectile())!, player: self.player!)
                 }
 				self.checkAttack(0)
+                
 				networkingEngine?.sendAttack()
 				self.player?.isAttacking = true
 			}
@@ -460,6 +462,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
+
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
 				
 				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
@@ -501,7 +504,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 
 			projectile?.removeFromParent()
 		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			print("PROJECTILE DAMAGE")
 			var player: Player?
 			var projectile: Projectile?
 			if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {

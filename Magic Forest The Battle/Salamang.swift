@@ -159,4 +159,14 @@ class Salamang: Player {
 		let jujuba = Jujuba(position: self.position)
 		return jujuba
 	}
+    
+    override func createLifeBar () {
+        self.lifeBar = SKSpriteNode(imageNamed: "UI_COLORBAR_RED")
+        self.lifeBar.setScale(0.01)
+        self.lifeBar.yScale = 0.02
+        self.lifeBar.position = CGPoint(x: -6 , y: -self.size.height*0.11)
+        self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
+        lifeBar.zPosition = 0
+        self.addChild(self.lifeBar)
+    }
 }

@@ -315,15 +315,12 @@ class Player: SKSpriteNode, GameObject {
     
 	func createLifeBar () {
 		self.lifeBar = SKSpriteNode(imageNamed: "UI_COLORBAR_RED")
-		//bar.yScale = 0.1
-        self.lifeBar.position = CGPoint(x:-((size.height))*0.15,y: -((size.height))*0.6)
-//        self.lifeBar.position = CGPoint.zero
 		self.lifeBar.setScale(0.01)
 		self.lifeBar.yScale = 0.02
-		self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
+        self.lifeBar.position = CGPoint(x: -5 , y: -self.size.height*0.1)
+        self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
 		lifeBar.zPosition = 0
 		self.addChild(self.lifeBar)
-		//self.lifeBar.xScale = 0.1
 	}
 //	let easeScale = SKAction.scaleXTo(((self.currentLife!*100/self.life!)/100), duration: 0.5)
 //	easeScale.timingMode = SKActionTimingMode.EaseInEaseOut
