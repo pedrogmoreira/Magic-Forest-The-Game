@@ -246,9 +246,9 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			
 			if self.normalAreaPlayersIndex.count > 0 {
 				for index in self.normalAreaPlayersIndex {
-					let enemie = self.players[index]
+					let enemy = self.players[index]
 					
-					let offset = self.player.position.x - enemie.position.x
+					let offset = self.player.position.x - enemy.position.x
 					
 					if offset < 0 && self.player.isLeft == true {
 						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(index)!)
@@ -315,32 +315,63 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			if self.normalAreaPlayersIndex.count > 0 && self.player.isRanged == false {
 				print("Deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 				
-				let player = self.players[self.normalAreaPlayersIndex.first!]
+				let enemyIndex = self.normalAreaPlayersIndex.first!
+				let enemy = self.players[enemyIndex]
 				let damage = self.player.attackDamage
 				
-				if player.currentLife! - damage! > 0 {
-					
-					player.currentLife = player.currentLife! - damage!
-					
-					
-				} else {
-					player.currentLife = 0
-					
-					if player.isDead == false {
-						self.score++
-						self.hudLayer?.updateScoreLabel(withScore: self.score)
-					}
-				}
+				self.dealDamageOnEnemy(enemy, enemyIndex: enemyIndex, WithDamage: damage!)
 				
-				self.networkingEngine?.sendLoseLife(player.currentLife!, playerIndex: self.normalAreaPlayersIndex.first!)
-				hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
 			}
 		} else if type == 1 { // if type is 0, the is special attack
-			if self.isOnSpecialCollision == true {
-				print("Deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+			if self.specialAreaPlayersIndex.count > 0 {
+				let damage = self.player.specialDamage
+				
+				if self.player.isKindOfClass(Uhong) {
+					print("im uhong")
+					
+					for index in self.specialAreaPlayersIndex {
+						let enemy = self.players[index]
+						print("Deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[index].player.alias)")
+						
+						self.dealDamageOnEnemy(enemy, enemyIndex: index, WithDamage: damage!)
+					}
+					
+				}
+				
+				if self.player.isKindOfClass(Salamang) {
+					print("im salamang")
+					
+					for index in self.specialAreaPlayersIndex {
+						let enemy = self.players[index]
+						print("Deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[index].player.alias)")
+						
+						self.dealDamageOnEnemy(enemy, enemyIndex: index, WithDamage: damage!)
+					}
+				}
 			}
 		}
 	}
+	
+	func dealDamageOnEnemy(enemy: Player, enemyIndex: Int, WithDamage damage: CGFloat) {
+		
+		if enemy.currentLife! - damage > 0 {
+			
+			enemy.currentLife = player.currentLife! - damage
+			
+			
+		} else {
+			enemy.currentLife = 0
+			
+			if enemy.isDead == false {
+				self.score++
+				self.hudLayer?.updateScoreLabel(withScore: self.score)
+			}
+		}
+		
+		self.networkingEngine?.sendLoseLife(enemy.currentLife!, playerIndex: enemyIndex)
+		hudLayer?.animateBar(enemy.currentLife!, bar: enemy.life!, node: enemy.lifeBar, scale: 0.01)
+	}
+	
 	func projectileToLayer (projectile : Projectile, player: Player) {
 		self.addChild(projectile)
 		

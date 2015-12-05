@@ -271,6 +271,9 @@
 		EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A01BD5709800536AD1 /* GameObject.swift */; };
 		EB9057A31BD5712500536AD1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A21BD5712500536AD1 /* Player.swift */; };
 		EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A41BD573B700536AD1 /* GameLayer.swift */; };
+		EBB3DA711C13314500F52982 /* Jububa.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB3DA6E1C13314500F52982 /* Jububa.png */; };
+		EBB3DA721C13314500F52982 /* Jububa2.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB3DA6F1C13314500F52982 /* Jububa2.png */; };
+		EBB3DA731C13314500F52982 /* Jububa3.png in Resources */ = {isa = PBXBuildFile; fileRef = EBB3DA701C13314500F52982 /* Jububa3.png */; };
 		EBD88B161BF02E43000353A5 /* Attack.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD88B101BF02E43000353A5 /* Attack.png */; };
 		EBD88B171BF02E43000353A5 /* Clock.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD88B111BF02E43000353A5 /* Clock.png */; };
 		EBD88B191BF02E43000353A5 /* Life.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD88B131BF02E43000353A5 /* Life.png */; };
@@ -574,6 +577,9 @@
 		EB9057A01BD5709800536AD1 /* GameObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		EB9057A21BD5712500536AD1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		EB9057A41BD573B700536AD1 /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
+		EBB3DA6E1C13314500F52982 /* Jububa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jububa.png; sourceTree = "<group>"; };
+		EBB3DA6F1C13314500F52982 /* Jububa2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jububa2.png; sourceTree = "<group>"; };
+		EBB3DA701C13314500F52982 /* Jububa3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jububa3.png; sourceTree = "<group>"; };
 		EBD88B101BF02E43000353A5 /* Attack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack.png; sourceTree = "<group>"; };
 		EBD88B111BF02E43000353A5 /* Clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clock.png; sourceTree = "<group>"; };
 		EBD88B131BF02E43000353A5 /* Life.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Life.png; sourceTree = "<group>"; };
@@ -741,6 +747,7 @@
 		57190BB01BF2689900FFF38D /* Projetil */ = {
 			isa = PBXGroup;
 			children = (
+				EBB3DA6D1C13314500F52982 /* Jujubas */,
 				57C08DCC1BF4CDEC003E4574 /* candy.png */,
 				57C08DCA1BF4C56E003E4574 /* arrow.png */,
 				57190BB11BF2689900FFF38D /* 102.png */,
@@ -1289,6 +1296,16 @@
 			name = Entity;
 			sourceTree = "<group>";
 		};
+		EBB3DA6D1C13314500F52982 /* Jujubas */ = {
+			isa = PBXGroup;
+			children = (
+				EBB3DA6E1C13314500F52982 /* Jububa.png */,
+				EBB3DA6F1C13314500F52982 /* Jububa2.png */,
+				EBB3DA701C13314500F52982 /* Jububa3.png */,
+			);
+			path = Jujubas;
+			sourceTree = "<group>";
+		};
 		EBD88B1D1BF02E73000353A5 /* HUD */ = {
 			isa = PBXGroup;
 			children = (
@@ -1487,6 +1504,7 @@
 				57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */,
 				57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */,
 				57190BC41BF2689900FFF38D /* 102.png in Resources */,
+				EBB3DA721C13314500F52982 /* Jububa2.png in Resources */,
 				57FECA5B1C04E6BB00E1A86C /* SalamangParado9.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
 				EBD88B231BF02EE2000353A5 /* ForestSceneryPlatformRight.png in Resources */,
@@ -1551,6 +1569,7 @@
 				57C08E331BFA47B0003E4574 /* CogumeloParado9.png in Resources */,
 				EB0EACB31BE3E0E900D93287 /* ForestScenery_4.png in Resources */,
 				57FECA361C04E6BB00E1A86C /* SalamangAndando5.png in Resources */,
+				EBB3DA711C13314500F52982 /* Jububa.png in Resources */,
 				57C08DCD1BF4CDEC003E4574 /* candy.png in Resources */,
 				EB9057631BD55CF200536AD1 /* Main.storyboard in Resources */,
 				57FECA331C04E6BB00E1A86C /* SalamangAndando2.png in Resources */,
@@ -1639,6 +1658,7 @@
 				57C08E211BFA47B0003E4574 /* CogumeloEspecial2.png in Resources */,
 				57190B5A1BF12BED00FFF38D /* NeithRun2.png in Resources */,
 				EB7FE7FB1C0E15EB00FBBF3E /* PlayButton.png in Resources */,
+				EBB3DA731C13314500F52982 /* Jububa3.png in Resources */,
 				57C08E581BFE3B67003E4574 /* UI_WINDOW (5).png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
