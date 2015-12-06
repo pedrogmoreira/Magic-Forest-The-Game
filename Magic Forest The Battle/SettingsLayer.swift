@@ -91,15 +91,15 @@ class SettingsLayer: SKNode, BasicLayer {
 		//musicLabel
 		musicLabel.text = "Música"
 		musicLabel.fontColor = SKColor.orangeColor()
-		musicLabel.fontSize = 24
-		musicLabel.position = CGPointMake(0, 0)
+		musicLabel.fontSize = 30
+		musicLabel.position = CGPointMake(-self.settingsMenu!.size.width*0.2, self.settingsMenu!.size.height*0.2)
 		musicLabel.zPosition = 3
 		self.settingsMenu?.addChild(musicLabel)
 		
 		//SFX
 		SFXLabel.text = "SFX"
 		SFXLabel.fontColor = SKColor.orangeColor()
-		SFXLabel.fontSize = 24
+		SFXLabel.fontSize = 30
 		SFXLabel.position = CGPointMake(-self.settingsMenu!.size.width*0.2, 0)
 		SFXLabel.zPosition = 3
 		self.settingsMenu?.addChild(SFXLabel)
@@ -107,7 +107,7 @@ class SettingsLayer: SKNode, BasicLayer {
 		//Controles
 		controlsLabel.text = "Controles"
 		controlsLabel.fontColor = SKColor.orangeColor()
-		controlsLabel.fontSize = 24
+		controlsLabel.fontSize = 30
 		controlsLabel.position = CGPointMake(-self.settingsMenu!.size.width*0.2, -self.settingsMenu!.size.height*0.2)
 		controlsLabel.zPosition = 3
 		self.settingsMenu?.addChild(controlsLabel)
