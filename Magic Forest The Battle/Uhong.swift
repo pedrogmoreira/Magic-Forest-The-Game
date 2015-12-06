@@ -95,6 +95,31 @@ class Uhong: Player {
 		
 		return physicsBody
 	}
+    
+    /**
+     Checks wheather the player can colide with floors
+     */
+    override func checkFloorLevel() {
+        let deadZoneFirstFloor = (BackgroundLayer.firstFloor?.position.y)! + ((BackgroundLayer.firstFloor?.size.height)! * 0.4) / 2
+        let deadZoneSecondFloor = (BackgroundLayer.secondFloor?.position.y)! + ((BackgroundLayer.secondFloor?.size.height)! * 0.4) / 2
+        let deadZoneThridFloor = (BackgroundLayer.thirdFloor?.position.y)! + ((BackgroundLayer.thirdFloor?.size.height)! * 0.4) / 2
+        
+        let playerFoot = self.position.y - (self.size.height / 2)
+        
+        if playerFoot >= deadZoneThridFloor {
+            self.physicsBody?.collisionBitMask = BITMASK_THIRD_FLOOR
+            self.physicsBody?.contactTestBitMask = BITMASK_THIRD_FLOOR
+        } else if playerFoot >= deadZoneSecondFloor {
+            self.physicsBody?.collisionBitMask = BITMASK_SECOND_FLOOR
+            self.physicsBody?.contactTestBitMask = BITMASK_SECOND_FLOOR
+        } else if playerFoot >= deadZoneFirstFloor {
+            self.physicsBody?.collisionBitMask = BITMASK_FIRST_FLOOR
+            self.physicsBody?.contactTestBitMask = BITMASK_FIRST_FLOOR
+        } else {
+            self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
+            self.physicsBody?.contactTestBitMask = BITMASK_BASE_FLOOR
+        }
+    }
 	
 	override func update(currentTime: CFTimeInterval) {
 		super.update(currentTime)
@@ -177,5 +202,19 @@ class Uhong: Player {
 	override func death() -> SKAction {
 		return self.loadAnimation("CogumeloHit", endIndex: 1, timePerFrame: 0.25)
 	}
+    
+    override func createProjectile() -> Projectile {
+        let projectile = Projectile()
+        return projectile
+    }
 
+    override func createLifeBar () {
+        self.lifeBar = SKSpriteNode(imageNamed: "UI_COLORBAR_RED")
+        self.lifeBar.setScale(0.01)
+        self.lifeBar.yScale = 0.02
+        self.lifeBar.position = CGPoint(x: -5.2 , y: -self.size.height*0.135)
+        self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
+        lifeBar.zPosition = 0
+        self.addChild(self.lifeBar)
+    }
 }

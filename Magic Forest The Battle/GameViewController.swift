@@ -66,7 +66,7 @@ class GameViewController: UIViewController, ScenesDelegate {
 		
 		// Configure the view.
 		self.mainSKView = self.view as? SKView
-		self.mainSKView!.showsFPS = true
+		self.mainSKView!.showsFPS = false
 		self.mainSKView!.showsNodeCount = true
 		self.mainSKView!.showsPhysics = false
 		

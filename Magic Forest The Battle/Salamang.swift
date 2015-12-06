@@ -42,8 +42,8 @@ class Salamang: Player {
 		let physicsBody = SKPhysicsBody(rectangleOfSize: size, center: CGPointMake(0, -size.height / 3))
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
-		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
-		physicsBody.contactTestBitMask = 0
+        physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
+        physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR | PhysicsCategory.DeathBox.rawValue
 		physicsBody.mass = 100
         physicsBody.restitution = 0
 		physicsBody.affectedByGravity = true
@@ -51,6 +51,33 @@ class Salamang: Player {
 		
 		return physicsBody
 	}
+    
+    /**
+     Checks wheather the player can colide with floors
+     */
+    override func checkFloorLevel() {
+        let deadZoneFirstFloor = (BackgroundLayer.firstFloor?.position.y)! + ((BackgroundLayer.firstFloor?.size.height)! * 0.4) / 2
+        let deadZoneSecondFloor = (BackgroundLayer.secondFloor?.position.y)! + ((BackgroundLayer.secondFloor?.size.height)! * 0.4) / 2
+        let deadZoneThridFloor = (BackgroundLayer.thirdFloor?.position.y)! + ((BackgroundLayer.thirdFloor?.size.height)! * 0.4) / 2
+        
+        let physicsHeigth = (self.size.height * 0.45) / 3
+        
+        let playerFoot = self.position.y - physicsHeigth
+        
+        if playerFoot >= deadZoneThridFloor {
+            self.physicsBody?.collisionBitMask = BITMASK_THIRD_FLOOR
+            self.physicsBody?.contactTestBitMask = BITMASK_THIRD_FLOOR
+        } else if playerFoot >= deadZoneSecondFloor {
+            self.physicsBody?.collisionBitMask = BITMASK_SECOND_FLOOR
+            self.physicsBody?.contactTestBitMask = BITMASK_SECOND_FLOOR
+        } else if playerFoot >= deadZoneFirstFloor {
+            self.physicsBody?.collisionBitMask = BITMASK_FIRST_FLOOR
+            self.physicsBody?.contactTestBitMask = BITMASK_FIRST_FLOOR
+        } else {
+            self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
+            self.physicsBody?.contactTestBitMask = BITMASK_BASE_FLOOR
+        }
+    }
 	
 	// MARK: Animations
 	
@@ -134,4 +161,14 @@ class Salamang: Player {
 		let jujuba = Jujuba(position: self.position)
 		return jujuba
 	}
+    
+    override func createLifeBar () {
+        self.lifeBar = SKSpriteNode(imageNamed: "UI_COLORBAR_RED")
+        self.lifeBar.setScale(0.01)
+        self.lifeBar.yScale = 0.02
+        self.lifeBar.position = CGPoint(x: -6 , y: -self.size.height*0.11)
+        self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
+        lifeBar.zPosition = 0
+        self.addChild(self.lifeBar)
+    }
 }

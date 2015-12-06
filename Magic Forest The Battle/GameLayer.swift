@@ -191,6 +191,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				self.player = player
                 self.player.zPosition = 1
 			} else {
+                player.createLifeBar()
 				player.physicsBody?.categoryBitMask = PhysicsCategory.OtherPlayer.rawValue
 			}
 			
@@ -234,6 +235,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			for player in self.players {
 				player.update(currentTime)
 			}
+            hudLayer!.animateBar(self.player.currentLife!, bar: self.player.life!, node: hudLayer!.lifeFrontBar, scale: 0.24)
 		} else if IS_ONLINE == false && self.hasLoadedGame == true {
 			self.player.update(currentTime)
 		}
@@ -255,8 +257,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack && player?.currentLife > 0 {
 			if self.player.isAttacking == false {
-				self.projectileToLayer((self.player?.createProjectile())!, player: self.player!)
+                if self.player.isKindOfClass(Salamang) || self.player.isKindOfClass(Neith) {
+                    self.projectileToLayer((self.player?.createProjectile())!, player: self.player!)
+                }
 				self.checkAttack(0)
+                
 				networkingEngine?.sendAttack()
 				self.player?.isAttacking = true
 			}
@@ -275,7 +280,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}
 		} else if command == MFCSCommandType.GetDown && player?.currentLife > 0 {
-            self.canPlayerJump = false
 			self.player?.getDownOneFloor()
             self.networkingEngine?.sendGetDown()
 		}
@@ -453,9 +457,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+            
             self.canPlayerJump = true
+            
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
+
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
 				
 				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
@@ -483,8 +490,21 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 			
 			projectile?.canDealDamage = true
+			projectile?.removeProjectile()
+		case PhysicsCategory.OtherPlayerProjectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+			var projectile: Projectile?
+			
+			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
+				projectile = (contact.bodyA.node as! Projectile)
+			} else {
+				projectile = (contact.bodyB.node as! Projectile)
+			}
+
+			projectile?.removeFromParent()
 		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			print("PROJECTILE DAMAGE")
 			var player: Player?
 			var projectile: Projectile?
 			if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
