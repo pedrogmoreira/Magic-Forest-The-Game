@@ -36,6 +36,7 @@ class SettingsLayer: SKNode, BasicLayer {
         self.createBackgound()
         self.createBackButton()
         self.createButtonsToChooseControlType()
+		self.createLabels()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -43,15 +44,24 @@ class SettingsLayer: SKNode, BasicLayer {
     }
     
     // Create the background of settings layer
+	
+	
     func createBackgound() {
         let settingsWidth = CGFloat(self.size.width/1.2)
         let settingsHeight = CGFloat(self.size.height/1.2)
         
         let settingsSize = CGSize(width: settingsWidth, height: settingsHeight)
-        
-        self.settingsMenu = SKSpriteNode(color: SKColor.brownColor(), size: settingsSize)
+        self.settingsMenu = SKSpriteNode(texture: SKTexture(imageNamed: "QuadroSettings"), size: settingsSize)
+        //self.settingsMenu = SKSpriteNode(color: SKColor.brownColor(), size: settingsSize)
         self.settingsMenu!.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
-        
+		self.settingsMenu?.zPosition = 1
+		
+		let fundo = SKSpriteNode(imageNamed: "FundoSettings")
+		fundo.position = CGPointMake(self.size.width/2, self.size.height/2)
+		fundo.setScale(3)
+		fundo.zPosition = 0
+		self.addChild(fundo)
+		
         self.addChild(settingsMenu!)
     }
     
@@ -62,16 +72,48 @@ class SettingsLayer: SKNode, BasicLayer {
         
         let backSize = CGSize(width: backWidth, height: backHeight)
         
-        let backButton = SKSpriteNode(color: SKColor.yellowColor(), size: backSize)
+        let backButton = SKSpriteNode(texture: SKTexture(imageNamed: "VoltarButton"), size: backSize)
         
-        let leftOfSettingsMenu = -self.settingsMenu!.size.width/2 + backButton.size.width/2;
-        let topOfSettingsMenu = self.settingsMenu!.size.height/2 - backButton.size.height/2;
+        let leftOfSettingsMenu = -self.settingsMenu!.size.width/1.8 + backButton.size.width/2;
+        let topOfSettingsMenu = self.settingsMenu!.size.height/1.8 - backButton.size.height/2;
         backButton.position = CGPoint(x: leftOfSettingsMenu, y: topOfSettingsMenu)
         backButton.name = "backButton"
         
         self.settingsMenu!.addChild(backButton)
     }
-    
+	
+	//Create labels
+	private func createLabels () {
+		let musicLabel = SKLabelNode(fontNamed: "SnapHand")
+		let SFXLabel = SKLabelNode(fontNamed: "SnapHand")
+		let controlsLabel = SKLabelNode(fontNamed: "SnapHand")
+		
+		//musicLabel
+		musicLabel.text = "Música"
+		musicLabel.fontColor = SKColor.orangeColor()
+		musicLabel.fontSize = 30
+		musicLabel.position = CGPointMake(-self.settingsMenu!.size.width*0.2, self.settingsMenu!.size.height*0.2)
+		musicLabel.zPosition = 3
+		self.settingsMenu?.addChild(musicLabel)
+		
+		//SFX
+		SFXLabel.text = "SFX"
+		SFXLabel.fontColor = SKColor.orangeColor()
+		SFXLabel.fontSize = 30
+		SFXLabel.position = CGPointMake(-self.settingsMenu!.size.width*0.2, 0)
+		SFXLabel.zPosition = 3
+		self.settingsMenu?.addChild(SFXLabel)
+		
+		//Controles
+		controlsLabel.text = "Controles"
+		controlsLabel.fontColor = SKColor.orangeColor()
+		controlsLabel.fontSize = 30
+		controlsLabel.position = CGPointMake(-self.settingsMenu!.size.width*0.2, -self.settingsMenu!.size.height*0.2)
+		controlsLabel.zPosition = 3
+		self.settingsMenu?.addChild(controlsLabel)
+		
+	}
+	
     //Create the button to choose the control type
     private func createButtonsToChooseControlType() {
         let buttonsWidth = CGFloat(self.settingsMenu!.size.width/10)
@@ -79,15 +121,18 @@ class SettingsLayer: SKNode, BasicLayer {
         
         let buttonsSize = CGSize(width: buttonsWidth, height: buttonsHeight)
         
-        self.swipeMode = SKSpriteNode(color: SKColor.greenColor(), size: buttonsSize)
-        self.buttonMode = SKSpriteNode(color: SKColor.redColor(), size: buttonsSize)
+        self.swipeMode = SKSpriteNode(texture: SKTexture(imageNamed: "BotoesSettings"), color: SKColor.greenColor(), size: buttonsSize)
+        self.buttonMode = SKSpriteNode(texture: SKTexture(imageNamed: "BotoesSettings"), color: SKColor.redColor(), size: buttonsSize)
         
         swipeMode!.name = "swipeMode"
         buttonMode!.name = "buttonMode"
         
-        swipeMode!.position = CGPoint(x: -100, y: -20)
-        buttonMode!.position = CGPoint(x: 100, y: -20)
-        
+		swipeMode!.position = CGPoint(x: buttonsWidth, y: -self.settingsMenu!.size.height*0.2)
+		buttonMode!.position = CGPoint(x: buttonsWidth + (swipeMode?.position.x)!, y: -self.settingsMenu!.size.height*0.2)
+		
+		swipeMode?.zPosition = 2
+		buttonMode?.zPosition = 2
+		
         self.settingsMenu!.addChild(swipeMode!)
         self.settingsMenu!.addChild(buttonMode!)
     }
