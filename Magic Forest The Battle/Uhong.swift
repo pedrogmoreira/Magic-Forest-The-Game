@@ -40,8 +40,11 @@ class Uhong: Player {
 		
 		self.setScale(4)
 		
-		self.generateMeleeBox()
-		self.generateSpecialBox()
+//		if self.isMyPlayer {
+//		
+//			self.generateMeleeBox()
+//	//		self.generateSpecialBox()
+//		}
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -49,7 +52,7 @@ class Uhong: Player {
 	}
 	
 	func generateMeleeBox() {
-		self.meleeBox = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: self.size.width / 16, height: self.size.height / 32))
+		self.meleeBox = SKSpriteNode(color: UIColor.redColor(), size: CGSize(width: self.size.width / 8, height: self.size.height / 32))
 		self.meleeBox!.alpha = 0
 		
 		let physicsBody = SKPhysicsBody(rectangleOfSize: self.meleeBox!.size)
@@ -59,6 +62,7 @@ class Uhong: Player {
 		physicsBody.mass = 0
 		physicsBody.affectedByGravity = false
 		physicsBody.allowsRotation = false
+		physicsBody.usesPreciseCollisionDetection = true
 		
 		self.meleeBox!.physicsBody = physicsBody
 		
@@ -124,8 +128,10 @@ class Uhong: Player {
 	override func update(currentTime: CFTimeInterval) {
 		super.update(currentTime)
 		
-		self.meleeBox!.position = CGPoint(x: self.meleeBox!.size.width, y: -self.meleeBox!.size.height * 2.5)
-		self.specialBox!.position = CGPoint.zero
+		if self.isMyPlayer == true {
+			self.meleeBox!.position = CGPoint(x: self.meleeBox!.size.width/4, y: -self.meleeBox!.size.height * 2.5)
+			self.specialBox!.position = CGPoint.zero
+		}
 	}
 	
 	// MARK: Animations
