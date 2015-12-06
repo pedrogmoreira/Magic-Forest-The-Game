@@ -105,7 +105,7 @@ class Uhong: Player {
 		
 		if self.isMyPlayer == true {
 			self.meleeBox!.position = CGPoint(x: self.meleeBox!.size.width/4, y: -self.meleeBox!.size.height * 2.5)
-	//		self.specialBox!.position = CGPoint.zero
+			self.specialBox!.position = CGPoint.zero
 		}
 	}
 	

@@ -193,6 +193,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 					print("is uhong")
 					
 					(player as! Uhong).generateMeleeBox()
+					(player as! Uhong).generateSpecialBox()
 				}
 				self.player = player
                 self.player.zPosition = 1
@@ -346,7 +347,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		
 		if enemy.currentLife! - damage > 0 {
 			
-			enemy.currentLife = player.currentLife! - damage
+			enemy.currentLife = enemy.currentLife! - damage
 			
 			
 		} else {
