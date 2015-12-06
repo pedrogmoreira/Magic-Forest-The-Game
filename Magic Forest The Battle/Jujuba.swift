@@ -10,10 +10,16 @@ import UIKit
 import SpriteKit
 class Jujuba: Projectile {
 	override init(position: CGPoint) {
-		let texture = SKTexture(imageNamed: "candy")
+		
+		let index = Int.random(min: 1, max: 3)
+		
+		let texture = SKTexture(imageNamed: "Jububa\(index)")
 		
 		super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
 		self.position = position
+		
+		self.runAction(SKAction.repeatActionForever(SKAction.rotateByAngle(CGFloat(M_PI / 4), duration: 0.5)))
+			
 		self.physicsBody = generatePhysicsBody()
 	}
 	

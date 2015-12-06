@@ -171,7 +171,7 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 	
 	func createGroundDeathCollider() {
 		
-		let size = CGSize(width: self.background!.size.width , height: self.background!.size.height * 0.02)
+		let size = CGSize(width: self.background!.size.width * 4, height: self.background!.size.height * 0.02)
 		
 		let groundDeathCollider = SKSpriteNode(color: UIColor.purpleColor(), size: size)
 		groundDeathCollider.position = CGPoint(x: 0,y: -self.background!.size.height / 2 + size.height / 2)

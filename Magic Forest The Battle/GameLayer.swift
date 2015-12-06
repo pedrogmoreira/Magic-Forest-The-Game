@@ -42,7 +42,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		self.hasLoadedGame = false
 		specialAreaPlayersIndex.removeAll()
         self.playerPosition = CGPointZero
-        
+        print("initial normal box collisions: \(self.normalAreaPlayersIndex.count)")
 		super.init()
         
 		self.populateSpawnPoints(size)
@@ -188,10 +188,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             let player = self.players[index]
             player.zPosition = -CGFloat(index)
 			if index == self.currentIndex {
+				player.isMyPlayer = true
+				if player.isKindOfClass(Uhong) {
+					print("is uhong")
+					
+					(player as! Uhong).generateMeleeBox()
+					(player as! Uhong).generateSpecialBox()
+				}
 				self.player = player
                 self.player.zPosition = 1
+				
 			} else {
 				player.physicsBody?.categoryBitMask = PhysicsCategory.OtherPlayer.rawValue
+//				player.physicsBody?.contactTestBitMask = (player.physicsBody?.contactTestBitMask)! | PhysicsCategory.MeleeBox.rawValue
+				player.physicsBody?.usesPreciseCollisionDetection = true
 			}
 			
 			self.addChild(players[index])
@@ -233,6 +243,26 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             networkingEngine?.sendMove(Float(player.position.x), dy: Float(player.position.y))
 			for player in self.players {
 				player.update(currentTime)
+			}
+			
+			if self.normalAreaPlayersIndex.count > 0 {
+				for index in self.normalAreaPlayersIndex {
+					let enemy = self.players[index]
+					
+					let offset = self.player.position.x - enemy.position.x
+					
+					if offset < 0 && self.player.isLeft == true {
+						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(index)!)
+					} else {
+						// Check Distance
+					}
+					
+					if offset >= 0 && self.player.isLeft == false {
+						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(index)!)
+					} else {
+						// Check Distance
+					}
+				}
 			}
 		} else if IS_ONLINE == false && self.hasLoadedGame == true {
 			self.player.update(currentTime)
@@ -283,35 +313,56 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func checkAttack(type: Int) {
 		if type == 0 { // if type is 0, the is normal attack
-			if self.isOnMeleeCollision == true && self.player.isRanged == false {
+			if self.normalAreaPlayersIndex.count > 0 && self.player.isRanged == false {
 				print("Deal damage with NORMAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
 				
-				let player = self.players[self.normalAreaPlayersIndex.first!]
+				let enemyIndex = self.normalAreaPlayersIndex.first!
+				let enemy = self.players[enemyIndex]
 				let damage = self.player.attackDamage
 				
-				if player.currentLife! - damage! > 0 {
+				self.dealDamageOnEnemy(enemy, enemyIndex: enemyIndex, WithDamage: damage!)
+				
+			}
+		} else if type == 1 { // if type is 1, the is special attack
+			if self.player.isKindOfClass(Uhong) == true {
+				if self.specialAreaPlayersIndex.count > 0 {
+					let damage = self.player.specialDamage
 					
-					player.currentLife = player.currentLife! - damage!
-					
-					
-				} else {
-					player.currentLife = 0
-					
-					if player.isDead == false {
-						self.score++
-						self.hudLayer?.updateScoreLabel(withScore: self.score)
+					for index in self.specialAreaPlayersIndex {
+						let enemy = self.players[index]
+						print("Deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[index].player.alias)")
+						
+						self.dealDamageOnEnemy(enemy, enemyIndex: index, WithDamage: damage!)
 					}
 				}
+			} else if self.player.isKindOfClass(Salamang) == true {
+				print("im salamang")
 				
-				self.networkingEngine?.sendLoseLife(player.currentLife!, playerIndex: self.normalAreaPlayersIndex.first!)
-				hudLayer?.animateBar(player.currentLife!, bar: player.life!, node: player.lifeBar, scale: 0.01)
-			}
-		} else if type == 1 { // if type is 0, the is special attack
-			if self.isOnSpecialCollision == true {
-				print("Deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[self.normalAreaPlayersIndex.first!].player.alias)")
+				self.projectileToLayerSpecial(self.player)
 			}
 		}
 	}
+	
+	func dealDamageOnEnemy(enemy: Player, enemyIndex: Int, WithDamage damage: CGFloat) {
+		
+		if enemy.currentLife! - damage > 0 {
+			
+			enemy.currentLife = enemy.currentLife! - damage
+			
+			
+		} else {
+			enemy.currentLife = 0
+			
+			if enemy.isDead == false {
+				self.score++
+				self.hudLayer?.updateScoreLabel(withScore: self.score)
+			}
+		}
+		
+		self.networkingEngine?.sendLoseLife(enemy.currentLife!, playerIndex: enemyIndex)
+		hudLayer?.animateBar(enemy.currentLife!, bar: enemy.life!, node: enemy.lifeBar, scale: 0.01)
+	}
+	
 	func projectileToLayer (projectile : Projectile, player: Player) {
 		self.addChild(projectile)
 		
@@ -323,6 +374,60 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			projectile.physicsBody?.applyImpulse(CGVectorMake(2000, 100))
 		}
 		projectile.runAction(projectile.removeProjectile())
+	}
+	
+	func projectileToLayerSpecial(player: Player) {
+		if player.isKindOfClass(Salamang) == true {
+			let projetile1 = player.createProjectile()
+			let projetile2 = player.createProjectile()
+			let projetile3 = player.createProjectile()
+			let projetile4 = player.createProjectile()
+			let projetile5 = player.createProjectile()
+			let projetile6 = player.createProjectile()
+			
+			projetile4.xScale = -projetile4.xScale
+			projetile5.xScale = -projetile5.xScale
+			projetile6.xScale = -projetile6.xScale
+			
+			self.addChild(projetile1)
+			self.addChild(projetile2)
+			self.addChild(projetile3)
+			self.addChild(projetile4)
+			self.addChild(projetile5)
+			self.addChild(projetile6)
+			
+			projetile1.physicsBody?.applyImpulse(CGVector(dx: 2000, dy: 100))
+			projetile2.physicsBody?.applyImpulse(CGVector(dx: 2000, dy: 1200))
+			projetile3.physicsBody?.applyImpulse(CGVector(dx: 2000, dy: -1000))
+			projetile4.physicsBody?.applyImpulse(CGVector(dx: -2000, dy: 100))
+			projetile5.physicsBody?.applyImpulse(CGVector(dx: -2000, dy: 1200))
+			projetile6.physicsBody?.applyImpulse(CGVector(dx: -2000, dy: -1000))
+			
+			projetile1.runAction(projetile1.removeProjectile())
+			projetile2.runAction(projetile2.removeProjectile())
+			projetile3.runAction(projetile3.removeProjectile())
+			projetile4.runAction(projetile4.removeProjectile())
+			projetile5.runAction(projetile5.removeProjectile())
+			projetile6.runAction(projetile6.removeProjectile())
+			
+			if player.isEqual(self.player) == false {
+				print("special do salamang inimigo")
+				
+				projetile1.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile1.canDealDamage = false
+				projetile2.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile2.canDealDamage = false
+				projetile3.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile3.canDealDamage = false
+				
+				projetile4.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile4.canDealDamage = false
+				projetile5.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile5.canDealDamage = false
+				projetile6.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile6.canDealDamage = false
+			}
+		}
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
@@ -414,6 +519,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Perform special attack with an specific player
     func performSpecialWithPlayer(player: Player) {
         player.isSpecialAttacking = true
+		
+		if player.isKindOfClass(Salamang) {
+			print("inimigo é salamang")
+			
+			self.projectileToLayerSpecial(player)
+		}
     }
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
@@ -453,10 +564,14 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
 		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-            self.canPlayerJump = true
+			
+			self.canPlayerJump = true
+			
 		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
+				
+				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
 				
 				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
 					self.normalAreaPlayersIndex.append(index)
@@ -464,11 +579,13 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			} else {
 				let index = self.players.indexOf(contact.bodyA.node as! Player)!
 				
+				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
+				
 				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
 					self.normalAreaPlayersIndex.append(index)
 				}
 			}
-			self.isOnMeleeCollision = true
+
 		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBox.rawValue,
 		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
 		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
@@ -483,6 +600,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 			
 			projectile?.canDealDamage = true
+
 		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			print("PROJECTILE DAMAGE")
 			var player: Player?
@@ -537,7 +655,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 					self.specialAreaPlayersIndex.append(index)
 				}
 			}
-			self.isOnSpecialCollision = true
 		case PhysicsCategory.Player.rawValue | PhysicsCategory.DeathBox.rawValue:
 			self.player.currentLife = 0
 			if IS_ONLINE == true {
@@ -552,6 +669,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func didEndContact(contact: SKPhysicsContact) {
 		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
+		print("\nEND\n")
+		
+		print(contact.bodyA.categoryBitMask)
+		print(contact.bodyB.categoryBitMask)
+		
 		switch(contactMask) {
             
         case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
@@ -564,18 +686,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             //                self.player.jumpCount = 0
             //            }
             self.canPlayerJump = false
-		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			if self.normalAreaPlayersIndex.count > 0 {
-				if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
-					self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
-				} else {
-					self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
-				}
-				
-				if self.normalAreaPlayersIndex.count == 0 {
-					self.isOnMeleeCollision = false
-				}
-			}
 		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if self.specialAreaPlayersIndex.count > 0 {
 				if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
@@ -584,15 +694,34 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
 				}
 				
-				if self.specialAreaPlayersIndex.count == 0 {
-					self.isOnSpecialCollision = false
-				}
 			}
 		default:
-			return
+			print("default")
+		}
+		
+		if contactMask == PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue {
+			if self.normalAreaPlayersIndex.count > 0 {
+				if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
+					let player = (contact.bodyA.node as! Player)
+					let playerIndex = self.players.indexOf(player)
+					
+					if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
+						print("removing player index: \(playerIndex)")
+						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
+					}
+				} else {
+					let player = (contact.bodyB.node as! Player)
+					let playerIndex = self.players.indexOf(player)
+					
+					if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
+						print("removing player index: \(playerIndex)")
+						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
+					}
+				}
+			}
 		}
 	}
-    
+	
     // Check if player is dead
     private func isPlayerDead(player: Player) {
         if player.currentLife <= 0 {
