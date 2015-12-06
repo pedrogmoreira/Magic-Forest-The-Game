@@ -322,24 +322,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				self.dealDamageOnEnemy(enemy, enemyIndex: enemyIndex, WithDamage: damage!)
 				
 			}
-		} else if type == 1 { // if type is 0, the is special attack
-			if self.specialAreaPlayersIndex.count > 0 {
-				let damage = self.player.specialDamage
-				
-				if self.player.isKindOfClass(Uhong) {
-					print("im uhong")
-					
-					for index in self.specialAreaPlayersIndex {
-						let enemy = self.players[index]
-						print("Deal damage with SPECIAL ATTACK on \(self.networkingEngine?.orderOfPlayers[index].player.alias)")
-						
-						self.dealDamageOnEnemy(enemy, enemyIndex: index, WithDamage: damage!)
-					}
-					
-				}
-				
-				if self.player.isKindOfClass(Salamang) {
-					print("im salamang")
+		} else if type == 1 { // if type is 1, the is special attack
+			if self.player.isKindOfClass(Uhong) == true {
+				if self.specialAreaPlayersIndex.count > 0 {
+					let damage = self.player.specialDamage
 					
 					for index in self.specialAreaPlayersIndex {
 						let enemy = self.players[index]
@@ -348,6 +334,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 						self.dealDamageOnEnemy(enemy, enemyIndex: index, WithDamage: damage!)
 					}
 				}
+			} else if self.player.isKindOfClass(Salamang) == true {
+				print("im salamang")
+				
+				self.projectileToLayerSpecial(self.player)
 			}
 		}
 	}
@@ -382,7 +372,61 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		} else {
 			projectile.physicsBody?.applyImpulse(CGVectorMake(2000, 100))
 		}
-//		projectile.runAction(projectile.removeProjectile())
+		projectile.runAction(projectile.removeProjectile())
+	}
+	
+	func projectileToLayerSpecial(player: Player) {
+		if player.isKindOfClass(Salamang) == true {
+			let projetile1 = player.createProjectile()
+			let projetile2 = player.createProjectile()
+			let projetile3 = player.createProjectile()
+			let projetile4 = player.createProjectile()
+			let projetile5 = player.createProjectile()
+			let projetile6 = player.createProjectile()
+			
+			projetile4.xScale = -projetile4.xScale
+			projetile5.xScale = -projetile5.xScale
+			projetile6.xScale = -projetile6.xScale
+			
+			self.addChild(projetile1)
+			self.addChild(projetile2)
+			self.addChild(projetile3)
+			self.addChild(projetile4)
+			self.addChild(projetile5)
+			self.addChild(projetile6)
+			
+			projetile1.physicsBody?.applyImpulse(CGVector(dx: 2000, dy: 100))
+			projetile2.physicsBody?.applyImpulse(CGVector(dx: 2000, dy: 1200))
+			projetile3.physicsBody?.applyImpulse(CGVector(dx: 2000, dy: -1000))
+			projetile4.physicsBody?.applyImpulse(CGVector(dx: -2000, dy: 100))
+			projetile5.physicsBody?.applyImpulse(CGVector(dx: -2000, dy: 1200))
+			projetile6.physicsBody?.applyImpulse(CGVector(dx: -2000, dy: -1000))
+			
+			projetile1.runAction(projetile1.removeProjectile())
+			projetile2.runAction(projetile2.removeProjectile())
+			projetile3.runAction(projetile3.removeProjectile())
+			projetile4.runAction(projetile4.removeProjectile())
+			projetile5.runAction(projetile5.removeProjectile())
+			projetile6.runAction(projetile6.removeProjectile())
+			
+			if player.isEqual(self.player) == false {
+				print("special do salamang inimigo")
+				
+				projetile1.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile1.canDealDamage = false
+				projetile2.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile2.canDealDamage = false
+				projetile3.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile3.canDealDamage = false
+				
+				projetile4.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile4.canDealDamage = false
+				projetile5.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile5.canDealDamage = false
+				projetile6.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+				projetile6.canDealDamage = false
+			}
+		}
 	}
 	
 	func analogUpdate(relativePosition position: CGPoint) {
@@ -474,6 +518,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     // Perform special attack with an specific player
     func performSpecialWithPlayer(player: Player) {
         player.isSpecialAttacking = true
+		
+		if player.isKindOfClass(Salamang) {
+			print("inimigo é salamang")
+			
+			self.projectileToLayerSpecial(player)
+		}
     }
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
@@ -539,33 +589,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			}
 			
 			print("Entry on melee box, count: \(self.normalAreaPlayersIndex.count)")
-		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-			var projectile: Projectile?
-			
-			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
-				projectile = (contact.bodyA.node as! Projectile)
-			} else {
-				projectile = (contact.bodyB.node as! Projectile)
-			}
-			
-			projectile?.canDealDamage = true
-			projectile?.removeFromParent()
-		case PhysicsCategory.OtherPlayerProjectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-			var projectile: Projectile?
-			
-			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
-				projectile = (contact.bodyA.node as! Projectile)
-			} else {
-				projectile = (contact.bodyB.node as! Projectile)
-			}
 
-			projectile?.removeFromParent()
 		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			print("PROJECTILE DAMAGE")
 			var player: Player?
