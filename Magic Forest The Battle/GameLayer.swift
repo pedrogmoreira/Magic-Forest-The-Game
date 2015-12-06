@@ -687,11 +687,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func didEndContact(contact: SKPhysicsContact) {
 		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
 		
-		print("\nEND\n")
-		
-		print(contact.bodyA.categoryBitMask)
-		print(contact.bodyB.categoryBitMask)
-		
 		switch(contactMask) {
             
         case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
@@ -713,30 +708,28 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				}
 				
 			}
+        case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+            if self.normalAreaPlayersIndex.count > 0 {
+                if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
+                    let player = (contact.bodyA.node as! Player)
+                    let playerIndex = self.players.indexOf(player)
+                    
+                    if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
+                        print("removing player index: \(playerIndex)")
+                        self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
+                    }
+                } else {
+                    let player = (contact.bodyB.node as! Player)
+                    let playerIndex = self.players.indexOf(player)
+                    
+                    if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
+                        print("removing player index: \(playerIndex)")
+                        self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
+                    }
+                }
+            }
 		default:
-			print("default")
-		}
-		
-		if contactMask == PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue {
-			if self.normalAreaPlayersIndex.count > 0 {
-				if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
-					let player = (contact.bodyA.node as! Player)
-					let playerIndex = self.players.indexOf(player)
-					
-					if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
-						print("removing player index: \(playerIndex)")
-						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
-					}
-				} else {
-					let player = (contact.bodyB.node as! Player)
-					let playerIndex = self.players.indexOf(player)
-					
-					if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
-						print("removing player index: \(playerIndex)")
-						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
-					}
-				}
-			}
+			print("Some contact ended with problem")
 		}
 	}
 	

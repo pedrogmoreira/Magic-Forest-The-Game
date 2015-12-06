@@ -197,7 +197,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			
 			delegate?.createPlayer(indexes, chosenCharacters: chosenCharacters)
 		} else if message.messageType == MessageType.ChosenCharacter { // MARK: Received Chosen Character
-			print("recebendo seleçao")
+			print("Recebendo seleçao")
 			if self.isPlayer1 == true {
 				let messageChosenCharacter = UnsafePointer<MessageCharacterChosen>(data.bytes).memory
 				

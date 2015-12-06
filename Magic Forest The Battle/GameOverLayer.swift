@@ -54,7 +54,6 @@ class GameOverLayer: SKNode, BasicLayer {
 	}
 	
 	func removeLoad() {
-		print("remove")
 		self.loadNode?.runAction(SKAction.fadeAlphaTo(0, duration: 0.2), completion: {
 			
 			self.loadNode?.removeFromParent()
