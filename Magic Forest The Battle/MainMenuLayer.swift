@@ -95,7 +95,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         let nodeName = nodeTouched.name
         
         if isSetting == false {
-            if nodeName == "playButton" {
+            if nodeName == "playButton" || nodeName == "lblJogar" {
                 if IS_ONLINE == true {
                     self.showMatchMakerViewController(presentingViewController: viewController!)
                 } else {
@@ -214,6 +214,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 		self.jogarLabel.fontSize = 22
 		self.jogarLabel.zPosition = 1
 		self.jogarLabel.alpha = 0.8
+        self.jogarLabel.name = "lblJogar"
 		self.playButton.addChild(jogarLabel)
 		
 		
