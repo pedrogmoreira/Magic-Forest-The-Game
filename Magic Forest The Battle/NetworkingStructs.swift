@@ -26,6 +26,7 @@ struct MessageMove {
     let message = MessageType.Move
 	let dx: Float
 	let dy: Float
+    let justRebirth: Bool
 }
 
 struct MessageFlip {

@@ -45,6 +45,7 @@ class Player: SKSpriteNode, GameObject {
 	var isLeft: Bool = false
 	var isDead: Bool = false
     var isRunning: Bool = false
+    var justRebirth: Bool = false
 	
 	let scale = CGFloat(0.07)
 	
@@ -66,6 +67,7 @@ class Player: SKSpriteNode, GameObject {
 		
 		self.position = position
 		self.resize(screenSize)
+        self.justRebirth = true
 //        self.setScale(0.4)
         
 //        self.createLifeBar()
@@ -344,7 +346,8 @@ class Player: SKSpriteNode, GameObject {
 			self.currentEnergy = self.energy
 			self.isDead = false
 			self.position = (self.parent as! GameLayer).getRandomSpawnPoint().position
-			
+            
+            self.justRebirth = true;
 		}
 		
 	}

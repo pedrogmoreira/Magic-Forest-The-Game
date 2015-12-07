@@ -235,9 +235,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     }
     
     // Move the player in all devices
-    func movePlayer(index: Int, dx: Float, dy: Float) {
+    func movePlayer(index: Int, dx: Float, dy: Float, justRebirth: Bool) {
         let player = gameLayer!.players[index] as Player
-        self.gameLayer?.movePlayer(player, dx: dx, dy: dy)
+        self.gameLayer?.movePlayer(player, dx: dx, dy: dy, justRebirth: justRebirth)
     }
     
     // Attack in all devices
