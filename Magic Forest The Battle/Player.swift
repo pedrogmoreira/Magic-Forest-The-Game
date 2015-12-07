@@ -332,10 +332,10 @@ class Player: SKSpriteNode, GameObject {
 	func createLifeBar () {
 		self.lifeBar = SKSpriteNode(imageNamed: "UI_COLORBAR_RED")
 		//bar.yScale = 0.1
-		self.lifeBar.position = CGPointMake(-((size.height))*0.15, -((size.height))*0.6)
+		self.lifeBar.position = CGPointMake(-((size.width))*0.15, -((size.height))*0.6)
 		self.lifeBar.setScale(0.01)
 		self.lifeBar.yScale = 0.02
-		self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
+//		self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
 		lifeBar.zPosition = 0
 		self.addChild(self.lifeBar)
 		//self.lifeBar.xScale = 0.1
