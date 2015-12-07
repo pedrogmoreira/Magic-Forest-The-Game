@@ -41,8 +41,8 @@ class MenuSelectPlayer: SKNode {
 	
 	//Selecionar personagens
 	private let neithSelection = SKSpriteNode(imageNamed: "NeithIdle1")
-	private let uhongSelection = SKSpriteNode(imageNamed: "CogumeloParado1")
-	private let salamangSelction = SKSpriteNode(imageNamed: "SalamangParado1")
+	private let uhongSelection = SKSpriteNode(imageNamed: "UhongSelectPlayer")
+	private let salamangSelction = SKSpriteNode(imageNamed: "SalamangSelectPlayer")
 	private let dinakSelection = SKSpriteNode(imageNamed: "idle1")
 	
 	//Imagem personagens
@@ -52,10 +52,10 @@ class MenuSelectPlayer: SKNode {
 	private let dinakImage = SKSpriteNode(imageNamed: "monkey")
 	
 	//Status dos personagens
-    private let neithLabelStatus = SKLabelNode(text: "Neith Status")
-	private let uhongLabelStatus = SKLabelNode(text: "Uhong Status")
-	private let salamangLabelStatus = SKLabelNode(text: "Salamang Status")
-	private let dinakLabelSatus = SKLabelNode(text: "Dinak Status")
+    private let neithLabelStatus = SKLabelNode(text: "Neith")
+	private let uhongLabelStatus = SKLabelNode(text: "UHONG")
+	private let salamangLabelStatus = SKLabelNode(text: "SALAMANG")
+	private let dinakLabelSatus = SKLabelNode(text: "Dinak")
 	
 	
 	//Sobre os personagens
@@ -64,6 +64,16 @@ class MenuSelectPlayer: SKNode {
 	private let salamangLabelAbout = SKLabelNode(text: "Eu sou um mago")
 	private let dinakLabelAbout = SKLabelNode(text: "Eu sou um macaco louco")
 
+	private let fundo = SKSpriteNode(imageNamed: "FundoSelectPlayer")
+	
+	//Status e caracteristicas
+	private let barraQualidade1 = SKSpriteNode(imageNamed: "BarraQualidade1")
+	private let barraQualidade2 = SKSpriteNode(imageNamed: "BarraQualidade2")
+	private let barraQualidade3 = SKSpriteNode(imageNamed: "BarraQualidade3")
+	private let barraQualidade4 = SKSpriteNode(imageNamed: "BarraQualidade4")
+	private let barraQualidade5 = SKSpriteNode(imageNamed: "BarraQualidade5")
+	
+	private let ataque = SKLabelNode(fontNamed: "SnapHand")
 	/**
 	Initializes the menu select Player
 	- parameter size: A reference to the device's screen size
@@ -78,7 +88,6 @@ class MenuSelectPlayer: SKNode {
 				
 		self.addToLayer()
 		self.timerSelecPlayer()
-		self.fontEdit()
 		self.imageEdit()
 	}
 
@@ -86,36 +95,26 @@ class MenuSelectPlayer: SKNode {
 	    fatalError("init(coder:) has not been implemented")
 	}
 	 // Add a button to the layer with a position
-	private func addNode(node: SKSpriteNode, name: String, position: CGPoint) {
+	private func addNode(node: SKSpriteNode, name: String, position: CGPoint, zPosition:CGFloat) {
 		node.position = position
 		node.name = name
+		node.zPosition = zPosition
 		self.addChild(node)
 	}
 	
-	private func addLabelNode(node: SKLabelNode, name: String, position: CGPoint) {
+	private func addLabelNode(node: SKLabelNode, name: String, position: CGPoint, zPosition:CGFloat, alpha: CGFloat, fontSize: CGFloat, fontName: String) {
 		node.position = position
 		node.name = name
+		node.zPosition = zPosition
+		node.alpha = alpha
+		node.fontSize = fontSize
+		node.fontName = fontName
 		self.addChild(node)
 	}
-    
-	func fontEdit () {
-		//Label Status
-		self.neithLabelStatus.fontSize = 12
-		self.uhongLabelStatus.fontSize = 12
-		self.dinakLabelSatus.fontSize = 12
-		self.salamangLabelStatus.fontSize = 12
-		
-		//About Status
-		self.neithLabelAbout.fontSize = 12
-		self.uhongLabelAbout.fontSize = 12
-		self.dinakLabelAbout.fontSize = 12
-		self.salamangLabelAbout.fontSize = 12
 	
-	}
-    
 	func imageEdit () {
-		self.uhongSelection.setScale(0.3)
-		self.salamangSelction.setScale(0.3)
+		self.uhongSelection.setScale(1.8)
+		self.salamangSelction.setScale(1.8)
 		
 		self.neithImage.setScale(0.2)
 		self.uhongImage.setScale(0.2)
@@ -124,18 +123,23 @@ class MenuSelectPlayer: SKNode {
 	}
     
 	private func addToLayer () {
+		
+		//Adding background
+		addNode(fundo, name: "fundo", position: CGPointMake(self.size!.width/2, self.size!.height/2), zPosition: -1)
+		fundo.setScale(1.8)
+		
 		// Adding play Button
 		self.playButton.setScale(0.5)
 		let playButtonPosition = CGPoint(x: self.size!.width/1.2 , y: self.size!.height/5)
-		addNode(self.playButton,name: "playbutton", position: playButtonPosition)
+		addNode(self.playButton,name: "playbutton", position: playButtonPosition, zPosition: 1)
 		//Add selecionar personagens
 		//Neith
 //		let neithSelectionPosition = CGPoint(x: self.size!.width/5, y: self.size!.height/2.5)
 //		addNode(neithSelection, name: "neithSelectionPosition", position: neithSelectionPosition)
-		let uhongSelectionPosition = CGPoint(x: self.size!.width/4, y: self.size!.height/1.5)
-		addNode(uhongSelection, name: "uhongSelectionPosition", position: uhongSelectionPosition)
-        let salamangSelctionPosition = CGPoint(x: 3*self.size!.width/4, y: self.size!.height/1.5)
-		addNode(salamangSelction, name: "salamangSelctionPosition", position: salamangSelctionPosition)
+		let uhongSelectionPosition = CGPoint(x: self.size!.width*0.15, y: self.size!.height/1.5)
+		addNode(uhongSelection, name: "uhongSelectionPosition", position: uhongSelectionPosition, zPosition:1)
+        let salamangSelctionPosition = CGPoint(x: self.size!.width*0.35, y: self.size!.height/1.5)
+		addNode(salamangSelction, name: "salamangSelctionPosition", position: salamangSelctionPosition, zPosition: 1)
 //		let dinakSelectionPosition = CGPoint(x: self.size!.width/2.5, y: self.size!.height/1.5)
 //		addNode(dinakSelection, name: "dinakSelectionPosition", position: dinakSelectionPosition)
 	}
@@ -172,6 +176,12 @@ class MenuSelectPlayer: SKNode {
         
         return selectedCharacterType
 	}
+	func statusCharacter (ataqueStatus: SKSpriteNode, vidaStatus: SKSpriteNode, velocidadeStatus: SKSpriteNode) {
+		//ataque.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+		self.addLabelNode(ataque, name: "Ataque", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.60), zPosition: 2, alpha: 0.8, fontSize: 22, fontName: "SnapHand")
+		ataqueStatus.setScale(2)
+		self.addNode(ataqueStatus, name: "AtaqueStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.50), zPosition: 1)
+	}
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		// Getting a node in the touch location
@@ -192,29 +202,31 @@ class MenuSelectPlayer: SKNode {
 		if nodeName == "neithSelectionPosition" {
 			playerSelected = "Neith"
 			self.selectPlayer(neithSelection,normalScale: 1, bigScale: 1.5)
-			self.addLabelNode(neithLabelStatus, name: "neithLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
-			self.addLabelNode(neithLabelAbout, name: "neithLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
-			self.addNode(neithImage, name: "neithImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
+			self.addLabelNode(neithLabelStatus, name: "neithLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5), zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
+			self.addLabelNode(neithLabelAbout, name: "neithLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8),zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
+			self.addNode(neithImage, name: "neithImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5), zPosition: 1)
 			print("Selected character: \(nodeName)")
 		} else if nodeName == "uhongSelectionPosition" {
 			playerSelected = "Uhong"
-			self.selectPlayer(uhongSelection, normalScale: 0.3, bigScale: 0.5)
-//			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
+			self.selectPlayer(uhongSelection, normalScale: 1.8, bigScale: 2.2)
+			//uhongLabelStatus.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.75), zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
+			self.statusCharacter(barraQualidade4, vidaStatus: barraQualidade4, velocidadeStatus: barraQualidade3)
 //			self.addLabelNode(uhongLabelAbout, name: "uhongLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 //			self.addNode(uhongImage, name: "uhongImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
             print("Selected character: \(nodeName)")
 		} else if nodeName == "salamangSelctionPosition" {
-			self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
+			self.selectPlayer(salamangSelction,normalScale: 1.8, bigScale: 2.2)
 			playerSelected = "Salamang"
-			self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
-//			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
+			//self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
+			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8), zPosition: 1,alpha:  0.8, fontSize: 26, fontName: "SnapHand")
 //			self.addLabelNode(salamangLabelStatus, name: "salamangLabelStatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
 //			self.addNode(salamangImage, name: "salamangImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
             print("Selected character: \(nodeName)")
 		} else if nodeName == "dinakSelectionPosition"{
-			self.addLabelNode(dinakLabelAbout, name: "dinakLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
-			self.addLabelNode(dinakLabelSatus, name: "dinakLabelSatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5))
-			self.addNode(dinakImage, name: "dinakImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
+			self.addLabelNode(dinakLabelAbout, name: "dinakLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8),zPosition: 1,alpha:  0.8, fontSize: 26, fontName: "SnapHand")
+			self.addLabelNode(dinakLabelSatus, name: "dinakLabelSatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5),zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
+			self.addNode(dinakImage, name: "dinakImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5), zPosition: 1)
 			print("Selected character: \(nodeName)")
 			playerSelected = "Dinak"
 			
@@ -239,10 +251,8 @@ class MenuSelectPlayer: SKNode {
     
 	func timerSelecPlayer () {
 		var timer = 30
-		let timerLabel = SKLabelNode(text: "")
-//		let clock = SKSpriteNode(imageNamed: "Clock")
-//		self.addNode(clock, name: "clock", position: CGPoint(x: (self.size?.width)!/2.3, y: (self.size?.height)!/1.16))
-		self.addLabelNode(timerLabel, name: "timerLabel", position: CGPoint(x: (self.size?.width)!/2, y: (self.size?.height)!/1.2))
+		let timerLabel = SKLabelNode(fontNamed: "SnapHand")
+		self.addLabelNode(timerLabel, name: "timerLabel", position: CGPoint(x: (self.size?.width)!*0.48, y: (self.size?.height)!/1.1), zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
 		let counter = SKAction.waitForDuration(1)
 		
 		let sequence = SKAction.sequence([counter, SKAction.runBlock({ () -> Void in
@@ -260,9 +270,9 @@ class MenuSelectPlayer: SKNode {
 		self.neithSelection.removeAllActions()
 		self.uhongSelection.removeAllActions()
 		self.salamangSelction.removeAllActions()
-		self.neithSelection.setScale(1)
-		self.uhongSelection.setScale(0.3)
-		self.salamangSelction.setScale(0.3)
+		self.neithSelection.setScale(2)
+		self.uhongSelection.setScale(1.8)
+		self.salamangSelction.setScale(1.8)
 	}
     
 	func removeAllStatus () {
@@ -270,6 +280,8 @@ class MenuSelectPlayer: SKNode {
 		self.salamangLabelStatus.removeFromParent()
 		self.uhongLabelStatus.removeFromParent()
 		self.dinakLabelSatus.removeFromParent()
+		self.ataque.removeFromParent()
+	
 	}
     
 	func removeAllImages () {
@@ -277,6 +289,11 @@ class MenuSelectPlayer: SKNode {
 		self.salamangImage.removeFromParent()
 		self.uhongImage.removeFromParent()
 		self.dinakImage.removeFromParent()
+		self.barraQualidade1.removeFromParent()
+		self.barraQualidade2.removeFromParent()
+		self.barraQualidade3.removeFromParent()
+		self.barraQualidade4.removeFromParent()
+		self.barraQualidade5.removeFromParent()
 		
 	}
 	
