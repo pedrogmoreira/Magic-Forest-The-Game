@@ -45,7 +45,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         print("initial normal box collisions: \(self.normalAreaPlayersIndex.count)")
 		super.init()
         
-		self.populateSpawnPoints(size)
+		self.populateSpawnPoints()
         self.size = size
 		self.networkingEngine = networkingEngine
 		self.chosenCharacters = chosenCharacters
@@ -73,7 +73,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     init(size: CGSize, playerSelected: String) {
 		self.hasLoadedGame = false
 		super.init()
-		self.populateSpawnPoints(size)
+		self.populateSpawnPoints()
 		self.size = size
 		self.spawnPointGenerator()
 //		self.lifeBar()
@@ -89,7 +89,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		self.hasLoadedGame = true
 	}
 	
-    func populateSpawnPoints (size : CGSize) {
+    func populateSpawnPoints () {
+        let size = CGSize(width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT)
         self.spawnPointsLocations = [
             CGPoint(x: size.width*0.7, y: size.height*0.8),
             CGPoint(x: -size.width*1.4, y: size.height*1.6), //ok
