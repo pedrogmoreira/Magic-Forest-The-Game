@@ -187,6 +187,8 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		for index in 0...players.count - 1 {
             let player = self.players[index]
             player.zPosition = -CGFloat(index)
+			player.currentIndex = index
+			
 			if index == self.currentIndex {
 				player.isMyPlayer = true
 				if player.isKindOfClass(Uhong) {
@@ -289,7 +291,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		if command == MFCSCommandType.Attack && player?.currentLife > 0 {
 			if self.player.isAttacking == false {
                 if self.player.isKindOfClass(Salamang) || self.player.isKindOfClass(Neith) {
-                    self.projectileToLayer((self.player?.createProjectile())!, player: self.player!)
+                    self.projectileToLayer(self.player!)
                 }
 				self.checkAttack(0)
                 
@@ -368,7 +370,9 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		hudLayer?.animateBar(enemy.currentLife!, bar: enemy.life!, node: enemy.lifeBar, scale: 0.01)
 	}
 	
-	func projectileToLayer (projectile : Projectile, player: Player) {
+	func projectileToLayer (player: Player) {
+		let projectile = player.createProjectile()
+		
 		self.addChild(projectile)
 		
 		if (player.isLeft == true){
@@ -378,6 +382,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		} else {
 			projectile.physicsBody?.applyImpulse(CGVectorMake(2000, 100))
 		}
+		
 		projectile.runAction(projectile.removeProjectile())
 	}
 	
@@ -418,18 +423,11 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			if player.isEqual(self.player) == false {
 				print("special do salamang inimigo")
 				
-				projetile1.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
 				projetile1.canDealDamage = false
-				projetile2.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
 				projetile2.canDealDamage = false
-				projetile3.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
 				projetile3.canDealDamage = false
-				
-				projetile4.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
 				projetile4.canDealDamage = false
-				projetile5.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
 				projetile5.canDealDamage = false
-				projetile6.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
 				projetile6.canDealDamage = false
 			}
 		}
@@ -513,7 +511,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		projectile.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
 		projectile.canDealDamage = false
 		
-		self.projectileToLayer(projectile, player: player)
+		self.projectileToLayer(player)
     }
     
     // Perform get down with an specific player
@@ -534,11 +532,13 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
 		player.currentLife = CGFloat(currentLife)
-        
-		if player.currentLife <= 0 {
-			if player.isDead == false {
-				self.score--
-				self.hudLayer?.updateScoreLabel(withScore: self.score)
+		
+		if player.isEqual(self.player!) {
+			if player.currentLife <= 0 {
+				if player.isDead == false {
+					self.score--
+					self.hudLayer?.updateScoreLabel(withScore: self.score)
+				}
 			}
 		}
 
@@ -591,73 +591,65 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 					self.normalAreaPlayersIndex.append(index)
 				}
 			}
-
-		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBox.rawValue,
-		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
-		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
-		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
-		PhysicsCategory.Projectile.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+			
+		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.Player.rawValue:
 			var projectile: Projectile?
 			
-			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
-				projectile = (contact.bodyA.node as? Projectile)
-			} else {
-				projectile = (contact.bodyB.node as? Projectile)
-			}
-			
-			projectile?.canDealDamage = true
-			projectile?.removeProjectile()
-		case PhysicsCategory.OtherPlayerProjectile.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-			var projectile: Projectile?
+			print("projetil me acertou")
 			
 			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
-				projectile = (contact.bodyA.node as! Projectile)
+				projectile = contact.bodyA.node as? Projectile
 			} else {
-				projectile = (contact.bodyB.node as! Projectile)
+				projectile = contact.bodyB.node as? Projectile
 			}
 
-			projectile?.removeFromParent()
+			projectile?.hitSound()
+			projectile?.runAction(SKAction.removeFromParent())
+			
 		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			var player: Player?
 			var projectile: Projectile?
+			
 			if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
 				player = (contact.bodyA.node as! Player)
-				
-				if let body = (contact.bodyB.node as? Arrow) {
-					projectile = body
-				} else {
-					projectile = (contact.bodyB.node as? Jujuba)
-				}
+				projectile = contact.bodyB.node as? Projectile
 			} else {
-				player = (contact.bodyB.node as! Player)
-				projectile = (contact.bodyA.node as! Projectile)
+				player = (contact.bodyB.node as? Player)
+				projectile = contact.bodyA.node as? Projectile
 			}
 			
-			if projectile?.canDealDamage == true {
-				projectile?.canDealDamage = false
+			print("projectile: \(projectile?.ownerIndex)")
+			print("self: \(self.currentIndex)")
+			
+			if (projectile?.ownerIndex)! != self.players.indexOf(player!)! {
 				projectile?.hitSound()
-				projectile?.removeFromParent()
-				
-				let damage = self.player.attackDamage
-				
-				if player!.currentLife! - damage! > 0 {
+				projectile?.runAction(SKAction.removeFromParent())
+
+				if projectile?.canDealDamage == true {
+					projectile?.canDealDamage = false
 					
-					player!.currentLife = player!.currentLife! - damage!
 					
-				} else {
-					player!.currentLife = 0
+					let damage = self.player.attackDamage
 					
-					if player!.isDead == false {
-						self.score++
-						self.hudLayer?.updateScoreLabel(withScore: self.score)
+					if player!.currentLife! - damage! > 0 {
+						
+						player!.currentLife = player!.currentLife! - damage!
+						
+						self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
+						
+					} else {
+						player!.currentLife = 0
+						
+						if player!.isDead == false {
+							self.score++
+							self.hudLayer?.updateScoreLabel(withScore: self.score)
+							self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
+						}
 					}
-				}
 				
-				self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
-				hudLayer?.animateBar(player!.currentLife!, bar: player!.life!, node: player!.lifeBar, scale: 0.01)
+					
+					hudLayer?.animateBar(player!.currentLife!, bar: player!.life!, node: player!.lifeBar, scale: 0.01)
+				}
 			}
 		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
@@ -674,10 +666,13 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				}
 			}
 		case PhysicsCategory.Player.rawValue | PhysicsCategory.DeathBox.rawValue:
-			self.player.currentLife = 0
-			if IS_ONLINE == true {
-				self.score--
-				self.hudLayer?.updateScoreLabel(withScore: self.score)
+			if self.player.isDead == false {
+				self.player.currentLife = 0
+				if IS_ONLINE == true {
+					self.score--
+					self.hudLayer?.updateScoreLabel(withScore: self.score)
+					self.networkingEngine?.sendLoseLife(self.player!.currentLife!, playerIndex: self.players.indexOf(self.player!)!)
+				}
 			}
 		default:
 			return
@@ -686,11 +681,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	
 	func didEndContact(contact: SKPhysicsContact) {
 		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-		
-		print("\nEND\n")
-		
-		print(contact.bodyA.categoryBitMask)
-		print(contact.bodyB.categoryBitMask)
 		
 		switch(contactMask) {
             
@@ -704,20 +694,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
             //                self.player.jumpCount = 0
             //            }
             self.canPlayerJump = false
-		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			if self.specialAreaPlayersIndex.count > 0 {
-				if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
-					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
-				} else {
-					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
-				}
-				
-			}
-		default:
-			print("default")
-		}
-		
-		if contactMask == PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue {
+		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
 			if self.normalAreaPlayersIndex.count > 0 {
 				if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
 					let player = (contact.bodyA.node as! Player)
@@ -737,6 +714,17 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 					}
 				}
 			}
+		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+			if self.specialAreaPlayersIndex.count > 0 {
+				if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
+					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
+				} else {
+					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
+				}
+				
+			}
+		default:
+			return
 		}
 	}
 	

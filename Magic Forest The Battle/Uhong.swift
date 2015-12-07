@@ -91,7 +91,7 @@ class Uhong: Player {
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
 		physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
-		physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR | PhysicsCategory.DeathBox.rawValue
+		physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR | PhysicsCategory.DeathBox.rawValue | PhysicsCategory.Projectile.rawValue
 		physicsBody.mass = 100
         physicsBody.restitution = 0
 		physicsBody.affectedByGravity = true
@@ -108,7 +108,7 @@ class Uhong: Player {
 		let deadZoneSecondFloor = (BackgroundLayer.secondFloor?.position.y)! + ((BackgroundLayer.secondFloor?.size.height)! * 0.4) / 2
 		let deadZoneThridFloor = (BackgroundLayer.thirdFloor?.position.y)! + ((BackgroundLayer.thirdFloor?.size.height)! * 0.4) / 2
 		
-		let playerFoot = self.position.y - (self.size.height / 2)
+		let playerFoot = self.position.y - (self.size.height / 2) * 0.8
 		
 		if self.isMyPlayer {
 			if playerFoot >= deadZoneThridFloor {

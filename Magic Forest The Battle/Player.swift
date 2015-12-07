@@ -17,6 +17,7 @@ let BITMASK_THIRD_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.Wo
 class Player: SKSpriteNode, GameObject {
 	
 	var isMyPlayer: Bool = false
+	var currentIndex: Int = 0
 	
 	// Player properties
 	var life: CGFloat?

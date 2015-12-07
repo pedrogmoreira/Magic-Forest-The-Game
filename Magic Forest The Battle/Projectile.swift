@@ -14,6 +14,7 @@ class Projectile: SKSpriteNode {
 	var damage : Double = 0.0
 	var speedProje : Double = 0.0
 	var canDealDamage: Bool = true
+	var ownerIndex: Int = 0
 	
 	init(position : CGPoint) {
 		let projectileTexture = SKTexture(imageNamed: "95")
@@ -34,5 +35,4 @@ class Projectile: SKSpriteNode {
 	func hitSound () {
 		
 	}
-	
 }

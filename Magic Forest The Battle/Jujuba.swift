@@ -19,24 +19,31 @@ class Jujuba: Projectile {
 		self.position = position
 		
 		self.runAction(SKAction.repeatActionForever(SKAction.rotateByAngle(CGFloat(M_PI / 4), duration: 0.5)))
-			
-		self.physicsBody = generatePhysicsBody()
 	}
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func generatePhysicsBody() -> SKPhysicsBody {
+	func generatePhysicsBody(isMainPlayer: Bool, ownerIndex: Int) -> SKPhysicsBody {
+		
 		let physicsBody = SKPhysicsBody(texture: self.texture!, size: self.size)
 		
-		physicsBody.categoryBitMask = PhysicsCategory.Projectile.rawValue
-		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue | BITMASK_THIRD_FLOOR
-		physicsBody.collisionBitMask = PhysicsCategory.WorldBaseFloorPlatform.rawValue | BITMASK_THIRD_FLOOR 
-		physicsBody.mass = 1
-		physicsBody.affectedByGravity = true
-		physicsBody.allowsRotation = true
-		
+		if isMainPlayer == true {
+			physicsBody.categoryBitMask = PhysicsCategory.Projectile.rawValue
+			physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue | BITMASK_THIRD_FLOOR
+			physicsBody.collisionBitMask = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
+			physicsBody.mass = 1
+			physicsBody.affectedByGravity = true
+			physicsBody.allowsRotation = true
+		} else {
+			physicsBody.categoryBitMask = PhysicsCategory.Projectile.rawValue
+			physicsBody.contactTestBitMask = PhysicsCategory.Player.rawValue | PhysicsCategory.OtherPlayer.rawValue
+			physicsBody.collisionBitMask = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
+			physicsBody.mass = 1
+			physicsBody.affectedByGravity = true
+			physicsBody.allowsRotation = true
+		}
 		return physicsBody
 	}
 }
