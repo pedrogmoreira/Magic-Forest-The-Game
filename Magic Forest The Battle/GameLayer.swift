@@ -317,7 +317,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, node: (hudLayer?.energyFrontBar)!, scale:  0.24)
             self.networkingEngine?.sendSpecialAttack()
 		} else if command == MFCSCommandType.Jump && self.canPlayerJump == true {
-			if self.player.isJumping == false {
+			if self.player.isJumping == false && !self.player.isDead {
 				self.player.isJumping = true
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}
