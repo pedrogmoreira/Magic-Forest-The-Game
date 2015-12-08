@@ -32,59 +32,59 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.screenSize = CGSize(width: size.width, height: size.height)
 		
 		self.background = SKSpriteNode(imageNamed: "ForestScenery_1")
-//		self.background2 = SKSpriteNode(imageNamed: "ForestScenery_2")
-//		self.background3 = SKSpriteNode(imageNamed: "ForestScenery_3")
-//		self.background4 = SKSpriteNode(imageNamed: "ForestScenery_4")
-//		self.lastBackground = SKSpriteNode(imageNamed: "ForestScenery_5")
-//		
+		self.background2 = SKSpriteNode(imageNamed: "ForestScenery_2")
+		self.background3 = SKSpriteNode(imageNamed: "ForestScenery_3")
+		self.background4 = SKSpriteNode(imageNamed: "ForestScenery_4")
+		self.lastBackground = SKSpriteNode(imageNamed: "ForestScenery_5")
+//
 //		// Background 1 Resize
-		let xRatio =  DEFAULT_WIDTH / (self.background?.size.width)!
-		let yRatio =  DEFAULT_HEIGHT / (self.background?.size.height)!
-		let scale = CGFloat(4.2)
+		var xRatio =  DEFAULT_WIDTH / (self.background?.size.width)!
+		var yRatio =  DEFAULT_HEIGHT / (self.background?.size.height)!
+		var scale = CGFloat(4.2)
 		
 		self.background?.size = CGSize(width: (self.background?.size.width)! * xRatio * scale, height: (self.background?.size.height)! * yRatio * scale)
 		
 //		// Background 2 Resize
-//		xRatio =  DEFAULT_WIDTH / (self.background2?.size.width)!
-//		yRatio =  DEFAULT_HEIGHT / (self.background2?.size.height)!
-//		scale = CGFloat(4.3)
-//		
-//		self.background2?.size = CGSize(width: (self.background2?.size.width)! * xRatio * scale, height: (self.background2?.size.height)! * yRatio * scale)
-//		
-//		// Background 3 Resize
-//		xRatio =  DEFAULT_WIDTH / (self.background3?.size.width)!
-//		yRatio =  DEFAULT_HEIGHT / (self.background3?.size.height)!
-//		scale = CGFloat(4.4)
-//		
-//		self.background3?.size = CGSize(width: (self.background3?.size.width)! * xRatio * scale, height: (self.background3?.size.height)! * yRatio * scale)
-//		
-//		// Background 4 Resize
-//		xRatio =  DEFAULT_WIDTH / (self.background4?.size.width)!
-//		yRatio =  DEFAULT_HEIGHT / (self.background4?.size.height)!
-//		scale = CGFloat(4.5)
-//		
-//		self.background4?.size = CGSize(width: (self.background4?.size.width)! * xRatio * scale, height: (self.background4?.size.height)! * yRatio * scale)
-//		
-//		// Background 5 Resize
-//		xRatio =  DEFAULT_WIDTH / (self.lastBackground?.size.width)!
-//		yRatio =  DEFAULT_HEIGHT / (self.lastBackground?.size.height)!
-//		scale = CGFloat(4.6)
-//		
-//		self.lastBackground?.size = CGSize(width: (self.lastBackground?.size.width)! * xRatio * scale, height: (self.lastBackground?.size.height)! * yRatio * scale)
-//		
-//		self.background?.zPosition = -90
-//		self.background2?.zPosition = -80
-//		self.background3?.zPosition = -70
-//		self.background4?.zPosition = -60
-//		self.lastBackground?.zPosition = -50
-//		
-//		self.addChild(self.background!)
-//		self.addChild(self.background2!)
-//		self.addChild(self.background3!)
-//		self.addChild(self.background4!)
-//		self.addChild(self.lastBackground!)
+		xRatio =  DEFAULT_WIDTH / (self.background2?.size.width)!
+		yRatio =  DEFAULT_HEIGHT / (self.background2?.size.height)!
+		scale = CGFloat(4.3)
+//
+		self.background2?.size = CGSize(width: (self.background2?.size.width)! * xRatio * scale, height: (self.background2?.size.height)! * yRatio * scale)
+//
+		// Background 3 Resize
+		xRatio =  DEFAULT_WIDTH / (self.background3?.size.width)!
+		yRatio =  DEFAULT_HEIGHT / (self.background3?.size.height)!
+		scale = CGFloat(4.4)
 		
-		self.createParallaxLayers()
+		self.background3?.size = CGSize(width: (self.background3?.size.width)! * xRatio * scale, height: (self.background3?.size.height)! * yRatio * scale)
+
+		// Background 4 Resize
+		xRatio =  DEFAULT_WIDTH / (self.background4?.size.width)!
+		yRatio =  DEFAULT_HEIGHT / (self.background4?.size.height)!
+		scale = CGFloat(4.5)
+		
+		self.background4?.size = CGSize(width: (self.background4?.size.width)! * xRatio * scale, height: (self.background4?.size.height)! * yRatio * scale)
+		
+		// Background 5 Resize
+		xRatio =  DEFAULT_WIDTH / (self.lastBackground?.size.width)!
+		yRatio =  DEFAULT_HEIGHT / (self.lastBackground?.size.height)!
+		scale = CGFloat(4.6)
+		
+		self.lastBackground?.size = CGSize(width: (self.lastBackground?.size.width)! * xRatio * scale, height: (self.lastBackground?.size.height)! * yRatio * scale)
+		
+		self.background?.zPosition = -90
+		self.background2?.zPosition = -80
+		self.background3?.zPosition = -70
+		self.background4?.zPosition = -60
+		self.lastBackground?.zPosition = -50
+		
+		self.addChild(self.background!)
+		self.addChild(self.background2!)
+		self.addChild(self.background3!)
+		self.addChild(self.background4!)
+		self.addChild(self.lastBackground!)
+		
+//		self.createParallaxLayers()
 		
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
 		self.physicsBody?.categoryBitMask = PhysicsCategory.WorldBox.rawValue

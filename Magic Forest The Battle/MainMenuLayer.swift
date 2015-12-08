@@ -207,14 +207,15 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 		self.playButton.zPosition = 0
         let playButtonPosition = CGPoint(x: self.size!.width*0.25 , y: self.size!.height/5)
         addButton(self.playButton, name: "playButton", position: playButtonPosition)
-
-		self.jogarLabel.text = "JOGAR"
+		
+		let playString = NSLocalizedString("Play", comment: "Play Button String")
+		self.jogarLabel.text = playString
 		self.jogarLabel.position = CGPointMake(0, 0)
 		self.jogarLabel.fontColor = SKColor.whiteColor()
 		self.jogarLabel.fontSize = 22
 		self.jogarLabel.zPosition = 1
 		self.jogarLabel.alpha = 0.8
-        self.jogarLabel.name = "lblJogar"
+        self.jogarLabel.name = "playButton"
 		self.playButton.addChild(jogarLabel)
 		
 		
@@ -224,7 +225,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: self.size!.height/5)
         addButton(practiceButton, name: "practiceButton", position: practiceButtonPosition)
 		
-		self.praticarLabel.text = "PRATICAR"
+		let practiceString = NSLocalizedString("Practice", comment: "Practice Button String")
+		self.praticarLabel.text = practiceString
 		self.praticarLabel.position = CGPointMake(0,0)
 		self.praticarLabel.fontColor = SKColor.whiteColor()
 		self.praticarLabel.fontSize = 16
