@@ -436,7 +436,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func analogUpdate(relativePosition position: CGPoint) {
 		self.setFlip(position, node: self.player)
         
-		setFlip(player.position, node: player.lifeBar)
+//		setFlip(player.position, node: player.lifeBar)
 
 		player?.movementVelocity = CGVector(dx: position.x, dy: 0)
 	}
@@ -451,13 +451,18 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			//self.player?.xScale = -fabs((self.player?.xScale)!)
 			if node == self.player {
 				self.player?.isLeft = true
-				self.player.lifeBar.xScale = fabs(self.player.lifeBar.xScale)
+//				self.player.lifeBar.xScale = -self.player.lifeBar.xScale
+				
+				
+				
 			}
 		} else {
 			//self.player?.xScale = fabs((self.player?.xScale)!)
 			node.xScale = fabs(node.xScale)
 			if node == self.player {
 				self.player?.isLeft = false
+//				self.player.lifeBar.xScale = fabs(self.player.lifeBar.xScale)
+				
 			}
 		}
 	}

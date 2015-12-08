@@ -14,6 +14,14 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 	var background3: SKSpriteNode?
 	var background4: SKSpriteNode?
 	
+	var backgroundParallaxOne : ParallaxLayerNode?
+	var backgroundParallaxTwo : ParallaxLayerNode?
+	var backgroundParallaxThree : ParallaxLayerNode?
+	var backgroundParallaxFour : ParallaxLayerNode?
+	var backgroundParallaxFive : ParallaxLayerNode?
+	
+	let parallaxLayers = NSMutableArray()
+	
 	/**
 	Initializes the forest scenery
 	- parameter size: A reference to the device's screen size
@@ -28,28 +36,28 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.background3 = SKSpriteNode(imageNamed: "ForestScenery_3")
 		self.background4 = SKSpriteNode(imageNamed: "ForestScenery_4")
 		self.lastBackground = SKSpriteNode(imageNamed: "ForestScenery_5")
-		
-		// Background 1 Resize
+//
+//		// Background 1 Resize
 		var xRatio =  DEFAULT_WIDTH / (self.background?.size.width)!
 		var yRatio =  DEFAULT_HEIGHT / (self.background?.size.height)!
 		var scale = CGFloat(4.2)
 		
 		self.background?.size = CGSize(width: (self.background?.size.width)! * xRatio * scale, height: (self.background?.size.height)! * yRatio * scale)
 		
-		// Background 2 Resize
+//		// Background 2 Resize
 		xRatio =  DEFAULT_WIDTH / (self.background2?.size.width)!
 		yRatio =  DEFAULT_HEIGHT / (self.background2?.size.height)!
 		scale = CGFloat(4.3)
-		
+//
 		self.background2?.size = CGSize(width: (self.background2?.size.width)! * xRatio * scale, height: (self.background2?.size.height)! * yRatio * scale)
-		
+//
 		// Background 3 Resize
 		xRatio =  DEFAULT_WIDTH / (self.background3?.size.width)!
 		yRatio =  DEFAULT_HEIGHT / (self.background3?.size.height)!
 		scale = CGFloat(4.4)
 		
 		self.background3?.size = CGSize(width: (self.background3?.size.width)! * xRatio * scale, height: (self.background3?.size.height)! * yRatio * scale)
-		
+
 		// Background 4 Resize
 		xRatio =  DEFAULT_WIDTH / (self.background4?.size.width)!
 		yRatio =  DEFAULT_HEIGHT / (self.background4?.size.height)!
@@ -75,6 +83,8 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.addChild(self.background3!)
 		self.addChild(self.background4!)
 		self.addChild(self.lastBackground!)
+		
+//		self.createParallaxLayers()
 		
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
 		self.physicsBody?.categoryBitMask = PhysicsCategory.WorldBox.rawValue
@@ -187,6 +197,44 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		groundDeathCollider.alpha = 0
 		
 		self.addChild(groundDeathCollider)
+	}
+	
+	func createParallaxLayers(){
+		
+		self.backgroundParallaxOne = ParallaxLayerNode(name: "ForestScenery_1", moveFactor: CGPoint(x: 0.3,y: 0.2))
+		self.backgroundParallaxTwo = ParallaxLayerNode(name: "ForestScenery_2", moveFactor: CGPoint(x: 0.4,y: 0.1))
+		self.backgroundParallaxThree = ParallaxLayerNode(name: "ForestScenery_3", moveFactor: CGPointMake(0.5,0.2))
+		self.backgroundParallaxFour = ParallaxLayerNode(name: "ForestScenery_4", moveFactor: CGPointMake(0.4,0.5))
+		self.backgroundParallaxFive = ParallaxLayerNode(name: "ForestScenery_5", moveFactor: CGPointMake(0,0))
+		
+		self.parallaxLayers.addObject(self.backgroundParallaxOne!)
+		self.parallaxLayers.addObject(self.backgroundParallaxTwo!)
+		self.parallaxLayers.addObject(self.backgroundParallaxThree!)
+		self.parallaxLayers.addObject(self.backgroundParallaxFour!)
+		self.parallaxLayers.addObject(self.backgroundParallaxFive!)
+		
+		self.addChild(self.backgroundParallaxOne!)
+		self.addChild(self.backgroundParallaxTwo!)
+		self.addChild(self.backgroundParallaxThree!)
+		self.addChild(self.backgroundParallaxFour!)
+		self.addChild(self.backgroundParallaxFive!)
+		
+		self.backgroundParallaxOne?.zPosition = -90
+		self.backgroundParallaxTwo?.zPosition = -80
+		self.backgroundParallaxThree?.zPosition = -70
+		self.backgroundParallaxFour?.zPosition = -60
+		self.backgroundParallaxFive?.zPosition = -50
+		
+	}
+	
+	func updateParallaxWithPosition (position : CGPoint){
+		
+		for layer in self.parallaxLayers{
+			
+			(layer as! ParallaxLayerNode).updatePosition(position)
+			
+		}
+		
 	}
 	
 }

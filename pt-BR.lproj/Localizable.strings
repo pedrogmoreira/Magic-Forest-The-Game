@@ -9,3 +9,10 @@
 GameCenterNotAuthenticated = "Parece que você não está logado no Game Center. Tente esperar alguns segundos ou utilize o app do Game Center para logar-se :)";
 WaitingForScores = "Esperando scores dos outros jogadores";
 TouchToContinue = "Toque Para Continuar";
+Play = "JOGAR";
+Practice = "PRATICAR";
+Attack = "Ataque";
+Life = "Vida";
+Speed = "Velocidade";
+RandomCharacter1 = "Personagem";
+RandomCharacter2 = "Aleatório";
