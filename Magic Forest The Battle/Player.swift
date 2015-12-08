@@ -114,11 +114,11 @@ class Player: SKSpriteNode, GameObject {
 			self.checkFloorLevel()
 		}
         
-		if (self.isRunning || velocityX != 0 && self.physicsBody?.velocity.dy == 0) && self.state != .Hit && !isAttacking && !isSpecialAttacking && !beingAttacked {
+		if (self.isRunning || velocityX != 0 && self.physicsBody?.velocity.dy == 0) && self.state != .Hit && !isAttacking && !isSpecialAttacking {
 			self.changeState(PlayerState.Running)
-		} else if (self.isJumping && self.state != .Hit && !self.isAttacking && !isSpecialAttacking) && !beingAttacked {
+		} else if (self.isJumping && self.state != .Hit && !self.isAttacking && !isSpecialAttacking) {
 			self.changeState(PlayerState.Jump)
-		} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !self.isAttacking && !isSpecialAttacking && !beingAttacked {
+		} else if self.physicsBody?.velocity.dy < 0 && self.state != .Hit && !self.isAttacking && !isSpecialAttacking {
 			self.changeState(PlayerState.Falling)
 		} else if self.isAttacking && !isSpecialAttacking {
 			self.changeState(PlayerState.Attack)

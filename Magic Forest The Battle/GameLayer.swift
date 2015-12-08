@@ -360,11 +360,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	}
 	
 	func dealDamageOnEnemy(enemy: Player, enemyIndex: Int, WithDamage damage: CGFloat) {
-		
+        
 		if enemy.currentLife! - damage > 0 {
 			
 			enemy.currentLife = enemy.currentLife! - damage
-			
+            enemy.beingAttacked = true
+            self.networkingEngine?.sendHit(self.players.indexOf(enemy)!)
 			
 		} else {
 			enemy.currentLife = 0
@@ -550,6 +551,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.projectileToLayerSpecial(player)
 		}
     }
+    
+    func performHitWithPlayer(player: Player) {
+        player.beingAttacked = true
+    }
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
 		player.currentLife = CGFloat(currentLife)
@@ -595,7 +600,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
 
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
-				
+                
 				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
 				
 				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
@@ -603,7 +608,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				}
 			} else {
 				let index = self.players.indexOf(contact.bodyA.node as! Player)!
-				
+                
 				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
 				
 				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {

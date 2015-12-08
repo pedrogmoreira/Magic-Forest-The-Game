@@ -18,6 +18,7 @@ protocol MultiplayerProtocol {
     func attack(indext: Int)
     func performGetDown(index: Int)
     func performSpecial(index: Int)
+    func performHit(index: Int)
 	func performLoseLife(index: Int, currentLife: Float)
     func movePlayer(index: Int, dx: Float, dy: Float, justRebirth: Bool)
 	func chooseCharacter()
@@ -227,7 +228,13 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			let scores = NSKeyedUnarchiver.unarchiveObjectWithData(messageScores.scores!) as! [Int]
 
 			delegate?.receiveAllScores(scores)
-		}
+        } else if message.messageType == MessageType.Hit {
+            let messageHit = UnsafePointer<MessageHit>(data.bytes).memory
+            
+            let attackedPlayerIndex = messageHit.attackedPlayerIndex
+            
+            delegate?.performHit(attackedPlayerIndex)
+        }
     }
 	
 	// MARK: Index For Player
@@ -340,6 +347,13 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         var message = MessageAttack(message: Message(messageType: MessageType.Attack))
         
         let data = NSData(bytes: &message, length: sizeof(MessageAttack))
+        sendData(data)
+    }
+    
+    func sendHit(playerIndex: Int) {
+        var message = MessageHit(attackedPlayerIndex: playerIndex)
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageHit))
         sendData(data)
     }
     

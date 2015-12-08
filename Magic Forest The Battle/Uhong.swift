@@ -165,7 +165,7 @@ class Uhong: Player {
 	- returns: SKAction
 	*/
 	override func hit () -> SKAction {
-		return self.loadAnimation("CogumeloHit", endIndex: 1, timePerFrame: 0.08)
+		return self.loadAnimation("CogumeloHit", endIndex: 1, timePerFrame: 0.4)
 	}
 	
 	/**
