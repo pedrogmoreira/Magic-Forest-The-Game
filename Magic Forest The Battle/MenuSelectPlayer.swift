@@ -42,10 +42,15 @@ class MenuSelectPlayer: SKNode {
 	
 	//Selecionar personagens
 	private let neithSelection = SKSpriteNode(imageNamed: "NeithIdle1")
-	private let uhongSelection = SKSpriteNode(imageNamed: "UhongSelectPlayer")
-	private let salamangSelction = SKSpriteNode(imageNamed: "SalamangSelectPlayer")
+	
+	
+	private let backUhongSelection = SKSpriteNode(imageNamed: "JogadorVazioSelectPlayer")
+	private let frontUhongSelection = SKSpriteNode(imageNamed: "CogumeloParado1")
+	private let backSalamangSelction = SKSpriteNode(imageNamed: "JogadorVazioSelectPlayer")
+	private let frontSalamangSelction = SKSpriteNode(imageNamed: "SalamangParado1")
 	private let dinakSelection = SKSpriteNode(imageNamed: "idle1")
-	private let randomSelection = SKSpriteNode(imageNamed: "Aleatorio")
+	private let backRandomSelection = SKSpriteNode(imageNamed: "JogadorVazioSelectPlayer")
+	private let frontRandomSelection = SKSpriteNode(imageNamed: "DuvidasButton")
 	
 	//Imagem personagens
 	private let neithImage = SKSpriteNode(imageNamed: "archercute")
@@ -121,9 +126,12 @@ class MenuSelectPlayer: SKNode {
 	}
 	
 	func imageEdit () {
-		self.uhongSelection.setScale(1.8)
-		self.salamangSelction.setScale(1.8)
-		self.randomSelection.setScale(1.8)
+		self.backUhongSelection.setScale(1.8)
+		self.frontUhongSelection.setScale(0.5)
+		self.backSalamangSelction.setScale(1.8)
+		self.frontSalamangSelction.setScale(0.5)
+		self.backRandomSelection.setScale(1.8)
+		self.frontRandomSelection.setScale(1.8)
 		
 		self.neithImage.setScale(0.2)
 		self.uhongImage.setScale(0.2)
@@ -147,11 +155,13 @@ class MenuSelectPlayer: SKNode {
 //		let neithSelectionPosition = CGPoint(x: self.size!.width/5, y: self.size!.height/2.5)
 //		addNode(neithSelection, name: "neithSelectionPosition", position: neithSelectionPosition)
 		let uhongSelectionPosition = CGPoint(x: self.size!.width*0.15, y: self.size!.height/1.5)
-		addNode(uhongSelection, name: "uhongSelectionPosition", position: uhongSelectionPosition, zPosition:1)
+		addNode(backUhongSelection, name: "uhongSelectionPosition", position: uhongSelectionPosition, zPosition:1)
+		addNode(frontUhongSelection, name: "uhongSelectionPosition", position: CGPointMake(uhongSelectionPosition.x, uhongSelectionPosition.y*1.12), zPosition:2)
         let salamangSelctionPosition = CGPoint(x: self.size!.width*0.35, y: self.size!.height/1.5)
-		addNode(salamangSelction, name: "salamangSelctionPosition", position: salamangSelctionPosition, zPosition: 1)
-		
-		addNode(randomSelection, name: "randomSelection", position: CGPoint(x: self.size!.width*0.25, y: self.size!.height/3), zPosition: 1)
+		addNode(backSalamangSelction, name: "salamangSelctionPosition", position: salamangSelctionPosition, zPosition: 1)
+		addNode(frontSalamangSelction, name: "salamangSelctionPosition", position: CGPointMake(salamangSelctionPosition.x, salamangSelctionPosition.y*1.05), zPosition: 2)
+		addNode(backRandomSelection, name: "randomSelection", position: CGPoint(x: self.size!.width*0.25, y: self.size!.height/3), zPosition: 1)
+		addNode(frontRandomSelection, name: "randomSelection", position: CGPoint(x: self.size!.width*0.25, y: self.size!.height/3), zPosition: 2)
 //		let dinakSelectionPosition = CGPoint(x: self.size!.width/2.5, y: self.size!.height/1.5)
 //		addNode(dinakSelection, name: "dinakSelectionPosition", position: dinakSelectionPosition)
 	
@@ -231,9 +241,9 @@ class MenuSelectPlayer: SKNode {
 			print("Selected character: \(nodeName)")
 		} else if nodeName == "uhongSelectionPosition" {
 			playerSelected = "Uhong"
-			self.selectPlayer(uhongSelection, normalScale: 1.8, bigScale: 2.2)
+			self.selectPlayer(frontUhongSelection, normalScale: 0.5, bigScale: 0.65)
 			//uhongLabelStatus.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.80), zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
+			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.65), zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
 			self.statusCharacter(barraQualidade4, vidaStatus: barraQualidade4Segunda, velocidadeStatus: barraQualidade3)
 //			self.addLabelNode(uhongLabelAbout, name: "uhongLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
 //			self.addNode(uhongImage, name: "uhongImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
@@ -241,7 +251,7 @@ class MenuSelectPlayer: SKNode {
 			
 			
 		} else if nodeName == "salamangSelctionPosition" {
-			self.selectPlayer(salamangSelction,normalScale: 1.8, bigScale: 2.2)
+			self.selectPlayer(frontSalamangSelction,normalScale: 0.5, bigScale: 0.65)
 			playerSelected = "Salamang"
 			//self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
 //			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8), zPosition: 1,alpha:  0.8, fontSize: 26, fontName: "SnapHand")
@@ -254,7 +264,7 @@ class MenuSelectPlayer: SKNode {
 			self.playerSelected = ""
 			addLabelNode(random, name: "random", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.50), zPosition: 1, alpha: 0.8, fontSize: 40, fontName: "SnapHand")
 			addLabelNode(character, name: "character", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.70), zPosition: 1, alpha: 0.8, fontSize: 40, fontName: "SnapHand")
-			self.selectPlayer(randomSelection,normalScale: 1.8, bigScale: 2.2)
+			self.selectPlayer(frontRandomSelection,normalScale: 1.8, bigScale: 2.2)
 		} else if nodeName == "dinakSelectionPosition"{
 //			self.addLabelNode(dinakLabelAbout, name: "dinakLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8),zPosition: 1,alpha:  0.8, fontSize: 26, fontName: "SnapHand")
 			self.addLabelNode(dinakLabelSatus, name: "dinakLabelSatus", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.5),zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
@@ -300,13 +310,21 @@ class MenuSelectPlayer: SKNode {
     
 	func removeActionsPlayers () {
 		self.neithSelection.removeAllActions()
-		self.uhongSelection.removeAllActions()
-		self.salamangSelction.removeAllActions()
-		self.randomSelection.removeAllActions()
+		
+		self.backUhongSelection.removeAllActions()
+		self.backSalamangSelction.removeAllActions()
+		self.frontUhongSelection.removeAllActions()
+		self.frontSalamangSelction.removeAllActions()
+		self.backRandomSelection.removeAllActions()
+		self.frontRandomSelection.removeAllActions()
+		
 		self.neithSelection.setScale(2)
-		self.uhongSelection.setScale(1.8)
-		self.salamangSelction.setScale(1.8)
-		self.randomSelection.setScale(1.8)
+		self.backUhongSelection.setScale(1.8)
+		self.backSalamangSelction.setScale(1.8)
+		self.frontUhongSelection.setScale(0.5)
+		self.frontSalamangSelction.setScale(0.5)
+		self.backRandomSelection.setScale(1.8)
+		self.frontRandomSelection.setScale(1.8)
 		
 	}
     
