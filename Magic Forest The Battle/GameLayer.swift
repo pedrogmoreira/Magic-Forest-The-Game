@@ -248,7 +248,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				player.update(currentTime)
 			}
 
-            hudLayer!.animateBar(self.player.currentLife!, bar: self.player.life!, node: hudLayer!.lifeFrontBar, scale: 0.24)
+            hudLayer!.animateBar(self.player.currentLife!, bar: self.player.life!, node: hudLayer!.lifeFrontBar, scale: 1)
 			
 			if self.normalAreaPlayersIndex.count > 0 {
 				for index in self.normalAreaPlayersIndex {
@@ -278,7 +278,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		if player?.currentEnergy < player?.energy {
 			let aux = ((player?.energy)! * (player?.regEnergy)!)/100
 			player?.currentEnergy = (player?.currentEnergy)! + aux
-			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!,node: (hudLayer?.energyFrontBar)!, scale:  0.24)
+			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!,node: (hudLayer?.energyFrontBar)!, scale:  1)
 			print("Current energy: \(player?.currentEnergy)")
 		} else {
 			self.hudLayer?.animateFullBar()
@@ -305,7 +305,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.checkAttack(1)
 			self.player?.currentEnergy = 0
 			self.hudLayer?.energyFrontBar.removeAllActions()
-			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, node: (hudLayer?.energyFrontBar)!, scale:  0.24)
+			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, node: (hudLayer?.energyFrontBar)!, scale:  1)
             self.networkingEngine?.sendSpecialAttack()
 		} else if command == MFCSCommandType.Jump && self.canPlayerJump == true {
 			if self.player.isJumping == false {

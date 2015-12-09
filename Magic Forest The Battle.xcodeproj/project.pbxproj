@@ -9,10 +9,7 @@
 /* Begin PBXBuildFile section */
 		570A7D291C0F2AC800F687BD /* DMTSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 570A7D281C0F2AC800F687BD /* DMTSoundEffect.m */; };
 		570A7D2C1C0F2AD900F687BD /* DMTSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 570A7D2B1C0F2AD900F687BD /* DMTSoundPlayer.m */; };
-		570A7D2E1C0F2C9D00F687BD /* MenuPrincipal.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D2D1C0F2C9D00F687BD /* MenuPrincipal.mp3 */; };
-		570A7D301C0F2CF100F687BD /* Brave Solders.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */; };
 		570A7D321C0F2D8900F687BD /* UhongAttack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D311C0F2D8900F687BD /* UhongAttack.wav */; };
-		570A7D341C0F2E0100F687BD /* SalamangAttack.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */; };
 		570A7D381C0F603100F687BD /* Brave Solders.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D351C0F603100F687BD /* Brave Solders.wav */; };
 		570A7D391C0F603100F687BD /* MenuPrincipal.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D361C0F603100F687BD /* MenuPrincipal.wav */; };
 		570A7D3A1C0F603100F687BD /* SalamangAttack.wav in Resources */ = {isa = PBXBuildFile; fileRef = 570A7D371C0F603100F687BD /* SalamangAttack.wav */; };
@@ -80,6 +77,7 @@
 		576965241BE2859F00CBB81D /* falling1.png in Resources */ = {isa = PBXBuildFile; fileRef = 576965191BE2859F00CBB81D /* falling1.png */; };
 		576965251BE2859F00CBB81D /* falling2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651A1BE2859F00CBB81D /* falling2.png */; };
 		576965261BE2859F00CBB81D /* falling3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5769651B1BE2859F00CBB81D /* falling3.png */; };
+		5788DF791C171E580029019A /* ParallaxLayerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5788DF781C171E580029019A /* ParallaxLayerNode.swift */; };
 		579B805F1BE3FC030025B374 /* SpawnPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 579B805E1BE3FC030025B374 /* SpawnPoint.swift */; };
 		579B81181BE919F50025B374 /* SpecialAttack1.png in Resources */ = {isa = PBXBuildFile; fileRef = 579B81161BE919F50025B374 /* SpecialAttack1.png */; };
 		579B81191BE919F50025B374 /* SpecialAttack2.png in Resources */ = {isa = PBXBuildFile; fileRef = 579B81171BE919F50025B374 /* SpecialAttack2.png */; };
@@ -326,10 +324,7 @@
 		570A7D281C0F2AC800F687BD /* DMTSoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTSoundEffect.m; sourceTree = "<group>"; };
 		570A7D2A1C0F2AD900F687BD /* DMTSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTSoundPlayer.h; sourceTree = "<group>"; };
 		570A7D2B1C0F2AD900F687BD /* DMTSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTSoundPlayer.m; sourceTree = "<group>"; };
-		570A7D2D1C0F2C9D00F687BD /* MenuPrincipal.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MenuPrincipal.mp3; sourceTree = "<group>"; };
-		570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Brave Solders.mp3"; sourceTree = "<group>"; };
 		570A7D311C0F2D8900F687BD /* UhongAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = UhongAttack.wav; sourceTree = "<group>"; };
-		570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SalamangAttack.mp3; sourceTree = "<group>"; };
 		570A7D351C0F603100F687BD /* Brave Solders.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Brave Solders.wav"; sourceTree = "<group>"; };
 		570A7D361C0F603100F687BD /* MenuPrincipal.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = MenuPrincipal.wav; sourceTree = "<group>"; };
 		570A7D371C0F603100F687BD /* SalamangAttack.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SalamangAttack.wav; sourceTree = "<group>"; };
@@ -397,6 +392,7 @@
 		576965191BE2859F00CBB81D /* falling1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling1.png; sourceTree = "<group>"; };
 		5769651A1BE2859F00CBB81D /* falling2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling2.png; sourceTree = "<group>"; };
 		5769651B1BE2859F00CBB81D /* falling3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = falling3.png; sourceTree = "<group>"; };
+		5788DF781C171E580029019A /* ParallaxLayerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParallaxLayerNode.swift; sourceTree = "<group>"; };
 		579B805E1BE3FC030025B374 /* SpawnPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpawnPoint.swift; sourceTree = "<group>"; };
 		579B81161BE919F50025B374 /* SpecialAttack1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpecialAttack1.png; sourceTree = "<group>"; };
 		579B81171BE919F50025B374 /* SpecialAttack2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpecialAttack2.png; sourceTree = "<group>"; };
@@ -809,6 +805,14 @@
 			path = Projetil;
 			sourceTree = "<group>";
 		};
+		5788DF771C171DCD0029019A /* Attack */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Attack;
+			path = "Magic Forest The Battle/Attack";
+			sourceTree = "<group>";
+		};
 		579B81151BE919E40025B374 /* SpecialAttack */ = {
 			isa = PBXGroup;
 			children = (
@@ -826,10 +830,7 @@
 				570A7D351C0F603100F687BD /* Brave Solders.wav */,
 				570A7D361C0F603100F687BD /* MenuPrincipal.wav */,
 				570A7D371C0F603100F687BD /* SalamangAttack.wav */,
-				570A7D331C0F2E0100F687BD /* SalamangAttack.mp3 */,
 				570A7D311C0F2D8900F687BD /* UhongAttack.wav */,
-				570A7D2F1C0F2CF100F687BD /* Brave Solders.mp3 */,
-				570A7D2D1C0F2C9D00F687BD /* MenuPrincipal.mp3 */,
 				EB7FE7FF1C0E4AE400FBBF3E /* Icons */,
 				EB61DD021C08D99A00C78518 /* loading.png */,
 				57FECA041C04E6BB00E1A86C /* Mago */,
@@ -1286,6 +1287,7 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
+				5788DF771C171DCD0029019A /* Attack */,
 				EB7FE7F11C0E15DB00FBBF3E /* en.lproj */,
 				EB7FE7F41C0E15DB00FBBF3E /* pt-BR.lproj */,
 				670914EB1BFE5D2C0007F2FF /* GameKit.framework */,
@@ -1322,6 +1324,7 @@
 				67D98E041BE3F1C20045029A /* Scenes */,
 				EB9057591BD55CF200536AD1 /* AppDelegate.swift */,
 				EB90575F1BD55CF200536AD1 /* GameViewController.swift */,
+				5788DF781C171E580029019A /* ParallaxLayerNode.swift */,
 				EB9057611BD55CF200536AD1 /* Main.storyboard */,
 				EB9057641BD55CF300536AD1 /* Assets.xcassets */,
 				EB9057661BD55CF300536AD1 /* LaunchScreen.storyboard */,
@@ -1525,13 +1528,11 @@
 				57190B431BF12BED00FFF38D /* 132.png in Resources */,
 				57C08E5B1BFE3B67003E4574 /* UI_WINDOW (8).png in Resources */,
 				EB42374E1C14BBB300413898 /* Jububa2.png in Resources */,
-				570A7D341C0F2E0100F687BD /* SalamangAttack.mp3 in Resources */,
 				57C08E0F1BFA47B0003E4574 /* CogumeloAndando5.png in Resources */,
 				6784F4FC1C061D010026F1D7 /* Localizable.strings in Resources */,
 				57C08E231BFA47B0003E4574 /* CogumeloEspecial4.png in Resources */,
 				57FECA511C04E6BB00E1A86C /* SalamangHit1.png in Resources */,
 				57C08E151BFA47B0003E4574 /* CogumeloAtaque10.png in Resources */,
-				570A7D301C0F2CF100F687BD /* Brave Solders.mp3 in Resources */,
 				57190B4D1BF12BED00FFF38D /* NeithFalling1.png in Resources */,
 				576964EC1BDFDCD000CBB81D /* corre6.png in Resources */,
 				57A5581C1BDEBB1C00A948DE /* idle6.png in Resources */,
@@ -1594,7 +1595,6 @@
 				57190B611BF12BED00FFF38D /* NeithSpecialAttack7.png in Resources */,
 				57190B461BF12BED00FFF38D /* NeithAttack1.png in Resources */,
 				57190BC41BF2689900FFF38D /* 102.png in Resources */,
-				570A7D2E1C0F2C9D00F687BD /* MenuPrincipal.mp3 in Resources */,
 				57FECA5B1C04E6BB00E1A86C /* SalamangParado9.png in Resources */,
 				576964EA1BDFDCD000CBB81D /* corre4.png in Resources */,
 				EBD88B231BF02EE2000353A5 /* ForestSceneryPlatformRight.png in Resources */,
@@ -1802,6 +1802,7 @@
 				670914EA1BFE58600007F2FF /* NetworkingStructs.swift in Sources */,
 				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
 				670914E81BFE58600007F2FF /* GameKitHelper.swift in Sources */,
+				5788DF791C171E580029019A /* ParallaxLayerNode.swift in Sources */,
 				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
 				57190BD21BF3A8CE00FFF38D /* Arrow.swift in Sources */,
