@@ -190,22 +190,21 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         self.configurationButton.setScale(1.5)
         let halfConfigurationButtonWidth = self.configurationButton.size.width/2
         let halfConfigurationButtonHeight = self.configurationButton.size.height/2
-//        let configurationButtonPosition = CGPoint(x: self.size!.width - padding - halfConfigurationButtonWidth, y: self.size!.height - padding - halfConfigurationButtonHeight)
-//        addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
-		
 		let configurationButtonPosition = CGPoint(x: 0 + halfConfigurationButtonWidth + padding, y: self.size!.height - padding - halfConfigurationButtonHeight)
 		addButton(self.configurationButton, name: "configurationButton", position: configurationButtonPosition)
+        
         // Adding gameCenter Button
         self.gameCenterButton.setScale(1.5)
         let halfGameCenterButtonWidth = self.gameCenterButton.size.width/2
-        //let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
-        let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height/1.4)
+        let halfGameCenterButtonHeight = self.gameCenterButton.size.height/2
+        let gameCenterButtonPosition = CGPoint(x: 0 + halfGameCenterButtonWidth + padding, y: self.size!.height - ((2*halfConfigurationButtonHeight) + (4*padding) + halfGameCenterButtonHeight))
         addButton(self.gameCenterButton, name: "gameCenterButton", position: gameCenterButtonPosition)
         
         // Adding play Button
         self.playButton.setScale(2.5)
 		self.playButton.zPosition = 0
-        let playButtonPosition = CGPoint(x: self.size!.width*0.25 , y: self.size!.height/5)
+        let halfPlayerButtonHeight = self.playButton.frame.height/2
+        let playButtonPosition = CGPoint(x: self.size!.width*0.25 , y: 0 + halfPlayerButtonHeight)
         addButton(self.playButton, name: "playButton", position: playButtonPosition)
 		
 		let playString = NSLocalizedString("Play", comment: "Play Button String")
@@ -218,55 +217,42 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         self.jogarLabel.name = "playButton"
 		self.playButton.addChild(jogarLabel)
 		
-		
         // Adding practice Button
         self.practiceButton.setScale(2.5)
 		self.practiceButton.zPosition = 0
-        let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: self.size!.height/5)
+        let halfPracticeButtonHeight = self.practiceButton.size.height/2
+        let practiceButtonPosition = CGPoint(x: 3*self.size!.width/4 , y: 0 + halfPracticeButtonHeight)
         addButton(practiceButton, name: "practiceButton", position: practiceButtonPosition)
 		
 		let practiceString = NSLocalizedString("Practice", comment: "Practice Button String")
 		self.praticarLabel.text = practiceString
-		self.praticarLabel.position = CGPointMake(0,0)
+		self.praticarLabel.position = CGPointMake(0,3)
 		self.praticarLabel.fontColor = SKColor.whiteColor()
-		self.praticarLabel.fontSize = 16
+		self.praticarLabel.fontSize = 15
 		self.praticarLabel.zPosition = 1
 		self.praticarLabel.alpha = 0.8
 		self.practiceButton.addChild(praticarLabel)
 		
 		
-		//Adding title
-		self.title.setScale(1.9)
+		// Adding title
+        // Verifying the device type
+        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+            self.title.setScale(2.5)
+        } else {
+            self.title.setScale(1.9)
+        }
 		self.title.zPosition = 1
 		self.title.position = CGPoint(x: (self.size?.width)!/2, y: (self.size?.height)!/1.4)
 		self.addChild(self.title)
 		
 		//Adding fundo
+        let xBackgroundRatio = self.size!.width / self.fundo.frame.width
+        let yBackgroundRatio = self.size!.height / self.fundo.frame.height
 		self.fundo.zPosition = -100
-		self.fundo.setScale(2)
+		self.fundo.xScale = xBackgroundRatio
+        self.fundo.yScale = yBackgroundRatio
 		self.fundo.position = CGPointMake((self.size?.width)!/2, (self.size?.height)!/2)
 		self.addChild(fundo)
-		
-        // Add store Button
-//        self.storeButton.setScale(0.3)
-//        let storeButtonPosition = CGPoint(x: self.size!.width/4 + self.size!.width, y: self.size!.height/4)
-//        addButton(self.storeButton, name: "storeButton", position: storeButtonPosition)
-//        
-//        // Add skins Button
-//        self.skinButton.setScale(0.3)
-//        let skinButtonPosition = CGPoint(x: 3*self.size!.width/4 + self.size!.width, y: self.size!.height/4)
-//        addButton(self.skinButton, name: "skinButton", position: skinButtonPosition)
-//        
-//        // Add history Button
-//        self.historyButton.setScale(0.3)
-//        let historyButtonPosition = CGPoint(x: self.size!.width/4 - self.size!.width, y: self.size!.height/4)
-//        addButton(self.historyButton, name: "historyButton", position: historyButtonPosition)
-//        
-//        // Add skins Button
-//        self.statisticsButton.setScale(0.3)
-//        let statisticsButtonPosition = CGPoint(x: 3*self.size!.width/4 - self.size!.width, y: self.size!.height/4)
-//        addButton(self.statisticsButton, name: "statisticsButton", position: statisticsButtonPosition)
-//
     }
     
     private func selectPlayer () {
