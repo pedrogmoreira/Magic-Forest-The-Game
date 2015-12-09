@@ -21,7 +21,7 @@ class HudLayer: SKNode, BasicLayer {
 	var lifeFrontBar = SKSpriteNode()
 	var size = CGSize()
 	
-	private var scoreLabel: SKLabelNode?
+	private var scoreLabel = SKLabelNode(fontNamed: "SnapHand")
 	
 	var networkingEngine: MultiplayerNetworking?
 	var matchEndDelegate: MatchEndDelegate?
@@ -32,51 +32,61 @@ class HudLayer: SKNode, BasicLayer {
 		//barra do fundo
 		self.size = size
 		
-		let lifeBackBar = SKSpriteNode(texture: SKTexture(imageNamed: "UI_ETCBAR"))
-		lifeBackBar.position = CGPointMake(-size.width*0.48, size.height*0.45)
-		lifeBackBar.setScale(0.3)
-		lifeBackBar.zPosition = -1
-		lifeBackBar.alpha = 0.5
+		let backBars = SKSpriteNode(texture: SKTexture(imageNamed: "Barras"))
+		backBars.position = CGPointMake(-size.width*0.48, size.height*0.42)
+		backBars.zPosition = -1
+		backBars.alpha = 0.8
+		backBars.setScale(1.6)
+		backBars.anchorPoint = CGPointMake(0, backBars.anchorPoint.y)
+		self.addChild(backBars)
+		
+		
+		let lifeBackBar = SKSpriteNode(texture: SKTexture(imageNamed: "GradeVida"))
+		lifeBackBar.position = CGPointMake(-size.width*0.42, size.height*0.44)
+		//lifeBackBar.setScale(0.3)
+		lifeBackBar.zPosition = 0
+		//lifeBackBar.alpha = 0.5
 		lifeBackBar.anchorPoint = CGPointMake(0, lifeBackBar.anchorPoint.y)
 		self.addChild(lifeBackBar)
 
 		//coracao
-		let heart = SKSpriteNode(texture: SKTexture(imageNamed: "UI_HEART"))
-		heart.position = CGPointMake(33, 0)
-		heart.setScale(0.3)
-		heart.zPosition = 1
-		lifeBackBar.addChild(heart)
+//		let heart = SKSpriteNode(texture: SKTexture(imageNamed: "UI_HEART"))
+//		heart.position = CGPointMake(33, 0)
+//		heart.setScale(0.3)
+//		heart.zPosition = 1
+//		lifeBackBar.addChild(heart)
 		
 		//barra da frente
-		lifeFrontBar = SKSpriteNode(texture: SKTexture(imageNamed: "UI_COLORBAR_RED"))
-		lifeFrontBar.position = CGPointMake(70, 2)
-		lifeFrontBar.xScale = 0.24
+		lifeFrontBar = SKSpriteNode(texture: SKTexture(imageNamed: "PreenchimentoVida"))
+		lifeFrontBar.position = CGPointMake(0, 0)
+		//lifeFrontBar.xScale = 0.24
 		lifeFrontBar.anchorPoint = CGPointMake(0, lifeFrontBar.anchorPoint.y)
-		lifeFrontBar.zPosition = 0
+		lifeFrontBar.zPosition = 1
 		lifeBackBar.addChild(lifeFrontBar)
 		
 		//barra energia
 		//barra do fundo
-		let energyBackBar = SKSpriteNode(texture: SKTexture(imageNamed: "UI_ETCBAR"))
-		energyBackBar.position = CGPointMake(-size.width*0.48, size.height*0.38)
-		energyBackBar.setScale(0.3)
-		energyBackBar.zPosition = -1
-		energyBackBar.alpha = 0.5
+		let energyBackBar = SKSpriteNode(texture: SKTexture(imageNamed: "GradeEspecial"))
+		energyBackBar.position = CGPointMake(-size.width*0.42, size.height*0.40)
+		//energyBackBar.setScale(0.3)
+		energyBackBar.zPosition = 0
+		//energyBackBar.alpha = 0.5
 		energyBackBar.anchorPoint = CGPointMake(0, lifeBackBar.anchorPoint.y)
 		self.addChild(energyBackBar)
 		
 		//coracao
-		let energy = SKSpriteNode(texture: SKTexture(imageNamed: "UI_BOLT"))
-		energy.position = CGPointMake(33, 0)
-		energy.setScale(0.3)
-		energy.zPosition = 1
-		energyBackBar.addChild(energy)
+//		let energy = SKSpriteNode(texture: SKTexture(imageNamed: "UI_BOLT"))
+//		energy.position = CGPointMake(33, 0)
+//		energy.setScale(0.3)
+//		energy.zPosition = 1
+//		energyBackBar.addChild(energy)
 		
 		//barra da frente
-		energyFrontBar = SKSpriteNode(texture: SKTexture(imageNamed: "UI_COLORBAR_BLUE"))
-		energyFrontBar.position = CGPointMake(70, 2)
-		energyFrontBar.xScale = 0.24
-		energyFrontBar.zPosition = 0
+		energyFrontBar = SKSpriteNode(texture: SKTexture(imageNamed: "PreenchimentoEspecial"))
+		energyFrontBar.position = CGPointMake(0, 0)
+		//energyFrontBar.xScale = 0.24
+		energyFrontBar.zPosition = 1
+		energyFrontBar.alpha = 0.5
 		energyFrontBar.anchorPoint = CGPointMake(0, lifeFrontBar.anchorPoint.y)
 		energyBackBar.addChild(energyFrontBar)
 		
@@ -102,8 +112,8 @@ class HudLayer: SKNode, BasicLayer {
 		if (energyFrontBar.actionForKey("full") != nil) {
 			energyFrontBar.removeActionForKey("full")
 		}
-		let changeToNormal = SKAction.setTexture(SKTexture(imageNamed:"UI_COLORBAR_BLUE"))
-		let changeToFlash = SKAction.setTexture(SKTexture(imageNamed: "UI_COLORBAR_BLUE_FLASH"))
+		let changeToNormal = SKAction.setTexture(SKTexture(imageNamed:"PreenchimentoEspecial"))
+		let changeToFlash = SKAction.setTexture(SKTexture(imageNamed: "barraEnergiaAtivada"))
 		let wait = SKAction.waitForDuration(0.15)
 		
 		let seq = SKAction.sequence([changeToFlash,wait,changeToNormal,wait])
@@ -116,6 +126,7 @@ class HudLayer: SKNode, BasicLayer {
 		//		let clock = SKSpriteNode(imageNamed: "Clock")
 		//		self.addNode(clock, name: "clock", position: CGPoint(x: (self.size?.width)!/2.3, y: (self.size?.height)!/1.16))
 		timerLabel.name = "timerLabel"
+		timerLabel.fontName = "SnapHand"
 		timerLabel.position =  CGPoint(x:0, y: self.size.height*0.4)
 		self.addChild(timerLabel)
 		let counter = SKAction.waitForDuration(1)
@@ -142,16 +153,16 @@ class HudLayer: SKNode, BasicLayer {
 	
 	func createScoreLabel () {
 		self.scoreLabel = SKLabelNode(text: "Score: 0")
-		self.scoreLabel!.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
+		self.scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
 
-		self.scoreLabel!.name = "scoreLabel"
-		self.scoreLabel!.position =  CGPoint(x:self.size.width / 2 - frame.width / 2 - 10, y: self.size.height*0.4)
-		self.addChild(self.scoreLabel!)
+		self.scoreLabel.name = "scoreLabel"
+		self.scoreLabel.position =  CGPoint(x:self.size.width / 2 - frame.width / 2 - 10, y: self.size.height*0.4)
+		self.addChild(self.scoreLabel)
 	}
 	
 	func updateScoreLabel(withScore score: Int) {
-		self.scoreLabel?.text = "Score: \(score)"
-		self.scoreLabel!.position =  CGPoint(x:self.size.width / 2 - frame.width / 2 - 10, y: self.size.height*0.4)
+		self.scoreLabel.text = "Score: \(score)"
+		self.scoreLabel.position =  CGPoint(x:self.size.width / 2 - frame.width / 2 - 10, y: self.size.height*0.4)
 	}
 
 }
