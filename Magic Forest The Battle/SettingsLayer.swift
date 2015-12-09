@@ -158,11 +158,11 @@ class SettingsLayer: SKNode, BasicLayer {
     
     private func changeColor(node: SKNode) {
         if node.name == "swipeMode" {
-            self.swipeMode?.color = SKColor.greenColor()
-            self.buttonMode?.color = SKColor.redColor()
+            self.swipeMode?.runAction(SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2))
+            self.buttonMode?.runAction(SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1, duration: 0.2))
         } else {
-            self.swipeMode?.color = SKColor.redColor()
-            self.buttonMode?.color = SKColor.greenColor()
+            self.swipeMode?.runAction(SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1, duration: 0.2))
+            self.buttonMode?.runAction(SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2))
         }
     }
     

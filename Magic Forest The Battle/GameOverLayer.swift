@@ -11,8 +11,11 @@ import SpriteKit
 class GameOverLayer: SKNode, BasicLayer {
 	
 	var loadNode: SKSpriteNode?
+	var size: CGSize?
 	
 	required init(size: CGSize) {
+		self.size = CGSize(width: size.width, height: size.height)
+		
 		super.init()
 		
 		self.waitForScores()
@@ -61,60 +64,223 @@ class GameOverLayer: SKNode, BasicLayer {
 		})
 	}
 	
-	func showTwoPlayerScores(scores: [Int], players: [String]) {
-		let scoresLabel = SKLabelNode(text: "Scores:")
-		scoresLabel.position = CGPoint(x: scoresLabel.frame.width / 2, y: -scoresLabel.frame.height)
-//		scoresLabel.fontSize = 14
-		
+	func showTwoPlayerScores(scores: [Int], players: [String], characters: [Int]) {
+		var x = CGFloat(0)
 		var y = CGFloat(0)
 		
-		let playerOneScore = SKLabelNode(text: "\(players[0]): \(scores[0])")
-		y = scoresLabel.position.y - playerOneScore.frame.height * 2
-		playerOneScore.position = CGPoint(x: playerOneScore.frame.width / 2, y: y)
-//		playerOneScore.fontSize = 12
+		var width = CGFloat(0)
+		var height = CGFloat(0)
+		var ratio = CGFloat(0)
 		
-		let playerTwoScore = SKLabelNode(text: "\(players[1]): \(scores[1])")
-		y = playerOneScore.position.y - playerTwoScore.frame.height * 2
-		playerTwoScore.position = CGPoint(x: playerTwoScore.frame.width / 2, y: y)
-//		playerTwoScore.fontSize = 12
+		let background = SKSpriteNode(color: UIColor.blackColor(), size: self.size!)
+		background.zPosition = 0
+		background.position = CGPoint.zero
+		background.alpha = 0.7
+		self.addChild(background)
 		
-		let totalWidth = self.getHightestWidth([playerOneScore, playerTwoScore])
-		let totalHeight = -playerTwoScore.position.y
+		let gameOverMessage = SKSpriteNode(imageNamed: "GameOver")
+		gameOverMessage.zPosition = 3
+		ratio = gameOverMessage.size.width / gameOverMessage.size.height
+		height = (self.size?.height)! / 4
+		width = height * ratio
+		gameOverMessage.size = CGSize(width: width, height: height)
+		x = 0
+		y = (self.size?.height)! / 2 - gameOverMessage.size.height
+		gameOverMessage.position = CGPoint(x: x, y: y)
+		self.addChild(gameOverMessage)
 		
-		let scoresNode = SKSpriteNode(color: UIColor.clearColor(), size: CGSize(width: totalWidth, height: totalHeight))
-		scoresNode.anchorPoint = CGPoint(x: 0, y: 1)
-		self.addChild(scoresNode)
+		let podiumLoser = SKSpriteNode(imageNamed: "PodiumPerdedor")
+		podiumLoser.zPosition = 3
+		ratio = podiumLoser.size.width / podiumLoser.size.height
+		height = (self.size?.height)! / 4
+		width = height * ratio
+		podiumLoser.size = CGSize(width: width, height: height)
+		x = (self.size?.width)! / 2 - podiumLoser.size.width * 1.2
+		y = -(self.size?.height)! / 2 + podiumLoser.size.height
+		podiumLoser.position = CGPoint(x: x, y: y)
+		self.addChild(podiumLoser)
 		
-		scoresNode.addChild(scoresLabel)
-		scoresNode.addChild(playerOneScore)
-		scoresNode.addChild(playerTwoScore)
+		let podiumWinners = SKSpriteNode(imageNamed: "PodiumVencedores")
+		podiumWinners.zPosition = 3
+		ratio = podiumWinners.size.width / podiumWinners.size.height
+		height = (self.size?.height)! / 3
+		width = height * ratio
+		podiumWinners.size = CGSize(width: width, height: height)
+		x = -(self.size?.width)! / 2 + podiumWinners.size.width * 0.75
+//		y = -(self.size?.height)! / 2 + podiumWinners.size.height
+		podiumWinners.position = CGPoint(x: x, y: y)
+		self.addChild(podiumWinners)
 		
-		scoresNode.position = CGPoint(x: -scoresNode.size.width / 2, y: scoresNode.size.height / 2)
+		let winnersLight = SKSpriteNode(imageNamed: "LuzPodiumVencedores")
+		winnersLight.alpha = 0.9
+		winnersLight.zPosition = 2
+		ratio = winnersLight.size.width / winnersLight.size.height
+		height = (self.size?.height)! * 0.9
+		width = height * ratio
+		winnersLight.size = CGSize(width: width, height: height)
+		x = podiumWinners.position.x
+		y = (self.size?.height)! / 2 - winnersLight.size.height * 0.45
+		winnersLight.position = CGPoint(x: x, y: y)
+		self.addChild(winnersLight)
 		
-		let touchToContinueMessage = NSLocalizedString("TouchToContinue", comment: "Touch anywhere to go to main menu screen")
-		let touchToContinueLabel = SKLabelNode(text: touchToContinueMessage)
+		let loserLight = SKSpriteNode(imageNamed: "LuzPodiumPerdedor")
+		loserLight.alpha = 0.9
+		loserLight.zPosition = 2
+		ratio = loserLight.size.width / loserLight.size.height
+		height = (self.size?.height)! * 0.85
+		width = height * ratio
+		loserLight.size = CGSize(width: width, height: height)
+		x = podiumLoser.position.x
+		y = (self.size?.height)! / 2 - loserLight.size.height * 0.45
+		loserLight.position = CGPoint(x: x, y: y)
+		self.addChild(loserLight)
 		
-		y = scoresNode.position.y - scoresNode.size.height - touchToContinueLabel.frame.height * 2
+		let menuButton = SKSpriteNode(imageNamed: "MenuButton")
+		menuButton.name = "menu_button"
+		menuButton.zPosition = 3
+		ratio = menuButton.size.width / menuButton.size.height
+		height = (self.size?.height)! / 5
+		width = height * ratio
+		menuButton.size = CGSize(width: width, height: height)
+		x = -(self.size?.width)! / 2 + menuButton.size.width / 2
+		y = (self.size?.height)! / 2 - menuButton.size.height / 2
+		menuButton.position = CGPoint(x: x, y: y)
+		self.addChild(menuButton)
 		
-		touchToContinueLabel.position = CGPoint(x: 0, y: y)
+		let menuLabel = SKLabelNode(fontNamed: "SnapHand")
+		menuLabel.name = "menu_button"
+		menuLabel.text = "Menu"
+		menuLabel.alpha = 0.6
+		menuLabel.zPosition = 4
+		menuLabel.position = menuButton.position
+		self.addChild(menuLabel)
 		
-		self.addChild(touchToContinueLabel)
+		let scoresDetails = ScoreDetails.generateDetails(characters, scores: scores, aliases: players)
+		let playersImages = generateImagesTwoPlayer(scoresDetails)
+		
+		var percent = CGFloat(0.5)
+		
+		let player1 = playersImages.first
+		player1?.zPosition = 7
+		player1?.setScale(0.5)
+		if characters.first == CharacterType.Uhong.rawValue {
+			percent = 0.4
+		} else if characters.first == CharacterType.Salamang.rawValue {
+			percent = 0.2
+		}
+		x = podiumWinners.position.x
+		y = podiumWinners.position.y + podiumWinners.size.height / 2 + (player1?.size.height)! * percent
+		player1?.position = CGPoint(x: x, y: y)
+		self.addChild(player1!)
+		
+		percent = 0.5
+		
+		let player2 = playersImages.last
+		player2?.xScale = -(player2?.xScale)!
+		player2?.zPosition = 7
+		player2?.setScale(0.5)
+		if characters.last == CharacterType.Uhong.rawValue {
+			percent = 0.3
+		} else if characters.last == CharacterType.Salamang.rawValue {
+			percent = 0.2
+		}
+		x = podiumLoser.position.x
+		y = podiumLoser.position.y + podiumLoser.size.height / 2 + (player2?.size.height)! * percent
+		player2?.position = CGPoint(x: x, y: y)
+		self.addChild(player2!)
+		
+		let firstLabel = SKLabelNode(fontNamed: "SnapHand")
+		firstLabel.text = "1"
+		firstLabel.fontSize = 24 * (self.size?.width)! / (self.size?.height)!
+		x = podiumWinners.position.x
+		y = podiumWinners.position.y + podiumWinners.size.height / 2 - firstLabel.frame.height * 1.7
+		firstLabel.position = CGPoint(x: x, y: y)
+		firstLabel.zPosition = 6
+		self.addChild(firstLabel)
+		
+		let firstScoreLabel = SKLabelNode(fontNamed: "SnapHand")
+		firstScoreLabel.text = "score \(scoresDetails.first!.score)"
+		firstScoreLabel.fontSize = 10 * (self.size?.width)! / (self.size?.height)!
+		x = podiumWinners.position.x
+		y = podiumWinners.position.y - podiumWinners.size.height / 2 + firstScoreLabel.frame.height
+		firstScoreLabel.position = CGPoint(x: x, y: y)
+		firstScoreLabel.zPosition = 6
+		self.addChild(firstScoreLabel)
+		
+		let secondLabel = SKLabelNode(fontNamed: "SnapHand")
+		secondLabel.text = "2"
+		secondLabel.fontSize = 20 * (self.size?.width)! / (self.size?.height)!
+		x = podiumLoser.position.x
+		y = podiumLoser.position.y + podiumLoser.size.height / 2 - secondLabel.frame.height * 2.5
+		secondLabel.position = CGPoint(x: x, y: y)
+		secondLabel.zPosition = 6
+		self.addChild(secondLabel)
+		
+		let secondScoreLabel = SKLabelNode(fontNamed: "SnapHand")
+		secondScoreLabel.text = "score \(scoresDetails.last!.score)"
+		secondScoreLabel.fontSize = 10 * (self.size?.width)! / (self.size?.height)!
+		x = podiumLoser.position.x
+		y = podiumLoser.position.y - podiumLoser.size.height / 2 + secondScoreLabel.frame.height * 0.1
+		secondScoreLabel.position = CGPoint(x: x, y: y)
+		secondScoreLabel.zPosition = 6
+		self.addChild(secondScoreLabel)
 		
 	}
 	
-	func getHightestWidth(nodes: [SKLabelNode]) -> CGFloat {
-		var highestIndex = 0
-		for index in 0...nodes.count - 1 {
-			if index != nodes.count - 1 {
-				if nodes[index].frame.width > nodes[index + 1].frame.width {
-					highestIndex = index
-				} else {
-					highestIndex = index + 1
+	class ScoreDetails: NSObject {
+		let character: Int
+		let score: Int
+		let name: String
+		
+		init(character: Int, score: Int, name: String) {
+			self.character = character
+			self.score = score
+			self.name = name
+			super.init()
+		}
+		
+		static func generateDetails(characters: [Int], scores: [Int], aliases: [String]) -> [ScoreDetails]{
+			var details = [ScoreDetails]()
+			
+			for index in 0...scores.count - 1 {
+				let detail = ScoreDetails(character: characters[index], score: scores[index], name: aliases[index])
+				
+				details.append(detail)
+			}
+			
+			let multableArray = NSMutableArray(array: details)
+			let sortByIndex = NSSortDescriptor(key: "score", ascending: false)
+			let sortDescriptiors = [sortByIndex]
+			multableArray.sortUsingDescriptors(sortDescriptiors)
+			details = NSArray(array: multableArray) as! [ScoreDetails]
+			
+			return details
+		}
+	}
+	
+	func generateImagesTwoPlayer(details: [ScoreDetails]) -> [SKSpriteNode]{
+		var players = [SKSpriteNode]()
+		for index in 0...details.count - 1 {
+			if index == 0 {
+				if details[index].character == CharacterType.Uhong.rawValue {
+					let player = SKSpriteNode(imageNamed: "CogumeloSubindo1.png")
+					players.append(player)
+				} else if details[index].character == CharacterType.Salamang.rawValue {
+					let player = SKSpriteNode(imageNamed: "SalamangCaindo1.png")
+					players.append(player)
+				}
+			} else {
+				if details[index].character == CharacterType.Uhong.rawValue {
+					let player = SKSpriteNode(imageNamed: "CogumeloParado1.png")
+					players.append(player)
+				} else if details[index].character == CharacterType.Salamang.rawValue {
+					let player = SKSpriteNode(imageNamed: "SalamangParado4.png")
+					players.append(player)
 				}
 			}
 		}
 		
-		return nodes[highestIndex].frame.width
+		return players
 	}
 	
 	

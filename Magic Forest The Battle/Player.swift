@@ -17,6 +17,7 @@ let BITMASK_THIRD_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.Wo
 class Player: SKSpriteNode, GameObject {
 	
 	var isMyPlayer: Bool = false
+	var currentIndex: Int = 0
 	
 	// Player properties
 	var life: CGFloat?
@@ -296,41 +297,7 @@ class Player: SKSpriteNode, GameObject {
 	Checks wheather the player can colide with floors
 	*/
 	func checkFloorLevel() {
-		let deadZoneFirstFloor = (BackgroundLayer.firstFloor?.position.y)! + ((BackgroundLayer.firstFloor?.size.height)! * 0.4) / 2
-		let deadZoneSecondFloor = (BackgroundLayer.secondFloor?.position.y)! + ((BackgroundLayer.secondFloor?.size.height)! * 0.4) / 2
-		let deadZoneThridFloor = (BackgroundLayer.thirdFloor?.position.y)! + ((BackgroundLayer.thirdFloor?.size.height)! * 0.4) / 2
-		
-		let playerFoot = self.position.y - (self.size.height / 2) * 0.8
-		
-		if self.isMyPlayer {
-			if playerFoot >= deadZoneThridFloor {
-				self.physicsBody?.collisionBitMask = BITMASK_THIRD_FLOOR
-				self.physicsBody?.contactTestBitMask = BITMASK_THIRD_FLOOR
-			} else if playerFoot >= deadZoneSecondFloor {
-				self.physicsBody?.collisionBitMask = BITMASK_SECOND_FLOOR
-				self.physicsBody?.contactTestBitMask = BITMASK_SECOND_FLOOR
-			} else if playerFoot >= deadZoneFirstFloor {
-				self.physicsBody?.collisionBitMask = BITMASK_FIRST_FLOOR
-				self.physicsBody?.contactTestBitMask = BITMASK_FIRST_FLOOR
-			} else {
-				self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
-				self.physicsBody?.contactTestBitMask = BITMASK_BASE_FLOOR
-			}
-		} else {
-			if playerFoot >= deadZoneThridFloor {
-				self.physicsBody?.collisionBitMask = BITMASK_THIRD_FLOOR
-				self.physicsBody?.contactTestBitMask = BITMASK_THIRD_FLOOR | PhysicsCategory.MeleeBox.rawValue
-			} else if playerFoot >= deadZoneSecondFloor {
-				self.physicsBody?.collisionBitMask = BITMASK_SECOND_FLOOR
-				self.physicsBody?.contactTestBitMask = BITMASK_SECOND_FLOOR | PhysicsCategory.MeleeBox.rawValue
-			} else if playerFoot >= deadZoneFirstFloor {
-				self.physicsBody?.collisionBitMask = BITMASK_FIRST_FLOOR
-				self.physicsBody?.contactTestBitMask = BITMASK_FIRST_FLOOR | PhysicsCategory.MeleeBox.rawValue
-			} else {
-				self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
-				self.physicsBody?.contactTestBitMask = BITMASK_BASE_FLOOR | PhysicsCategory.MeleeBox.rawValue
-			}
-		}
+		return
 	}
 	
 	/**
@@ -362,10 +329,11 @@ class Player: SKSpriteNode, GameObject {
     
 	func createLifeBar () {
 		self.lifeBar = SKSpriteNode(imageNamed: "UI_COLORBAR_RED")
+		//bar.yScale = 0.1
+		self.lifeBar.position = CGPointMake(0, -((size.height))*0.6)
 		self.lifeBar.setScale(0.01)
 		self.lifeBar.yScale = 0.02
-        self.lifeBar.position = CGPoint(x: -5 , y: -self.size.height*0.1)
-        self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
+//		self.lifeBar.anchorPoint = CGPointMake(0, self.lifeBar.anchorPoint.y)
 		lifeBar.zPosition = 0
 		self.addChild(self.lifeBar)
 	}

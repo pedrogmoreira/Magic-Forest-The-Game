@@ -94,6 +94,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	
 	override func update(currentTime: NSTimeInterval) {
 		self.gameLayer?.update(currentTime)
+		//(self.backgroundLayer as! ForestScenery).updateParallaxWithPosition((self.gameLayer?.player.position)!)
 	}
     
     // FIXME: The two next methods has duplicated code. They need to be refactored
@@ -147,11 +148,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		if self.isGameOver {
-			scenesDelegate?.showMenu()
-			scenesDelegate?.removeMenuSelectPlayerScene()
-			scenesDelegate?.removeGameScene()
 			
-			GameKitHelper.sharedInstance.multiplayerMatch?.disconnect()
+			let touch = touches.first
+			let touchLocation = touch?.locationInNode(self)
+			let nodeTouched = self.nodeAtPoint(touchLocation!)
+			let nodeName = nodeTouched.name
+			
+			if nodeName == "menu_button" {
+				scenesDelegate?.showMenu()
+				scenesDelegate?.removeMenuSelectPlayerScene()
+				scenesDelegate?.removeGameScene()
+				
+				GameKitHelper.sharedInstance.multiplayerMatch?.disconnect()
+			}
 		}
 	}
     
@@ -170,6 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	
 	// Called when my device receive the message to create the players
 	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
+		self.chosenCharacters = chosenCharacters
         self.gameLayer?.createPlayer(indexes, chosenCharacters: chosenCharacters)
     }
 	
@@ -314,7 +324,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 			
 			self.gameOverLayer?.removeLoad()
 			self.runAction(SKAction.waitForDuration(0.2), completion: {
-				self.gameOverLayer?.showTwoPlayerScores(self.finalScores, players: aliases)
+				self.gameOverLayer?.showTwoPlayerScores(self.finalScores, players: aliases, characters: self.chosenCharacters)
 				self.isGameOver = true
 			})
 		}
@@ -334,7 +344,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 		
 		self.gameOverLayer?.removeLoad()
 		self.runAction(SKAction.waitForDuration(0.2), completion: {
-			self.gameOverLayer?.showTwoPlayerScores(self.finalScores, players: aliases)
+			self.gameOverLayer?.showTwoPlayerScores(self.finalScores, players: aliases, characters: self.chosenCharacters)
 			self.isGameOver = true
 		})
 	}

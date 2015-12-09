@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Objeto-Inteligente-de-Vetor@3x-1.png",
+      "filename" : "Aleatorio.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Objeto-Inteligente-de-Vetor@3x-2.png",
+      "filename" : "Aleatorio-2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Objeto-Inteligente-de-Vetor@3x.png",
+      "filename" : "Aleatorio-1.png",
       "scale" : "3x"
     }
   ],

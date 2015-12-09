@@ -43,7 +43,7 @@ class Salamang: Player {
 		
 		physicsBody.categoryBitMask = PhysicsCategory.Player.rawValue
         physicsBody.collisionBitMask = BITMASK_BASE_FLOOR
-        physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR | PhysicsCategory.DeathBox.rawValue
+        physicsBody.contactTestBitMask = BITMASK_BASE_FLOOR | PhysicsCategory.DeathBox.rawValue  | PhysicsCategory.Projectile.rawValue
 		physicsBody.mass = 100
         physicsBody.restitution = 0
 		physicsBody.affectedByGravity = true
@@ -159,6 +159,9 @@ class Salamang: Player {
 	
 	override func createProjectile() -> Projectile {
 		let jujuba = Jujuba(position: self.position)
+		print("my index: \(self.currentIndex)")
+		jujuba.physicsBody = jujuba.generatePhysicsBody(self.isMyPlayer, ownerIndex: self.currentIndex)
+		jujuba.ownerIndex = self.currentIndex
 		return jujuba
 	}
     
