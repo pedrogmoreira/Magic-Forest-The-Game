@@ -34,5 +34,8 @@ class MenuScene: SKScene {
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.mainMenu?.touchesBegan(touches, withEvent: event)
     }
+	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		self.mainMenu?.touchesMoved(touches, withEvent: event)
+	}
     
 }

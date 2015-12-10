@@ -121,6 +121,10 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
             self.settingsMenu?.touchesBegan(touches, withEvent: event)
         }
     }
+	
+	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		self.settingsMenu?.touchesMoved(touches, withEvent: event)
+	}
     
     // Create the SettingsMenu
     private func creteSettingsMenu() {
