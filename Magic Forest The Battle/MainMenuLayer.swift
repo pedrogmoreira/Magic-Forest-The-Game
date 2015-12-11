@@ -10,6 +10,7 @@ import SpriteKit
 import GameKit
 
 class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameProtocol, UIAlertViewDelegate, SettingsProcotol {
+    
     private var size: CGSize?
     private var view: SKView?
     private var rightSwipe: UISwipeGestureRecognizer?
@@ -107,7 +108,6 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
                 print("PracticeButton touched")
             } else if nodeName == "gameCenterButton" {
                 GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
-                
             } else if nodeName == "storeButton" {
                 print("StoreButton touched")
             } else if nodeName == "skinButton" {
@@ -124,7 +124,8 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     
     // Create the SettingsMenu
     private func creteSettingsMenu() {
-        self.settingsMenu = SettingsLayer(size: self.size!)
+        self.fundo.alpha = 0
+        self.settingsMenu = SettingsLayer(size: self.size!, view: self.view!)
         self.settingsMenu?.delegate = self
         
         self.addChild(self.settingsMenu!)
@@ -239,7 +240,11 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
             self.title.setScale(2.5)
         } else {
-            self.title.setScale(1.9)
+            if self.size?.width > 600 {
+                self.title.setScale(1.9)
+            } else {
+                self.title.setScale(1.4)
+            }
         }
 		self.title.zPosition = 1
 		self.title.position = CGPoint(x: (self.size?.width)!/2, y: (self.size?.height)!/1.4)
@@ -274,6 +279,10 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 //        
 //        self.view?.addSubview(self.controlUnit!)
 //		
+    }
+    
+    func finishSetting() {
+        self.fundo.alpha = 1
     }
     
     deinit {

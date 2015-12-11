@@ -10,11 +10,12 @@ import UIKit
 import SpriteKit
 
 protocol SettingsProcotol {
+    func finishSetting()
     var isSetting: Bool? {get set}
 }
 
 
-class SettingsLayer: SKNode, BasicLayer {
+class SettingsLayer: SKNode {
     
     let size: CGSize!
     var settingsMenu: SKSpriteNode?
@@ -22,16 +23,18 @@ class SettingsLayer: SKNode, BasicLayer {
     
     var swipeMode: SKSpriteNode?
     var buttonMode: SKSpriteNode?
+    var view: SKView?
     
     /**
      Initializes the settings layer
      - parameter size: A reference to the device's screen size
      */
-    required init(size: CGSize) {
+    required init(size: CGSize, view: SKView) {
         self.size = size
         super.init()
         
         self.zPosition = 100
+        self.view = view
         
         self.createBackgound()
         self.createBackButton()
@@ -56,11 +59,12 @@ class SettingsLayer: SKNode, BasicLayer {
         self.settingsMenu!.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
 		self.settingsMenu?.zPosition = 1
 		
-		let fundo = SKSpriteNode(imageNamed: "FundoSettings")
+		let bluredScreenShot = SKTexture(image: self.getBluredScreenShot())
+        let fundo = SKSpriteNode(texture: bluredScreenShot)
 		fundo.position = CGPointMake(self.size.width/2, self.size.height/2)
-		fundo.setScale(3)
 		fundo.zPosition = 0
-		self.addChild(fundo)
+
+        self.addChild(fundo)
 		
         self.addChild(settingsMenu!)
     }
@@ -145,6 +149,7 @@ class SettingsLayer: SKNode, BasicLayer {
         if node.name == "backButton" {
             self.removeFromParent()
             self.delegate?.isSetting = false
+            self.delegate?.finishSetting()
         } else if node.name == "swipeMode" {
             print("SwipeMode activated")
             changeColor(node)
@@ -164,6 +169,29 @@ class SettingsLayer: SKNode, BasicLayer {
             self.swipeMode?.runAction(SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1, duration: 0.2))
             self.buttonMode?.runAction(SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2))
         }
+    }
+    
+    func getBluredScreenShot() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions((self.view?.bounds.size)!, false, 1)
+        self.view?.drawViewHierarchyInRect((self.view?.frame)!, afterScreenUpdates: true)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur")
+        gaussianBlurFilter?.setDefaults()
+        gaussianBlurFilter?.setValue(CIImage(image: screenShot), forKey: kCIInputImageKey)
+        gaussianBlurFilter?.setValue(7, forKey: kCIInputRadiusKey)
+        
+        let outputImage = gaussianBlurFilter?.outputImage
+        let context = CIContext()
+        var rect = outputImage?.extent
+        rect?.origin.x += ((rect?.size.width)! - screenShot.size.width) / 2
+        rect?.origin.y += ((rect?.size.height)! - screenShot.size.height) / 2
+        rect?.size = (self.view?.bounds.size)!
+        let cgImage = context.createCGImage(outputImage!, fromRect: rect!)
+        let image = UIImage(CGImage: cgImage)
+        
+        return image
     }
     
 }

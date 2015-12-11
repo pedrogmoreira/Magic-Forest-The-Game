@@ -82,6 +82,7 @@ class MenuSelectPlayer: SKNode {
 	private let ataque = SKLabelNode(text: NSLocalizedString("Attack", comment: "Attack Label String"))
 	private let vida = SKLabelNode(text: NSLocalizedString("Life", comment: "Life Label String"))
 	private let velocidade = SKLabelNode(text: NSLocalizedString("Speed", comment: "Speed Label String"))
+    
 	/**
 	Initializes the menu select Player
 	- parameter size: A reference to the device's screen size
@@ -102,7 +103,8 @@ class MenuSelectPlayer: SKNode {
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
-	 // Add a button to the layer with a position
+    
+    // Add a button to the layer with a position
 	private func addNode(node: SKSpriteNode, name: String, position: CGPoint, zPosition:CGFloat) {
 		node.position = position
 		node.name = name
@@ -189,6 +191,7 @@ class MenuSelectPlayer: SKNode {
         
         return selectedCharacterType
 	}
+    
 	func statusCharacter (ataqueStatus: SKSpriteNode, vidaStatus: SKSpriteNode, velocidadeStatus: SKSpriteNode) {
 		//ataque.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
 		self.addLabelNode(ataque, name: "Ataque", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.70), zPosition: 2, alpha: 0.8, fontSize: 22, fontName: "SnapHand")
