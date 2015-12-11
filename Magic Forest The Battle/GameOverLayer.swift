@@ -90,22 +90,18 @@ class GameOverLayer: SKNode, BasicLayer {
 		self.addChild(gameOverMessage)
 		
 		let podiumLoser = SKSpriteNode(imageNamed: "PodiumPerdedor")
+        podiumLoser.texture?.filteringMode = SKTextureFilteringMode.Linear
 		podiumLoser.zPosition = 3
-		ratio = podiumLoser.size.width / podiumLoser.size.height
-		height = (self.size?.height)! / 4
-		width = height * ratio
-		podiumLoser.size = CGSize(width: width, height: height)
+        podiumLoser.setScale(3)
 		x = (self.size?.width)! / 2 - podiumLoser.size.width * 1.2
 		y = -(self.size?.height)! / 2 + podiumLoser.size.height
 		podiumLoser.position = CGPoint(x: x, y: y)
 		self.addChild(podiumLoser)
 		
 		let podiumWinners = SKSpriteNode(imageNamed: "PodiumVencedores")
+        podiumWinners.texture?.filteringMode = SKTextureFilteringMode.Nearest
 		podiumWinners.zPosition = 3
-		ratio = podiumWinners.size.width / podiumWinners.size.height
-		height = (self.size?.height)! / 3
-		width = height * ratio
-		podiumWinners.size = CGSize(width: width, height: height)
+        podiumWinners.setScale(3)
 		x = -(self.size?.width)! / 2 + podiumWinners.size.width * 0.75
 //		y = -(self.size?.height)! / 2 + podiumWinners.size.height
 		podiumWinners.position = CGPoint(x: x, y: y)
@@ -138,6 +134,7 @@ class GameOverLayer: SKNode, BasicLayer {
 		let menuButton = SKSpriteNode(imageNamed: "MenuButton")
 		menuButton.name = "menu_button"
 		menuButton.zPosition = 3
+        menuButton.texture?.filteringMode = SKTextureFilteringMode.Linear
 		ratio = menuButton.size.width / menuButton.size.height
 		height = (self.size?.height)! / 5
 		width = height * ratio
@@ -152,8 +149,7 @@ class GameOverLayer: SKNode, BasicLayer {
 		menuLabel.text = "Menu"
 		menuLabel.alpha = 0.6
 		menuLabel.zPosition = 4
-		menuLabel.position = menuButton.position
-		self.addChild(menuLabel)
+		menuButton.addChild(menuLabel)
 		
 		let scoresDetails = ScoreDetails.generateDetails(characters, scores: scores, aliases: players)
 		let playersImages = generateImagesTwoPlayer(scoresDetails)
