@@ -74,7 +74,7 @@ class MenuSelectPlayer: SKNode {
 	private let barraQualidade1 = SKSpriteNode(imageNamed: "BarraQualidade1")
 	private let barraQualidade2 = SKSpriteNode(imageNamed: "BarraQualidade2")
 	private let barraQualidade3 = SKSpriteNode(imageNamed: "BarraQualidade3")
-		private let barraQualidade3Segunda = SKSpriteNode(imageNamed: "BarraQualidade3")
+    private let barraQualidade3Segunda = SKSpriteNode(imageNamed: "BarraQualidade3")
 	private let barraQualidade4 = SKSpriteNode(imageNamed: "BarraQualidade4")
 	private let barraQualidade4Segunda = SKSpriteNode(imageNamed: "BarraQualidade4")
 	private let barraQualidade5 = SKSpriteNode(imageNamed: "BarraQualidade5")
@@ -137,7 +137,10 @@ class MenuSelectPlayer: SKNode {
 		
 		//Adding background
 		addNode(fundo, name: "fundo", position: CGPointMake(self.size!.width/2, self.size!.height/2), zPosition: -1)
-		fundo.setScale(1.8)
+        let xBackgroundScale = self.size!.width/self.fundo.size.width
+        let yBackgroundScale = self.size!.width/self.fundo.size.height
+		fundo.xScale = xBackgroundScale
+        fundo.yScale = yBackgroundScale
 		
 		// Adding play Button
 		self.playButton.setScale(1.5)
@@ -205,7 +208,6 @@ class MenuSelectPlayer: SKNode {
 		self.addLabelNode(velocidade, name: "Velocidade", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.30), zPosition: 1, alpha: 0.8, fontSize: 22, fontName: "SnapHand")
 		velocidadeStatus.setScale(2)
 		self.addNode(velocidadeStatus, name: "VelocidadeStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.25), zPosition: 1)
-		
 		
 	}
 	
