@@ -22,7 +22,12 @@ class SettingsLayer: SKNode, BasicLayer {
     
     var swipeMode: SKSpriteNode?
     var buttonMode: SKSpriteNode?
-    
+	
+	let barraMusic = SKSpriteNode(imageNamed: "BarraSettings")
+	let reguladorMusic = SKSpriteNode(imageNamed: "ReguladorSettings")
+
+	let barraSFX = SKSpriteNode(imageNamed: "BarraSettings")
+	let reguladorSFX = SKSpriteNode(imageNamed: "ReguladorSettings")
     /**
      Initializes the settings layer
      - parameter size: A reference to the device's screen size
@@ -118,24 +123,70 @@ class SettingsLayer: SKNode, BasicLayer {
     private func createButtonsToChooseControlType() {
         let buttonsWidth = CGFloat(self.settingsMenu!.size.width/10)
         let buttonsHeight = CGFloat(self.settingsMenu!.size.height/10)
-        
         let buttonsSize = CGSize(width: buttonsWidth, height: buttonsHeight)
         
-        self.swipeMode = SKSpriteNode(texture: SKTexture(imageNamed: "BotoesSettings"), color: SKColor.greenColor(), size: buttonsSize)
-        self.buttonMode = SKSpriteNode(texture: SKTexture(imageNamed: "BotoesSettings"), color: SKColor.redColor(), size: buttonsSize)
+        self.swipeMode = SKSpriteNode(texture: SKTexture(imageNamed: "BotoesSettings"),  size: buttonsSize)
+        self.buttonMode = SKSpriteNode(texture: SKTexture(imageNamed: "botaoCinza"),size: buttonsSize)
         
         swipeMode!.name = "swipeMode"
+		swipeMode?.setScale(1.5)
         buttonMode!.name = "buttonMode"
+		buttonMode!.setScale(1.5)
         
 		swipeMode!.position = CGPoint(x: buttonsWidth, y: -self.settingsMenu!.size.height*0.2)
-		buttonMode!.position = CGPoint(x: buttonsWidth + (swipeMode?.position.x)!, y: -self.settingsMenu!.size.height*0.2)
+		buttonMode!.position = CGPoint(x: buttonsWidth*2.6, y: -self.settingsMenu!.size.height*0.2)
 		
 		swipeMode?.zPosition = 2
 		buttonMode?.zPosition = 2
 		
         self.settingsMenu!.addChild(swipeMode!)
         self.settingsMenu!.addChild(buttonMode!)
+		
+		let buttonLabel = SKLabelNode(fontNamed: "SnapHand")
+		buttonLabel.text = "Buttons"
+		buttonLabel.name = "buttonMode"
+		buttonLabel.position = CGPointMake(0, 0)
+		buttonLabel.zPosition = 3
+		buttonLabel.fontSize = 14
+		buttonMode?.addChild(buttonLabel)
+		let gestureLabel = SKLabelNode(fontNamed: "SnapHand")
+		gestureLabel.text = "Gestures"
+		gestureLabel.name = "swipeMode"
+		gestureLabel.position = CGPointMake(0, 0)
+		gestureLabel.zPosition = 3
+		gestureLabel.fontSize = 14
+		swipeMode?.addChild(gestureLabel)
+		
+		
+		barraMusic.zPosition = 3
+		barraMusic.setScale(2.5)
+		barraMusic.position = CGPointMake(self.settingsMenu!.size.width*0.2, self.settingsMenu!.size.height*0.2)
+		self.settingsMenu?.addChild(barraMusic)
+		
+		reguladorMusic.name = "ReguladorSettingsMusic"
+		reguladorMusic.zPosition = 4
+		reguladorMusic.setScale(1)
+		reguladorMusic.position = CGPointMake(0,0)
+		barraMusic.addChild(reguladorMusic)
+		
+		barraSFX.zPosition = 3
+		barraSFX.setScale(2.5)
+		barraSFX.position = CGPointMake(self.settingsMenu!.size.width*0.2, self.settingsMenu!.size.height*0)
+		self.settingsMenu?.addChild(barraSFX)
+		
+		reguladorSFX.name = "ReguladorSettingsSFX"
+		reguladorSFX.zPosition = 4
+		reguladorSFX.setScale(1)
+		reguladorSFX.position = CGPointMake(0,0)
+		barraSFX.addChild(reguladorSFX)
     }
+	
+	func calculatePositionRegulatorSong (tamanho : CGFloat, node : SKSpriteNode) -> CGFloat{
+		let calcula = node.position.x * 100 / tamanho
+		return calcula
+		
+	}
+
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first
@@ -155,15 +206,36 @@ class SettingsLayer: SKNode, BasicLayer {
             GameState.sharedInstance.controllerMode = MFCSControllerMode.JoystickAndButton
         }
     }
-    
+	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+		let touch = touches.first
+		let touchPosition = touch?.locationInNode(self)
+		let touchRegulador1 = touch?.locationInNode(self.barraMusic)
+		let touchRegulador2 = touch?.locationInNode(self.barraSFX)
+		let node = self.nodeAtPoint(touchPosition!)
+		if node.name == "ReguladorSettingsMusic" {
+			print(node.name)
+			if touchRegulador1?.x >= -30 && touchRegulador1?.x <= 30 {
+				node.position.x = (touchRegulador1?.x)!
+			}
+			DMTSoundPlayer.sharedPlayer().musicVolume = ALfloat(self.calculatePositionRegulatorSong(barraMusic.size.width, node: reguladorMusic))
+			node.zPosition = 100
+			
+		} else if node.name == "ReguladorSettingsSFX"{
+			if touchRegulador2?.x >= -30 && touchRegulador2?.x <= 30 {
+				node.position.x = (touchRegulador2?.x)!
+			}
+			DMTSoundPlayer.sharedPlayer().fxVolume = ALfloat(self.calculatePositionRegulatorSong(barraSFX.size.width, node: reguladorSFX))
+			node.zPosition = 100
+		}
+	}
     private func changeColor(node: SKNode) {
         if node.name == "swipeMode" {
-            self.swipeMode?.runAction(SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2))
-            self.buttonMode?.runAction(SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1, duration: 0.2))
+            self.swipeMode?.texture = SKTexture(imageNamed: "BotoesSettings")
+            self.buttonMode?.texture = SKTexture(imageNamed: "botaoCinza")
         } else {
-            self.swipeMode?.runAction(SKAction.colorizeWithColor(SKColor.redColor(), colorBlendFactor: 1, duration: 0.2))
-            self.buttonMode?.runAction(SKAction.colorizeWithColor(SKColor.greenColor(), colorBlendFactor: 1, duration: 0.2))
+			self.swipeMode?.texture = SKTexture(imageNamed: "botaoCinza")
+			self.buttonMode?.texture = SKTexture(imageNamed: "BotoesSettings")
         }
     }
-    
+	
 }
