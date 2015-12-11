@@ -25,7 +25,9 @@ class SettingsLayer: SKNode, BasicLayer {
 	
 	let barraMusic = SKSpriteNode(imageNamed: "BarraSettings")
 	let reguladorMusic = SKSpriteNode(imageNamed: "ReguladorSettings")
-    
+
+	let barraSFX = SKSpriteNode(imageNamed: "BarraSettings")
+	let reguladorSFX = SKSpriteNode(imageNamed: "ReguladorSettings")
     /**
      Initializes the settings layer
      - parameter size: A reference to the device's screen size
@@ -166,6 +168,17 @@ class SettingsLayer: SKNode, BasicLayer {
 		reguladorMusic.setScale(1)
 		reguladorMusic.position = CGPointMake(0,0)
 		barraMusic.addChild(reguladorMusic)
+		
+		barraSFX.zPosition = 3
+		barraSFX.setScale(2.5)
+		barraSFX.position = CGPointMake(self.settingsMenu!.size.width*0.2, self.settingsMenu!.size.height*0)
+		self.settingsMenu?.addChild(barraSFX)
+		
+		reguladorSFX.name = "ReguladorSettingsSFX"
+		reguladorSFX.zPosition = 4
+		reguladorSFX.setScale(1)
+		reguladorSFX.position = CGPointMake(0,0)
+		barraSFX.addChild(reguladorSFX)
     }
 	
 	func calculatePositionRegulatorSong (tamanho : CGFloat, node : SKSpriteNode) -> CGFloat{
@@ -196,14 +209,23 @@ class SettingsLayer: SKNode, BasicLayer {
 	override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
 		let touch = touches.first
 		let touchPosition = touch?.locationInNode(self)
+		let touchRegulador1 = touch?.locationInNode(self.barraMusic)
+		let touchRegulador2 = touch?.locationInNode(self.barraSFX)
 		let node = self.nodeAtPoint(touchPosition!)
-		print("movi")
 		if node.name == "ReguladorSettingsMusic" {
 			print(node.name)
-			node.position.x = (touchPosition?.x)!
+			if touchRegulador1?.x >= -30 && touchRegulador1?.x <= 30 {
+				node.position.x = (touchRegulador1?.x)!
+			}
 			DMTSoundPlayer.sharedPlayer().musicVolume = ALfloat(self.calculatePositionRegulatorSong(barraMusic.size.width, node: reguladorMusic))
 			node.zPosition = 100
 			
+		} else if node.name == "ReguladorSettingsSFX"{
+			if touchRegulador2?.x >= -30 && touchRegulador2?.x <= 30 {
+				node.position.x = (touchRegulador2?.x)!
+			}
+			DMTSoundPlayer.sharedPlayer().fxVolume = ALfloat(self.calculatePositionRegulatorSong(barraSFX.size.width, node: reguladorSFX))
+			node.zPosition = 100
 		}
 	}
     private func changeColor(node: SKNode) {
