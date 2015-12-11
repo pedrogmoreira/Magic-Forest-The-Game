@@ -40,6 +40,23 @@ class SettingsLayer: SKNode {
         self.createBackButton()
         self.createButtonsToChooseControlType()
 		self.createLabels()
+        self.settingsMenu!.runAction(self.showSettingsLayerAnimated())
+    }
+    
+
+    private func showSettingsLayerAnimated() -> SKAction {
+        
+        // Positioning settings menu outside the screen
+        self.settingsMenu?.position = CGPoint(x: self.settingsMenu!.position.x, y: self.settingsMenu!.position.y - self.size.height)
+        
+        let showAction = SKAction.moveTo(CGPoint(x: self.size.width/2, y: self.size.height/2), duration: 0.3)
+    
+        return showAction
+    }
+    
+    private func dismissSettingsLayerAnimated() -> SKAction {
+        let dismissAction = SKAction.moveTo(CGPoint(x: self.settingsMenu!.position.x - self.size.width, y: self.settingsMenu!.position.y), duration: 0.2)
+        return dismissAction
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -47,8 +64,6 @@ class SettingsLayer: SKNode {
     }
     
     // Create the background of settings layer
-	
-	
     func createBackgound() {
         let settingsWidth = CGFloat(self.size.width/1.2)
         let settingsHeight = CGFloat(self.size.height/1.2)
@@ -147,9 +162,11 @@ class SettingsLayer: SKNode {
         let node = self.nodeAtPoint(touchPosition!)
         
         if node.name == "backButton" {
-            self.removeFromParent()
-            self.delegate?.isSetting = false
-            self.delegate?.finishSetting()
+            self.settingsMenu!.runAction(self.dismissSettingsLayerAnimated(), completion: { () -> Void in
+                self.removeFromParent()
+                self.delegate?.isSetting = false
+                self.delegate?.finishSetting()
+            })
         } else if node.name == "swipeMode" {
             print("SwipeMode activated")
             changeColor(node)
