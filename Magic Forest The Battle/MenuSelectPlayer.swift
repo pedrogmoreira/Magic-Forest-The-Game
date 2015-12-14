@@ -79,7 +79,7 @@ class MenuSelectPlayer: SKNode {
 	private let barraQualidade1 = SKSpriteNode(imageNamed: "BarraQualidade1")
 	private let barraQualidade2 = SKSpriteNode(imageNamed: "BarraQualidade2")
 	private let barraQualidade3 = SKSpriteNode(imageNamed: "BarraQualidade3")
-		private let barraQualidade3Segunda = SKSpriteNode(imageNamed: "BarraQualidade3")
+    private let barraQualidade3Segunda = SKSpriteNode(imageNamed: "BarraQualidade3")
 	private let barraQualidade4 = SKSpriteNode(imageNamed: "BarraQualidade4")
 	private let barraQualidade4Segunda = SKSpriteNode(imageNamed: "BarraQualidade4")
 	private let barraQualidade5 = SKSpriteNode(imageNamed: "BarraQualidade5")
@@ -87,6 +87,7 @@ class MenuSelectPlayer: SKNode {
 	private let ataque = SKLabelNode(text: NSLocalizedString("Attack", comment: "Attack Label String"))
 	private let vida = SKLabelNode(text: NSLocalizedString("Life", comment: "Life Label String"))
 	private let velocidade = SKLabelNode(text: NSLocalizedString("Speed", comment: "Speed Label String"))
+    
 	/**
 	Initializes the menu select Player
 	- parameter size: A reference to the device's screen size
@@ -107,7 +108,8 @@ class MenuSelectPlayer: SKNode {
 	required init?(coder aDecoder: NSCoder) {
 	    fatalError("init(coder:) has not been implemented")
 	}
-	 // Add a button to the layer with a position
+    
+    // Add a button to the layer with a position
 	private func addNode(node: SKSpriteNode, name: String, position: CGPoint, zPosition:CGFloat) {
 		node.position = position
 		node.name = name
@@ -143,7 +145,10 @@ class MenuSelectPlayer: SKNode {
 		
 		//Adding background
 		addNode(fundo, name: "fundo", position: CGPointMake(self.size!.width/2, self.size!.height/2), zPosition: -1)
-		fundo.setScale(1.8)
+        let xBackgroundScale = self.size!.width/self.fundo.size.width
+        let yBackgroundScale = self.size!.width/self.fundo.size.height
+		fundo.xScale = xBackgroundScale
+        fundo.yScale = yBackgroundScale
 		
 		// Adding play Button
 		self.playButton.setScale(1.5)
@@ -199,6 +204,7 @@ class MenuSelectPlayer: SKNode {
         
         return selectedCharacterType
 	}
+    
 	func statusCharacter (ataqueStatus: SKSpriteNode, vidaStatus: SKSpriteNode, velocidadeStatus: SKSpriteNode) {
 		//ataque.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
 		self.addLabelNode(ataque, name: "Ataque", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.70), zPosition: 2, alpha: 0.8, fontSize: 22, fontName: "SnapHand")
@@ -212,7 +218,6 @@ class MenuSelectPlayer: SKNode {
 		self.addLabelNode(velocidade, name: "Velocidade", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.30), zPosition: 1, alpha: 0.8, fontSize: 22, fontName: "SnapHand")
 		velocidadeStatus.setScale(2)
 		self.addNode(velocidadeStatus, name: "VelocidadeStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.25), zPosition: 1)
-		
 		
 	}
 	

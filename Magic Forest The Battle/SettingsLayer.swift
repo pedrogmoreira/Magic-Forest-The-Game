@@ -10,11 +10,12 @@ import UIKit
 import SpriteKit
 
 protocol SettingsProcotol {
+    func finishSetting()
     var isSetting: Bool? {get set}
 }
 
 
-class SettingsLayer: SKNode, BasicLayer {
+class SettingsLayer: SKNode {
     
     let size: CGSize!
     var settingsMenu: SKSpriteNode?
@@ -28,20 +29,40 @@ class SettingsLayer: SKNode, BasicLayer {
 
 	let barraSFX = SKSpriteNode(imageNamed: "BarraSettings")
 	let reguladorSFX = SKSpriteNode(imageNamed: "ReguladorSettings")
+    var view: SKView?
+    
     /**
      Initializes the settings layer
      - parameter size: A reference to the device's screen size
      */
-    required init(size: CGSize) {
+    required init(size: CGSize, view: SKView) {
         self.size = size
         super.init()
         
         self.zPosition = 100
+        self.view = view
         
         self.createBackgound()
         self.createBackButton()
         self.createButtonsToChooseControlType()
 		self.createLabels()
+        self.settingsMenu!.runAction(self.showSettingsLayerAnimated())
+    }
+    
+
+    private func showSettingsLayerAnimated() -> SKAction {
+        
+        // Positioning settings menu outside the screen
+        self.settingsMenu?.position = CGPoint(x: self.settingsMenu!.position.x, y: self.settingsMenu!.position.y - self.size.height)
+        
+        let showAction = SKAction.moveTo(CGPoint(x: self.size.width/2, y: self.size.height/2), duration: 0.3)
+    
+        return showAction
+    }
+    
+    private func dismissSettingsLayerAnimated() -> SKAction {
+        let dismissAction = SKAction.moveTo(CGPoint(x: self.settingsMenu!.position.x - self.size.width, y: self.settingsMenu!.position.y), duration: 0.2)
+        return dismissAction
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,8 +70,6 @@ class SettingsLayer: SKNode, BasicLayer {
     }
     
     // Create the background of settings layer
-	
-	
     func createBackgound() {
         let settingsWidth = CGFloat(self.size.width/1.2)
         let settingsHeight = CGFloat(self.size.height/1.2)
@@ -61,11 +80,12 @@ class SettingsLayer: SKNode, BasicLayer {
         self.settingsMenu!.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
 		self.settingsMenu?.zPosition = 1
 		
-		let fundo = SKSpriteNode(imageNamed: "FundoSettings")
+		let bluredScreenShot = SKTexture(image: self.getBluredScreenShot())
+        let fundo = SKSpriteNode(texture: bluredScreenShot)
 		fundo.position = CGPointMake(self.size.width/2, self.size.height/2)
-		fundo.setScale(3)
 		fundo.zPosition = 0
-		self.addChild(fundo)
+
+        self.addChild(fundo)
 		
         self.addChild(settingsMenu!)
     }
@@ -194,8 +214,11 @@ class SettingsLayer: SKNode, BasicLayer {
         let node = self.nodeAtPoint(touchPosition!)
         
         if node.name == "backButton" {
-            self.removeFromParent()
-            self.delegate?.isSetting = false
+            self.settingsMenu!.runAction(self.dismissSettingsLayerAnimated(), completion: { () -> Void in
+                self.removeFromParent()
+                self.delegate?.isSetting = false
+                self.delegate?.finishSetting()
+            })
         } else if node.name == "swipeMode" {
             print("SwipeMode activated")
             changeColor(node)
@@ -237,5 +260,27 @@ class SettingsLayer: SKNode, BasicLayer {
 			self.buttonMode?.texture = SKTexture(imageNamed: "BotoesSettings")
         }
     }
-	
+    
+    func getBluredScreenShot() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions((self.view?.bounds.size)!, false, 1)
+        self.view?.drawViewHierarchyInRect((self.view?.frame)!, afterScreenUpdates: true)
+        let screenShot = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        let gaussianBlurFilter = CIFilter(name: "CIGaussianBlur")
+        gaussianBlurFilter?.setDefaults()
+        gaussianBlurFilter?.setValue(CIImage(image: screenShot), forKey: kCIInputImageKey)
+        gaussianBlurFilter?.setValue(7, forKey: kCIInputRadiusKey)
+        
+        let outputImage = gaussianBlurFilter?.outputImage
+        let context = CIContext()
+        var rect = outputImage?.extent
+        rect?.origin.x += ((rect?.size.width)! - screenShot.size.width) / 2
+        rect?.origin.y += ((rect?.size.height)! - screenShot.size.height) / 2
+        rect?.size = (self.view?.bounds.size)!
+        let cgImage = context.createCGImage(outputImage!, fromRect: rect!)
+        let image = UIImage(CGImage: cgImage)
+        
+        return image
+    }
 }

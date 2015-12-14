@@ -46,6 +46,8 @@ class Player: SKSpriteNode, GameObject {
 	var isLeft: Bool = false
 	var isDead: Bool = false
     var isRunning: Bool = false
+    var justRebirth: Bool = false
+    var beingAttacked: Bool = false
 	
 	let scale = CGFloat(0.07)
 	
@@ -67,6 +69,7 @@ class Player: SKSpriteNode, GameObject {
 		
 		self.position = position
 		self.resize(screenSize)
+        self.justRebirth = true
 //        self.setScale(0.4)
         
 //        self.createLifeBar()
@@ -120,8 +123,10 @@ class Player: SKSpriteNode, GameObject {
 			self.changeState(PlayerState.Falling)
 		} else if self.isAttacking && !isSpecialAttacking {
 			self.changeState(PlayerState.Attack)
-		}else if self.isSpecialAttacking {
+		} else if self.isSpecialAttacking {
 			self.changeState(PlayerState.SpecialAttack)
+        } else if self.beingAttacked {
+            self.changeState(PlayerState.BeingAttacked)
 		} else {
 			self.changeState(PlayerState.Idle)
 		}
@@ -196,7 +201,7 @@ class Player: SKSpriteNode, GameObject {
 	func specialAttack () -> SKAction {
 		return SKAction()
 	}
-	
+    
 	/**
 	Changes player state to a given state
 	- parameter state: The new state
@@ -243,6 +248,11 @@ class Player: SKSpriteNode, GameObject {
 			case PlayerState.Death:
 				self.removeAllActions()
 				self.runAction(death())
+            case PlayerState.BeingAttacked:
+                self.runAction(hit(), completion: { () -> Void in
+                    self.beingAttacked = false
+                })
+
 			default:
 				self.runAction(idle())
 			}
@@ -311,7 +321,8 @@ class Player: SKSpriteNode, GameObject {
 			self.currentEnergy = self.energy
 			self.isDead = false
 			self.position = (self.parent as! GameLayer).getRandomSpawnPoint().position
-			
+            
+            self.justRebirth = true;
 		}
 		
 	}

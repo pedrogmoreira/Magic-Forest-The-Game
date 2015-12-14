@@ -18,8 +18,9 @@ protocol MultiplayerProtocol {
     func attack(indext: Int)
     func performGetDown(index: Int)
     func performSpecial(index: Int)
+    func performHit(index: Int)
 	func performLoseLife(index: Int, currentLife: Float)
-    func movePlayer(index: Int, dx: Float, dy: Float)
+    func movePlayer(index: Int, dx: Float, dy: Float, justRebirth: Bool)
 	func chooseCharacter()
 	func sendMyScore()
 	func receiveScore(score: Int, playerIndex: Int)
@@ -185,7 +186,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 		} else if message.messageType == MessageType.Move { // MARK: Received Move
             
             let messageMove = UnsafePointer<MessageMove>(data.bytes).memory
-            delegate?.movePlayer(indexForPlayer(player.playerID!)!, dx: messageMove.dx, dy: messageMove.dy)
+            delegate?.movePlayer(indexForPlayer(player.playerID!)!, dx: messageMove.dx, dy: messageMove.dy, justRebirth: messageMove.justRebirth)
         } else if message.messageType == MessageType.Attack { // MARK: Received Attack
             delegate?.attack(indexForPlayer(player.playerID!)!)
 		} else if message.messageType == MessageType.StartGameProperties { // MARK: Received Start Game Properties
@@ -197,7 +198,7 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			
 			delegate?.createPlayer(indexes, chosenCharacters: chosenCharacters)
 		} else if message.messageType == MessageType.ChosenCharacter { // MARK: Received Chosen Character
-			print("recebendo seleçao")
+			print("Recebendo seleçao")
 			if self.isPlayer1 == true {
 				let messageChosenCharacter = UnsafePointer<MessageCharacterChosen>(data.bytes).memory
 				
@@ -227,7 +228,13 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
 			let scores = NSKeyedUnarchiver.unarchiveObjectWithData(messageScores.scores!) as! [Int]
 
 			delegate?.receiveAllScores(scores)
-		}
+        } else if message.messageType == MessageType.Hit {
+            let messageHit = UnsafePointer<MessageHit>(data.bytes).memory
+            
+            let attackedPlayerIndex = messageHit.attackedPlayerIndex
+            
+            delegate?.performHit(attackedPlayerIndex)
+        }
     }
 	
 	// MARK: Index For Player
@@ -343,9 +350,16 @@ class MultiplayerNetworking: NSObject, GameKitHelperDelegate {
         sendData(data)
     }
     
+    func sendHit(playerIndex: Int) {
+        var message = MessageHit(attackedPlayerIndex: playerIndex)
+        
+        let data = NSData(bytes: &message, length: sizeof(MessageHit))
+        sendData(data)
+    }
+    
     // Send to all devices a message of type MessageMove
-    func sendMove(dx: Float, dy: Float) {
-        var message = MessageMove(dx: dx, dy: dy)
+    func sendMove(dx: Float, dy: Float, justRebirth: Bool) {
+        var message = MessageMove(dx: dx, dy: dy, justRebirth: justRebirth)
         
         let data = NSData(bytes: &message, length: sizeof(MessageMove))
         sendUnreliableData(data)

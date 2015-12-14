@@ -245,9 +245,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     }
     
     // Move the player in all devices
-    func movePlayer(index: Int, dx: Float, dy: Float) {
+    func movePlayer(index: Int, dx: Float, dy: Float, justRebirth: Bool) {
         let player = gameLayer!.players[index] as Player
-        self.gameLayer?.movePlayer(player, dx: dx, dy: dy)
+        self.gameLayer?.movePlayer(player, dx: dx, dy: dy, justRebirth: justRebirth)
     }
     
     // Attack in all devices
@@ -267,11 +267,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
         let player = gameLayer!.players[index] as Player
         self.gameLayer?.performSpecialWithPlayer(player)
     }
+    
 	// Perform special in all devices
 	func performLoseLife(index: Int, currentLife: Float) {
 		let player = gameLayer!.players[index] as Player
 		self.gameLayer?.performLoseLifeWithPlayer(player, currentLife: currentLife)
 	}
+    
+    // Perform special in all devices
+    func performHit(index: Int) {
+        let player = gameLayer!.players[index] as Player
+        self.gameLayer?.performHitWithPlayer(player)
+    }
     
     // Set the player index
     func setCurrentPlayerIndex(index: Int) {

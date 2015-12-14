@@ -45,7 +45,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         print("initial normal box collisions: \(self.normalAreaPlayersIndex.count)")
 		super.init()
         
-		self.populateSpawnPoints(size)
+		self.populateSpawnPoints()
         self.size = size
 		self.networkingEngine = networkingEngine
 		self.chosenCharacters = chosenCharacters
@@ -73,7 +73,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     init(size: CGSize, playerSelected: String) {
 		self.hasLoadedGame = false
 		super.init()
-		self.populateSpawnPoints(size)
+		self.populateSpawnPoints()
 		self.size = size
 		self.spawnPointGenerator()
 //		self.lifeBar()
@@ -89,17 +89,18 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		self.hasLoadedGame = true
 	}
 	
-	func populateSpawnPoints (size : CGSize) {
-		self.spawnPointsLocations = [
-			CGPoint(x: size.width*0.7, y: size.height*0.8),
-			CGPoint(x: -size.width*1.4, y: size.height*1.6), //ok
-			CGPoint(x: -size.width*0.6, y: size.height*0.9),  //ok
-			CGPoint(x: -size.width*1.1, y: -size.height*0.4), //ok
-			CGPoint(x: size.width*0.01, y: -size.height*0.08), //ok
-			CGPoint(x: size.width*1.2, y: size.height*1.4), //ok
-			CGPoint(x: -size.width*0.2, y: size.height*1.2),//ok
-			CGPoint(x: size.width*1.2, y: -size.height*0.01)] //ok
-	}
+    func populateSpawnPoints () {
+        let size = CGSize(width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT)
+        self.spawnPointsLocations = [
+            CGPoint(x: size.width*0.7, y: size.height*0.8),
+            CGPoint(x: -size.width*1.4, y: size.height*1.6), //ok
+            CGPoint(x: -size.width*0.6, y: size.height*0.9),  //ok
+            CGPoint(x: -size.width*1.1, y: -size.height*0.4), //ok
+            CGPoint(x: size.width*0.01, y: -size.height*0.08), //ok
+            CGPoint(x: size.width*1.2, y: size.height*1.4), //ok
+            CGPoint(x: -size.width*0.2, y: size.height*1.2),//ok
+            CGPoint(x: size.width*1.2, y: -size.height*0.01)] //ok
+    }
 
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
@@ -108,16 +109,16 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     func singlePlayer(playerSelected: String) {
 		switch(playerSelected) {
         case "Uhong":
-            self.player = Uhong(position: getRandomSpawnPoint ().position, screenSize: size!)
+            self.player = Uhong(position: getRandomSpawnPoint().position, screenSize: size!)
 			break
         case "Neith":
-            self.player = Neith(position: getRandomSpawnPoint ().position, screenSize:  size!)
+            self.player = Neith(position: getRandomSpawnPoint().position, screenSize:  size!)
 			break
         case "Salamang":
-            self.player = Salamang(position: getRandomSpawnPoint ().position, screenSize:  size!)
+            self.player = Salamang(position: getRandomSpawnPoint().position, screenSize:  size!)
 			break
         case "Dinak":
-            self.player = Dinak(position: getRandomSpawnPoint ().position, screenSize: size!)
+            self.player = Dinak(position: getRandomSpawnPoint().position, screenSize: size!)
             break
 		default:
 			print("Was not possible to create a player in singlePlayer mode")
@@ -206,6 +207,13 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 //				player.physicsBody?.contactTestBitMask = (player.physicsBody?.contactTestBitMask)! | PhysicsCategory.MeleeBox.rawValue
 				player.physicsBody?.usesPreciseCollisionDetection = true
 			}
+            
+            // If player born looking to the left we turn him to the right
+            print("PLAYER SCALE \(self.xScale)")
+            if player.xScale < 0 {
+                print("Turning player to the right")
+                player.xScale = player.xScale * (-1)
+            }
 			
 			self.addChild(players[index])
 		}
@@ -243,7 +251,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func update(currentTime: CFTimeInterval) {
 		/* Called before each frame is rendered */
 		if IS_ONLINE == true && self.hasLoadedGame == true {
-            networkingEngine?.sendMove(Float(player.position.x), dy: Float(player.position.y))
+            networkingEngine?.sendMove(Float(player.position.x), dy: Float(player.position.y), justRebirth: player.justRebirth)
+            if (player.justRebirth == true) {
+                player.justRebirth = false
+            }
 			for player in self.players {
 				player.update(currentTime)
 			}
@@ -308,7 +319,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!, node: (hudLayer?.energyFrontBar)!, scale:  1)
             self.networkingEngine?.sendSpecialAttack()
 		} else if command == MFCSCommandType.Jump && self.canPlayerJump == true {
-			if self.player.isJumping == false {
+			if self.player.isJumping == false && !self.player.isDead {
 				self.player.isJumping = true
 				self.player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.player?.jumpForce)!))
 			}
@@ -351,11 +362,12 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	}
 	
 	func dealDamageOnEnemy(enemy: Player, enemyIndex: Int, WithDamage damage: CGFloat) {
-		
+        
 		if enemy.currentLife! - damage > 0 {
 			
 			enemy.currentLife = enemy.currentLife! - damage
-			
+            enemy.beingAttacked = true
+            self.networkingEngine?.sendHit(self.players.indexOf(enemy)!)
 			
 		} else {
 			enemy.currentLife = 0
@@ -486,7 +498,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
     }
     
     // Move a specific player
-    func movePlayer(player: Player, dx: Float, dy: Float) {
+    func movePlayer(player: Player, dx: Float, dy: Float, justRebirth: Bool) {
         let newPosition = CGPoint(x: CGFloat(dx), y: CGFloat(dy))
         
         // Adjusting player running animation. Refactor it :)
@@ -497,12 +509,20 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         }
         
         self.playerPosition = newPosition
-
-        // Adjusting player flip. Refactor it :)
-        if CGFloat(dx) > player.position.x {
-            performFlipWithPlayer(player, flip: false)
-        } else if CGFloat(dx) < player.position.x {
-            performFlipWithPlayer(player, flip: true)
+        
+        if justRebirth == true {
+            // If player born looking to the left we turn him to the right
+            if player.xScale < 0 {
+                print("Turning player to the right")
+                player.xScale = player.xScale * (-1)
+            }
+        } else {
+            // Adjusting player flip. Refactor it :)
+            if CGFloat(dx) > player.position.x {
+                performFlipWithPlayer(player, flip: false)
+            } else if CGFloat(dx) < player.position.x {
+                performFlipWithPlayer(player, flip: true)
+            }
         }
         
         player.position = playerPosition!
@@ -533,6 +553,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			
 			self.projectileToLayerSpecial(player)
 		}
+    }
+    
+    func performHitWithPlayer(player: Player) {
+        player.beingAttacked = true
     }
 
 	func performLoseLifeWithPlayer (player: Player, currentLife: Float) {
@@ -581,7 +605,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
 
 				let index = self.players.indexOf(contact.bodyB.node as! Player)!
-				
+                
 				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
 				
 				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
@@ -589,7 +613,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 				}
 			} else {
 				let index = self.players.indexOf(contact.bodyA.node as! Player)!
-				
+                
 				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
 				
 				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
@@ -640,6 +664,9 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 						
 						player!.currentLife = player!.currentLife! - damage!
 						
+                        player!.beingAttacked = true
+                        self.networkingEngine?.sendHit(self.players.indexOf(player!)!)
+                        
 						self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
 						
 					} else {
@@ -648,6 +675,10 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 						if player!.isDead == false {
 							self.score++
 							self.hudLayer?.updateScoreLabel(withScore: self.score)
+                            
+                            player!.beingAttacked = true
+                            self.networkingEngine?.sendHit(self.players.indexOf(player!)!)
+                            
 							self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
 						}
 					}

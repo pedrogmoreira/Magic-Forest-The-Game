@@ -148,7 +148,6 @@ class HudLayer: SKNode, BasicLayer {
 			
 			self.matchEndDelegate?.pauseGame()
 		}
-		//pause game
 	}
 	
 	func createScoreLabel () {

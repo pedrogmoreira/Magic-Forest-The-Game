@@ -112,7 +112,7 @@ class Salamang: Player {
 	*/
 	override func hit () -> SKAction {
 		
-		return self.loadAnimation("SalamangHit", endIndex: 1, timePerFrame: 0.08)
+		return self.loadAnimation("SalamangHit", endIndex: 1, timePerFrame: 0.4)
 	}
 	
 	/**
