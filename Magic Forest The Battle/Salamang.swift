@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+
 class Salamang: Player {
 	required init(position: CGPoint, screenSize: CGSize) {
 		super.init(position: position, screenSize: screenSize)
@@ -159,7 +160,6 @@ class Salamang: Player {
 	
 	override func createProjectile() -> Projectile {
 		let jujuba = Jujuba(position: self.position)
-		print("my index: \(self.currentIndex)")
 		jujuba.physicsBody = jujuba.generatePhysicsBody(self.isMyPlayer, ownerIndex: self.currentIndex)
 		jujuba.ownerIndex = self.currentIndex
 		return jujuba

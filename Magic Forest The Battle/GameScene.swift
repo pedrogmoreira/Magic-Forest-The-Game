@@ -8,16 +8,14 @@
 
 import SpriteKit
 
-let DEFAULT_WIDTH = CGFloat(667)
-let DEFAULT_HEIGHT = CGFloat(375)
-
 class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEndDelegate {
 	
     var playerSelected: String?
     
 	var backgroundLayer: BackgroundLayer?
 	var hudLayer: HudLayer?
-	var gameLayer: GameLayer?
+	var onlineGameLayer: OnlineGameLayer?
+	var practiceGameLayer: PracticeGameLayer?
 	var gameOverLayer: GameOverLayer?
 	
     var playerCamera: SKCameraNode?
@@ -43,26 +41,28 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	}
     
     override func didMoveToView(view: SKView) {
-		if IS_ONLINE == true {
-			self.gameLayer = GameLayer(size: size, networkingEngine:  self.networkingEngine!, chosenCharacters: self.chosenCharacters)
-		} else {
-			self.gameLayer = GameLayer(size: size, playerSelected: self.playerSelected!)
-		}
 		
-        self.gameLayer?.zPosition = -5
 //        self.networkingEngine?.createPlayers()
         
         self.backgroundLayer = ForestScenery(size: size)
-        self.backgroundLayer?.zPosition = -10
-        
-        self.hudLayer = HudLayer(size: size)
-        self.hudLayer?.zPosition = 1_000
-		self.hudLayer?.matchEndDelegate = self
-		self.hudLayer?.networkingEngine = self.networkingEngine
-        
-        self.gameLayer?.hudLayer = self.hudLayer
-        
-        self.addChild(self.gameLayer!)
+        self.backgroundLayer?.zPosition = -10 
+		
+		if IS_ONLINE == true {
+			self.hudLayer = HudLayer(size: size)
+			self.hudLayer?.zPosition = 1_000
+			self.hudLayer?.matchEndDelegate = self
+			self.hudLayer?.networkingEngine = self.networkingEngine
+			
+			self.onlineGameLayer = OnlineGameLayer(size: size, networkingEngine:  self.networkingEngine!, chosenCharacters: self.chosenCharacters, hudLayer: self.hudLayer!)
+			self.onlineGameLayer!.zPosition = -5
+			self.addChild(self.onlineGameLayer!)
+			self.playerCamera?.addChild(hudLayer!)
+		} else {
+			self.practiceGameLayer = PracticeGameLayer(size: size, playerSelected: self.playerSelected!)
+			self.practiceGameLayer!.zPosition = -5
+			self.addChild(self.practiceGameLayer!)
+		}
+				
         self.addChild(self.backgroundLayer!)
         
         self.physicsWorld.contactDelegate = self
@@ -71,7 +71,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
         self.initializeCamera()
 		
 		self.addChild(self.playerCamera!)
-		self.playerCamera?.addChild(hudLayer!)
     }
     
     private func initializeCamera(){
@@ -93,7 +92,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	}
 	
 	override func update(currentTime: NSTimeInterval) {
-		self.gameLayer?.update(currentTime)
+		if IS_ONLINE {
+			self.onlineGameLayer?.update(currentTime)
+		} else {
+			self.practiceGameLayer?.update(currentTime)
+		}
 		//(self.backgroundLayer as! ForestScenery).updateParallaxWithPosition((self.gameLayer?.player.position)!)
 	}
     
@@ -104,8 +107,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     // Set the Y position of camera
     private func cameraPositionYAxis(){
         // The camera usually follows the player...
-        let playerYPosition = (self.gameLayer?.player?.position.y)!;
-        self.playerCamera?.position.y = playerYPosition
+		var playerYPosition: CGFloat?
+		if IS_ONLINE {
+			playerYPosition = (self.onlineGameLayer?.player?.position.y)!
+		} else {
+			playerYPosition = (self.practiceGameLayer?.player?.position.y)!
+		}
+        self.playerCamera?.position.y = playerYPosition!
         
         let screenHeight = DEFAULT_HEIGHT
         let backgroundHeight = self.backgroundLayer?.background?.size.height
@@ -123,8 +131,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     // Set the X position of camera
     private func cameraPositionXAxis(){
         // The camera usually follows the player...
-        let playerXPosition = (self.gameLayer?.player?.position.x)!
-        self.playerCamera?.position.x = playerXPosition
+		var playerXPosition: CGFloat?
+		if IS_ONLINE {
+			playerXPosition = (self.onlineGameLayer?.player?.position.x)!
+		} else {
+			playerXPosition = (self.practiceGameLayer?.player?.position.x)!
+		}
+        self.playerCamera?.position.x = playerXPosition!
         
         let cameraXPosition = self.playerCamera!.position.x
         let backgroundWidth = self.backgroundLayer?.background?.size.width
@@ -140,9 +153,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     }
     
     override func didFinishUpdate() {
-		if self.gameLayer?.hasLoadedGame == true {
-			self.cameraPositionYAxis()
-			self.cameraPositionXAxis()
+		if IS_ONLINE {
+			if self.onlineGameLayer?.hasLoadedGame == true {
+				self.cameraPositionYAxis()
+				self.cameraPositionXAxis()
+			}
+		} else {
+			if self.practiceGameLayer?.hasLoadedGame == true {
+				self.cameraPositionYAxis()
+				self.cameraPositionXAxis()
+			}
 		}
     }
 	
@@ -174,13 +194,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     }
 	
     func attack() {
-        self.gameLayer?.attack()
+        self.onlineGameLayer?.attack()
     }
 	
 	// Called when my device receive the message to create the players
 	func createPlayer(indexes: [Int], chosenCharacters: [CharacterType.RawValue]) {
 		self.chosenCharacters = chosenCharacters
-        self.gameLayer?.createPlayer(indexes, chosenCharacters: chosenCharacters)
+        self.onlineGameLayer?.createPlayer(indexes, chosenCharacters: chosenCharacters)
     }
 	
 	// Called when a player send his selection
@@ -199,9 +219,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 				self.chosenCharacters.append(playerDetail.character.rawValue)
 			}
 			
-			self.gameLayer?.createPlayer()
-			self.gameLayer?.addPLayers()
-			self.gameLayer?.hasLoadedGame = true
+			self.onlineGameLayer?.createPlayer()
+			self.onlineGameLayer?.addPLayers()
+			self.onlineGameLayer?.hasLoadedGame = true
 			print("All players send character info to me, sending to all info to everyone")
 			networkingEngine?.tryStartGame()
 			
@@ -240,37 +260,37 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	
     // Perform a jump in all devices
     func performJump (index: Int) {
-        let player = gameLayer!.players[index] as Player
-        gameLayer?.performJumpWithPlayer(player)
+        let player = onlineGameLayer!.players[index] as Player
+        self.onlineGameLayer?.performJumpWithPlayer(player)
     }
     
     // Move the player in all devices
     func movePlayer(index: Int, dx: Float, dy: Float) {
-        let player = gameLayer!.players[index] as Player
-        self.gameLayer?.movePlayer(player, dx: dx, dy: dy)
+        let player = onlineGameLayer!.players[index] as Player
+        self.onlineGameLayer?.movePlayer(player, dx: dx, dy: dy)
     }
     
     // Attack in all devices
     func attack(index: Int) {
-        let player = gameLayer!.players[index] as Player
-        self.gameLayer?.performAttackWithPlayer(player)
+        let player = onlineGameLayer!.players[index] as Player
+        self.onlineGameLayer?.performAttackWithPlayer(player)
     }
     
     // Get down in all devices
     func performGetDown(index: Int) {
-        let player = gameLayer!.players[index] as Player
-        self.gameLayer?.performGetDownWithPlayer(player)
+        let player = onlineGameLayer!.players[index] as Player
+        self.onlineGameLayer?.performGetDownWithPlayer(player)
     }
     
     // Perform special in all devices
     func performSpecial(index: Int) {
-        let player = gameLayer!.players[index] as Player
-        self.gameLayer?.performSpecialWithPlayer(player)
+        let player = onlineGameLayer!.players[index] as Player
+        self.onlineGameLayer?.performSpecialWithPlayer(player)
     }
 	// Perform special in all devices
 	func performLoseLife(index: Int, currentLife: Float) {
-		let player = gameLayer!.players[index] as Player
-		self.gameLayer?.performLoseLifeWithPlayer(player, currentLife: currentLife)
+		let player = onlineGameLayer!.players[index] as Player
+		self.onlineGameLayer?.performLoseLifeWithPlayer(player, currentLife: currentLife)
 	}
     
     // Set the player index
@@ -279,15 +299,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     }
 	
 	func didBeginContact(contact: SKPhysicsContact) {
-		self.gameLayer?.didBeginContact(contact)
+		if IS_ONLINE {
+			self.onlineGameLayer?.didBeginContact(contact)
+		} else {
+			self.practiceGameLayer?.didBeginContact(contact)
+		}
 	}
 	
 	func didEndContact(contact: SKPhysicsContact) {
-		self.gameLayer?.didEndContact(contact)
+		if IS_ONLINE {
+			self.onlineGameLayer?.didBeginContact(contact)
+		} else {
+			self.practiceGameLayer?.didBeginContact(contact)
+		}
 	}
 	
 	func sendMyScore() {
-		self.networkingEngine?.sendMyScore((self.gameLayer?.score)!)
+		self.networkingEngine?.sendMyScore((self.onlineGameLayer?.score)!)
 	}
 	
 	// Called when a player send his score
@@ -324,7 +352,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	}
 	
 	func addMyScore() {
-		self.playersScores.append(PlayerScores(score: (self.gameLayer?.score)!, index: self.currentIndex!))
+		self.playersScores.append(PlayerScores(score: (self.onlineGameLayer?.score)!, index: self.currentIndex!))
 	}
 	
 	func receiveAllScores(scores: [Int]) {
@@ -363,8 +391,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 			
 			let fadeOut = SKAction.fadeAlphaTo(0, duration: 0.25)
 			
-			self.gameLayer?.runAction(fadeOut, completion: {
-				self.gameLayer?.paused = true
+			self.onlineGameLayer?.runAction(fadeOut, completion: {
+				self.onlineGameLayer?.paused = true
 			})
 			self.backgroundLayer?.runAction(fadeOut, completion: {
 				self.backgroundLayer?.paused = true
@@ -377,7 +405,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	}
 	
 	func sendScore() {
-		self.networkingEngine?.sendMyScore((self.gameLayer?.score)!)
+		self.networkingEngine?.sendMyScore((self.onlineGameLayer?.score)!)
 	}
 	
 	func getBluredScreenShot() -> UIImage {

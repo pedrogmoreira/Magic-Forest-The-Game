@@ -45,7 +45,7 @@ class MFCSMovementView: UIView {
 	Check if the view is in the correct place, based on lefty configuration
 	*/
 	func updateCenter(){
-		if (lefty){
+		if (LEFTY){
 			self.center.x = frame.width*3/2
 		}
 		else {

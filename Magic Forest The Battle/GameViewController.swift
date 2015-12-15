@@ -9,9 +9,6 @@
 import UIKit
 import SpriteKit
 
-// TODO: SET IS ONLINE TO FALSE TO START A SINGLE GAME
-let IS_ONLINE = false
-
 protocol ScenesDelegate {
 	func showMenu()
 	func showMenuSelectPlayerScene(menuSelectPlayerScene: MenuSelectPlayerScene)
@@ -68,7 +65,7 @@ class GameViewController: UIViewController, ScenesDelegate {
 		self.mainSKView = self.view as? SKView
 		self.mainSKView!.showsFPS = false
 		self.mainSKView!.showsNodeCount = false
-		self.mainSKView!.showsPhysics = false
+		self.mainSKView!.showsPhysics = true
 		
 		/* Sprite Kit applies additional optimizations to improve rendering performance */
 		self.mainSKView!.ignoresSiblingOrder = true
@@ -103,8 +100,12 @@ class GameViewController: UIViewController, ScenesDelegate {
         self.mainSKView!.presentScene(self.gameScene!, transition: SKTransition.flipHorizontalWithDuration(2))
 
         self.controllerMode = GameState.sharedInstance.controllerMode
-
-		self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.gameLayer!, controllerMode: controllerMode!)
+		
+		if IS_ONLINE == true {
+			self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.onlineGameLayer!, controllerMode: controllerMode!)
+		} else {
+			self.controlUnit = MFCSControlUnit(frame: self.view!.frame, delegate: gameScene.practiceGameLayer!, controllerMode: controllerMode!)
+		}
 		
 		self.gameScene!.controlUnit = self.controlUnit
 
