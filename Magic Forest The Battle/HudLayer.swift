@@ -31,6 +31,7 @@ class HudLayer: SKNode, BasicLayer {
 		//barra vida
 		//barra do fundo
 		self.size = size
+        let padding = CGFloat(2)
 		
 		let backBars = SKSpriteNode(texture: SKTexture(imageNamed: "Barras"))
 		backBars.position = CGPointMake(-size.width*0.48, size.height*0.42)
@@ -42,12 +43,14 @@ class HudLayer: SKNode, BasicLayer {
 		
 		
 		let lifeBackBar = SKSpriteNode(texture: SKTexture(imageNamed: "GradeVida"))
-		lifeBackBar.position = CGPointMake(-size.width*0.42, size.height*0.44)
+        let halfLifeBackBarHeight = lifeBackBar.size.height/2
+        lifeBackBar.position = CGPoint(x: 20, y: 0 + halfLifeBackBarHeight + padding)
 		//lifeBackBar.setScale(0.3)
 		lifeBackBar.zPosition = 0
 		//lifeBackBar.alpha = 0.5
 		lifeBackBar.anchorPoint = CGPointMake(0, lifeBackBar.anchorPoint.y)
-		self.addChild(lifeBackBar)
+        lifeBackBar.setScale(0.7)
+		backBars.addChild(lifeBackBar)
 
 		//coracao
 //		let heart = SKSpriteNode(texture: SKTexture(imageNamed: "UI_HEART"))
@@ -67,12 +70,14 @@ class HudLayer: SKNode, BasicLayer {
 		//barra energia
 		//barra do fundo
 		let energyBackBar = SKSpriteNode(texture: SKTexture(imageNamed: "GradeEspecial"))
-		energyBackBar.position = CGPointMake(-size.width*0.42, size.height*0.40)
+        let halfEnergyBackBarHeight = energyBackBar.size.height/2
+        energyBackBar.position = CGPoint(x: 20, y: 0 - halfEnergyBackBarHeight - padding)
 		//energyBackBar.setScale(0.3)
 		energyBackBar.zPosition = 0
+        energyBackBar.setScale(0.7)
 		//energyBackBar.alpha = 0.5
 		energyBackBar.anchorPoint = CGPointMake(0, lifeBackBar.anchorPoint.y)
-		self.addChild(energyBackBar)
+		backBars.addChild(energyBackBar)
 		
 		//coracao
 //		let energy = SKSpriteNode(texture: SKTexture(imageNamed: "UI_BOLT"))

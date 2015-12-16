@@ -50,7 +50,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		self.networkingEngine = networkingEngine
 		self.chosenCharacters = chosenCharacters
 		self.spawnPointGenerator()
-//		self.lifeBar()
 		let wait = SKAction.waitForDuration(1)
 		let block = SKAction.runBlock { () -> Void in
 			self.upSpecialBar()
@@ -301,13 +300,15 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 	func recieveCommand(command: MFCSCommandType){
 		if command == MFCSCommandType.Attack && player?.currentLife > 0 {
 			if self.player.isAttacking == false {
+                self.player?.isAttacking = true
+                
+                // Justing put a projectile in layer if the player is playing with Salamang or Neith
                 if self.player.isKindOfClass(Salamang) || self.player.isKindOfClass(Neith) {
                     self.projectileToLayer(self.player!)
                 }
 				self.checkAttack(0)
                 
 				networkingEngine?.sendAttack()
-				self.player?.isAttacking = true
 			}
 			
 		} else if command == MFCSCommandType.SpecialAttack && player?.currentEnergy == player?.energy && player?.currentLife > 0 {

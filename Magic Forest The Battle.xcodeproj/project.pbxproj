@@ -805,14 +805,6 @@
 			path = Projetil;
 			sourceTree = "<group>";
 		};
-		5788DF771C171DCD0029019A /* Attack */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Attack;
-			path = "Magic Forest The Battle/Attack";
-			sourceTree = "<group>";
-		};
 		579B81151BE919E40025B374 /* SpecialAttack */ = {
 			isa = PBXGroup;
 			children = (
@@ -1247,7 +1239,8 @@
 				EB7FE7F91C0E15EB00FBBF3E /* PlayButton.png */,
 				EB7FE7F21C0E15DB00FBBF3E /* Localizable.strings */,
 			);
-			path = en.lproj;
+			name = en.lproj;
+			path = ../en.lproj;
 			sourceTree = "<group>";
 		};
 		EB7FE7F41C0E15DB00FBBF3E /* pt-BR.lproj */ = {
@@ -1256,7 +1249,8 @@
 				EB7FE7FC1C0E15F200FBBF3E /* PlayButton.png */,
 				EB7FE7F51C0E15DB00FBBF3E /* Localizable.strings */,
 			);
-			path = "pt-BR.lproj";
+			name = "pt-BR.lproj";
+			path = "../pt-BR.lproj";
 			sourceTree = "<group>";
 		};
 		EB7FE7FF1C0E4AE400FBBF3E /* Icons */ = {
@@ -1287,9 +1281,6 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
-				5788DF771C171DCD0029019A /* Attack */,
-				EB7FE7F11C0E15DB00FBBF3E /* en.lproj */,
-				EB7FE7F41C0E15DB00FBBF3E /* pt-BR.lproj */,
 				670914EB1BFE5D2C0007F2FF /* GameKit.framework */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
 				EB9057711BD55CF300536AD1 /* Magic Forest The BattleTests */,
@@ -1311,6 +1302,8 @@
 		EB9057581BD55CF200536AD1 /* Magic Forest The Battle */ = {
 			isa = PBXGroup;
 			children = (
+				EB7FE7F11C0E15DB00FBBF3E /* en.lproj */,
+				EB7FE7F41C0E15DB00FBBF3E /* pt-BR.lproj */,
 				570A7D251C0F2AB200F687BD /* OpenAL */,
 				673A34F51C08CD2200494DD9 /* GameState */,
 				6784F4FE1C061D010026F1D7 /* Localizable.strings */,

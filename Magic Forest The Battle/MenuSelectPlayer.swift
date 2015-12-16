@@ -29,17 +29,6 @@ class MenuSelectPlayer: SKNode {
 	
 	var scenesDelegate: ScenesDelegate?
 	
-	//Fundo
-//	private let fundoLU = SKSpriteNode(imageNamed: "UI_WINDOW (8)")
-//	private let fundoRU = SKSpriteNode(imageNamed: "UI_WINDOW (7)")
-//	private let fundoLD = SKSpriteNode(imageNamed: "UI_WINDOW (2)")
-//	private let fundoRD = SKSpriteNode(imageNamed: "UI_WINDOW (4)")
-//	private let fundoUp = SKSpriteNode(imageNamed: "UI_WINDOW (9)")
-//	private let fundoDown = SKSpriteNode(imageNamed: "UI_WINDOW (3)")
-//	private let fundoML = SKSpriteNode(imageNamed: "UI_WINDOW (6)")
-//	private let fundoMR = SKSpriteNode(imageNamed: "UI_WINDOW (5)")
-//	private let fundoC = SKSpriteNode(imageNamed: "UI_WINDOW (1)")
-	
 	//Selecionar personagens
 	private let neithSelection = SKSpriteNode(imageNamed: "NeithIdle1")
 	
@@ -129,7 +118,7 @@ class MenuSelectPlayer: SKNode {
 	
 	func imageEdit () {
 		self.backUhongSelection.setScale(1.8)
-		self.frontUhongSelection.setScale(0.5)
+		self.frontUhongSelection.setScale(0.3)
 		self.backSalamangSelction.setScale(1.8)
 		self.frontSalamangSelction.setScale(0.5)
 		self.backRandomSelection.setScale(1.8)
@@ -146,22 +135,30 @@ class MenuSelectPlayer: SKNode {
 		//Adding background
 		addNode(fundo, name: "fundo", position: CGPointMake(self.size!.width/2, self.size!.height/2), zPosition: -1)
         let xBackgroundScale = self.size!.width/self.fundo.size.width
-        let yBackgroundScale = self.size!.width/self.fundo.size.height
+        let yBackgroundScale = self.size!.height/self.fundo.size.height
 		fundo.xScale = xBackgroundScale
         fundo.yScale = yBackgroundScale
 		
 		// Adding play Button
 		self.playButton.setScale(1.5)
-		let playButtonPosition = CGPoint(x: self.size!.width*0.9 , y: self.size!.height*0.1)
+        let halfPlayButtonWidth = playButton.size.width/2
+        let halfPlayButtonHeight = playButton.size.height/2
+        let padding = CGFloat(17)
+		let playButtonPosition = CGPoint(x: self.size!.width - halfPlayButtonWidth + padding, y: 0 + halfPlayButtonHeight - padding)
 		addNode(self.playButton,name: "playbutton", position: playButtonPosition, zPosition: 1)
 		addLabelNode(playLabel, name: "playbutton", position: CGPointMake(playButtonPosition.x, playButtonPosition.y/1.4), zPosition: 2, alpha: 0.8, fontSize: 50, fontName: "SnapHand")
 		//Add selecionar personagens
 		//Neith
-//		let neithSelectionPosition = CGPoint(x: self.size!.width/5, y: self.size!.height/2.5)
-//		addNode(neithSelection, name: "neithSelectionPosition", position: neithSelectionPosition)
 		let uhongSelectionPosition = CGPoint(x: self.size!.width*0.15, y: self.size!.height/1.5)
 		addNode(backUhongSelection, name: "uhongSelectionPosition", position: uhongSelectionPosition, zPosition:1)
-		addNode(frontUhongSelection, name: "uhongSelectionPosition", position: CGPointMake(uhongSelectionPosition.x, uhongSelectionPosition.y*1.12), zPosition:2)
+//		addNode(frontUhongSelection, name: "uhongSelectionPosition", position: CGPointMake(uhongSelectionPosition.x, uhongSelectionPosition.y*1.08), zPosition:2)
+        
+        frontUhongSelection.name = "uhongSelectionPosition"
+        frontUhongSelection.zPosition = 2
+        frontUhongSelection.position.y = frontUhongSelection.position.y + 20
+        
+        backUhongSelection.addChild(frontUhongSelection)
+        
         let salamangSelctionPosition = CGPoint(x: self.size!.width*0.35, y: self.size!.height/1.5)
 		addNode(backSalamangSelction, name: "salamangSelctionPosition", position: salamangSelctionPosition, zPosition: 1)
 		addNode(frontSalamangSelction, name: "salamangSelctionPosition", position: CGPointMake(salamangSelctionPosition.x, salamangSelctionPosition.y*1.05), zPosition: 2)
@@ -246,24 +243,18 @@ class MenuSelectPlayer: SKNode {
 			print("Selected character: \(nodeName)")
 		} else if nodeName == "uhongSelectionPosition" {
 			playerSelected = "Uhong"
-			self.selectPlayer(frontUhongSelection, normalScale: 0.5, bigScale: 0.65)
-			//uhongLabelStatus.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
-			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.65), zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
+			self.selectPlayer(frontUhongSelection, normalScale: 0.3, bigScale: 0.4)
+			self.addLabelNode(uhongLabelStatus, name: "uhongLabelStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.80), zPosition: 1,alpha:  0.8, fontSize: 40, fontName: "SnapHand")
 			self.statusCharacter(barraQualidade4, vidaStatus: barraQualidade4Segunda, velocidadeStatus: barraQualidade3)
-//			self.addLabelNode(uhongLabelAbout, name: "uhongLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8))
-//			self.addNode(uhongImage, name: "uhongImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
             print("Selected character: \(nodeName)")
 			
 			
 		} else if nodeName == "salamangSelctionPosition" {
 			self.selectPlayer(frontSalamangSelction,normalScale: 0.5, bigScale: 0.65)
 			playerSelected = "Salamang"
-			//self.selectPlayer(salamangSelction,normalScale: 0.3, bigScale: 0.5)
-//			self.addLabelNode(salamangLabelAbout, name: "salamangLabelAbout", position: CGPoint(x: self.size!.width/1.5, y: self.size!.height/1.8), zPosition: 1,alpha:  0.8, fontSize: 26, fontName: "SnapHand")
+
 			self.addLabelNode(salamangLabelStatus, name: "salamangLabelStatus", position: CGPoint(x: self.size!.width*0.65, y: self.size!.height*0.80), zPosition: 1, alpha: 0.8, fontSize: 40, fontName: "SnapHand")
 			self.statusCharacter(barraQualidade5, vidaStatus: barraQualidade3Segunda, velocidadeStatus: barraQualidade3)
-			
-//			self.addNode(salamangImage, name: "salamangImage", position: CGPoint(x: self.size!.width/1.1, y: self.size!.height/1.5))
             print("Selected character: \(nodeName)")
 		} else if nodeName == "randomSelection"{
 			self.playerSelected = ""
@@ -326,7 +317,7 @@ class MenuSelectPlayer: SKNode {
 		self.neithSelection.setScale(2)
 		self.backUhongSelection.setScale(1.8)
 		self.backSalamangSelction.setScale(1.8)
-		self.frontUhongSelection.setScale(0.5)
+		self.frontUhongSelection.setScale(0.3)
 		self.frontSalamangSelction.setScale(0.5)
 		self.backRandomSelection.setScale(1.8)
 		self.frontRandomSelection.setScale(1.8)
