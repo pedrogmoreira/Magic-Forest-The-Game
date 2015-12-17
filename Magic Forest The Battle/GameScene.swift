@@ -43,16 +43,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     override func didMoveToView(view: SKView) {
 		
 //        self.networkingEngine?.createPlayers()
-        
+		if IS_ONLINE == false {
+			self.runAction(SKAction.waitForDuration(0.1), completion: {
+				self.scenesDelegate?.addBackButton()
+			})
+		}
+		
         self.backgroundLayer = ForestScenery(size: size)
         self.backgroundLayer?.zPosition = -10 
 		
+		self.initializeCamera()
+		
+		self.addChild(self.playerCamera!)
+		
 		if IS_ONLINE == true {
-			self.hudLayer = HudLayer(size: size)
-			self.hudLayer?.zPosition = 1_000
-			self.hudLayer?.matchEndDelegate = self
-			self.hudLayer?.networkingEngine = self.networkingEngine
-			
+			self.hudLayer = HudLayer(size: size, mathEndGameDelegate: self, networkingEngine: self.networkingEngine!)
 			self.onlineGameLayer = OnlineGameLayer(size: size, networkingEngine:  self.networkingEngine!, chosenCharacters: self.chosenCharacters, hudLayer: self.hudLayer!)
 			self.onlineGameLayer!.zPosition = -5
 			self.addChild(self.onlineGameLayer!)
@@ -62,15 +67,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 			self.practiceGameLayer!.zPosition = -5
 			self.addChild(self.practiceGameLayer!)
 		}
-				
+		
+		self.hudLayer?.zPosition = 1_000
         self.addChild(self.backgroundLayer!)
         
         self.physicsWorld.contactDelegate = self
         self.physicsWorld.gravity = CGVector(dx: 0, dy: -9.8)
-        
-        self.initializeCamera()
-		
-		self.addChild(self.playerCamera!)
     }
     
     private func initializeCamera(){
@@ -167,23 +169,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
     }
 	
 	override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-		if self.isGameOver {
-			
-			let touch = touches.first
-			let touchLocation = touch?.locationInNode(self)
-			let nodeTouched = self.nodeAtPoint(touchLocation!)
-			let nodeName = nodeTouched.name
-			
-			if nodeName == "menu_button" {
-				scenesDelegate?.showMenu()
-				scenesDelegate?.removeMenuSelectPlayerScene()
-				scenesDelegate?.removeGameScene()
+		if IS_ONLINE == true {
+			if self.isGameOver {
 				
-				GameKitHelper.sharedInstance.multiplayerMatch?.disconnect()
+				let touch = touches.first
+				let touchLocation = touch?.locationInNode(self)
+				let nodeTouched = self.nodeAtPoint(touchLocation!)
+				let nodeName = nodeTouched.name
+				
+				if nodeName == "menu_button" || nodeName == "menu_button_label" {
+					scenesDelegate?.showMenu()
+					scenesDelegate?.removeMenuSelectPlayerScene()
+					scenesDelegate?.removeGameScene()
+					
+					GameKitHelper.sharedInstance.multiplayerMatch?.disconnect()
+				}
 			}
 		}
 	}
-    
+	
     // Called when the match has ended
     func matchEnded() {
         

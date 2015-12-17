@@ -290,6 +290,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     }
     
     deinit {
+		print("Dealocating main menu")
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 

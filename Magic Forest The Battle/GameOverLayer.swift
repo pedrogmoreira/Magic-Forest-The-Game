@@ -149,7 +149,7 @@ class GameOverLayer: SKNode, BasicLayer {
 		self.addChild(menuButton)
 		
 		let menuLabel = SKLabelNode(fontNamed: "SnapHand")
-		menuLabel.name = "menu_button"
+		menuLabel.name = "menu_button_label"
 		menuLabel.text = "Menu"
 		menuLabel.alpha = 0.6
 		menuLabel.zPosition = 4

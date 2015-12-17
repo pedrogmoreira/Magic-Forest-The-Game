@@ -15,8 +15,6 @@ class PracticeGameLayer: SKNode, MFCSControllerDelegate  {
 	
 	var canPlayerJump: Bool = false
 	
-	var hudLayer : HudLayer?
-	
 	var size: CGSize?
 	var spawnPoints = NSMutableArray()
 	var spawnPointsLocations : Array<CGPoint> = []
@@ -32,18 +30,12 @@ class PracticeGameLayer: SKNode, MFCSControllerDelegate  {
 	// MARK: init
 	init(size: CGSize, playerSelected: String) {
 		self.hasLoadedGame = false
+		
 		super.init()
+		
 		self.populateSpawnPoints(size)
 		self.size = size
 		self.spawnPointGenerator()
-		//		self.lifeBar()
-		let wait = SKAction.waitForDuration(1)
-		let block = SKAction.runBlock { () -> Void in
-			self.upSpecialBar()
-		}
-		let seq = SKAction.sequence([wait,block])
-		let repeatAct = SKAction.repeatActionForever(seq)
-		self.runAction(repeatAct)
 		
 		self.generatePlayer(playerSelected)
 		self.generateEnemy(playerSelected)
@@ -143,7 +135,6 @@ class PracticeGameLayer: SKNode, MFCSControllerDelegate  {
 				self.player?.isSpecialAttacking = true
 				print("Player used Special Attack")
 				self.checkAttack(1)
-				self.hudLayer?.energyFrontBar.removeAllActions()
 			}
 		} else if command == MFCSCommandType.Jump && self.canPlayerJump == true {
 			if self.player.isJumping == false {
@@ -320,18 +311,5 @@ class PracticeGameLayer: SKNode, MFCSControllerDelegate  {
 		
 		(currentSpawnPoint as! SpawnPoint).closeSpawnPoint(10)
 		return (currentSpawnPoint as! SpawnPoint)
-	}
-	
-	// HUD Layer
-	func upSpecialBar () {
-		if player?.currentEnergy < player?.energy {
-			let aux = ((player?.energy)! * (player?.regEnergy)!)/100
-			player?.currentEnergy = (player?.currentEnergy)! + aux
-			self.hudLayer?.animateBar((self.player?.currentEnergy)!, bar: (self.player?.energy)!,node: (hudLayer?.energyFrontBar)!, scale:  0.24)
-			print("Current energy: \(player?.currentEnergy)")
-		} else {
-			self.hudLayer?.animateFullBar()
-			
-		}
 	}
 }

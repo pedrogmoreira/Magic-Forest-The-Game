@@ -15,7 +15,7 @@ protocol MatchEndDelegate {
 	func addMyScore()
 }
 
-class HudLayer: SKNode, BasicLayer {
+class HudLayer: SKNode {
 	
 	var energyFrontBar = SKSpriteNode()
 	var lifeFrontBar = SKSpriteNode()
@@ -26,8 +26,11 @@ class HudLayer: SKNode, BasicLayer {
 	var networkingEngine: MultiplayerNetworking?
 	var matchEndDelegate: MatchEndDelegate?
 	
-	required init(size: CGSize) {
+	init(size: CGSize, mathEndGameDelegate: MatchEndDelegate, networkingEngine: MultiplayerNetworking) {
 		super.init()
+		
+		self.matchEndDelegate = mathEndGameDelegate
+		self.networkingEngine = networkingEngine
 		//barra vida
 		//barra do fundo
 		self.size = size
@@ -80,10 +83,8 @@ class HudLayer: SKNode, BasicLayer {
 		energyFrontBar.anchorPoint = CGPointMake(0, lifeFrontBar.anchorPoint.y)
 		energyBackBar.addChild(energyFrontBar)
 		
-		if IS_ONLINE == true {
-			self.createScoreLabel()
-			self.timerGame()
-		}
+		self.createScoreLabel()
+		self.timerGame()
 		
 	}
 	
