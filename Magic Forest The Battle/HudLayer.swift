@@ -126,7 +126,7 @@ class HudLayer: SKNode, BasicLayer {
 	}
 	
 	func timerGame() {
-		var timer = 90
+		var timer = 2
 		let timerLabel = SKLabelNode(text: "")
 		//		let clock = SKSpriteNode(imageNamed: "Clock")
 		//		self.addNode(clock, name: "clock", position: CGPoint(x: (self.size?.width)!/2.3, y: (self.size?.height)!/1.16))
