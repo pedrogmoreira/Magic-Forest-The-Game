@@ -326,6 +326,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 			self.runAction(SKAction.waitForDuration(0.2), completion: {
 				self.gameOverLayer?.showTwoPlayerScores(self.finalScores, players: aliases, characters: self.chosenCharacters)
 				self.isGameOver = true
+                Chartboost.showInterstitial(CBLocationDefault)
 			})
 		}
 	}
@@ -346,6 +347,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 		self.runAction(SKAction.waitForDuration(0.2), completion: {
 			self.gameOverLayer?.showTwoPlayerScores(self.finalScores, players: aliases, characters: self.chosenCharacters)
 			self.isGameOver = true
+            Chartboost.showInterstitial(CBLocationDefault)
 		})
 	}
 	
