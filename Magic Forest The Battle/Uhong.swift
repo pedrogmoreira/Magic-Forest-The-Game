@@ -58,7 +58,7 @@ class Uhong: Player {
 		let physicsBody = SKPhysicsBody(rectangleOfSize: self.meleeBox!.size)
 		physicsBody.categoryBitMask = PhysicsCategory.MeleeBox.rawValue
 		physicsBody.collisionBitMask = 0
-		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue
+		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue | PhysicsCategory.Enemy.rawValue
 		physicsBody.mass = 0
 		physicsBody.affectedByGravity = false
 		physicsBody.allowsRotation = false
@@ -76,7 +76,7 @@ class Uhong: Player {
 		let physicsBody = SKPhysicsBody(rectangleOfSize: self.specialBox!.size)
 		physicsBody.categoryBitMask = PhysicsCategory.SpecialBox.rawValue
 		physicsBody.collisionBitMask = 0
-		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue
+		physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue | PhysicsCategory.Enemy.rawValue
 		physicsBody.mass = 0
 		physicsBody.affectedByGravity = false
 		physicsBody.allowsRotation = false

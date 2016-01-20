@@ -97,15 +97,13 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
         
         if isSetting == false {
             if nodeName == "playButton" || nodeName == "lblJogar" {
-                if IS_ONLINE == true {
-                    self.showMatchMakerViewController(presentingViewController: viewController!)
-                } else {
-                    self.selectPlayer()
-                }
+                IS_ONLINE = true
+				self.showMatchMakerViewController(presentingViewController: viewController!)
             } else if nodeName == "configurationButton" {
                 self.creteSettingsMenu()
-            } else if nodeName == "practiceButton" {
-                print("PracticeButton touched")
+            } else if nodeName == "practiceButton" || nodeName == "lblPractice" {
+                IS_ONLINE = false
+				self.selectPlayer()
             } else if nodeName == "gameCenterButton" {
                 GameKitHelper.sharedInstance.showGKGameCenterViewController(viewController!)
             } else if nodeName == "storeButton" {
@@ -219,7 +217,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 		self.jogarLabel.fontSize = 22
 		self.jogarLabel.zPosition = 1
 		self.jogarLabel.alpha = 0.8
-        self.jogarLabel.name = "playButton"
+        self.jogarLabel.name = "lblJogar"
 		self.playButton.addChild(jogarLabel)
 		
         // Adding practice Button
@@ -232,6 +230,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
 		let practiceString = NSLocalizedString("Practice", comment: "Practice Button String")
 		self.praticarLabel.text = practiceString
 		self.praticarLabel.position = CGPointMake(0,3)
+		self.praticarLabel.name = "lblPractice"
 		self.praticarLabel.fontColor = SKColor.whiteColor()
 		self.praticarLabel.fontSize = 15
 		self.praticarLabel.zPosition = 1
@@ -290,6 +289,7 @@ class MainMenuLayer: SKNode, BasicLayer, UIGestureRecognizerDelegate, StartGameP
     }
     
     deinit {
+		print("Dealocating main menu")
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 

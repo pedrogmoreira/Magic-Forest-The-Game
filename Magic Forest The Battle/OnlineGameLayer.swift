@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameLayer: SKNode, MFCSControllerDelegate {
+class OnlineGameLayer: SKNode, MFCSControllerDelegate {
 
 	var hudLayer : HudLayer?
 	var player: Player!
@@ -26,19 +26,18 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         
     // Multiplayer variables
     var networkingEngine: MultiplayerNetworking?
+	
 	var scenesDelegate: ScenesDelegate?
 	
 	var normalAreaPlayersIndex: [Int] = [Int]()
 	var specialAreaPlayersIndex: [Int] = [Int]()
-	var isOnMeleeCollision: Bool = false
-	var isOnSpecialCollision: Bool = false
 	
 	var score: Int = 0
 	/**
 	Initializes the game layer
 	- parameter size: A reference to the device's screen size
 	*/
-	required init(size: CGSize, networkingEngine: MultiplayerNetworking, chosenCharacters: [Int]) {
+	required init(size: CGSize, networkingEngine: MultiplayerNetworking, chosenCharacters: [Int], hudLayer: HudLayer) {
 		self.hasLoadedGame = false
 		specialAreaPlayersIndex.removeAll()
         self.playerPosition = CGPointZero
@@ -47,6 +46,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         
 		self.populateSpawnPoints()
         self.size = size
+		self.hudLayer = hudLayer
 		self.networkingEngine = networkingEngine
 		self.chosenCharacters = chosenCharacters
 		self.spawnPointGenerator()
@@ -67,7 +67,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		}
 		
 	}
-	
 	
     init(size: CGSize, playerSelected: String) {
 		self.hasLoadedGame = false
@@ -124,6 +123,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		}
 		self.addChild(self.player!)
 	}
+
 	/**
 	Pegar um spawn point aleatorio e que não tenha sido usado nos ultimos 10s
 	- return: Spawn point
@@ -279,8 +279,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 					}
 				}
 			}
-		} else if IS_ONLINE == false && self.hasLoadedGame == true {
-			self.player.update(currentTime)
 		}
 	}
 	
@@ -534,7 +532,7 @@ class GameLayer: SKNode, MFCSControllerDelegate {
         player.isAttacking = true
 		
 		let projectile = player.createProjectile()
-		projectile.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
+//		projectile.physicsBody?.contactTestBitMask = PhysicsCategory.OtherPlayerProjectile.rawValue
 		projectile.canDealDamage = false
 		
 		self.projectileToLayer(player)
@@ -578,8 +576,6 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		player.isDead = true
 	}
 	
-	// MARK: Physics Contact Delegate
-	
 	func checkIndex(index: Int, atArray array: [Int]) -> Bool {
 		for collidedIndex in array {
 			if collidedIndex == index {
@@ -590,181 +586,184 @@ class GameLayer: SKNode, MFCSControllerDelegate {
 		return false
 	}
 	
-	func didBeginContact(contact: SKPhysicsContact) {
-		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-		
-		switch(contactMask) {
-			
-		case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
-		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-            
-            self.canPlayerJump = true
-
-		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
-
-				let index = self.players.indexOf(contact.bodyB.node as! Player)!
-                
-				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
-				
-				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
-					self.normalAreaPlayersIndex.append(index)
-				}
-			} else {
-				let index = self.players.indexOf(contact.bodyA.node as! Player)!
-                
-				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
-				
-				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
-					self.normalAreaPlayersIndex.append(index)
-				}
-			}
-			
-		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.Player.rawValue:
-			var projectile: Projectile?
-			
-			print("projetil me acertou")
-			
-			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
-				projectile = contact.bodyA.node as? Projectile
-			} else {
-				projectile = contact.bodyB.node as? Projectile
-			}
-
-			projectile?.hitSound()
-			projectile?.runAction(SKAction.removeFromParent())
-			
-		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			var player: Player?
-			var projectile: Projectile?
-			
-			if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
-				player = (contact.bodyA.node as! Player)
-				projectile = contact.bodyB.node as? Projectile
-			} else {
-				player = (contact.bodyB.node as? Player)
-				projectile = contact.bodyA.node as? Projectile
-			}
-			
-			print("projectile: \(projectile?.ownerIndex)")
-			print("self: \(self.currentIndex)")
-			
-			if (projectile?.ownerIndex)! != self.players.indexOf(player!)! {
-				projectile?.hitSound()
-				projectile?.runAction(SKAction.removeFromParent())
-
-				if projectile?.canDealDamage == true {
-					projectile?.canDealDamage = false
-					
-					
-					let damage = self.player.attackDamage
-					
-					if player!.currentLife! - damage! > 0 {
-						
-						player!.currentLife = player!.currentLife! - damage!
-						
-                        player!.beingAttacked = true
-                        self.networkingEngine?.sendHit(self.players.indexOf(player!)!)
-                        
-						self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
-						
-					} else {
-						player!.currentLife = 0
-						
-						if player!.isDead == false {
-							self.score++
-							self.hudLayer?.updateScoreLabel(withScore: self.score)
-                            
-                            player!.beingAttacked = true
-                            self.networkingEngine?.sendHit(self.players.indexOf(player!)!)
-                            
-							self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
-						}
-					}
-				
-					
-					hudLayer?.animateBar(player!.currentLife!, bar: player!.life!, node: player!.lifeBar, scale: 0.01)
-				}
-			}
-		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
-				let index = self.players.indexOf(contact.bodyB.node as! Player)!
-				
-				if self.checkIndex(index, atArray: self.specialAreaPlayersIndex) == false {
-					self.specialAreaPlayersIndex.append(index)
-				}
-			} else {
-				let index = self.players.indexOf(contact.bodyA.node as! Player)!
-				
-				if self.checkIndex(index, atArray: self.specialAreaPlayersIndex) == false {
-					self.specialAreaPlayersIndex.append(index)
-				}
-			}
-		case PhysicsCategory.Player.rawValue | PhysicsCategory.DeathBox.rawValue:
-			if self.player.isDead == false {
-				self.player.currentLife = 0
-				if IS_ONLINE == true {
-					self.score--
-					self.hudLayer?.updateScoreLabel(withScore: self.score)
-					self.networkingEngine?.sendLoseLife(self.player!.currentLife!, playerIndex: self.players.indexOf(self.player!)!)
-				}
-			}
-		default:
-			return
-		}
-	}
-	
-	func didEndContact(contact: SKPhysicsContact) {
-		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-		
-		switch(contactMask) {
-            
-        case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
-        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
-        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
-        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
-            
-            // If player began the contact with floor and he is not jumping, he can jump again
-            //            if self.player.isJumping == false {
-            //                self.player.jumpCount = 0
-            //            }
-            self.canPlayerJump = false
-		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			if self.normalAreaPlayersIndex.count > 0 {
-				if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
-					let player = (contact.bodyA.node as! Player)
-					let playerIndex = self.players.indexOf(player)
-					
-					if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
-						print("removing player index: \(playerIndex)")
-						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
-					}
-				} else {
-					let player = (contact.bodyB.node as! Player)
-					let playerIndex = self.players.indexOf(player)
-					
-					if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
-						print("removing player index: \(playerIndex)")
-						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
-					}
-				}
-			}
-		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
-			if self.specialAreaPlayersIndex.count > 0 {
-				if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
-					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
-				} else {
-					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
-				}
-				
-			}
-		default:
-			return
-		}
-	}
-	
+//<<<<<<< HEAD:Magic Forest The Battle/GameLayer.swift
+//	func didBeginContact(contact: SKPhysicsContact) {
+//		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+//		
+//		switch(contactMask) {
+//			
+//		case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+//		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+//		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+//		PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+//            
+//            self.canPlayerJump = true
+//
+//		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+//			if contact.bodyA.categoryBitMask == PhysicsCategory.MeleeBox.rawValue {
+//
+//				let index = self.players.indexOf(contact.bodyB.node as! Player)!
+//                
+//				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
+//				
+//				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
+//					self.normalAreaPlayersIndex.append(index)
+//				}
+//			} else {
+//				let index = self.players.indexOf(contact.bodyA.node as! Player)!
+//                
+//				print(self.checkIndex(index, atArray: self.normalAreaPlayersIndex))
+//				
+//				if self.checkIndex(index, atArray: self.normalAreaPlayersIndex) == false {
+//					self.normalAreaPlayersIndex.append(index)
+//				}
+//			}
+//			
+//		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.Player.rawValue:
+//			var projectile: Projectile?
+//			
+//			print("projetil me acertou")
+//			
+//			if contact.bodyA.categoryBitMask == PhysicsCategory.Projectile.rawValue {
+//				projectile = contact.bodyA.node as? Projectile
+//			} else {
+//				projectile = contact.bodyB.node as? Projectile
+//			}
+//
+//			projectile?.hitSound()
+//			projectile?.runAction(SKAction.removeFromParent())
+//			
+//		case PhysicsCategory.Projectile.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+//			var player: Player?
+//			var projectile: Projectile?
+//			
+//			if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
+//				player = (contact.bodyA.node as! Player)
+//				projectile = contact.bodyB.node as? Projectile
+//			} else {
+//				player = (contact.bodyB.node as? Player)
+//				projectile = contact.bodyA.node as? Projectile
+//			}
+//			
+//			print("projectile: \(projectile?.ownerIndex)")
+//			print("self: \(self.currentIndex)")
+//			
+//			if (projectile?.ownerIndex)! != self.players.indexOf(player!)! {
+//				projectile?.hitSound()
+//				projectile?.runAction(SKAction.removeFromParent())
+//
+//				if projectile?.canDealDamage == true {
+//					projectile?.canDealDamage = false
+//					
+//					
+//					let damage = self.player.attackDamage
+//					
+//					if player!.currentLife! - damage! > 0 {
+//						
+//						player!.currentLife = player!.currentLife! - damage!
+//						
+//                        player!.beingAttacked = true
+//                        self.networkingEngine?.sendHit(self.players.indexOf(player!)!)
+//                        
+//						self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
+//						
+//					} else {
+//						player!.currentLife = 0
+//						
+//						if player!.isDead == false {
+//							self.score++
+//							self.hudLayer?.updateScoreLabel(withScore: self.score)
+//                            
+//                            player!.beingAttacked = true
+//                            self.networkingEngine?.sendHit(self.players.indexOf(player!)!)
+//                            
+//							self.networkingEngine?.sendLoseLife(player!.currentLife!, playerIndex: self.players.indexOf(player!)!)
+//						}
+//					}
+//				
+//					
+//					hudLayer?.animateBar(player!.currentLife!, bar: player!.life!, node: player!.lifeBar, scale: 0.01)
+//				}
+//			}
+//		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+//			if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
+//				let index = self.players.indexOf(contact.bodyB.node as! Player)!
+//				
+//				if self.checkIndex(index, atArray: self.specialAreaPlayersIndex) == false {
+//					self.specialAreaPlayersIndex.append(index)
+//				}
+//			} else {
+//				let index = self.players.indexOf(contact.bodyA.node as! Player)!
+//				
+//				if self.checkIndex(index, atArray: self.specialAreaPlayersIndex) == false {
+//					self.specialAreaPlayersIndex.append(index)
+//				}
+//			}
+//		case PhysicsCategory.Player.rawValue | PhysicsCategory.DeathBox.rawValue:
+//			if self.player.isDead == false {
+//				self.player.currentLife = 0
+//				if IS_ONLINE == true {
+//					self.score--
+//					self.hudLayer?.updateScoreLabel(withScore: self.score)
+//					self.networkingEngine?.sendLoseLife(self.player!.currentLife!, playerIndex: self.players.indexOf(self.player!)!)
+//				}
+//			}
+//		default:
+//			return
+//		}
+//	}
+//	
+//	func didEndContact(contact: SKPhysicsContact) {
+//		let contactMask = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+//		
+//		switch(contactMask) {
+//            
+//        case PhysicsCategory.Player.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue,
+//        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue,
+//        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue,
+//        PhysicsCategory.Player.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue:
+//            
+//            // If player began the contact with floor and he is not jumping, he can jump again
+//            //            if self.player.isJumping == false {
+//            //                self.player.jumpCount = 0
+//            //            }
+//            self.canPlayerJump = false
+//		case PhysicsCategory.MeleeBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+//			if self.normalAreaPlayersIndex.count > 0 {
+//				if contact.bodyA.categoryBitMask == PhysicsCategory.OtherPlayer.rawValue {
+//					let player = (contact.bodyA.node as! Player)
+//					let playerIndex = self.players.indexOf(player)
+//					
+//					if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
+//						print("removing player index: \(playerIndex)")
+//						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
+//					}
+//				} else {
+//					let player = (contact.bodyB.node as! Player)
+//					let playerIndex = self.players.indexOf(player)
+//					
+//					if checkIndex(playerIndex!, atArray: self.normalAreaPlayersIndex) == true {
+//						print("removing player index: \(playerIndex)")
+//						self.normalAreaPlayersIndex.removeAtIndex(self.normalAreaPlayersIndex.indexOf(playerIndex!)!)
+//					}
+//				}
+//			}
+//		case PhysicsCategory.SpecialBox.rawValue | PhysicsCategory.OtherPlayer.rawValue:
+//			if self.specialAreaPlayersIndex.count > 0 {
+//				if contact.bodyA.categoryBitMask == PhysicsCategory.SpecialBox.rawValue {
+//					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyB.node as! Player)!))!)
+//				} else {
+//					self.specialAreaPlayersIndex.removeAtIndex(self.specialAreaPlayersIndex.indexOf((self.players.indexOf(contact.bodyA.node as! Player)!))!)
+//				}
+//				
+//			}
+//		default:
+//			return
+//		}
+//	}
+//	
+//=======
+//>>>>>>> practice-mode:Magic Forest The Battle/OnlineGameLayer.swift
     // Check if player is dead
     private func isPlayerDead(player: Player) {
         if player.currentLife <= 0 {

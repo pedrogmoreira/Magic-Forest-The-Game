@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+
 class Jujuba: Projectile {
 	override init(position: CGPoint) {
 		
@@ -31,7 +32,7 @@ class Jujuba: Projectile {
 		
 		if isMainPlayer == true {
 			physicsBody.categoryBitMask = PhysicsCategory.Projectile.rawValue
-			physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue | BITMASK_THIRD_FLOOR
+			physicsBody.contactTestBitMask = PhysicsCategory.OtherPlayer.rawValue | PhysicsCategory.Enemy.rawValue
 			physicsBody.collisionBitMask = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
 			physicsBody.mass = 1
 			physicsBody.affectedByGravity = true

@@ -8,8 +8,6 @@
 
 import UIKit
 
-var lefty = false
-
 class MFCSControlUnit: UIView {
 	
 	// MARK: Atributes

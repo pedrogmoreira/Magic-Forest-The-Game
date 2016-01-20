@@ -8,12 +8,6 @@
 
 import SpriteKit
 
-// Bitmask values, made for avoid code repetition
-let BITMASK_BASE_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue
-let BITMASK_FIRST_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue
-let BITMASK_SECOND_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue
-let BITMASK_THIRD_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
-
 class Player: SKSpriteNode, GameObject {
 	
 	var isMyPlayer: Bool = false
@@ -52,12 +46,7 @@ class Player: SKSpriteNode, GameObject {
 	let scale = CGFloat(0.07)
 	
 	var lifeBar = SKSpriteNode()
-	
-	// Bitmask values, made for avoid code repetition
-	let BITMASK_BASE_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue
-	let BITMASK_FIRST_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue
-	let BITMASK_SECOND_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue
-	let BITMASK_THIRD_FLOOR = PhysicsCategory.WorldBox.rawValue | PhysicsCategory.WorldBaseFloorPlatform.rawValue | PhysicsCategory.WorldFirstFloorPlatform.rawValue | PhysicsCategory.WorldSecondFloorPlatform.rawValue | PhysicsCategory.WorldThirdFloorPlatform.rawValue
+
 	/**
 	Initializes the player
 	- parameter position: The point where the player will apear
@@ -268,7 +257,7 @@ class Player: SKSpriteNode, GameObject {
 		if self.currentLife <= 0 {
 			return
 		}
-		if self.physicsBody?.collisionBitMask == self.BITMASK_FIRST_FLOOR {
+		if self.physicsBody?.collisionBitMask == BITMASK_FIRST_FLOOR {
 			self.physicsBody?.collisionBitMask = BITMASK_BASE_FLOOR
 			self.physicsBody?.contactTestBitMask = BITMASK_BASE_FLOOR
 		} else if self.physicsBody?.collisionBitMask == BITMASK_SECOND_FLOOR {
@@ -320,11 +309,15 @@ class Player: SKSpriteNode, GameObject {
 			self.currentLife = self.life
 			self.currentEnergy = self.energy
 			self.isDead = false
-			self.position = (self.parent as! GameLayer).getRandomSpawnPoint().position
+			
+			if IS_ONLINE {
+				self.position = (self.parent as! OnlineGameLayer).getRandomSpawnPoint().position
+			} else {
+				self.position = (self.parent as! PracticeGameLayer).getRandomSpawnPoint().position
+			}
             
-            self.justRebirth = true;
+            self.justRebirth = true
 		}
-		
 	}
     
 	func createLifeBar () {

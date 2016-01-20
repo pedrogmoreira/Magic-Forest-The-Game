@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+
 class MenuSelectPlayerScene: SKScene {
 	var menu: MenuSelectPlayer?
 	var scenesDelegate: ScenesDelegate?

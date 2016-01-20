@@ -377,4 +377,8 @@ class MenuSelectPlayer: SKNode {
         
         return randomCharacter
     }
+	
+	deinit {
+		print("Dealocating menu select player")
+	}
 }

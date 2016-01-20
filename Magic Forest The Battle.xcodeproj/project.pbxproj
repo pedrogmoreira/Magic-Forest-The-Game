@@ -291,7 +291,12 @@
 		EB90579E1BD56F9000536AD1 /* VulcanScenery.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB90579D1BD56F9000536AD1 /* VulcanScenery.swift */; };
 		EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A01BD5709800536AD1 /* GameObject.swift */; };
 		EB9057A31BD5712500536AD1 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A21BD5712500536AD1 /* Player.swift */; };
-		EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9057A41BD573B700536AD1 /* GameLayer.swift */; };
+		EBD449F41C4FDE650019E5F5 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD449EE1C4FDE650019E5F5 /* GlobalVariables.swift */; };
+		EBD449F51C4FDE650019E5F5 /* OnlineGameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD449EF1C4FDE650019E5F5 /* OnlineGameLayer.swift */; };
+		EBD449F61C4FDE650019E5F5 /* OnlineGameLayer+Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD449F01C4FDE650019E5F5 /* OnlineGameLayer+Physics.swift */; };
+		EBD449F71C4FDE650019E5F5 /* PracticeBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD449F11C4FDE650019E5F5 /* PracticeBackView.swift */; };
+		EBD449F81C4FDE650019E5F5 /* PracticeGameLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD449F21C4FDE650019E5F5 /* PracticeGameLayer.swift */; };
+		EBD449F91C4FDE650019E5F5 /* PracticeGameLayer+Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD449F31C4FDE650019E5F5 /* PracticeGameLayer+Physics.swift */; };
 		EBD88B161BF02E43000353A5 /* Attack.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD88B101BF02E43000353A5 /* Attack.png */; };
 		EBD88B171BF02E43000353A5 /* Clock.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD88B111BF02E43000353A5 /* Clock.png */; };
 		EBD88B191BF02E43000353A5 /* Life.png in Resources */ = {isa = PBXBuildFile; fileRef = EBD88B131BF02E43000353A5 /* Life.png */; };
@@ -618,7 +623,12 @@
 		EB90579D1BD56F9000536AD1 /* VulcanScenery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VulcanScenery.swift; sourceTree = "<group>"; };
 		EB9057A01BD5709800536AD1 /* GameObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		EB9057A21BD5712500536AD1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		EB9057A41BD573B700536AD1 /* GameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameLayer.swift; sourceTree = "<group>"; };
+		EBD449EE1C4FDE650019E5F5 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVariables.swift; path = "Magic Forest The Battle/GlobalVariables.swift"; sourceTree = "<group>"; };
+		EBD449EF1C4FDE650019E5F5 /* OnlineGameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineGameLayer.swift; sourceTree = "<group>"; };
+		EBD449F01C4FDE650019E5F5 /* OnlineGameLayer+Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnlineGameLayer+Physics.swift"; sourceTree = "<group>"; };
+		EBD449F11C4FDE650019E5F5 /* PracticeBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeBackView.swift; sourceTree = "<group>"; };
+		EBD449F21C4FDE650019E5F5 /* PracticeGameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeGameLayer.swift; sourceTree = "<group>"; };
+		EBD449F31C4FDE650019E5F5 /* PracticeGameLayer+Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PracticeGameLayer+Physics.swift"; sourceTree = "<group>"; };
 		EBD88B101BF02E43000353A5 /* Attack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attack.png; sourceTree = "<group>"; };
 		EBD88B111BF02E43000353A5 /* Clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clock.png; sourceTree = "<group>"; };
 		EBD88B131BF02E43000353A5 /* Life.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Life.png; sourceTree = "<group>"; };
@@ -1087,9 +1097,10 @@
 		67D98E021BE3F1A20045029A /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				EBD449FA1C4FDE840019E5F5 /* OnlineGameLayer */,
+				EBD449FB1C4FDE940019E5F5 /* PracticeGameLayer */,
 				EB9057961BD5665F00536AD1 /* BasicLayer.swift */,
 				EB9057981BD5685300536AD1 /* BackgroundLayer.swift */,
-				EB9057A41BD573B700536AD1 /* GameLayer.swift */,
 				57C08E441BFCE1B5003E4574 /* HudLayer.swift */,
 				EB61DCFE1C08CB4000C78518 /* GameOverLayer.swift */,
 			);
@@ -1283,6 +1294,7 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
+				EBD449EE1C4FDE650019E5F5 /* GlobalVariables.swift */,
 				677F424B1C21D5EF001BDBEB /* Chartboost.framework */,
 				670914EB1BFE5D2C0007F2FF /* GameKit.framework */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
@@ -1383,6 +1395,25 @@
 				57190BD61BF4C09100FFF38D /* Jujuba.swift */,
 			);
 			name = Entity;
+			sourceTree = "<group>";
+		};
+		EBD449FA1C4FDE840019E5F5 /* OnlineGameLayer */ = {
+			isa = PBXGroup;
+			children = (
+				EBD449EF1C4FDE650019E5F5 /* OnlineGameLayer.swift */,
+				EBD449F01C4FDE650019E5F5 /* OnlineGameLayer+Physics.swift */,
+			);
+			name = OnlineGameLayer;
+			sourceTree = "<group>";
+		};
+		EBD449FB1C4FDE940019E5F5 /* PracticeGameLayer */ = {
+			isa = PBXGroup;
+			children = (
+				EBD449F11C4FDE650019E5F5 /* PracticeBackView.swift */,
+				EBD449F21C4FDE650019E5F5 /* PracticeGameLayer.swift */,
+				EBD449F31C4FDE650019E5F5 /* PracticeGameLayer+Physics.swift */,
+			);
+			name = PracticeGameLayer;
 			sourceTree = "<group>";
 		};
 		EBD88B1D1BF02E73000353A5 /* HUD */ = {
@@ -1778,13 +1809,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBD449F41C4FDE650019E5F5 /* GlobalVariables.swift in Sources */,
 				EB1214A51BD95CA700D0552F /* CGFloat+Extensions.swift in Sources */,
 				EB0EACC01BE3E39F00D93287 /* MenuScene.swift in Sources */,
 				EB0EACBF1BE3E39F00D93287 /* MainMenuLayer.swift in Sources */,
 				57A558021BDEA4F600A948DE /* Uhong.swift in Sources */,
 				EB90579C1BD56D3200536AD1 /* ForestScenery.swift in Sources */,
+				EBD449F91C4FDE650019E5F5 /* PracticeGameLayer+Physics.swift in Sources */,
 				670914E91BFE58600007F2FF /* MultiplayerNetworking.swift in Sources */,
-				EB9057A51BD573B700536AD1 /* GameLayer.swift in Sources */,
 				EB1214B91BD95CB000D0552F /* MFCSControllerDelegate.swift in Sources */,
 				57C08DCF1BF4FCEC003E4574 /* MenuSelectPlayer.swift in Sources */,
 				EB90575E1BD55CF200536AD1 /* GameScene.swift in Sources */,
@@ -1795,7 +1827,9 @@
 				EB1214B81BD95CB000D0552F /* MFCSCommandView.swift in Sources */,
 				57C08E451BFCE1B5003E4574 /* HudLayer.swift in Sources */,
 				57C08DD11BF5191A003E4574 /* MenuSelectPlayerScene.swift in Sources */,
+				EBD449F61C4FDE650019E5F5 /* OnlineGameLayer+Physics.swift in Sources */,
 				EB9057A11BD5709800536AD1 /* GameObject.swift in Sources */,
+				EBD449F71C4FDE650019E5F5 /* PracticeBackView.swift in Sources */,
 				670914EA1BFE58600007F2FF /* NetworkingStructs.swift in Sources */,
 				EB9057991BD5685300536AD1 /* BackgroundLayer.swift in Sources */,
 				670914E81BFE58600007F2FF /* GameKitHelper.swift in Sources */,
@@ -1803,6 +1837,7 @@
 				67A74CEA1BE128E500AF3B0E /* PhysicsCategory.swift in Sources */,
 				EB9057971BD5665F00536AD1 /* BasicLayer.swift in Sources */,
 				57190BD21BF3A8CE00FFF38D /* Arrow.swift in Sources */,
+				EBD449F81C4FDE650019E5F5 /* PracticeGameLayer.swift in Sources */,
 				673A34F71C08CD3800494DD9 /* GameState.swift in Sources */,
 				57A558091BDEA86000A948DE /* Neith.swift in Sources */,
 				57A558071BDEA85000A948DE /* Salamang.swift in Sources */,
@@ -1810,6 +1845,7 @@
 				570A7D291C0F2AC800F687BD /* DMTSoundEffect.m in Sources */,
 				EB1214B61BD95CB000D0552F /* MFCSAnalog.swift in Sources */,
 				EB1214B71BD95CB000D0552F /* MFCSCommandType.swift in Sources */,
+				EBD449F51C4FDE650019E5F5 /* OnlineGameLayer.swift in Sources */,
 				EB9057A31BD5712500536AD1 /* Player.swift in Sources */,
 				673A34F01C08B93900494DD9 /* SettingsLayer.swift in Sources */,
 				576964F01BDFEB4800CBB81D /* PlayerState.swift in Sources */,

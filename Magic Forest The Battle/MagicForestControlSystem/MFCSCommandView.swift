@@ -77,7 +77,7 @@ class MFCSCommandView: UIView {
 	Check if view is in the correct place, based on lefty configuration
 	*/
 	func updateCenter(){
-		if (lefty == true){
+		if (LEFTY == true){
 			self.center.x = frame.width/2
 		}
 		else {

@@ -108,7 +108,7 @@ class MFCSAnalog: UIView {
 	Check if the view is in the correct place, based on lefty configuration
 	*/
 	func checkBounds(){
-		if (lefty){
+		if (LEFTY){
 			if (self.center.x < controlSize){
 				self.center.x = controlSize
 			}
