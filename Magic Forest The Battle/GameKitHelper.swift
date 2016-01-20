@@ -18,7 +18,7 @@ protocol GameKitHelperDelegate {
     func matchReceivedData(match: GKMatch, data: NSData, fromPlayer player: GKPlayer)
 }
 
-class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelegate {
+class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelegate, GKLocalPlayerListener {
     var authenticationViewController: UIViewController?
     var gameCenterEnabled = false
     var lastError: NSError?
@@ -28,7 +28,11 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
     var multiplayerMatch: GKMatch?
     var presentingViewController:  UIViewController?
     var multiplayerMatchStarted: Bool
-    
+	
+	// Invite variables
+	var pendingInvite: GKInvite?
+	var pendingPlayersToInvite: [GKPlayer]?
+	
     class var sharedInstance: GameKitHelper {
         return singleton
     }
@@ -54,6 +58,7 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
                 NSNotificationCenter.defaultCenter().postNotificationName(PresentAuthenticationViewController, object: self)
             } else if localPlayer.authenticated {
                 self.gameCenterEnabled = true
+				localPlayer.registerListener(self)
             } else {
                 self.gameCenterEnabled = false
             }
@@ -80,18 +85,41 @@ class GameKitHelper: NSObject, GKMatchmakerViewControllerDelegate, GKMatchDelega
         multiplayerMatch = nil
         self.delegate = delegate
         presentingViewController = viewController
-        
-        // Create a match request
-        let matchRequest = GKMatchRequest()
-        matchRequest.minPlayers = minPlayers
-        matchRequest.maxPlayers = maxPlayers
-        
-        let matchMakerViewController = GKMatchmakerViewController(matchRequest: matchRequest)
-        matchMakerViewController!.matchmakerDelegate = self
-        
-        presentingViewController?.presentViewController(matchMakerViewController!, animated: false, completion: nil)
+		
+		if (pendingInvite != nil) {
+			
+			let matchMakerViewController = GKMatchmakerViewController(invite: self.pendingInvite!)
+			matchMakerViewController!.matchmakerDelegate = self
+			
+			presentingViewController?.presentViewController(matchMakerViewController!, animated: false, completion: nil)
+			
+			self.pendingInvite = nil;
+			self.pendingPlayersToInvite = nil;
+			
+		} else {
+			// Create a match request
+			let matchRequest = GKMatchRequest()
+			matchRequest.minPlayers = minPlayers
+			matchRequest.maxPlayers = maxPlayers
+			
+			let matchMakerViewController = GKMatchmakerViewController(matchRequest: matchRequest)
+			matchMakerViewController!.matchmakerDelegate = self
+			
+			presentingViewController?.presentViewController(matchMakerViewController!, animated: false, completion: nil)
+		}
+		
     }
-    
+	
+	// MARK: Ivitation
+	func player(player: GKPlayer, didAcceptInvite invite: GKInvite) {
+		self.pendingInvite = invite
+	}
+	
+	func player(player: GKPlayer, didRequestMatchWithOtherPlayers playersToInvite: [GKPlayer]) {
+		self.pendingPlayersToInvite = playersToInvite
+	}
+	
+	// MARK: Achieviments
     func reportAchievements(achievements: [GKAchievement], errorHandler: ((NSError?)->Void)? = nil) {
         guard gameCenterEnabled else {
             return
