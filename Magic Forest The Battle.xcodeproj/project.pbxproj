@@ -623,7 +623,7 @@
 		EB90579D1BD56F9000536AD1 /* VulcanScenery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VulcanScenery.swift; sourceTree = "<group>"; };
 		EB9057A01BD5709800536AD1 /* GameObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameObject.swift; sourceTree = "<group>"; };
 		EB9057A21BD5712500536AD1 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		EBD449EE1C4FDE650019E5F5 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GlobalVariables.swift; path = "Magic Forest The Battle/GlobalVariables.swift"; sourceTree = "<group>"; };
+		EBD449EE1C4FDE650019E5F5 /* GlobalVariables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		EBD449EF1C4FDE650019E5F5 /* OnlineGameLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnlineGameLayer.swift; sourceTree = "<group>"; };
 		EBD449F01C4FDE650019E5F5 /* OnlineGameLayer+Physics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OnlineGameLayer+Physics.swift"; sourceTree = "<group>"; };
 		EBD449F11C4FDE650019E5F5 /* PracticeBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeBackView.swift; sourceTree = "<group>"; };
@@ -1294,7 +1294,6 @@
 		EB90574D1BD55CF200536AD1 = {
 			isa = PBXGroup;
 			children = (
-				EBD449EE1C4FDE650019E5F5 /* GlobalVariables.swift */,
 				677F424B1C21D5EF001BDBEB /* Chartboost.framework */,
 				670914EB1BFE5D2C0007F2FF /* GameKit.framework */,
 				EB9057581BD55CF200536AD1 /* Magic Forest The Battle */,
@@ -1333,6 +1332,7 @@
 				67D98E041BE3F1C20045029A /* Scenes */,
 				EB9057591BD55CF200536AD1 /* AppDelegate.swift */,
 				EB90575F1BD55CF200536AD1 /* GameViewController.swift */,
+				EBD449EE1C4FDE650019E5F5 /* GlobalVariables.swift */,
 				5788DF781C171E580029019A /* ParallaxLayerNode.swift */,
 				EB9057611BD55CF200536AD1 /* Main.storyboard */,
 				EB9057641BD55CF300536AD1 /* Assets.xcassets */,

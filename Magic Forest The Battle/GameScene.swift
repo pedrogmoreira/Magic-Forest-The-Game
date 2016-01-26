@@ -190,9 +190,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	
     // Called when the match has ended
     func matchEnded() {
-        
+		print("jogador saiu")
+		
+		if self.onlineGameLayer == nil {
+			self.scenesDelegate?.deinitControllersSystem()
+			scenesDelegate?.showMenu()
+			scenesDelegate?.removeMenuSelectPlayerScene()
+			scenesDelegate?.removeGameScene()
+			
+			GameKitHelper.sharedInstance.multiplayerMatch?.disconnect()
+		} else if self.isGameOver == false {
+			GameKitHelper.sharedInstance.multiplayerMatch?.disconnect()
+			self.isGameOver = true
+			self.pauseGame()
+			self.gameOverLayer?.removeLoad()
+			self.gameOverLayer?.playerDisconnected()
+			
+			Chartboost.showInterstitial(CBLocationDefault)
+		}
     }
-    
+	
     func startGame() {
         
     }
@@ -386,6 +403,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	func pauseGame() {
 		self.controlUnit?.alpha = 0
 		
+		self.hudLayer?.isGameOver = true
+		
 		self.gameOverLayer = GameOverLayer(size: (self.view?.bounds.size)!)
 		self.gameOverLayer?.zPosition = 1_200
 		
@@ -414,6 +433,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 			bluredScreenShot.runAction(SKAction.fadeAlphaTo(1, duration: 0.25))
 			
 			self.playerCamera?.addChild(self.gameOverLayer!)
+			print("blur")
 		})
 	}
 	

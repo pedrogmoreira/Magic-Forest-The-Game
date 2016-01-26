@@ -20,6 +20,7 @@ class HudLayer: SKNode {
 	var energyFrontBar = SKSpriteNode()
 	var lifeFrontBar = SKSpriteNode()
 	var size = CGSize()
+	var isGameOver: Bool = false
 	
 	private var scoreLabel = SKLabelNode(fontNamed: "SnapHand")
 	
@@ -145,19 +146,22 @@ class HudLayer: SKNode {
 		let repeatAction = SKAction.repeatAction(sequence, count: timer)
 		self.runAction(repeatAction) { () -> Void in
 			print("Pausou")
-
-			if self.networkingEngine?.isPlayer1 == false && IS_ONLINE == true {
-				self.matchEndDelegate?.sendScore()
-			} else if self.networkingEngine?.isPlayer1 == true && IS_ONLINE == true {
-				self.matchEndDelegate?.addMyScore()
-			}
 			
-			self.matchEndDelegate?.pauseGame()
+			if self.isGameOver == false {
+				if self.networkingEngine?.isPlayer1 == false && IS_ONLINE == true {
+					self.matchEndDelegate?.sendScore()
+				} else if self.networkingEngine?.isPlayer1 == true && IS_ONLINE == true {
+					self.matchEndDelegate?.addMyScore()
+				}
+				
+				self.matchEndDelegate?.pauseGame()
+			}
 		}
 	}
 	
 	func createScoreLabel () {
 		self.scoreLabel = SKLabelNode(text: "Score: 0")
+		self.scoreLabel.fontName = "SnapHand"
 		self.scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.Right
 
 		self.scoreLabel.name = "scoreLabel"

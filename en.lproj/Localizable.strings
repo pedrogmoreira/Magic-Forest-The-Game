@@ -17,3 +17,4 @@ Speed = "Speed";
 RandomCharacter1 = "Random";
 RandomCharacter2 = "Character";
 Back = "Back";
+Disconnected = "Player Disconnected";

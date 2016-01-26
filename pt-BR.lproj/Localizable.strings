@@ -17,3 +17,4 @@ Speed = "Velocidade";
 RandomCharacter1 = "Personagem";
 RandomCharacter2 = "Aleatório";
 Back = "Voltar";
+Disconnected = "Jogador Desconectado";

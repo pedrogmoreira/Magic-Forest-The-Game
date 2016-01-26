@@ -64,6 +64,66 @@ class GameOverLayer: SKNode, BasicLayer {
 		})
 	}
 	
+	func playerDisconnected() {
+		var x = CGFloat(0)
+		var y = CGFloat(0)
+		
+		var width = CGFloat(0)
+		var height = CGFloat(0)
+		var ratio = CGFloat(0)
+		
+		let background = SKSpriteNode(color: UIColor.blackColor(), size: self.size!)
+		background.zPosition = 0
+		background.position = CGPoint.zero
+		background.alpha = 0.7
+		self.addChild(background)
+		
+		let gameOverMessage = SKSpriteNode(imageNamed: "GameOver")
+		gameOverMessage.zPosition = 3
+		ratio = gameOverMessage.size.width / gameOverMessage.size.height
+		height = (self.size?.height)! / 4
+		width = height * ratio
+		gameOverMessage.size = CGSize(width: width, height: height)
+		x = 0
+		y = (self.size?.height)! / 2 - gameOverMessage.size.height
+		gameOverMessage.position = CGPoint(x: x, y: y)
+		self.addChild(gameOverMessage)
+		
+		let menuButton = SKSpriteNode(imageNamed: "MenuButton")
+		menuButton.name = "menu_button"
+		menuButton.zPosition = 3
+		ratio = menuButton.size.width / menuButton.size.height
+		height = (self.size?.height)! / 5
+		if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+			height = (self.size?.height)! / 7
+		}
+		width = height * ratio
+		menuButton.size = CGSize(width: width, height: height)
+		x = -(self.size?.width)! / 2 + menuButton.size.width / 2
+		y = (self.size?.height)! / 2 - menuButton.size.height / 2
+		menuButton.position = CGPoint(x: x, y: y)
+		self.addChild(menuButton)
+		
+		let menuLabel = SKLabelNode(fontNamed: "SnapHand")
+		menuLabel.name = "menu_button_label"
+		menuLabel.text = "Menu"
+		menuLabel.alpha = 0.6
+		menuLabel.zPosition = 4
+		menuButton.addChild(menuLabel)
+		
+		let label = SKLabelNode(fontNamed: "SnapHand")
+		label.text = NSLocalizedString("Disconnected", comment: "The other player has disconnected")
+		label.fontSize = 32 * (self.size?.width)! / (self.size?.height)!
+		if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
+			label.fontSize = 52 * (self.size?.width)! / (self.size?.height)!
+		}
+		x = 0
+		y = -label.frame.height * 1.5
+		label.position = CGPoint(x: x, y: y)
+		label.zPosition = 6
+		self.addChild(label)
+	}
+	
 	func showTwoPlayerScores(scores: [Int], players: [String], characters: [Int]) {
 		var x = CGFloat(0)
 		var y = CGFloat(0)
