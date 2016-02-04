@@ -336,9 +336,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 	
 	func didEndContact(contact: SKPhysicsContact) {
 		if IS_ONLINE {
-			self.onlineGameLayer?.didBeginContact(contact)
+			self.onlineGameLayer?.didEndContact(contact)
 		} else {
-			self.practiceGameLayer?.didBeginContact(contact)
+			self.practiceGameLayer?.didEndContact(contact)
 		}
 	}
 	
