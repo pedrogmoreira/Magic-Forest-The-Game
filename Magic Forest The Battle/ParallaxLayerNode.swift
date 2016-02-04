@@ -24,12 +24,12 @@ class ParallaxLayerNode: SKNode {
 		self.moveFactor = moveFactor
 		self.backgroundOne = SKSpriteNode(imageNamed: name)
 		self.backgroundOne!.texture?.filteringMode = SKTextureFilteringMode.Linear
-		self.backgroundOne?.anchorPoint = CGPointMake(0, 0)
+//		self.backgroundOne?.anchorPoint = CGPointMake(0, 0)
 		self.backOffset1 = 0
 		self.addChild(self.backgroundOne!)
 		
 		self.backgroundTwo = SKSpriteNode(imageNamed: name)
-		self.backgroundTwo?.anchorPoint = CGPointMake(0, 0)
+//		self.backgroundTwo?.anchorPoint = CGPointMake(0, 0)
 		self.backOffset2 = self.backgroundTwo?.size.width
 		self.addChild(self.backgroundTwo!)
 		

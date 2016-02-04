@@ -78,13 +78,13 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.background4?.zPosition = -60
 		self.lastBackground?.zPosition = -50
 		
-		self.addChild(self.background!)
-		self.addChild(self.background2!)
-		self.addChild(self.background3!)
-		self.addChild(self.background4!)
-		self.addChild(self.lastBackground!)
+//		self.addChild(self.background!)
+//		self.addChild(self.background2!)
+//		self.addChild(self.background3!)
+//		self.addChild(self.background4!)
+//		self.addChild(self.lastBackground!)
 		
-//		self.createParallaxLayers()
+		self.createParallaxLayers()
 		
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: (self.background?.frame)!)
 		self.physicsBody?.categoryBitMask = PhysicsCategory.WorldBox.rawValue
@@ -207,6 +207,12 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.backgroundParallaxFour = ParallaxLayerNode(name: "ForestScenery_4", moveFactor: CGPointMake(0.4,0.5))
 		self.backgroundParallaxFive = ParallaxLayerNode(name: "ForestScenery_5", moveFactor: CGPointMake(0,0))
 		
+		self.rescaleParallaxNode(self.backgroundParallaxOne!, scale: 4.2, rescaleTwo: true)
+		self.rescaleParallaxNode(self.backgroundParallaxTwo!, scale: 4.4, rescaleTwo: true)
+		self.rescaleParallaxNode(self.backgroundParallaxThree!, scale: 4.4, rescaleTwo: true)
+		self.rescaleParallaxNode(self.backgroundParallaxFour!, scale: 4.4, rescaleTwo: true)
+		self.rescaleParallaxNode(self.backgroundParallaxFive!, scale: 4.4, rescaleTwo: false)
+		
 		self.parallaxLayers.addObject(self.backgroundParallaxOne!)
 		self.parallaxLayers.addObject(self.backgroundParallaxTwo!)
 		self.parallaxLayers.addObject(self.backgroundParallaxThree!)
@@ -224,6 +230,21 @@ class ForestScenery: BackgroundLayer, BasicLayer {
 		self.backgroundParallaxThree?.zPosition = -70
 		self.backgroundParallaxFour?.zPosition = -60
 		self.backgroundParallaxFive?.zPosition = -50
+		
+	}
+	
+	func rescaleParallaxNode(node: ParallaxLayerNode, scale: CGFloat, rescaleTwo: Bool) {
+		
+		let xRatio =  DEFAULT_WIDTH / node.backgroundOne!.size.width
+		let yRatio =  DEFAULT_HEIGHT / node.backgroundOne!.size.height
+		
+		node.backgroundOne!.size = CGSize(width: node.backgroundOne!.size.width * xRatio * scale, height: node.backgroundOne!.size.height * yRatio * scale)
+		
+		if rescaleTwo == true {
+			node.backgroundTwo!.size = CGSize(width: node.backgroundTwo!.size.width * xRatio * scale, height: node.backgroundTwo!.size.height * yRatio * scale)
+		} else {
+			node.backgroundTwo?.removeFromParent()
+		}
 		
 	}
 	

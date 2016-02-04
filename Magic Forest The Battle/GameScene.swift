@@ -99,7 +99,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, MultiplayerProtocol, MatchEn
 		} else {
 			self.practiceGameLayer?.update(currentTime)
 		}
-		//(self.backgroundLayer as! ForestScenery).updateParallaxWithPosition((self.gameLayer?.player.position)!)
+		
+		(self.backgroundLayer as! ForestScenery).updateParallaxWithPosition((self.playerCamera?.position)!)
+//		(self.backgroundLayer as! ForestScenery).updateParallaxWithPosition((self.gameLayer?.player.position)!)
 	}
     
     // FIXME: The two next methods has duplicated code. They need to be refactored
